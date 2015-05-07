@@ -17,11 +17,10 @@
 
 
 
-paginate: 10 # pagination based on number of posts
+paginate: 20 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md", "Gemfile",".travis.yml"] # files to exclude
 highlighter: pygments
-# Build settings
 markdown: redcarpet
 redcarpet:
   extensions: ["footnotes", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data", "tables"]
@@ -48,9 +47,9 @@ rss_path: feed.xml
 categories_path: categories.html
 tags_path: tags.html
 
+permalink: pretty
 safe: true
-lsi: true
-#source: /
+lsi: false
 
 gems:
 - jekyll-mentions
