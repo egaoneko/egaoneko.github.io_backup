@@ -11,10 +11,6 @@ published: true
 
 Eclipse로 Java GUI를 만들어야 할 때 Visual Studio 시리즈처럼 쉽게 GUI를 만들게 도와주는 툴이 없을까 찾아다녔던 적이 있었어요. 그 끝에 찾은 방법이 Eclipse에 Window Builder을 설치하여 사용하는 방법이었는데 이 Window Builder를 이용하면 Visual Studio만큼 편하게 GUI를 만들 수 있어요.
 
-* * *
-
-
-
 ![screenshot]({{ site.url }}/assets/media/window-builder2.jpg)
 
 ![screenshot]({{ site.url }}/assets/media/window-builder3.jpg)

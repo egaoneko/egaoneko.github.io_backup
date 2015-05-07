@@ -7,10 +7,6 @@ tags: [Python, Connector, Django, MySQL, Web]
 published: true
 ---
 
-![screenshot]({{ site.url }}/assets/media/django.jpg)
-
-[Copyrightⓒ](https://www.flickr.com/photos/hoerner_brett/2901426375/in/photolist-4b39Ci-927Yj-dF6H1K-5ij6yy-bmYVz7-bmYVR3-bmYVuY-bmYVBS-bzTKLP-3pKbiV-5qoyYF-HKB4U-4QxCpS-4QxCpW-dNr5LE-9JdN84-HAZtp-dKHLMZ-7ihZJ-bmYViw-bzTL96-bmYVES-bzTKzX-bzTKFV-bmYVbU-bmYVxu-bmYVHC-bzTKJk-wN4re-5bALjQ-dKHMzn-dKHMSv-dKPgy5-dKHN7T-4JmVmc-63P8TP-59xMaK-qoEdp-dRqXHM-3pKcH4-6koLtL-5cGYq7-5xQHxx-9HLF7b-9mapF1-6kgroa-4SCbhn-5aRvib-gP6Gwf-4aJ7gQ)
-
 Django에서 MySQL을 이용하기 위해서 Python과 MySQL을 이어줄 Connector가 필요했는데 Python의 MySQL Connector는 MySQL 공식 홈페이지에서 다운받아 사용하였다.
 
 

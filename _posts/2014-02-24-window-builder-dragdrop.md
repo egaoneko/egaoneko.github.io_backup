@@ -15,8 +15,6 @@ published: true
 
 위 그림과 같이 버튼을 클릭해서 마우스를 가져가게 되면 설정된 Layout 때문에 Visual Studio의 Drag&Drop이 아니라 GUI를 만드는데 어려움이 느껴지더라고요. 사실 아주 간단하게 클릭 한번으로 이 문제를 해결 할 수 있어요.
 
-* * *
-
 ![screenshot]({{ site.url }}/assets/media/window-builder9.jpg)
 
 위의 이미지와 같이 1번을 클릭하면 pane에 대한 속성을 2번에 있는 것처럼 확인하실 수 있는데요. 거기서 Layout의 아랫방향 화살표를 누르면 Layout에 대한 여러 속성들이 있는데 그중 우리가 사용할 속성은 GroupLayout이라는 속성이므로 해당 속성을 클릭하시면 되요.
