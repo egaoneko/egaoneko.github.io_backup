@@ -15,7 +15,7 @@ published: true
 
 첫번째로 도구에 보드 메뉴에 현재 사용하는 보드와 같은 보드로 설정되어있는지 확인해주세요. 저는 이때 Mega2560이 아닌 Uno로 잡혀있어서 제 보드에 맞는 Mega2560으로 설정했어요.
 
-![screenshot]({{ site.baseurl }}/assets/media/arduino-error-stk5003.PNG)
+![screenshot]({{ site.baseurl }}/assets/media/arduino-error-stk5003.png)
 
 두번째로 프로그래머 부분인데요. 이 부분에서 AVR ISP로 잡혀있었는데 이걸 AVRISP mk2로 바꾸었어요. 사실 이 부분이 아두이노에서 어떤 역활을 하는지 잘 모르겠지만 바꿔보니 해당 오류와 파생되었던 오류들도 해결되었네요.
 
