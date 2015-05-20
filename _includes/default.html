@@ -74,6 +74,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="{{ site.baseurl }}/">Home</a></li>
+				<li><a href="{% post_url 2010-03-01-profile %}">About</a></li>
 				<li><a href="{{ site.baseurl}}/{{ site.categories_path }}">Categories</a></li>
 				<li><a href="{{ site.baseurl}}/{{ site.tags_path }}">Tags</a></li>
 			</ul>
@@ -87,6 +88,7 @@
 		</button>
 		<ul class="dropdown-menu" role="menu">
 			<li><a href="{{ site.baseurl}}/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="{% post_url 2010-03-01-profile %}"><i class="fa fa-search"></i>About</a></li>
 			<li><a href="{{ site.baseurl}}/{{ site.categories_path }}"><i class="fa fa-folder"></i>Categories</a></li>
 			<li><a href="{{ site.baseurl}}/{{ site.tags_path }}"><i class="fa fa-tags"></i>Tags</a></li>
 			<li class="divider"></li>
