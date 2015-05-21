@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요!</title>
+	<title>[Atom] Sublime Text 만큼 매력적인 에디터</title>
 	
 	<meta name="author" content="Donghyun Seo">
 
@@ -141,7 +141,7 @@
 
 	<div class="col-sm-9 col-sm-offset-3">
 		<div class="page-header">
-  <h1>jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요! </h1>
+  <h1>[Atom] Sublime Text 만큼 매력적인 에디터 </h1>
 </div>
 	
 <article>
@@ -155,54 +155,15 @@
 	   2015
 	 </span>
 	  <div class="article_body">
-	  <p>HTML의 input태그에서 전체 상품이라는 태그를 만들었다. 이 태그의 기본 <code>value</code>속성을 <code>0</code>으로 설정하고 상품을 제거할 때마다 이 값을 jQuery의 <code>.attr()</code>로 변경하여 사용하고 있었다. 코드는 다음과 같이 작성하였었고 그냥 사용할때는 문제없이 작동하는 것처럼 보였다.</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml">전체 가격 : <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;total_price&quot;</span> <span class="na">id=</span><span class="s">&quot;total_price&quot;</span> <span class="na">size=</span><span class="s">&quot;30&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;&lt;br/&gt;</span>
-</code></pre></div><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">delGoods</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">addTrId</span> <span class="o">=</span> <span class="s1">&#39;#goods_id_&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#price_&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">).</span><span class="nx">text</span><span class="p">());</span>
-    <span class="kd">var</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nx">addTrId</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="nx">totalPrice</span><span class="o">-</span><span class="nx">price</span><span class="p">);</span>
+	  <p><img src="https://s3-ap-northeast-1.amazonaws.com/opentutorialsfile/module/1579/3290.png" alt="atom"></p>
 
-    <span class="k">if</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>문제는 jQuery를 통해서 수정할 때가 아니라 직접 input태그의 값을 수정하게 되면 그 뒤로는 jQuery를 통해 값을 변경해도 반영이 되지 않는 현상이 발생하였다. 요소검사를 통해 확인해보면 속성의 값은 변하지만 정작 보이는 값은 변경되지 않았다.</p>
+<p>생활코딩에서 올라온 소개글을 보고 Atom을 사용해보고 있다. 평소에 Sublime Text를 사용해왔었는데 앞으로 Atom을 주로 사용할 것 같다.</p>
 
-<p>이를 해결하기 위해 검색을 해본 결과 jQuery에서 속성을 변경하는 방법이 두 가지가 있다는 사실을 알 수 있었다. <code>.attr()</code>과 <code>.prop()</code>이다.</p>
+<p>Github에서 만든 무료 에디터이며 Sublime Text처럼 다양한 언어를 지원하며 package를 install하여 사용할 수 있다. 웹 기술로 구현되어 있어 UI를 웹페이지를 편집하는 것과 비슷하게 제어할 수 있는 것이 매력적이다.</p>
 
-<p>자세한 사항은 아래 두 링크를 참조하면 된다.
-* <a href="http://stackoverflow.com/questions/5874652/prop-vs-attr/5876747#5876747">stackoverflow</a>
-* <a href="http://javascriptandjquerydev.blogspot.kr/2012/07/attr-prop.html">jongmin님의 블로그</a></p>
+<p><a href="https://opentutorials.org/module/1579">생활코딩</a>에서 자세한 설치법과 사용법을 배울 수 있다.</p>
 
-<p>jongmin님의 블로그에서 두 메소드에 차이에 대해서 다음과 같이 설명하였다.</p>
-
-<blockquote>
-<ul>
-<li><p><code>.attr()</code>는HTML의 속성을 취급</p></li>
-<li><p><code>.prop()</code>는JavaScript 프로퍼티을 취급</p></li>
-<li><p>양쪽은 같은 이름에서 다른게 있다.</p></li>
-</ul>
-</blockquote>
-
-<p>자세한 사항은 jongmin님의 블로그에 자세히 설명되어 있으니 확인해보자. 한글로 적혀있고 설명도 잘되어있다!</p>
-
-<p>이를 바탕으로 문제가 되는 <code>.attr()</code>을 <code>.prop()</code>으로 다음과 같이 바꾸어 실행해보았다.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">delGoods</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">addTrId</span> <span class="o">=</span> <span class="s1">&#39;#goods_id_&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#price_&#39;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">).</span><span class="nx">text</span><span class="p">());</span>
-    <span class="kd">var</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-    <span class="nx">$</span><span class="p">(</span><span class="nx">addTrId</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="nx">totalPrice</span><span class="o">-</span><span class="nx">price</span><span class="p">);</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">))</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">){</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#total_price&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>확인을 해보니 발생하던 문제가 말끔이 사라졌다. 상품들을 삭제할 때마다 정상적으로 전체 가격에서 빠져나가는 것을 확인할 수 있었다.</p>
+<p><a href="https://atom.io">다운로드</a>에서 다운로드 받을 수 있다.</p>
 
 	  </div>
 
@@ -212,8 +173,8 @@
 		  
 		  
 			 
-				<li><a href="/categories.html#jquery-ref">
-					jquery <span>(1)</span>
+				<li><a href="/categories.html#program-ref">
+					program <span>(3)</span>
 					
 				</a></li>
 			
@@ -228,22 +189,22 @@
 		  
 			 
 				<li>
-					<a href="/tags.html#jQuery-ref">
-					jQuery <span>(1)</span>
+					<a href="/tags.html#Atom-ref">
+					Atom <span>(2)</span>
 					,
 					</a>
 				</li>
 			 
 				<li>
-					<a href="/tags.html#.attr()-ref">
-					.attr() <span>(1)</span>
+					<a href="/tags.html#github-ref">
+					github <span>(1)</span>
 					,
 					</a>
 				</li>
 			 
 				<li>
-					<a href="/tags.html#.prop()-ref">
-					.prop() <span>(1)</span>
+					<a href="/tags.html#editor-ref">
+					editor <span>(1)</span>
 					
 					</a>
 				</li>
@@ -258,7 +219,7 @@
 		<div>
       <section class="share col-sm-6">
         <h4 class="section-title">Share Post</h4>
-        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요!"
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[Atom] Sublime Text 만큼 매력적인 에디터"
            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <i class="fa fa-twitter fa-lg"></i>
           Twitter
@@ -286,10 +247,10 @@
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/javascript/2015/05/12/ajax-async.html" title="Ajax의 async설정">&larr; Previous</a></li>
+		  <li class="previous"><a href="/jquery/2015/05/21/jquery-attr-prop.html" title="jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요!">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/program/2015/05/21/atom.html" title="[Atom] Sublime Text 만큼 매력적인 에디터">Next &rarr;</a></li>
+		  <li class="next"><a href="/program/2015/05/21/atom-snippnet-problem.html" title="Atom에서 autocomplete-plus를 사용 중 tab과 enter가 작동하지 않는 경우">Next &rarr;</a></li>
 		  
 		</ul>
 

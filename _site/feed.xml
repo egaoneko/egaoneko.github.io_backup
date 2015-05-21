@@ -7,6 +7,44 @@
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Atom에서 autocomplete-plus를 사용 중 tab과 enter가 작동하지 않는 경우</title>
+				<description>&lt;p&gt;&lt;a href=&quot;/program/2015/05/21/atom.html&quot;&gt;관련 글&lt;/a&gt;에서 Atom에 대해 글을 작성했었다. 설치하고 사용중에 autocomlete을 사용할 때 tab이나 enter가 정상적으로 작동하지 않는 문제가 생겼다. 정확한 원인을 찾지 못해 google을 검색하던 도중에 해결 방법을 찾았다.&lt;/p&gt;
+
+&lt;p&gt;필자가 겪은 문제는 추가로 설치한 emmet과 autocomplete-plus가 충돌이 나는 경우였다. 필자는 &lt;a href=&quot;https://github.com/emmetio/emmet-atom/issues/146#issuecomment-103475628&quot;&gt;이 글&lt;/a&gt;에서 해결법을 찾을 수 있었다.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;메뉴에서 atom을 누른다.(Mac OS에 해당하며 Windows는 File을 누른다.)&lt;/li&gt;
+&lt;li&gt;Open Your Keymap을 선택한다.&lt;/li&gt;
+&lt;li&gt;아래의 코드를 &lt;code&gt;keymap.cson&lt;/code&gt;에 붙여넣어 &lt;code&gt;enter&lt;/code&gt;에 대한 기능을 overwrite한다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;#39;atom-text-editor:not(mini).autocomplete-active&amp;#39;:
+    &amp;#39;enter&amp;#39;: &amp;#39;autocomplete-plus:confirm&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;위 작업을 수행하면 emmet 플러그인은 &lt;code&gt;tab&lt;/code&gt;으로 사용할 수 있으며, built-in 플러그인은 &lt;code&gt;enter&lt;/code&gt;을 통하여 사용할 수 있다.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 21 May 2015 11:54:00 +0900</pubDate>
+				<link>/program/2015/05/21/atom-snippnet-problem.html</link>
+				<guid isPermaLink="true">/program/2015/05/21/atom-snippnet-problem.html</guid>
+			</item>
+		
+			<item>
+				<title>[Atom] Sublime Text 만큼 매력적인 에디터</title>
+				<description>&lt;p&gt;&lt;img src=&quot;https://s3-ap-northeast-1.amazonaws.com/opentutorialsfile/module/1579/3290.png&quot; alt=&quot;atom&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;생활코딩에서 올라온 소개글을 보고 Atom을 사용해보고 있다. 평소에 Sublime Text를 사용해왔었는데 앞으로 Atom을 주로 사용할 것 같다.&lt;/p&gt;
+
+&lt;p&gt;Github에서 만든 무료 에디터이며 Sublime Text처럼 다양한 언어를 지원하며 package를 install하여 사용할 수 있다. 웹 기술로 구현되어 있어 UI를 웹페이지를 편집하는 것과 비슷하게 제어할 수 있는 것이 매력적이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://opentutorials.org/module/1579&quot;&gt;생활코딩&lt;/a&gt;에서 자세한 설치법과 사용법을 배울 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://atom.io&quot;&gt;다운로드&lt;/a&gt;에서 다운로드 받을 수 있다.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 21 May 2015 11:47:00 +0900</pubDate>
+				<link>/program/2015/05/21/atom.html</link>
+				<guid isPermaLink="true">/program/2015/05/21/atom.html</guid>
+			</item>
+		
+			<item>
 				<title>jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요!</title>
 				<description>&lt;p&gt;HTML의 input태그에서 전체 상품이라는 태그를 만들었다. 이 태그의 기본 &lt;code&gt;value&lt;/code&gt;속성을 &lt;code&gt;0&lt;/code&gt;으로 설정하고 상품을 제거할 때마다 이 값을 jQuery의 &lt;code&gt;.attr()&lt;/code&gt;로 변경하여 사용하고 있었다. 코드는 다음과 같이 작성하였었고 그냥 사용할때는 문제없이 작동하는 것처럼 보였다.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;전체 가격 : &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;total_price&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;total_price&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;size=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;30&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
@@ -565,195 +603,6 @@ name=url=id
 				<pubDate>Tue, 24 Feb 2015 23:41:30 +0900</pubDate>
 				<link>/clipping/2015/02/24/slideshare-for-fast-web-http2.html</link>
 				<guid isPermaLink="true">/clipping/2015/02/24/slideshare-for-fast-web-http2.html</guid>
-			</item>
-		
-			<item>
-				<title>내일로 (15.01.06 ~ 15.01.12)</title>
-				<description>&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0354.jpg&quot; alt=&quot;보성 녹차밭&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;15.01.06 ~ 15.01.12 사이에 다녀온 내일로에 대해 이야기 하고자 합니다.&lt;/p&gt;
-
-&lt;p&gt;이번에 다녀온 내일로는 제 첫 내일로였습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;일정&quot;&gt;일정&lt;/h2&gt;
-
-&lt;p&gt;일정은 아래와 같아요.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;6일(수원) : 수원화성 -&amp;gt; 한국 민속촌&lt;/li&gt;
-&lt;li&gt;7일(아산~대전) : 현충사 -&amp;gt; 대전시민 천문대&lt;/li&gt;
-&lt;li&gt;8일(순천~여수) : 보성 녹차밭 -&amp;gt; 오동도&lt;/li&gt;
-&lt;li&gt;9일(순천~청도) : 순천만 자연 생태 공원 -&amp;gt; 와인터널&lt;/li&gt;
-&lt;li&gt;10일(부산~울산) : 태종대 -&amp;gt; 간절곶&lt;/li&gt;
-&lt;li&gt;11일(울산) : 장생포 고래 문화 특구 -&amp;gt; 대왕암&lt;/li&gt;
-&lt;li&gt;12일(경주) : 천마총, 첨성대 -&amp;gt; 경주 세계 문화 엑스포&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;위 일정 중에 개인적으로 마음에 들었던 곳은 보성 녹차밭, 순천만, 태종대, 대왕암, 경주 세계 문화 엑스포였네요.&lt;/p&gt;
-
-&lt;p&gt;눈으로 볼 수 있는 풍경들이 좋았어요. 특히 조금 올라가기 귀찮아도 보성 녹차밭의 바다 전망대, 순천만 자연 생태 공원의 용산 전망대, 태종대의 등대와 신선바위, 대왕암의 왼쪽의 해안 산책로는 꼭 가보시길 추천합니다.&lt;/p&gt;
-
-&lt;p&gt;장생포 고래 문화 특구의 경우는 시간을 잘 맞추면 돌고래들에게 먹이주는 것을 관람할 수 있어요. 돌고래 먹이주는 것이 어떤 걸까 싶어서 시간 맞추어 가봤더니 돌고래쇼였네요.&lt;/p&gt;
-
-&lt;p&gt;저희는 시간 임박해서 도착했지만 성인이다보니 관람에 문제없이 관람할 수 있었지만 아이들을 대려가실 분이라면 먹이 주는 시간보다 조금 일찍 가셔야될 것 같네요. (내일로로 오신분이라면 아이를 대리고 오실리가 없겠지만요...)&lt;/p&gt;
-
-&lt;h2 id=&quot;숙박&quot;&gt;숙박&lt;/h2&gt;
-
-&lt;p&gt;숙박은 아래와 같이 머물렀습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;6일 : 집&lt;/li&gt;
-&lt;li&gt;7~8 일 : &lt;a href=&quot;http://guest.or.kr/&quot;&gt;(순천, 게하) 내일로 게스트하우스&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;9일 : (부산, 찜질방) 발리 아쿠아랜드&lt;/li&gt;
-&lt;li&gt;10일 : &lt;a href=&quot;http://blog.naver.com/k2690312&quot;&gt;(울산, 게하)  램넌트 게스트하우스&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;11일 : &lt;a href=&quot;http://pohangjjong.blog.me/&quot;&gt;(포항, 게하) 게스트하우스 파티&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;6일은 집이 수원에서 가까워 다시 집으로 돌아와 자고 출발했어요.&lt;/p&gt;
-
-&lt;p&gt;7~8일은 순천 발권으로 2일간 무료 숙박이 가능한 내일로 게하로 갔어요. 전화 예약없이 사이트에서 예약이 가능하기 때문에 편했지만 한방에 10인이 사용하고 샤워 및 화장실이 공용이라 개인적으로는 불편했네요. (많은 사람과 지내는게 불편하시다면 내일로 게하는 피하시는게 좋을 것 같네요. 10인이 같이 사용하다보니 숙면을 이루기가 힘든면도 있어요.)&lt;/p&gt;
-
-&lt;p&gt;9일의 발리 아쿠아랜드는 생각보다 괜찮았어요. 네이버의 평이 좋지 않아 걱정했는데 겨울이라 그런지 사람이 예상(?)보다 적어서 괜찮았네요. (저희는 도난 걱정 및 편의를 위해서 가방은 부산역에 보관하고 갈아입을 옷과 씻을 용품만 들고 갔어요.)&lt;/p&gt;
-
-&lt;p&gt;10일의 램넌트 게스트하우스는 7일 중 제일 괜찮은 게스트하우스였어요. 일단 친절하시고 저희는 4인실을 사용했는데 각 방마다 씻을 수 있는 화장실이 있어서 편했고 방도 따뜻했네요. 빨래도 가능했고 빵이지만 간단하게 조식도 제공하며 숙박 당일과 체크아웃일에는 가방도 보관해줍니다.&lt;/p&gt;
-
-&lt;p&gt;11일의 게스트하우스 파티는 게하 이름에서 느껴지듯이 주인이 파티를 매우 좋아하시는 듯 합니다. 물론 저희는 마지막 날이다 보니 피곤해서 파티에 참여하지 않았기 때문에 파티 분위기는 잘 모르겠네요. 블로그상으로는 매우 좋아 보였습니다.  조금 아쉬웠던 부분은 물의 수압이 약했던 것과 저희가 지낸 방이 외벽 쪽이다 보니 외벽 쪽에 잤던 사람은 좀 추웠네요.&lt;/p&gt;
-
-&lt;h2 id=&quot;기타&quot;&gt;기타&lt;/h2&gt;
-
-&lt;p&gt;식사 부분은 미리 저희가 찾아가서 먹은 것도 있지만 대부분은 주변에서 해결했다 보니 특별한 것이 없었네요. 그냥 네이버에 &amp;quot;어디역 맛집&amp;quot; 이런식으로 검색해서 먹었습니다.&lt;/p&gt;
-
-&lt;p&gt;마지막으로 이번 여행의 일등 공신은 개인적으로 어플이라고 생각되네요. 물론 미리 준비한 계획표도 중요한 역할을 했지만 계획에 맞춰 움직일 수 있게 도와줬던 것은 어플들이었어요.&lt;/p&gt;
-
-&lt;p&gt;여행 중 두 어플을 제일 많이 사용했고 정확히는 두 어플만 사용했네요.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;코레일톡 : 내일로에 없어서는 안될 어플이죠. 단순히 열차 표 검사와 기차 시간 확인은 물론이고 잘 이용하면 새마을호 자유석 확인과 자유석이 없으면 20분전까지 빈자리 확인 등에 유용했어요.&lt;/li&gt;
-&lt;li&gt;네이버 지도 : 저희 스케줄을 담당해주었던 어플이네요. 길찾기는 기본이고, 가장 인상 깊었던 것이 버스 배차 간격과 버스 도착 시간, 보수 노선도에 대한 정보였어요. 따로 버스 어플을 깔지 않아도 지도 검색하면서 찾을 수 있어 좋았답니다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;아래는 여행하면서 찍은 사진 중 몇 개만 뽑아봤어요.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0124.jpg&quot; alt=&quot;수원화성&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(수원) 수원화성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0241.jpg&quot; alt=&quot;한국 민속촌&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(수원) 한국 민속촌 - 토끼인듯 토끼아닌 토끼같은 너&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0263.jpg&quot; alt=&quot;현충사 본전&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(아산) 현충사 본전&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0281.jpg&quot; alt=&quot;대전 시민 천문대 주관측실&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(대전) 대전 시민 천문대 주관측실&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0317.jpg&quot; alt=&quot;보성 녹차밭&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(보성) 보성 녹차밭&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0341.jpg&quot; alt=&quot;보성 녹차밭 전망대&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(보성) 보성 녹차밭 전망대&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0354.jpg&quot; alt=&quot;보성 녹차밭&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(보성) 보성 녹차밭 - 녹차 아이스크림 &amp;amp; 녹차 라떼&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0378.jpg&quot; alt=&quot;오동도&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(여수) 오동도&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0419.jpg&quot; alt=&quot;순천만 자연 생태 공원&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(순천) 순천만 자연 생태 공원&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0558.jpg&quot; alt=&quot;와인터널&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(청도) 와인터널 - 감와인 &amp;amp; 감말랭이&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0559.jpg&quot; alt=&quot;와인터널&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(청도) 와인터널&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0572.jpg&quot; alt=&quot;태종대 일출&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(부산) 태종대 일출&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0723.jpg&quot; alt=&quot;간절곶&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(울산) 간절곶&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_0945.jpg&quot; alt=&quot;장생포 고래 문화 특구&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(울산) 장생포 고래 문화 특구 - 돌고래쇼&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_1138.jpg&quot; alt=&quot;대왕암&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(울산) 대왕암&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_1180.jpg&quot; alt=&quot;첨성대&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(경주) 첨성대&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/media/SAM_1207.jpg&quot; alt=&quot;경주 세계 문화 엑스포&quot;&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;(경주) 경주 세계 문화 엑스포&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-				<pubDate>Mon, 19 Jan 2015 10:19:09 +0900</pubDate>
-				<link>/journey/2015/01/19/rail-ro.html</link>
-				<guid isPermaLink="true">/journey/2015/01/19/rail-ro.html</guid>
-			</item>
-		
-			<item>
-				<title>[TED] 사이먼 시넥: 위대한 리더들이 행동을 이끌어내는 법</title>
-				<description>&lt;h2 id=&quot;from-ted&quot;&gt;From TED&lt;/h2&gt;
-
-&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://embed-ssl.ted.com/talks/simon_sinek_how_great_leaders_inspire_action.html&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; webkitallowfullscreen=&quot;webkitallowfullscreen&quot; mozallowfullscreen=&quot;mozallowfullscreen&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;from-youtube&quot;&gt;From Youtube&lt;/h2&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/qp0HIF3SfI4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;
-</description>
-				<pubDate>Mon, 15 Dec 2014 21:23:18 +0900</pubDate>
-				<link>/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html</link>
-				<guid isPermaLink="true">/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html</guid>
 			</item>
 		
 	</channel>
