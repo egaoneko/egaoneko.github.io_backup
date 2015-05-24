@@ -13,8 +13,8 @@ published: true
 
 ### 박재성
 
-* 자바지기 커뮤니티 운영([www.javajigi.net](www.javajigi.net))
-* 지속가능한 프로그래머([www.slipp.net](www.slipp.net))
+* 자바지기 커뮤니티 운영([www.javajigi.net](http://www.javajigi.net))
+* 지속가능한 프로그래머([www.slipp.net](http://www.slipp.net))
 
 ##  내용 메모
 
