@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<!-- Naver Webmaster Tool -->
+	<meta name="naver-site-verification" content="7a10b158b055d1c26e6d78412ffb9f61096994d6"/>
+
+	<!-- favicon -->
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:egaoneko@naver.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/logo35.jpg" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs">
+		<!-- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:egaoneko@naver.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스 </h1>
+</div>
+	
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   May 
+	   25th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>프로세스(process)는 컴퓨터에서 연속적으로 실행되고 있는 컴퓨터 프로그램이다. 종종 스케줄링의 대상이 되는 작업(task)이라는 용어와 거의 같은 의미로 쓰인다. 여러 개의 프로세서를 사용하는 것을 멀티프로세싱이라고 하며 같은 시간에 여러 개의 프로그램을 띄우는 시분할 방식을 멀티태스킹이라고 한다. 프로세스 관리는 운영 체제의 중요한 부분으로 자리 잡혀 있다.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+
+<p>즉, 간단히 말해 컴퓨터 안에 실행중인 프로그램을 프로세스라고 하며 실행중이지 않으면 프로그램이라 보면 된다.</p>
+
+<h2 id="01-프로세스의-실행방식">01 프로세스의 실행방식</h2>
+
+<h3 id="foreground">Foreground</h3>
+
+<p>한 사용자가 하나의 단말기에서 2개 이상의 프로그램을 동시에 수행시킬 때, 그중 단말기를 점유하고 사용자에 의해 대화식으로 사용되는 프로그램. 사용자의 입장에서 보면 맨 앞에 있는 프로그램이므로 전면이라고 하고, 다른 프로그램은 그 프로그램의 뒤에서 보이지 않게 수행되므로 후면이라고 한다.<sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup></p>
+
+<h3 id="background">Background</h3>
+
+<p>우선순위(priority)가 높은 작업이 먼저 실시되고, 그 실시 도중 남는 시간이 있을 경우에 우선도가 낮은 작업이 실행되는 환경. 즉, 입출력 없이 CPU 계산만 많은 경우 프로그램의 우선순위가 후면으로 밀리게 된다. 일반적으로 배치 프로그램(batch program)은 이 환경에서 실행된다.<sup id="fnref3"><a href="#fn3" rel="footnote">3</a></sup></p>
+
+<p>예를 들면 노래를 틀어놓고 인터넷을 한다고 하면 Foreground는 인터넷이고 Background는 음악 플레이어가 된다.</p>
+
+<p><img src="/assets/media/linux-starter-guide/%ED%8F%AC%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C.jpg" alt="screenshot">
+<img src="/assets/media/linux-starter-guide/%EB%B0%B1%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C.jpg" alt="screenshot"></p>
+
+<p>좌측이 Foreground이며 sleep명령어가 실행되는 동안은 echo명령어를 수행하지 않았다. 반면에 우측의 Background는 sleep명령 뒤에도 echo명령을 수행하였으며 sleep명령후에는 스스로 종료되었다.</p>
+
+<h2 id="02-프로세스-명령어">02 프로세스 명령어</h2>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #ps [옵션] : 현 프로세스 조회 명령어
+
+  옵션:
+    -a : 현재 실행 중인 모든 프로세스 출력
+    -ef : 현재 실행 중인 프로세스를 간단히 출력
+    -aux : 현재 실행 중인 프로세스를 자세히 출력
+    -u : 사용자와 프로세스 시간 출력
+    -x : 히든 프로세스 출력
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #kill [옵션] PID : 프로세스 종료 명령어
+
+  옵션:
+    -9 : 프로세스 강제 종료 명령어
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #uname -p : CPU 정보를 알려줌
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #free [옵션] : 메모리와 가상 메모리의 상태를 보여주는 명령어
+
+  옵션:
+    -b : 사용량을 바이트 단위로 출력
+    -m : 사용량을 메가바이트 단위로 출력
+    -s [숫자] : 입력한 숫자의 초단위로 출력
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #pstree : 부모, 자식 관계를 나타내는 트리를 출력
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #top [옵션] : 프로세스별 CPU와 메모리 점유율을 출력
+
+  옵셥:
+    -d [숫자] : 입력한 숫자만큼의 시간마다 다시 출력
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #nice [-n 조정수치] [옵션] : 프로세스의 우선순위를 변경할 수 있는 NICE 값을 설정
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #renice [- 조정수치] : 이미 실행되 있는 프로세스의 우선순위를 변경
+</code></pre></div>
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  /proc 디렉토리 : 현재 메모리에 존재하는 모든 작업들이 파일형태로 존재
+</code></pre></div>
+<p><img src="/assets/media/linux-starter-guide/proc.jpg" alt="screenshot"></p>
+
+<h2 id="03-데몬">03 데몬</h2>
+
+<p>일반적으로 프로그램은 설치 시 하드디스크에 설치되며 동그란 모양의 하드디스크에 깔려있는 프로그램을 읽어오기 위해서 수없이 회전하여 설치되어 있는 섹터를 검색 하고 검색한 부분을 읽어오게 된다. 하지만 하드디스크에서 읽어오는 것은 CPU와 RAM에 비해 상당히 느리다.</p>
+
+<p>그래서 cpu와 하드디스크 사이에 RAM이라는 공간에 실행중인 프로세스를 복사하여 실행시키며 이렇게 하여 속도를 높여 사용하는데 이것을 보고 프로세스를 RAM에 상주시킨다고 한다.</p>
+
+<p>이러한 프로세스는 총 3가지의 종류가 있는데 대화형, 배치형 데몬형이다. 먼저 대화형은 우리가 흔히 쓰는 프로세스를 말한다. 배치형은 내가 명령을 입력장치로 넣지 않아도 알아서 실행되며 시작 프로그램을 예로 볼 수 있다.</p>
+
+<p>마지막 데몬형은 실행되어도 화면에 출력이 안 되며 Backgound 형태로 돌아가며, 우리가 실행되고 있는지 아닌지를 잘 느끼지 못하는 프로그램이다. 윈도우에서는 서비스 리눅스에서는 데몬이라 불린다.<sup id="fnref4"><a href="#fn4" rel="footnote">4</a></sup></p>
+
+<h2 id="04-데몬의-종류">04 데몬의 종류</h2>
+
+<p><img src="/assets/media/linux-starter-guide/%EB%8D%B0%EB%AA%AC.png" alt="screenshot"></p>
+
+<h3 id="standalone">Standalone</h3>
+
+<p>항상 준비 되어있는 프로세스들을 의미하며 항상 실행 중에 있기 때문에 메모리에 상주 되어 있.다. 따라서 응답 속도가 빠르지만 메모리에 부하를 준다. init.d, sendmail, apache, mysql, name server, nfs등이 있다.</p>
+
+<h3 id="xinetd">Xinetd</h3>
+
+<p>xinetd자체는 항상 준비되어있는 프로세스이며 Standalone 방식인 반면 xinetd의 내부는 xinetd방식이다. xinetd에 요청이 들어오면 xinetd가 자신에게 종속되어 있는 프로그램을 실행시키며 처리가 끝나면 다시 휴면상태로 되돌린다.</p>
+
+<p>xinetd를 부모라고 생각하고, 그 안에 포함되어 있는 프로그램들을 자식이라고 생각한다면 요청 들어오면 부모가 깨워서 밖에 내보내는 것으로 볼 수 있다. 따라서 응답처리속도도 느리지만 요청이 들어오지 않을 경우 휴면상태이므로 메모리를 차지하지 않는다.</p>
+
+<p>xinetd에는 블랙리스트 시스템이 들어 있으며 xinetd가 좋지 못한 요청이라고 간주하면 프로그램들을 밖으로 내보내지 않는다. xinetd.d,telnet,PoP3등이 존재한다.</p>
+
+<p><img src="/assets/media/linux-starter-guide/xinetd.jpg" alt="screenshot"></p>
+
+<h2 id="05-서비스-관리">05 서비스 관리</h2>
+
+<p>시스템이 부팅될 때 많은 서비스 데몬들이 실행되는데 그 중 불필요한 데몬도 있다. 이러한 불필요한 데몬들은 시스템 자원을 낭비하므로 필요 없는 서비스는 실행되지 않도록 해주기 위해 ntsysv나 chkconfig명령을 사용하여 설정 할 수 있다.</p>
+
+<p>그리고 현재 실행중인 데몬을 제어하려면 service 명령어나 /etc/rc.d/init.d에 있는 실행스크립트를 이용하여 제어할 수 있다.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #ntsysv : 커서로 이동하며 스페이스바를 누르면 선택/해제가 가능
+</code></pre></div>
+<p><img src="/assets/media/linux-starter-guide/ntsysv.jpg" alt="screenshot"></p>
+
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #chkconfig [옵션] 데몬 [상태] : 시스템을 부팅할 때 런레벨에 따라 자동으로 실행되는 데몬들을 확인할 수 있고 특정 서비스를 추가, 수정할 수 있음
+
+  옵션:
+    --level : 적용할 런레벨을 선택
+    --add : 데몬을 추가
+    --del : 데몬을 삭제
+    --list : 현재 데몬들의 목록을 출력
+</code></pre></div>
+<p><img src="/assets/media/linux-starter-guide/chkconfig.jpg" alt="screenshot"></p>
+
+<hr>
+<div class="highlight"><pre><code class="language-text" data-lang="text">  #service [데몬] [상태] : 현재 실행중인 데몬을 제어
+
+  옵션:
+    start : 데몬을 실행
+    stop : 데몬을 중지
+    restart : 데몬을 재시작
+    status : 데몬의 상태
+</code></pre></div>
+<p><img src="/assets/media/linux-starter-guide/service.jpg" alt="screenshot"></p>
+
+<h2 id="06-좀비-프로세스와-퇴치-방법">06 좀비 프로세스와 퇴치 방법</h2>
+
+<p><img src="/assets/media/linux-starter-guide/%EC%A2%80%EB%B9%84.png" alt="screenshot"></p>
+
+<p>위와 같이 프로세스의 상태를 확인하다보면 좀비 상태인 프로세스들을 확인할 수 있다.</p>
+
+<p>좀비 프로세스는 실행이 완료 되었음에도 불구하고, 소멸되지 않은 프로세스를 말하며 main 함수가 반환되면 소멸한다. 따라서 소멸되지 않았다는 것은 프로세스가 사용한 리소스가 메모리 공간에 여전히 존재한다는 의미이다.</p>
+
+<p>이 좀비 프로세스의 생성은 자식 프로세스가 종료되면서 반환하는 상태 값이 부모 프로세스에게 전달되지 않으면 해당 프로세스는 소멸되지 않고 좀비가 되는 것이 원인이다.</p>
+
+<p>이는 프로그램을 작성할 때 반환하는 상태 값을 받을 수 있도록 wait(), waitpid() 함수를 사용함으로써 해결 할 수 있다.</p>
+
+<hr>
+
+<h2 id="관련글">관련글</h2>
+
+<h3 id="초보자를-위한-가이드">초보자를 위한 가이드</h3>
+
+<ul>
+<li><a href="/os/2015/05/25/linux-starter-guide-0.html">[리눅스 정리 - 초보자를 위한 가이드] 들어가며,</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-1.html">[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-2.html">[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-3.html">[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-4.html">[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-5.html">[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-6.html">[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-7.html">[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-8.html">[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-9.html">[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-10.html">[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-11.html">[리눅스 정리 - 초보자를 위한 가이드] 마치며,</a></li>
+<li><a href="/os/2015/05/25/linux-starter-guide-12.html">[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</a></li>
+</ul>
+
+<div class="footnotes">
+<hr>
+<ol>
+
+<li id="fn1">
+<p>출처 : 위키백과 - 프로세스&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn2">
+<p>출처 : IT용어사전, 한국정보통신기술협회&nbsp;<a href="#fnref2" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn3">
+<p>출처 : 컴퓨터인터넷IT용어대사전, 2011.1.20, 일진사&nbsp;<a href="#fnref3" rev="footnote">&#8617;</a></p>
+</li>
+
+<li id="fn4">
+<p>출처 : <a href="http://blog.naver.com/bbaroo27/100183424345">용식이님의 블로그</a>&nbsp;<a href="#fnref4" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			 
+				<li><a href="/categories.html#os-ref">
+					os <span>(13)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		  
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			 
+				<li>
+					<a href="/tags.html#OS-ref">
+					OS <span>(16)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#Linux-ref">
+					Linux <span>(13)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#guide-ref">
+					guide <span>(13)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		  
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Donghyun Seo</h4>
+        <p class="author-bio">How do you define yourself?</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/os/2015/05/25/linux-starter-guide-8.html" title="[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/os/2015/05/25/linux-starter-guide-10.html" title="[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+	
+	<div class="col-sm-2 sidebar-2">
+	
+	</div>
+	<div id="disqus_thread" class="col-sm-10"></div>
+<script type="text/javascript">
+	    /* * * CONFIGURATION VARIABLES * * */
+	    var disqus_shortname = 'egaoneko';
+	    
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</article>
+<div class="clearfix"></div>
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2015 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+	<script type="text/javascript">
+	    /* * * CONFIGURATION VARIABLES * * */
+	    var disqus_shortname = 'egaoneko';
+	    
+	    /* * * DON'T EDIT BELOW THIS LINE * * */
+	    (function () {
+	        var s = document.createElement('script'); s.async = true;
+	        s.type = 'text/javascript';
+	        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	    }());
+</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-62717870-1', 'auto');
+	  ga('send', 'pageview');
+</script>
+	<script type="text/javascript" src="http://wcs.naver.net/wcslog.js"></script> 
+<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "2b2415d1dec160";
+	wcs_do();
+</script>
+</body>
+</html>
+
