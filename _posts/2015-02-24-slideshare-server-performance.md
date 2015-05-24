@@ -2,7 +2,7 @@
 layout: post
 title: '[Slideshare] 서버 성능에 대한 정의와 이해'
 date: 2015-02-24 14:46:24
-categories: Programming
+categories: Clipping
 tags: [Slideshare, Server]
 published: true
 ---
