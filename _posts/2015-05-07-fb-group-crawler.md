@@ -7,8 +7,6 @@ tags: [Python, Crawler]
 published: true
 ---
 
-#[fb-group-crawler](https://github.com/egaoneko/fb-group-crawler)
-
 ## Facebook Group Crawler
 
 [fb-hfc](https://github.com/prili/fb-hfc)를 참조하여 작성하였습니다.
@@ -338,3 +336,5 @@ exit()
 ## 의의
 
 Facebook의 멤버수를 수집하여 분석할 일이 있어서 작성했어요. 거의 참조해서 만들었지만 평소에 관심이 있던 크롤러를 경험해 볼 수 있어서 좋았네요. 하지만 좀 더 나은 데이터를 얻을 수 없는 한계와 이 방식이 상당히 무거운 것이 아쉽네요. 시간이 날때 좀 더 좋은 방법에 대해 연구해봐야겠네요.
+
+###[github link](https://github.com/egaoneko/fb-group-crawler)
