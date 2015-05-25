@@ -45,7 +45,7 @@ ext2 파일시스템에 저널링(Journaling)[^3]을 지원하도록 확장된 �
 * * *
 
 ### ext4
-xt3 파일시스템을 확장한 파일시스템으로 Extent라는 기능을 제공하여, 파일에 디스크 할당 시 물리적으로 연속적인 블록을 할당할 수 있도록 하여, 파일 접근 속도 향상 및 단편화[^5]를 줄이도록 설계된 파일시스템이다.[^4]
+ext3 파일시스템을 확장한 파일시스템으로 Extent라는 기능을 제공하여, 파일에 디스크 할당 시 물리적으로 연속적인 블록을 할당할 수 있도록 하여, 파일 접근 속도 향상 및 단편화[^5]를 줄이도록 설계된 파일시스템이다.[^4]
 
 [^5]: 프로세스(병행으로 주행하는 태스크)에 대한 기억 영역의 할당과 프로세스에 의한 기억 영역의 해방을 반복함으로써 작은 기억 영역의 분할부가 다수 생성되는 것. 사용할 수 있는 기억 공간이 프로세스가 요구하는 크기보다 작기 때문에 어떤 요구도 만족할 수 없고, 사용하지 않은 상태로 남아 있는 상태를 말한다. - 컴퓨터인터넷IT용어대사전, 2011.1.20, 일진사
 
@@ -113,7 +113,7 @@ ext2 파일시스템은 부트섹터(Boot Sector)와 여러 개의 블록 그룹
 
 [^7]: 블록의 크기에 관계없이 블록 그룹의 시작부터 1024Byte 안에 슈퍼블록의 정보가 기록되어야 한다.
 
-각 Group마다 Super Block의 내용은 동일하며 만약 다르면 파일 시스템 손상된 것이다. 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Super Block을 읽는다. 주요 Date이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Super Block이 문제가 있을 시 다른 Block Group에 있는 Super Block의 복사본을 이용할 수 있다.
+각 Group마다 Super Block의 내용은 동일하며 만약 다르면 파일 시스템 손상된 것이다. 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Super Block을 읽는다. 주요 Data이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Super Block이 문제가 있을 시 다른 Block Group에 있는 Super Block의 복사본을 이용할 수 있다.
 
 슈퍼 블록에 저장되는 주요 데이터는 블록의 크기(1KB, 2KB, 4KB), 총 블록의 개수, 블록 그룹의 개수, Inode의 개수, 그룹 내의 블록/Inode의 개수 이다.
 
@@ -160,11 +160,11 @@ ext2 파일시스템은 부트섹터(Boot Sector)와 여러 개의 블록 그룹
 
 ### 그룹 디스크립터 테이블 (Group Descriptor Table)
 
-블록 그룹 안에서 슈퍼 블록 다음에 위치한다. Group Descriptor라고 불리는 파일 시스템의 블록 그룹들에 대한 정보를 가지고 있다. 그룹 디스크립터 테이블에 저장되는 주요 데이터는 Block Bitmap의 블록 번호, Inode Bitmap의 블록 번호, 첫 번째 Inode Table Block의 블록 번호, 그룹 안에 있는 빈 블록 수, 그룹 안에 잇는 Inode 수, 그룹 안에 잇는 빈 디렉토리 수 등이다.
+블록 그룹 안에서 슈퍼 블록 다음에 위치한다. Group Descriptor라고 불리는 파일 시스템의 블록 그룹들에 대한 정보를 가지고 있다. 그룹 디스크립터 테이블에 저장되는 주요 데이터는 Block Bitmap의 블록 번호, Inode Bitmap의 블록 번호, 첫 번째 Inode Table Block의 블록 번호, 그룹 안에 있는 빈 블록 수, 그룹 안에 있는 Inode 수, 그룹 안에 있는 빈 디렉토리 수 등이다.
 
 Group Descriptor의 크기는 32Byte로, 블록 크기가 1KB라면 하나의 블록에 총 32개의 Group Descriptor가 기록될 수 있다.
 
-서로 연결되어 있어서 전체적으로는 하나의 Group Descriptor Table을 형성하며 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Group Descriptor Table을 읽는다. 주요 Date이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Group Descriptor Table이 문제가 있을 시 다른 Block Group에 있는 Group Descriptor Table의 복사본을 이용할 수 있다.
+서로 연결되어 있어서 전체적으로는 하나의 Group Descriptor Table을 형성하며 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Group Descriptor Table을 읽는다. 주요 Data이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Group Descriptor Table이 문제가 있을 시 다른 Block Group에 있는 Group Descriptor Table의 복사본을 이용할 수 있다.
 
 
 #### 주요 저장 내용
@@ -210,7 +210,7 @@ File System을 처음에 생성(초기화)하면 지정된 개수만큼 Inode들
 
 Inode 1번은 Super Block, 2번은 루트 디렉토리이며, 10번까지는 예약되어 있기 때문에 사용할 수 없다.
 
-[^10]: 데이터 블록이 디스크 상의 어느 주소에 위치하고 있는지 정보와 같은 중요 정보를 가지기 때문이다. 기존 데이터가 모두 파괴 된다.
+[^10]: 데이터 블록이 디스크 상의 어느 주소에 위치하고 있는지 정보와 같은 중요 정보를 가지기 때문이다.
 
 [^11]: 기존 데이터가 모두 파괴 된다.
 

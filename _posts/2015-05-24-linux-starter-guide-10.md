@@ -62,7 +62,7 @@ Yum은 쉽게 말하자면 RPM을 설치할 때 편리하게 해주는 툴이라
 
 [^3]: 출처 : [Dexter님의 블로그](http://babbo1836.blog.me/140203028271)
 
-	**Ubuntu에서는 yum이 아닌 apt-get을 사용한다.**
+	Ubuntu에서는 yum이 아닌 apt-get을 사용한다.
 
 
 ## 05 Yum 명령어

@@ -94,7 +94,7 @@ Group name:password(일반적으로 쓰이지 않음):GID:Group List
       	-l : 패스워드 잠금 (로그인 금지)
       	-u : 패스워드 잠금 해제 (로그인 활성)
       	--stdin : 비밀번호 재입력 없이 변경 가능 (일괄적으로 처리 시 사용)
-                사용 예) #echo ‘123##’ | passwd —stdin abc
+                사용 예) #echo "패스워드" | passwd 계정 --stdin
 
 * * *
 
@@ -105,6 +105,12 @@ Group name:password(일반적으로 쓰이지 않음):GID:Group List
       옵션:
       	- : 사용자의 환경변수까지 변경
 
+
+| 현재디렉토리상태 | su | su - |
+|:--:|:--:|:--:|
+| [user1@host user1] | [root@host user1] | [root@host /root] |
+
+su명령을 옵션없이 사용하면 기존의 일반사용자인 user1의 환경을 그대로 가져간다. 루트권한자에서 일반사용자로 'su'시에는 패스워드를 묻지 않고 바로 전환된다.
 
 
 ## 03 SKELL 파일
