@@ -10,9 +10,13 @@ published: true
 얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 ["IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제"]({% post_url 2014-02-18-shortterm-project-c-chatting-program %})라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.
 
 >This is a Spring Boot problem.
+>
 >See http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations section "26.3.4 JSP limitations"
+>
 >Solutions:
+>
 >1. Do not use JSP at all (recommended)
+>
 >2. As workaround, enable special Gradle task "Build xxx.war artifact" in run configuration to simulate "bootRun" Gradle task (see screenshot)
 
 ![screenshot]({{ site.baseurl }}/assets/media/Run_Debug_Configurations.jpg)
