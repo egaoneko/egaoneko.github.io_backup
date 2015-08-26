@@ -189,7 +189,7 @@
 
 <h3 id="ext4">ext4</h3>
 
-<p>xt3 파일시스템을 확장한 파일시스템으로 Extent라는 기능을 제공하여, 파일에 디스크 할당 시 물리적으로 연속적인 블록을 할당할 수 있도록 하여, 파일 접근 속도 향상 및 단편화<sup id="fnref5"><a href="#fn5" rel="footnote">5</a></sup>를 줄이도록 설계된 파일시스템이다.<sup id="fnref4"><a href="#fn4" rel="footnote">4</a></sup></p>
+<p>ext3 파일시스템을 확장한 파일시스템으로 Extent라는 기능을 제공하여, 파일에 디스크 할당 시 물리적으로 연속적인 블록을 할당할 수 있도록 하여, 파일 접근 속도 향상 및 단편화<sup id="fnref5"><a href="#fn5" rel="footnote">5</a></sup>를 줄이도록 설계된 파일시스템이다.<sup id="fnref4"><a href="#fn4" rel="footnote">4</a></sup></p>
 
 <blockquote>
 <ul>
@@ -254,7 +254,7 @@
 
 <p>슈퍼 블록은 파일시스템의 블록을 대표하는 블록으로, Ext2 파일시스템에서 사용되는 주요 설정 정보들이 기록되어 있는 영역이다. 블록의 크기에 관계없이 항상 블록그룹의 첫 번째 블록에 위치한다. 슈퍼블록은 반드시 1KB인 경우에 맞춰서 저장된다.<sup id="fnref7"><a href="#fn7" rel="footnote">7</a></sup> 만약 블록의 크기가 4KB라면 슈퍼블록은 한 블록을 모두 차지하며, 1KB만 사용하고 나머지 3KB는 사용하지 않고 비워둔다.</p>
 
-<p>각 Group마다 Super Block의 내용은 동일하며 만약 다르면 파일 시스템 손상된 것이다. 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Super Block을 읽는다. 주요 Date이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Super Block이 문제가 있을 시 다른 Block Group에 있는 Super Block의 복사본을 이용할 수 있다.</p>
+<p>각 Group마다 Super Block의 내용은 동일하며 만약 다르면 파일 시스템 손상된 것이다. 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Super Block을 읽는다. 주요 Data이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Super Block이 문제가 있을 시 다른 Block Group에 있는 Super Block의 복사본을 이용할 수 있다.</p>
 
 <p>슈퍼 블록에 저장되는 주요 데이터는 블록의 크기(1KB, 2KB, 4KB), 총 블록의 개수, 블록 그룹의 개수, Inode의 개수, 그룹 내의 블록/Inode의 개수 이다.</p>
 
@@ -298,11 +298,11 @@ Blocks Per Group 은 하나의 그룹에 속한 블록의 수를 나타낸다. �
 
 <h3 id="그룹-디스크립터-테이블-(group-descriptor-table)">그룹 디스크립터 테이블 (Group Descriptor Table)</h3>
 
-<p>블록 그룹 안에서 슈퍼 블록 다음에 위치한다. Group Descriptor라고 불리는 파일 시스템의 블록 그룹들에 대한 정보를 가지고 있다. 그룹 디스크립터 테이블에 저장되는 주요 데이터는 Block Bitmap의 블록 번호, Inode Bitmap의 블록 번호, 첫 번째 Inode Table Block의 블록 번호, 그룹 안에 있는 빈 블록 수, 그룹 안에 잇는 Inode 수, 그룹 안에 잇는 빈 디렉토리 수 등이다.</p>
+<p>블록 그룹 안에서 슈퍼 블록 다음에 위치한다. Group Descriptor라고 불리는 파일 시스템의 블록 그룹들에 대한 정보를 가지고 있다. 그룹 디스크립터 테이블에 저장되는 주요 데이터는 Block Bitmap의 블록 번호, Inode Bitmap의 블록 번호, 첫 번째 Inode Table Block의 블록 번호, 그룹 안에 있는 빈 블록 수, 그룹 안에 있는 Inode 수, 그룹 안에 있는 빈 디렉토리 수 등이다.</p>
 
 <p>Group Descriptor의 크기는 32Byte로, 블록 크기가 1KB라면 하나의 블록에 총 32개의 Group Descriptor가 기록될 수 있다.</p>
 
-<p>서로 연결되어 있어서 전체적으로는 하나의 Group Descriptor Table을 형성하며 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Group Descriptor Table을 읽는다. 주요 Date이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Group Descriptor Table이 문제가 있을 시 다른 Block Group에 있는 Group Descriptor Table의 복사본을 이용할 수 있다.</p>
+<p>서로 연결되어 있어서 전체적으로는 하나의 Group Descriptor Table을 형성하며 파일 시스템이 Mount될 때, 커널은 Group 0 에 들어있는 Group Descriptor Table을 읽는다. 주요 Data이기 때문에 손상 될 경우를 대비하여 모든 Block Group에 사본이 저장되어 있어 Group Descriptor Table이 문제가 있을 시 다른 Block Group에 있는 Group Descriptor Table의 복사본을 이용할 수 있다.</p>
 
 <h4 id="주요-저장-내용">주요 저장 내용</h4>
 
@@ -607,7 +607,7 @@ Blocks Per Group 은 하나의 그룹에 속한 블록의 수를 나타낸다. �
 </li>
 
 <li id="fn10">
-<p>데이터 블록이 디스크 상의 어느 주소에 위치하고 있는지 정보와 같은 중요 정보를 가지기 때문이다. 기존 데이터가 모두 파괴 된다.&nbsp;<a href="#fnref10" rev="footnote">&#8617;</a></p>
+<p>데이터 블록이 디스크 상의 어느 주소에 위치하고 있는지 정보와 같은 중요 정보를 가지기 때문이다.&nbsp;<a href="#fnref10" rev="footnote">&#8617;</a></p>
 </li>
 
 <li id="fn11">

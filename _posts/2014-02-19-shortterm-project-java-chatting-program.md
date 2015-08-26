@@ -15,14 +15,17 @@ published: true
 
 ## 프로그램 정보
 
-* 이름
-	* Po Tweeter
-* 유형
-	* Study Project - Java
-* 기간
-	* 6주 (준비 4주 + 코딩 2주)
-* 언어
-	* Java
+* **이름** : Po Tweeter
+* **유형** : 스터디 프로젝트 - Java
+* **기간** : 6주
+	* 준비 : 4주
+	* 코딩 : 2주
+* **담당** : 팀장
+	* 클라이언트 & 서버(GUI) 구현
+	* 이모티콘 구현
+	* 이미지 및 파일 전송 구현
+	* 프로필 구현
+	* 공지 구현
 
 ## 개발 환경
 
@@ -31,12 +34,6 @@ published: true
 * Java
 * Eclipse + WindowBuilder
 * Mysql
-
-### 이론
-
-* Java 기본 문법
-* Java TCP/IP 프로토콜
-* Java 데이터 베이스 (Mysql)
 
 ## 참고 자료
 

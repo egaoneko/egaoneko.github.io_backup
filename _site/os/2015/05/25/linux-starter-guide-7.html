@@ -234,7 +234,7 @@
     -l : 패스워드 잠금 (로그인 금지)
     -u : 패스워드 잠금 해제 (로그인 활성)
     --stdin : 비밀번호 재입력 없이 변경 가능 (일괄적으로 처리 시 사용)
-            사용 예) #echo ‘123##’ | passwd —stdin abc
+            사용 예) #echo &quot;패스워드&quot; | passwd 계정 --stdin
 </code></pre></div>
 <hr>
 
@@ -244,6 +244,22 @@
   옵션:
     - : 사용자의 환경변수까지 변경
 </code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">현재디렉토리상태</th>
+<th style="text-align: center">su</th>
+<th style="text-align: center">su -</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">[user1@host user1]</td>
+<td style="text-align: center">[root@host user1]</td>
+<td style="text-align: center">[root@host /root]</td>
+</tr>
+</tbody></table>
+
+<p>su명령을 옵션없이 사용하면 기존의 일반사용자인 user1의 환경을 그대로 가져간다. 루트권한자에서 일반사용자로 &#39;su&#39;시에는 패스워드를 묻지 않고 바로 전환된다.</p>
+
 <h2 id="03-skell-파일">03 SKELL 파일</h2>
 
 <p>SKELL 파일은 사용자가 생성될 때 함께 만들어지는 파일이다. 이 파일은 /etc/skel 디렉토리에 있다.</p>

@@ -11,14 +11,11 @@ published: true
 
 ## 프로그램 정보
 
-* 이름
-	* Devgrus Diary
-* 유형
-	* Study Project - Java
-* 기간
-	* 4주 (코딩 4주)
-* 언어
-	* Java
+* **이름** : Devgrus Diary
+* **유형** : 스터디 프로젝트 - Java
+* **기간** : 4주 (14.11.01 ~ 14.11.23)
+* **역할** : 팀장
+	* 전체 프로그램 구현
 
 ## 개발 환경
 
@@ -26,11 +23,6 @@ published: true
 * Java
 * Eclipse + WindowBuilder
 * SQLite3
-
-## 이론
-
-* Java 기본 문법
-* Java 데이터 베이스 (SQLite)
 
 ## 참고 자료
 

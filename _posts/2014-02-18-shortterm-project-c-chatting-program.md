@@ -11,24 +11,16 @@ published: true
 
 ## 프로그램 정보
 
-* 이름
-	* C Chatting Program
-* 유형
-	* Study Project - TCP/IP 소켓 프로그래밍 스터디
-* 기간
-	* 1주 (코딩 1주)
-* 언어
-	* C
+* **이름** : C Chatting Program
+* **유형** : 스터디 프로젝트 - TCP/IP 소켓 프로그래밍 스터디
+* **기간** : 1주
+* **담당** : 팀장
+	* 클라이언트 & 서버 구현
 
 ## 개발 환경
 
 * Linux (Centos)
 * C
-
-## 이론
-
-* C 기본 문법
-* TCP/IP 프로토콜
 
 ## 참고 자료
 

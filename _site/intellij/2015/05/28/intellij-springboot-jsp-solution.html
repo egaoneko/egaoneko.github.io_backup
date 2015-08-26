@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능</title>
+	<title>IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책</title>
 	
 	<meta name="author" content="Donghyun Seo">
 
@@ -141,7 +141,7 @@
 
 	<div class="col-sm-9 col-sm-offset-3">
 		<div class="page-header">
-  <h1>[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능 </h1>
+  <h1>IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책 </h1>
 </div>
 	
 <article>
@@ -149,23 +149,30 @@
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   February 
-	   26th,
+	   May 
+	   28th,
 	   
 	   2015
 	 </span>
 	  <div class="article_body">
-	  <p><img src="/assets/media/wappalyzer.png" alt="screenshot"></p>
+	  <p>얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 <a href="/project/2014/02/19/shortterm-project-c-chatting-program.html">&quot;IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제&quot;</a>라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.</p>
 
-<p>wappalyzer는 현재 보고 있는 사이트의 소프트웨어가 무엇으로 구성되어 있는지 확인할 수 있게 해주는 확장기능입니다.</p>
+<blockquote>
+<p>This is a Spring Boot problem.</p>
 
-<p><img src="/assets/media/wappalyzer2.png" alt="screenshot"></p>
+<p>See <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations">http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations</a> section &quot;26.3.4 JSP limitations&quot;</p>
 
-<p>파이어폭스에서는 위와 같이 주소창에 이 사이트를 구성하는 소프트웨어를 보여줍니다.</p>
+<p>Solutions:</p>
 
-<p>wappalyzer는 크롬과 파이어폭스 확장기능으로 설치할 수 있으며 그외 다른 브라우저는 북마크 툴바로 이용할 수 있습니다.</p>
+<ol>
+<li><p>Do not use JSP at all (recommended)</p></li>
+<li><p>As workaround, enable special Gradle task &quot;Build xxx.war artifact&quot; in run configuration to simulate &quot;bootRun&quot; Gradle task (see screenshot)</p></li>
+</ol>
+</blockquote>
 
-<p>추가로, 대형 포털 사이트의 경우 잘 나타나지 않는다고 합니다.</p>
+<p><img src="/assets/media/Run_Debug_Configurations.jpg" alt="screenshot"></p>
+
+<p>답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 <code>bootRun</code>한 것과 동일하게 실행된다.</p>
 
 	  </div>
 
@@ -175,8 +182,8 @@
 		  
 		  
 			 
-				<li><a href="/categories.html#program-ref">
-					program <span>(4)</span>
+				<li><a href="/categories.html#intellij-ref">
+					intellij <span>(2)</span>
 					
 				</a></li>
 			
@@ -191,15 +198,22 @@
 		  
 			 
 				<li>
-					<a href="/tags.html#wappalyzer-ref">
-					wappalyzer <span>(1)</span>
+					<a href="/tags.html#IntelliJ-ref">
+					IntelliJ <span>(2)</span>
 					,
 					</a>
 				</li>
 			 
 				<li>
-					<a href="/tags.html#Web-ref">
-					Web <span>(7)</span>
+					<a href="/tags.html#Spring Boot-ref">
+					Spring Boot <span>(3)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#Jsp-ref">
+					Jsp <span>(2)</span>
 					
 					</a>
 				</li>
@@ -214,7 +228,7 @@
 		<div>
       <section class="share col-sm-6">
         <h4 class="section-title">Share Post</h4>
-        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능"
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책"
            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <i class="fa fa-twitter fa-lg"></i>
           Twitter
@@ -242,10 +256,10 @@
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/clipping/2015/02/24/slideshare-server-performance.html" title="[Slideshare] 서버 성능에 대한 정의와 이해">&larr; Previous</a></li>
+		  <li class="previous"><a href="/program/2015/05/26/macos-dictionary.html" title="[OSX] 맥에서 단어장 사용하기">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/coding/2015/05/08/fb-group-crawler.html" title="Facebook Group Crawler">Next &rarr;</a></li>
+		  <li class="next"><a href="/study/2015/06/21/Continuous-Integration.html" title="Continuous Integration 조사">Next &rarr;</a></li>
 		  
 		</ul>
 
