@@ -31,9 +31,9 @@ daemon 형태의 프로세스는 모두 orphan process 형태로 작성된답니
 
 >[1] APUE Chapter 9 Orphaned Process 정의 참조
 >
->[2] IEEE std. 1003.1 (www.opengroup.org)의 foreground process 참조
+>[2] [IEEE std. 1003.1](http://www.opengroup.org)의 foreground process 참조
 >
->[3] IEEE std. 1003.1 (www.opengroup.org)의 background process 참조
+>[3] [IEEE std. 1003.1](http://www.opengroup.org)의 background process 참조
 
 하단의 글은 해당글에 달린 댓글의 정광섭님께서 추가로 말씀해주신 글입니다.
 

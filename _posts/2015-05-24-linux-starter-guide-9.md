@@ -54,9 +54,9 @@ published: true
 
 >백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [2]
 
->[1] [IEEE std. 1003.1](www.opengroup.org)의 foreground process 참조
+>[1] [IEEE std. 1003.1](http://www.opengroup.org)의 foreground process 참조
 
->[2] [IEEE std. 1003.1](www.opengroup.org)의 background process 참조
+>[2] [IEEE std. 1003.1](http://www.opengroup.org)의 background process 참조
 
 ---
 
