@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>[Ubuntu] 듀얼부팅 구성시 Ubuntu에서 Windows파티션을 인식하지 못할 때</title>
+	<title>[리눅스] 유닉스, 리눅스 과련된 깨알 지식</title>
 	
 	<meta name="author" content="Donghyun Seo">
 
@@ -141,7 +141,7 @@
 
 	<div class="col-sm-9 col-sm-offset-3">
 		<div class="page-header">
-  <h1>[Ubuntu] 듀얼부팅 구성시 Ubuntu에서 Windows파티션을 인식하지 못할 때 </h1>
+  <h1>[리눅스] 유닉스, 리눅스 과련된 깨알 지식 </h1>
 </div>
 	
 <article>
@@ -149,26 +149,49 @@
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   May 
-	   6th,
+	   September 
+	   18th,
 	   
-	   2014
+	   2015
 	 </span>
 	  <div class="article_body">
-	  <p><img src="/assets/media/ubuntu1.PNG" alt="screenshot"></p>
+	  <p>리눅스 정리라고 작성한 글에 잘못된 내용이 있다는 조언을 듣고 해당 부분에 대한 내용을 읽으며 이를 다른 분들께 전달하고 싶어 작성한다. 아래의 글은 페이스북의 김선영님께서 작성한 글을 가지고 왔다.</p>
 
-<p>Ubuntu의 매력에 요즘 푹빠졌네요. 혹시 간단하게 우분투 체험해보시고 싶으신분이 있다면 아래 링크에 접속해 보시면 저와 같이 그 매력에 빠지실거에요.</p>
+<blockquote>
+<p>유닉스, 리눅스 관련된 깨알 지식입니다.</p>
 
-<p><a href="http://www.ubuntu.com/tour/en/#">Ubuntu Tour</a></p>
+<p>1) 부모 프로세스가 죽는다고 자식 프로세스까지 죽지는 않습니다. 
+부모(parent process)가 죽으면 자식(child process)은 고아 프로세스(orphan process)가 되고, step parent process로 최상위 프로세스(보통 init) 지정됩니다.
+daemon 형태의 프로세스는 모두 orphan process 형태로 작성된답니다. (daemon은 세션을 새로 열고 stdio를 닫는 몇가지 작업을 더 필요로 합니다. 자세한 것은 system programming에서 배웁니다.) [1]</p>
 
-<p>Ubuntu를 듀얼부팅을 구성하려고 Windows에서 파티션까지 나눴는데 그 파티션을 찾지 못했을 때 당황했었던 기억이 나서 이번 포스팅을 준비했어요.</p>
+<p>2) 포그라운드 프로세스란 세션내에서 제어터미널(controlling terminal)을 소유한 상태의 프로세스를 의미합니다. 만일 시험을 친다면 세션과 제어 터미널의 두 단어가 등장하지 않는다면 definition에서 틀린 것으로 간주할 수 있습니다. (이 정의는 IEEE std 1003.1 표준 문서에 등장합니다.) [2]</p>
 
-<p>저는 찾아 돌아다닌 수고해비해 정말 간단한 설치와 명령어로 쉽게 해결할 수 있었는데요. 해결방법은 아래와 같아요.</p>
+<p>3) 백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [3]</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo fdisk -l
-sudo apt-get install gdisk
-sudo fixparts /dev/sda
-and <span class="k">then</span> press the key <span class="s1">&#39;w&#39;</span></code></pre></div>
+<p>4) 리다이렉션은 입출력되는 스트림의 방향을 재지정하는 것을 의미합니다. 표준입출력만 재지정할 수 있는 것은 아닙니다. 시스템에 이미 작성되어있는 많은 쉘 스크립트들이 특정 파일서술자(file descriptor)를 직접 열어서 리다이렉션을 하고 있습니다.
+예를 들어 read v_input &lt;&amp;10 처럼 명령하면 10번 fd로부터 방향 재지정을 통해 값을 읽어올 수 있습니다.</p>
+
+<p>5) kill은 프로세스를 죽이는게 아닙니다.
+프로세스에 시그널을 송신하는 것이 정확한 기능입니다. 초기 유닉스 설계시에는 시그널은 프로세스를 죽이는 용도로 썼기 때문에 붙여졌던 이름이지만 현대에는 프로세스를 죽이지 않는 여러 시그널이 늘어났기 때문입니다.
+PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, 서점에 있는 리눅스 교재 중 상당수가 위 개념을 잘못 설명하고 있더군요. 혹시라고 잘못 배우신 분들은 이 기회에 올바른 지식으로 업데이트 하시기 바랍니다.
+특히 부모 프로세스 죽는다고 자식 프로세스가 죽는 경우는 없습니다. 로그오프 했을때 자식 프로세스들이 종료되는 것은 SIGHUP의 영향입니다. nohup 명령어가 바로 SIGHUP 시그널을 막아서 로그오프시 세션에 존재하는 프로세스 그룹의 연쇄 종료를 막아주는 기능입니다.
+또한 백그라운드 프로세스가 뒤에서 작동하면서 화면에 나타나지 않는다고 설명하는 경우도 있었는데 find / &amp; 로 작동시켜보시면 백그라운드로 작동하더라도 얼마든지 화면출력은 가능합니다. 단지 CTRL-C를 눌러서 SIGINT를 보내보면 백그라운드는 제어 터미널을 소유하지 못했기 때문에 종료가 안되는 것뿐이죠.
+혹시라도 크로스 체크 하실 분들을 위해 참조 서적, 레퍼런스 사이트 목록.</p>
+
+<p>[1] APUE Chapter 9 Orphaned Process 정의 참조</p>
+
+<p>[2] IEEE std. 1003.1 (<a href="http://www.opengroup.org)%EC%9D%98">www.opengroup.org)의</a> foreground process 참조</p>
+
+<p>[3] IEEE std. 1003.1 (<a href="http://www.opengroup.org)%EC%9D%98">www.opengroup.org)의</a> background process 참조</p>
+</blockquote>
+
+<p>하단의 글은 해당글에 달린 댓글의 정광섭님께서 추가로 말씀해주신 글입니다.</p>
+
+<blockquote>
+<p>한 가지 깨알 지식을 추가하면 프로세스 종료시에 kill -9 로 죽이는 경우가 있는데 이는 절대 피해야할 습관입니다. 보통 잘 만든 프로그램은 종료 시그널(SIGINT, SIGTERM 등)을 받으면 사용하던 리소스를 정리하고 파일을 닫고 마무리(시그널 핸들러) 하도록 구현되어 있는데 SIGKILL 과 SIGSTOP을 보내면은 핸들러를 호출할수 없으므로 사용하던 리소스가 깨진다거나 하는 문제가 발생할 수 있습니다.</p>
+
+<p>리눅스 책 광고를 하나 올리겠습니다. 입문서는 아니지만 위와같은 깨알 지식과 Redhat/CentOS 리눅스 기반으로 인프라를 구축하는 내용인 &quot;리눅스를 활용한 회사 인프라 구축의 모든 것&quot; 이라는 책이 있습니다. CentoOS 6 기준이긴 하지만 도움이 되실수 있을 것 같아서 올려봅니다. (CentOS 7 에 맞게 개정판을 내고 싶은데 책이 잘 안 팔립니다. <sup><sup>)</sup></sup> <a href="http://www.yes24.com/24/goods/15542130?scode=032&amp;OzSrank=7">http://www.yes24.com/24/goods/15542130?scode=032&amp;OzSrank=7</a></p>
+</blockquote>
 
 	  </div>
 
@@ -178,8 +201,8 @@ and <span class="k">then</span> press the key <span class="s1">&#39;w&#39;</span
 		  
 		  
 			 
-				<li><a href="/categories.html#tips-ref">
-					tips <span>(4)</span>
+				<li><a href="/categories.html#os-ref">
+					os <span>(14)</span>
 					
 				</a></li>
 			
@@ -201,8 +224,15 @@ and <span class="k">then</span> press the key <span class="s1">&#39;w&#39;</span
 				</li>
 			 
 				<li>
-					<a href="/tags.html#ubuntu-ref">
-					ubuntu <span>(1)</span>
+					<a href="/tags.html#Linux-ref">
+					Linux <span>(14)</span>
+					,
+					</a>
+				</li>
+			 
+				<li>
+					<a href="/tags.html#guide-ref">
+					guide <span>(14)</span>
 					
 					</a>
 				</li>
@@ -217,7 +247,7 @@ and <span class="k">then</span> press the key <span class="s1">&#39;w&#39;</span
 		<div>
       <section class="share col-sm-6">
         <h4 class="section-title">Share Post</h4>
-        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[Ubuntu] 듀얼부팅 구성시 Ubuntu에서 Windows파티션을 인식하지 못할 때"
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[리눅스] 유닉스, 리눅스 과련된 깨알 지식"
            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <i class="fa fa-twitter fa-lg"></i>
           Twitter
@@ -245,10 +275,10 @@ and <span class="k">then</span> press the key <span class="s1">&#39;w&#39;</span
 
 		<ul class="pager">
 		  
-		  <li class="previous"><a href="/seminar/2014/03/16/stdio-helloworld-daejeon.html" title="[STD.IO] Hello, World!_Daejeon_정리">&larr; Previous</a></li>
+		  <li class="previous"><a href="/project/2015/08/27/shortterm-project-lab-study.html" title="[소규모 프로젝트] 스터디 사이트">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/tips/2014/05/06/windows7-windows-update-error-80240016-8020000e.html" title="[Windows7] Windows 업데이트 오류 80240016 & 8020000E">Next &rarr;</a></li>
+			<li class="next disabled"><a>Next &rarr;</a>
 		  
 		</ul>
 
