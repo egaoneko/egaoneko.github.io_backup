@@ -170,169 +170,2069 @@
 
 <p>해결책은 해외 블로그에서 찾을 수 있었다. 원문은 이 <a href="http://davidensinger.com/2013/11/building-a-better-sitemap-xml-with-jekyll/">링크</a>를 참조하기 바란다.</p>
 
-<h2 id="설정-방법">설정 방법</h2>
+<h2 id="section">설정 방법</h2>
 
-<h3 id="블로그-root폴더에-sitemap-xml파일을-생성하고-다음-내용을-작성한다">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
+<h3 id="root-sitemapxml----">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
 
-<p><noscript><pre>---
-layout: null
-sitemap:</p>
+<h2 id="xml">```xml</h2>
+<p>layout: null
+sitemap:
+  exclude: ‘yes’
+—
+<?xml version="1.0" encoding="UTF-8"?></p>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    
+    <url>
+      <loc>/os/2015/09/18/linux-starter-guide-13.html</loc>
+      
+        <lastmod>2015-09-18T09:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/project/2015/08/27/shortterm-project-lab-study.html</loc>
+      
+        <lastmod>2015-08-27T01:10:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/project/2015/08/27/shortterm-project-lab-shop.html</loc>
+      
+        <lastmod>2015-08-27T01:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/study/2015/06/21/Coding-Conventions-Secure-Coding.html</loc>
+      
+        <lastmod>2015-06-21T09:00:02+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/study/2015/06/21/Continuous-Integration.html</loc>
+      
+        <lastmod>2015-06-21T09:00:01+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/intellij/2015/05/28/intellij-springboot-jsp-solution.html</loc>
+      
+        <lastmod>2015-05-28T06:20:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/program/2015/05/26/macos-dictionary.html</loc>
+      
+        <lastmod>2015-05-26T19:30:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/css/2015/05/26/color-code.html</loc>
+      
+        <lastmod>2015-05-26T00:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/blog/2015/05/25/jekyll-sitemap.html</loc>
+      
+        <lastmod>2015-05-25T11:50:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-12.html</loc>
+      
+        <lastmod>2015-05-25T06:00:12+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-11.html</loc>
+      
+        <lastmod>2015-05-25T06:00:11+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-10.html</loc>
+      
+        <lastmod>2015-05-25T06:00:10+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-9.html</loc>
+      
+        <lastmod>2015-05-25T06:00:09+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-8.html</loc>
+      
+        <lastmod>2015-05-25T06:00:08+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-7.html</loc>
+      
+        <lastmod>2015-05-25T06:00:07+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-6.html</loc>
+      
+        <lastmod>2015-05-25T06:00:06+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-5.html</loc>
+      
+        <lastmod>2015-05-25T06:00:05+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-4.html</loc>
+      
+        <lastmod>2015-05-25T06:00:04+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-3.html</loc>
+      
+        <lastmod>2015-05-25T06:00:03+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-2.html</loc>
+      
+        <lastmod>2015-05-25T06:00:02+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-1.html</loc>
+      
+        <lastmod>2015-05-25T06:00:01+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/os/2015/05/25/linux-starter-guide-0.html</loc>
+      
+        <lastmod>2015-05-25T06:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/clipping/2015/05/25/agile-clip.html</loc>
+      
+        <lastmod>2015-05-25T04:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/intellij/2015/05/25/intellij-springboot-jsp.html</loc>
+      
+        <lastmod>2015-05-25T01:30:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/program/2015/05/21/atom-snippnet-problem.html</loc>
+      
+        <lastmod>2015-05-21T11:54:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/program/2015/05/21/atom.html</loc>
+      
+        <lastmod>2015-05-21T11:47:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/jquery/2015/05/21/jquery-attr-prop.html</loc>
+      
+        <lastmod>2015-05-21T05:10:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/javascript/2015/05/12/ajax-async.html</loc>
+      
+        <lastmod>2015-05-12T06:02:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/blog/2015/05/10/jekyll-travis-ci.html</loc>
+      
+        <lastmod>2015-05-10T00:17:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/blog/2015/05/08/jekyll.html</loc>
+      
+        <lastmod>2015-05-08T10:29:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/coding/2015/05/08/fb-group-crawler.html</loc>
+      
+        <lastmod>2015-05-08T06:53:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/program/2015/02/26/wappalyzer.html</loc>
+      
+        <lastmod>2015-02-26T09:22:47+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/clipping/2015/02/24/slideshare-server-performance.html</loc>
+      
+        <lastmod>2015-02-24T23:46:24+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/clipping/2015/02/24/slideshare-for-fast-web-http2.html</loc>
+      
+        <lastmod>2015-02-24T23:41:30+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/journey/2015/01/19/rail-ro.html</loc>
+      
+        <lastmod>2015-01-19T10:19:09+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html</loc>
+      
+        <lastmod>2014-12-15T21:23:18+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/project/2014/11/18/shortterm-project-java-diary.html</loc>
+      
+        <lastmod>2014-11-18T07:26:37+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/clipping/2014/10/17/java-web-roadmap.html</loc>
+      
+        <lastmod>2014-10-17T01:19:02+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/tips/2014/10/16/windows8-comodo-firewall-process-error.html</loc>
+      
+        <lastmod>2014-10-16T00:15:39+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/tips/2014/10/15/git-comodo-firewall-loading.html</loc>
+      
+        <lastmod>2014-10-15T04:42:46+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/python/2014/09/04/django-python3x-mysql-connector.html</loc>
+      
+        <lastmod>2014-09-04T21:30:25+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/python/2014/08/29/django-setup.html</loc>
+      
+        <lastmod>2014-08-29T22:14:49+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/project/2014/08/28/shortterm-project-pxa-270-calculator.html</loc>
+      
+        <lastmod>2014-08-28T17:22:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/tips/2014/05/06/windows7-windows-update-error-80240016-8020000e.html</loc>
+      
+        <lastmod>2014-05-06T22:25:33+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/tips/2014/05/06/ubuntu-dualboot-partion-error.html</loc>
+      
+        <lastmod>2014-05-06T19:30:58+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/seminar/2014/03/16/stdio-helloworld-daejeon.html</loc>
+      
+        <lastmod>2014-03-16T02:55:51+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/seminar/2014/03/16/stdio-helloworld-seoul.html</loc>
+      
+        <lastmod>2014-03-16T01:16:36+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/arduino/2014/03/09/arduino-error-stk500.html</loc>
+      
+        <lastmod>2014-03-09T22:08:10+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/game/2014/02/25/minecraft-server.html</loc>
+      
+        <lastmod>2014-02-25T02:56:54+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/java/2014/02/25/window-builder-dragdrop.html</loc>
+      
+        <lastmod>2014-02-25T01:06:29+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/java/2014/02/24/window-builder-add-file-open.html</loc>
+      
+        <lastmod>2014-02-24T20:43:24+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/java/2014/02/24/robocode.html</loc>
+      
+        <lastmod>2014-02-24T15:49:28+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/project/2014/02/19/shortterm-project-java-chatting-program.html</loc>
+      
+        <lastmod>2014-02-19T11:21:41+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/project/2014/02/19/shortterm-project-c-chatting-program.html</loc>
+      
+        <lastmod>2014-02-19T03:20:53+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/2010/03/01/profile.html</loc>
+      
+        <lastmod>2010-03-01T09:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+  
+    
+    <url>
+      <loc>/404.html</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/about/</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/categories.html</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/feed.xml</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>/css/main.css</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+  
+    
+    <url>
+      <loc>/tags.html</loc>
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+</urlset>
+<p>```</p>
 
-<h2 id="exclude-39-yes-39">  exclude: &#39;yes&#39;</h2>
+<h3 id="configyml---">_config.yml에 다음 내용을 추가한다.</h3>
 
-<p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;urlset xmlns=&quot;<a href="http://www.sitemaps.org/schemas/sitemap/0.9">http://www.sitemaps.org/schemas/sitemap/0.9</a>&quot;&gt;
-  {% for post in site.posts %}
-    {% unless post.published == false %}
-    &lt;url&gt;
-      &lt;loc&gt;{{ site.url }}{{ post.url }}&lt;/loc&gt;
-      {% if post.sitemap.lastmod %}
-        &lt;lastmod&gt;{{ post.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
-      {% elsif post.date %}
-        &lt;lastmod&gt;{{ post.date | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% else %}
-        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% endif %}
-      {% if post.sitemap.changefreq %}
-        &lt;changefreq&gt;{{ post.sitemap.changefreq }}&lt;/changefreq&gt;
-      {% else %}
-        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
-      {% endif %}
-      {% if post.sitemap.priority %}
-        &lt;priority&gt;{{ post.sitemap.priority }}&lt;/priority&gt;
-      {% else %}
-        &lt;priority&gt;0.5&lt;/priority&gt;
-      {% endif %}
-    &lt;/url&gt;
-    {% endunless %}
-  {% endfor %}
-  {% for page in site.pages %}
-    {% unless page.sitemap.exclude == &quot;yes&quot; %}
-    &lt;url&gt;
-      &lt;loc&gt;{{ site.url }}{{ page.url | remove: &quot;index.html&quot; }}&lt;/loc&gt;
-      {% if page.sitemap.lastmod %}
-        &lt;lastmod&gt;{{ page.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
-      {% elsif page.date %}
-        &lt;lastmod&gt;{{ page.date | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% else %}
-        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% endif %}
-      {% if page.sitemap.changefreq %}
-        &lt;changefreq&gt;{{ page.sitemap.changefreq }}&lt;/changefreq&gt;
-      {% else %}
-        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
-      {% endif %}
-      {% if page.sitemap.priority %}
-        &lt;priority&gt;{{ page.sitemap.priority }}&lt;/priority&gt;
-      {% else %}
-        &lt;priority&gt;0.3&lt;/priority&gt;
-      {% endif %}
-    &lt;/url&gt;
-    {% endunless %}
-  {% endfor %}
-&lt;/urlset&gt;</pre></noscript><script src="https://gist.github.com/egaoneko/f12498eecab878f8e229.js"> </script></p>
+<p><code class="highlighter-rouge">YAML
+sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
+</code></p>
 
-<h3 id="_config-yml에-다음-내용을-추가한다">_config.yml에 다음 내용을 추가한다.</h3>
-<div class="highlight"><pre><code class="language-YAML" data-lang="YAML"><span class="l-Scalar-Plain">sitemap</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">lastmod</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-01-23</span>
-  <span class="l-Scalar-Plain">priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.7</span>
-  <span class="l-Scalar-Plain">changefreq</span><span class="p-Indicator">:</span> <span class="s">&#39;monthly&#39;</span>
-  <span class="l-Scalar-Plain">exclude</span><span class="p-Indicator">:</span> <span class="s">&#39;yes&#39;</span>
-</code></pre></div>
-<h2 id="추가-설정-방법">추가 설정 방법</h2>
+<h2 id="section-1">추가 설정 방법</h2>
 
-<p>필자가 상단의 설정을 하고 블로그를 실행시켰을 경우 sitemap.xml에 생성되는 것은 확인되었으나, 필자의 경우 github를 통해 호스팅하여 <code>site.url</code>을 설정해두지 않아 아래와 같이 sitemap.xml이 제대로 생성되지 않았다. 그래서 필자는 위와 다르게 설정을 다음과 같이 조금 변경해보았다.</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;url&gt;</span>
-      <span class="nt">&lt;loc&gt;</span>/blog/2015/05/25/jekyll-sitemap.html<span class="nt">&lt;/loc&gt;</span>
-      <span class="nt">&lt;lastmod&gt;</span>2015-05-25T11:50:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
-      <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
-      <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
-<span class="nt">&lt;/url&gt;</span>
-</code></pre></div>
-<h3 id="블로그-root폴더에-sitemap-xml파일을-생성하고-다음-내용을-작성한다">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
+<p>필자가 상단의 설정을 하고 블로그를 실행시켰을 경우 sitemap.xml에 생성되는 것은 확인되었으나, 필자의 경우 github를 통해 호스팅하여 <code class="highlighter-rouge">site.url</code>을 설정해두지 않아 아래와 같이 sitemap.xml이 제대로 생성되지 않았다. 그래서 필자는 위와 다르게 설정을 다음과 같이 조금 변경해보았다.</p>
 
-<p><noscript><pre>---
-layout: null
-sitemap:</p>
+<p>```xml</p>
+<url>
+      <loc>/blog/2015/05/25/jekyll-sitemap.html</loc>
+      <lastmod>2015-05-25T11:50:00+09:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+</url>
+<p>```</p>
 
-<h2 id="exclude-39-yes-39">  exclude: &#39;yes&#39;</h2>
+<h3 id="root-sitemapxml-----1">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
 
-<p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;urlset xmlns=&quot;<a href="http://www.sitemaps.org/schemas/sitemap/0.9">http://www.sitemaps.org/schemas/sitemap/0.9</a>&quot;&gt;
-  {% for post in site.posts %}
-    {% unless post.published == false %}
-    &lt;url&gt;
-      {% if site.url %}
-        &lt;loc&gt;{{ site.url }}{{ post.url }}&lt;/loc&gt;
-      {% else %}
-        &lt;loc&gt;{{ site.sitemap.url }}{{ post.url }}&lt;/loc&gt;
-      {% endif %}
-      {% if post.sitemap.lastmod %}
-        &lt;lastmod&gt;{{ post.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
-      {% elsif post.date %}
-        &lt;lastmod&gt;{{ post.date | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% else %}
-        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% endif %}
-      {% if post.sitemap.changefreq %}
-        &lt;changefreq&gt;{{ post.sitemap.changefreq }}&lt;/changefreq&gt;
-      {% else %}
-        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
-      {% endif %}
-      {% if post.sitemap.priority %}
-        &lt;priority&gt;{{ post.sitemap.priority }}&lt;/priority&gt;
-      {% else %}
-        &lt;priority&gt;0.5&lt;/priority&gt;
-      {% endif %}
-    &lt;/url&gt;
-    {% endunless %}
-  {% endfor %}
-  {% for page in site.pages %}
-    {% unless page.sitemap.exclude == &quot;yes&quot; %}
-    &lt;url&gt;
-      {% if site.url %}
-        &lt;loc&gt;{{ site.url }}{{ post.url }}&lt;/loc&gt;
-      {% else %}
-        &lt;loc&gt;{{ site.sitemap.url }}{{ page.url | remove: &quot;index.html&quot; }}&lt;/loc&gt;
-      {% endif %}
-      {% if page.sitemap.lastmod %}
-        &lt;lastmod&gt;{{ page.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
-      {% elsif page.date %}
-        &lt;lastmod&gt;{{ page.date | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% else %}
-        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
-      {% endif %}
-      {% if page.sitemap.changefreq %}
-        &lt;changefreq&gt;{{ page.sitemap.changefreq }}&lt;/changefreq&gt;
-      {% else %}
-        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
-      {% endif %}
-      {% if page.sitemap.priority %}
-        &lt;priority&gt;{{ page.sitemap.priority }}&lt;/priority&gt;
-      {% else %}
-        &lt;priority&gt;0.3&lt;/priority&gt;
-      {% endif %}
-    &lt;/url&gt;
-    {% endunless %}
-  {% endfor %}
-&lt;/urlset&gt;</pre></noscript><script src="https://gist.github.com/egaoneko/38d617cef9b8b2550cee.js"> </script></p>
+<h2 id="xml-1">```xml</h2>
+<p>layout: null
+sitemap:
+  exclude: ‘yes’
+—
+<?xml version="1.0" encoding="UTF-8"?></p>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/09/18/linux-starter-guide-13.html</loc>
+      
+      
+        <lastmod>2015-09-18T09:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/project/2015/08/27/shortterm-project-lab-study.html</loc>
+      
+      
+        <lastmod>2015-08-27T01:10:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/project/2015/08/27/shortterm-project-lab-shop.html</loc>
+      
+      
+        <lastmod>2015-08-27T01:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/study/2015/06/21/Coding-Conventions-Secure-Coding.html</loc>
+      
+      
+        <lastmod>2015-06-21T09:00:02+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/study/2015/06/21/Continuous-Integration.html</loc>
+      
+      
+        <lastmod>2015-06-21T09:00:01+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/intellij/2015/05/28/intellij-springboot-jsp-solution.html</loc>
+      
+      
+        <lastmod>2015-05-28T06:20:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/program/2015/05/26/macos-dictionary.html</loc>
+      
+      
+        <lastmod>2015-05-26T19:30:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/css/2015/05/26/color-code.html</loc>
+      
+      
+        <lastmod>2015-05-26T00:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html</loc>
+      
+      
+        <lastmod>2015-05-25T11:50:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-12.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:12+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-11.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:11+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-10.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:10+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-9.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:09+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-8.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:08+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-7.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:07+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-6.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:06+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-5.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:05+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-4.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:04+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-3.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:03+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-2.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:02+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-1.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:01+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-0.html</loc>
+      
+      
+        <lastmod>2015-05-25T06:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/clipping/2015/05/25/agile-clip.html</loc>
+      
+      
+        <lastmod>2015-05-25T04:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/intellij/2015/05/25/intellij-springboot-jsp.html</loc>
+      
+      
+        <lastmod>2015-05-25T01:30:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/program/2015/05/21/atom-snippnet-problem.html</loc>
+      
+      
+        <lastmod>2015-05-21T11:54:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/program/2015/05/21/atom.html</loc>
+      
+      
+        <lastmod>2015-05-21T11:47:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/jquery/2015/05/21/jquery-attr-prop.html</loc>
+      
+      
+        <lastmod>2015-05-21T05:10:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/javascript/2015/05/12/ajax-async.html</loc>
+      
+      
+        <lastmod>2015-05-12T06:02:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/blog/2015/05/10/jekyll-travis-ci.html</loc>
+      
+      
+        <lastmod>2015-05-10T00:17:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/blog/2015/05/08/jekyll.html</loc>
+      
+      
+        <lastmod>2015-05-08T10:29:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/coding/2015/05/08/fb-group-crawler.html</loc>
+      
+      
+        <lastmod>2015-05-08T06:53:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/program/2015/02/26/wappalyzer.html</loc>
+      
+      
+        <lastmod>2015-02-26T09:22:47+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/clipping/2015/02/24/slideshare-server-performance.html</loc>
+      
+      
+        <lastmod>2015-02-24T23:46:24+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/clipping/2015/02/24/slideshare-for-fast-web-http2.html</loc>
+      
+      
+        <lastmod>2015-02-24T23:41:30+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/journey/2015/01/19/rail-ro.html</loc>
+      
+      
+        <lastmod>2015-01-19T10:19:09+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html</loc>
+      
+      
+        <lastmod>2014-12-15T21:23:18+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/project/2014/11/18/shortterm-project-java-diary.html</loc>
+      
+      
+        <lastmod>2014-11-18T07:26:37+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/clipping/2014/10/17/java-web-roadmap.html</loc>
+      
+      
+        <lastmod>2014-10-17T01:19:02+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/tips/2014/10/16/windows8-comodo-firewall-process-error.html</loc>
+      
+      
+        <lastmod>2014-10-16T00:15:39+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/tips/2014/10/15/git-comodo-firewall-loading.html</loc>
+      
+      
+        <lastmod>2014-10-15T04:42:46+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/python/2014/09/04/django-python3x-mysql-connector.html</loc>
+      
+      
+        <lastmod>2014-09-04T21:30:25+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/python/2014/08/29/django-setup.html</loc>
+      
+      
+        <lastmod>2014-08-29T22:14:49+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/project/2014/08/28/shortterm-project-pxa-270-calculator.html</loc>
+      
+      
+        <lastmod>2014-08-28T17:22:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/tips/2014/05/06/windows7-windows-update-error-80240016-8020000e.html</loc>
+      
+      
+        <lastmod>2014-05-06T22:25:33+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/tips/2014/05/06/ubuntu-dualboot-partion-error.html</loc>
+      
+      
+        <lastmod>2014-05-06T19:30:58+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-daejeon.html</loc>
+      
+      
+        <lastmod>2014-03-16T02:55:51+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-seoul.html</loc>
+      
+      
+        <lastmod>2014-03-16T01:16:36+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/arduino/2014/03/09/arduino-error-stk500.html</loc>
+      
+      
+        <lastmod>2014-03-09T22:08:10+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/game/2014/02/25/minecraft-server.html</loc>
+      
+      
+        <lastmod>2014-02-25T02:56:54+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/java/2014/02/25/window-builder-dragdrop.html</loc>
+      
+      
+        <lastmod>2014-02-25T01:06:29+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/java/2014/02/24/window-builder-add-file-open.html</loc>
+      
+      
+        <lastmod>2014-02-24T20:43:24+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/java/2014/02/24/robocode.html</loc>
+      
+      
+        <lastmod>2014-02-24T15:49:28+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/project/2014/02/19/shortterm-project-java-chatting-program.html</loc>
+      
+      
+        <lastmod>2014-02-19T11:21:41+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/project/2014/02/19/shortterm-project-c-chatting-program.html</loc>
+      
+      
+        <lastmod>2014-02-19T03:20:53+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/2010/03/01/profile.html</loc>
+      
+      
+        <lastmod>2010-03-01T09:00:00+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/404.html</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/about/</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/categories.html</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/feed.xml</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/css/main.css</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+  
+    
+    <url>
+      
+        <loc>http://egaoneko.github.io/tags.html</loc>
+      
+      
+        <lastmod>2016-02-20T02:05:44+09:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+</urlset>
+<p>```</p>
 
-<h3 id="_config-yml에-다음-내용을-추가한다">_config.yml에 다음 내용을 추가한다.</h3>
-<div class="highlight"><pre><code class="language-YAML" data-lang="YAML"><span class="l-Scalar-Plain">sitemap</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">lastmod</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-01-23</span>
-  <span class="l-Scalar-Plain">priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.7</span>
-  <span class="l-Scalar-Plain">changefreq</span><span class="p-Indicator">:</span> <span class="s">&#39;monthly&#39;</span>
-  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="s">&#39;github</span><span class="nv"> </span><span class="s">주소&#39;</span>
-  <span class="l-Scalar-Plain">exclude</span><span class="p-Indicator">:</span> <span class="s">&#39;yes&#39;</span>
-</code></pre></div>
+<h3 id="configyml----1">_config.yml에 다음 내용을 추가한다.</h3>
+
+<p><code class="highlighter-rouge">YAML
+sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: 'monthly'
+  url: 'github 주소'
+  exclude: 'yes'
+</code></p>
+
 <p>상단과 같이 설정할 경우 아래와 같이 정상적으로 sitemap.xml이 생성되는 것을 확인할 수 있다.</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;url&gt;</span>
-      <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html<span class="nt">&lt;/loc&gt;</span>
-      <span class="nt">&lt;lastmod&gt;</span>2015-05-25T11:50:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
-      <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
-      <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
-<span class="nt">&lt;/url&gt;</span>
-</code></pre></div>
+
+<p>```xml</p>
+<url>
+      <loc>http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html</loc>
+      <lastmod>2015-05-25T11:50:00+09:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.5</priority>
+</url>
+<p>```</p>
+
 	  </div>
 
 		
@@ -341,8 +2241,8 @@ sitemap:</p>
 		  
 		  
 			 
-				<li><a href="/categories.html#blog-ref">
-					blog <span>(3)</span>
+				<li><a href="/categories.html#Blog-ref">
+					Blog <span>(3)</span>
 					
 				</a></li>
 			

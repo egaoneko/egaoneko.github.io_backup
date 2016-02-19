@@ -166,24 +166,28 @@
 	   2015
 	 </span>
 	  <div class="article_body">
-	  <p>얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 <a href="/project/2014/02/19/shortterm-project-c-chatting-program.html">&quot;IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제&quot;</a>라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.</p>
+	  <p>얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 <a href="/project/2014/02/19/shortterm-project-c-chatting-program.html">“IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제”</a>라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.</p>
 
 <blockquote>
-<p>This is a Spring Boot problem.</p>
+  <p>This is a Spring Boot problem.</p>
 
-<p>See <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations">http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations</a> section &quot;26.3.4 JSP limitations&quot;</p>
+  <p>See http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations section “26.3.4 JSP limitations”</p>
 
-<p>Solutions:</p>
+  <p>Solutions:</p>
 
-<ol>
-<li><p>Do not use JSP at all (recommended)</p></li>
-<li><p>As workaround, enable special Gradle task &quot;Build xxx.war artifact&quot; in run configuration to simulate &quot;bootRun&quot; Gradle task (see screenshot)</p></li>
-</ol>
+  <ol>
+    <li>
+      <p>Do not use JSP at all (recommended)</p>
+    </li>
+    <li>
+      <p>As workaround, enable special Gradle task “Build xxx.war artifact” in run configuration to simulate “bootRun” Gradle task (see screenshot)</p>
+    </li>
+  </ol>
 </blockquote>
 
-<p><img src="/assets/media/Run_Debug_Configurations.jpg" alt="screenshot"></p>
+<p><img src="/assets/media/Run_Debug_Configurations.jpg" alt="screenshot" /></p>
 
-<p>답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 <code>bootRun</code>한 것과 동일하게 실행된다.</p>
+<p>답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 <code class="highlighter-rouge">bootRun</code>한 것과 동일하게 실행된다.</p>
 
 	  </div>
 
@@ -193,8 +197,8 @@
 		  
 		  
 			 
-				<li><a href="/categories.html#intellij-ref">
-					intellij <span>(2)</span>
+				<li><a href="/categories.html#IntelliJ-ref">
+					IntelliJ <span>(2)</span>
 					
 				</a></li>
 			

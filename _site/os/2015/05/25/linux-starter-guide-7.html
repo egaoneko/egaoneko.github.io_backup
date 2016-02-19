@@ -168,37 +168,38 @@
 	  <div class="article_body">
 	  <p>사용자 관리를 통해 여러 유저에게 다양한 접근 권한을 부여할 수 있다. 유저는 고유 ID 1개와 기본그룹 ID 1개 그리고 보조그룹 ID 여러 개로 구성된다. UID, GID는 숫자로 구성되고 식별자 역할을 수행한다.</p>
 
-<h2 id="01-파일">01 파일</h2>
+<h2 id="section">01 파일</h2>
 
-<hr>
+<hr />
 
-<h3 id="etc-passwd-사용자-정보가-담겨있는-파일">/etc/passwd : 사용자 정보가 담겨있는 파일</h3>
+<h3 id="etcpasswd----">/etc/passwd	: 사용자 정보가 담겨있는 파일</h3>
 
-<p><img src="/assets/media/linux-starter-guide/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B4%80%EB%A6%AC1.png" alt="screenshot"></p>
+<p><img src="/assets/media/linux-starter-guide/사용자관리1.png" alt="screenshot" /></p>
 
 <p>ID:password:UID:GID:Comment:home directory:shell</p>
 
-<hr>
+<hr />
 
-<h3 id="etc-shadow-사용자-비밀번호가-담겨있는-파일">/etc/shadow : 사용자 비밀번호가 담겨있는 파일</h3>
+<h3 id="etcshadow----">/etc/shadow	: 사용자 비밀번호가 담겨있는 파일</h3>
 
-<p><img src="/assets/media/linux-starter-guide/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B4%80%EB%A6%AC2.png" alt="screenshot"></p>
+<p><img src="/assets/media/linux-starter-guide/사용자관리2.png" alt="screenshot" /></p>
 
 <p>ID:패스워드:암호생성일자:암호변경가능최소시간:초기암호변경 없이 사용기간:만료 지정시 만료 경고 일 수
 (!! : 일반사용자들, * : 시스템 사용자들(데몬 돌리기 위한))</p>
 
-<hr>
+<hr />
 
-<h3 id="etc-group-사용자-그룹-정보가-담겨-있는-파일">/etc/group  : 사용자 그룹 정보가 담겨 있는 파일</h3>
+<h3 id="etcgroup------">/etc/group	: 사용자 그룹 정보가 담겨 있는 파일</h3>
 
-<p><img src="/assets/media/linux-starter-guide/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B4%80%EB%A6%AC3.png" alt="screenshot"></p>
+<p><img src="/assets/media/linux-starter-guide/사용자관리3.png" alt="screenshot" /></p>
 
 <p>Group name:password(일반적으로 쓰이지 않음):GID:Group List</p>
 
-<h2 id="02-명령어">02 명령어</h2>
+<h2 id="section-1">02 명령어</h2>
 
-<h3 id="사용자-관리">사용자 관리</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #useradd [옵션] 사용자 ID : 사용자 추가
+<h3 id="section-2">사용자 관리</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #useradd [옵션] 사용자 ID : 사용자 추가
 
   옵션:
       -u : UID
@@ -217,14 +218,17 @@
   #usermod [옵션] 사용자 ID : 사용자 설정 변경
 
   옵션:
-    -u : UID
-    -g : GID
-    -c : comment
-</code></pre></div>
-<hr>
+  	-u : UID
+  	-g : GID
+  	-c : comment
+</code></pre>
+</div>
 
-<h3 id="그룹-관리">그룹 관리</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #groupadd [옵션] 그룹 ID : 그룹추가
+<hr />
+
+<h3 id="section-3">그룹 관리</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #groupadd [옵션] 그룹 ID : 그룹추가
 
   옵션:
       -g : GID
@@ -234,185 +238,220 @@
 
 
   #groupmod [옵션] 그룹 ID : 그룹 설정 변경
-</code></pre></div>
-<hr>
+</code></pre>
+</div>
 
-<h3 id="비밀번호-변경">비밀번호 변경</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #passwd [옵션] 사용자 ID : 사용자의 비밀번호 변경 (SETUID 설정이 걸려 있음)
+<hr />
 
-  옵션:
-    -d : 패스워드가 null로 지정
-    -l : 패스워드 잠금 (로그인 금지)
-    -u : 패스워드 잠금 해제 (로그인 활성)
-    --stdin : 비밀번호 재입력 없이 변경 가능 (일괄적으로 처리 시 사용)
-            사용 예) #echo &quot;패스워드&quot; | passwd 계정 --stdin
-</code></pre></div>
-<hr>
+<h3 id="section-4">비밀번호 변경</h3>
 
-<h3 id="사용자-전환">사용자 전환</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #su [옵션] 사용자 ID : 사용자 전환 (사용자의 정보만 변경)
+<div class="highlighter-rouge"><pre class="highlight"><code>  #passwd [옵션] 사용자 ID : 사용자의 비밀번호 변경 (SETUID 설정이 걸려 있음)
 
   옵션:
-    - : 사용자의 환경변수까지 변경
-</code></pre></div>
-<table><thead>
-<tr>
-<th style="text-align: center">현재디렉토리상태</th>
-<th style="text-align: center">su</th>
-<th style="text-align: center">su -</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: center">[user1@host user1]</td>
-<td style="text-align: center">[root@host user1]</td>
-<td style="text-align: center">[root@host /root]</td>
-</tr>
-</tbody></table>
+  	-d : 패스워드가 null로 지정
+  	-l : 패스워드 잠금 (로그인 금지)
+  	-u : 패스워드 잠금 해제 (로그인 활성)
+  	--stdin : 비밀번호 재입력 없이 변경 가능 (일괄적으로 처리 시 사용)
+            사용 예) #echo "패스워드" | passwd 계정 --stdin
+</code></pre>
+</div>
 
-<p>su명령을 옵션없이 사용하면 기존의 일반사용자인 user1의 환경을 그대로 가져간다. 루트권한자에서 일반사용자로 &#39;su&#39;시에는 패스워드를 묻지 않고 바로 전환된다.</p>
+<hr />
 
-<h2 id="03-skell-파일">03 SKELL 파일</h2>
+<h3 id="section-5">사용자 전환</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #su [옵션] 사용자 ID : 사용자 전환 (사용자의 정보만 변경)
+
+  옵션:
+  	- : 사용자의 환경변수까지 변경
+</code></pre>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">현재디렉토리상태</th>
+      <th style="text-align: center">su</th>
+      <th style="text-align: center">su -</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">[user1@host user1]</td>
+      <td style="text-align: center">[root@host user1]</td>
+      <td style="text-align: center">[root@host /root]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>su명령을 옵션없이 사용하면 기존의 일반사용자인 user1의 환경을 그대로 가져간다. 루트권한자에서 일반사용자로 ‘su’시에는 패스워드를 묻지 않고 바로 전환된다.</p>
+
+<h2 id="skell-">03 SKELL 파일</h2>
 
 <p>SKELL 파일은 사용자가 생성될 때 함께 만들어지는 파일이다. 이 파일은 /etc/skel 디렉토리에 있다.</p>
 
-<p><img src="/assets/media/linux-starter-guide/skel1.png" alt="screenshot">
-<img src="/assets/media/linux-starter-guide/skel2.png" alt="screenshot"></p>
+<p><img src="/assets/media/linux-starter-guide/skel1.png" alt="screenshot" />
+<img src="/assets/media/linux-starter-guide/skel2.png" alt="screenshot" /></p>
 
 <p>/etc/skel 디렉토리에 다음과 같이 파일이 있는 것이 보이며 그 파일들이 abc라는 계정의 홈 디렉토리에 생성됨을 알 수 있다.</p>
 
-<h2 id="04-환경-설정-파일">04 환경 설정 파일</h2>
+<h2 id="section-6">04 환경 설정 파일</h2>
 
-<h3 id="bash-쉘-환경설정-파일">BASH 쉘 환경설정 파일</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  ~/.bash_profile : 로그인시 설정 내용을 읽어 들임
+<h3 id="bash---">BASH 쉘 환경설정 파일</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  ~/.bash_profile : 로그인시 설정 내용을 읽어 들임
   ~/.bashrc : 쉘 실행 시 내용을 읽어 들임
   ~/.bash_logout : 로그아웃 시 읽어 들임
-</code></pre></div>
-<hr>
+</code></pre>
+</div>
 
-<h3 id="본-쉘-환경설정-파일">본 쉘 환경설정 파일</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  ~/.profie
-</code></pre></div>
-<hr>
+<hr />
 
-<h3 id="c-쉘-환경설정-파일">C 쉘 환경설정 파일</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  ~/.login
+<h3 id="section-7">본 쉘 환경설정 파일</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  ~/.profie
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="c---">C 쉘 환경설정 파일</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  ~/.login
   ~/.cshrc
-</code></pre></div>
-<hr>
+</code></pre>
+</div>
 
-<h3 id="bash-쉘-환경설정-파일을-읽어-들이는-순서">BASH 쉘 환경설정 파일을 읽어 들이는 순서</h3>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  /etc/profile -&gt; ~/.bash_profile -&gt; ~/.bashrc -&gt; /etc/bashrc
-</code></pre></div>
-<hr>
+<hr />
 
-<h3 id="path-환경-변수">PATH (환경 변수)</h3>
+<h3 id="bash------">BASH 쉘 환경설정 파일을 읽어 들이는 순서</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  /etc/profile -&gt; ~/.bash_profile -&gt; ~/.bashrc -&gt; /etc/bashrc
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="path--">PATH (환경 변수)</h3>
 
 <ul>
-<li>PATH 변수 확인 : #echo $PATH</li>
-<li>모든 사용자 PATH 설정 : /etc/profile 편집</li>
-<li>특정 사용자 PATH 설정 : ~/.bash_profile</li>
-<li>현재 로그인 상태에서만 사용되도록 설정 : #PATH=$PATH: 추가할 디렉토리 설정</li>
-<li>alias 설정 : ~/.bashrc 편집</li>
-<li>사용자별 프롬프트 변경 : 절대경로 표시 : /etc/bashrc 편집</li>
+  <li>PATH 변수 확인 : #echo $PATH</li>
+  <li>모든 사용자 PATH 설정 : /etc/profile 편집</li>
+  <li>특정 사용자 PATH 설정 : ~/.bash_profile</li>
+  <li>현재 로그인 상태에서만 사용되도록 설정 : #PATH=$PATH: 추가할 디렉토리 설정</li>
+  <li>alias 설정 : ~/.bashrc 편집</li>
+  <li>사용자별 프롬프트 변경 : 절대경로 표시 : /etc/bashrc 편집</li>
 </ul>
 
 <blockquote>
-<p><strong>PS1=&quot;\u |\w| \$&quot;</strong></p>
+  <table>
+    <tbody>
+      <tr>
+        <td>**PS1=”\u</td>
+        <td>\w</td>
+        <td>$“**</td>
+      </tr>
+    </tbody>
+  </table>
 
-<table><thead>
-<tr>
-<th style="text-align: center">제어문자</th>
-<th style="text-align: center">설명</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: center">\t</td>
-<td style="text-align: center">현재 시간(시:분:초 형식)</td>
-</tr>
-<tr>
-<td style="text-align: center">\d</td>
-<td style="text-align: center">오늘 날짜, 요일(요일 월 일 형식)</td>
-</tr>
-<tr>
-<td style="text-align: center">\n</td>
-<td style="text-align: center">new line</td>
-</tr>
-<tr>
-<td style="text-align: center">\s</td>
-<td style="text-align: center">현재 셸 이름, $0의 값</td>
-</tr>
-<tr>
-<td style="text-align: center">\w</td>
-<td style="text-align: center">현재 작업 디렉토리의 이름 (전체경로까지)</td>
-</tr>
-<tr>
-<td style="text-align: center">\W</td>
-<td style="text-align: center">현재 작업 디렉토리의 이름 (현재 위치만)</td>
-</tr>
-<tr>
-<td style="text-align: center">\u</td>
-<td style="text-align: center">사용자 이름</td>
-</tr>
-<tr>
-<td style="text-align: center">\h</td>
-<td style="text-align: center">호스트 이름</td>
-</tr>
-<tr>
-<td style="text-align: center">#</td>
-<td style="text-align: center">셸이 기동한 후로부터의 명령의 번호</td>
-</tr>
-<tr>
-<td style="text-align: center">!</td>
-<td style="text-align: center">실행하는 명령의 history 번호</td>
-</tr>
-<tr>
-<td style="text-align: center">\$</td>
-<td style="text-align: center">프롬프트 모양 uid가 0, root이면 #, 그렇지 않으면 $</td>
-</tr>
-<tr>
-<td style="text-align: center">\nnn</td>
-<td style="text-align: center">ASCII 코드 nnn에 해당하는 문자</td>
-</tr>
-<tr>
-<td style="text-align: center">\</td>
-<td style="text-align: center">백슬래시</td>
-</tr>
-<tr>
-<td style="text-align: center">[</td>
-<td style="text-align: center">제어문자라 쓸 수 없는 문자를 사용하기 위해서는 [로 시작</td>
-</tr>
-<tr>
-<td style="text-align: center">]</td>
-<td style="text-align: center">제어문자의 끝</td>
-</tr>
-</tbody></table>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center">제어문자</th>
+        <th style="text-align: center">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center">\t</td>
+        <td style="text-align: center">현재 시간(시:분:초 형식)</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\d</td>
+        <td style="text-align: center">오늘 날짜, 요일(요일 월 일 형식)</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\n</td>
+        <td style="text-align: center">new line</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\s</td>
+        <td style="text-align: center">현재 셸 이름, $0의 값</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\w</td>
+        <td style="text-align: center">현재 작업 디렉토리의 이름 (전체경로까지)</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\W</td>
+        <td style="text-align: center">현재 작업 디렉토리의 이름 (현재 위치만)</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\u</td>
+        <td style="text-align: center">사용자 이름</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\h</td>
+        <td style="text-align: center">호스트 이름</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">#</td>
+        <td style="text-align: center">셸이 기동한 후로부터의 명령의 번호</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">!</td>
+        <td style="text-align: center">실행하는 명령의 history 번호</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">$</td>
+        <td style="text-align: center">프롬프트 모양 uid가 0, root이면 #, 그렇지 않으면 $</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\nnn</td>
+        <td style="text-align: center">ASCII 코드 nnn에 해당하는 문자</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">\</td>
+        <td style="text-align: center">백슬래시</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">[</td>
+        <td style="text-align: center">제어문자라 쓸 수 없는 문자를 사용하기 위해서는 [로 시작</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">]</td>
+        <td style="text-align: center">제어문자의 끝</td>
+      </tr>
+    </tbody>
+  </table>
 </blockquote>
 
 <ul>
-<li>로그아웃시의 실행 : ~/.bash_logout 편집</li>
+  <li>로그아웃시의 실행 : ~/.bash_logout 편집</li>
 </ul>
 
-<hr>
+<hr />
 
-<h2 id="관련글">관련글</h2>
+<h2 id="section-8">관련글</h2>
 
-<h3 id="초보자를-위한-가이드">초보자를 위한 가이드</h3>
+<h3 id="section-9">초보자를 위한 가이드</h3>
 
 <ul>
-<li><a href="/os/2015/05/25/linux-starter-guide-0.html">[리눅스 정리 - 초보자를 위한 가이드] 들어가며,</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-1.html">[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-2.html">[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-3.html">[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-4.html">[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-5.html">[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-6.html">[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-7.html">[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-8.html">[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-9.html">[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-10.html">[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-11.html">[리눅스 정리 - 초보자를 위한 가이드] 마치며,</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-12.html">[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-0.html">[리눅스 정리 - 초보자를 위한 가이드] 들어가며,</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-1.html">[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-2.html">[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-3.html">[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-4.html">[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-5.html">[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-6.html">[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-7.html">[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-8.html">[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-9.html">[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-10.html">[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-11.html">[리눅스 정리 - 초보자를 위한 가이드] 마치며,</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-12.html">[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</a></li>
 </ul>
+
 
 	  </div>
 
@@ -422,8 +461,8 @@
 		  
 		  
 			 
-				<li><a href="/categories.html#os-ref">
-					os <span>(14)</span>
+				<li><a href="/categories.html#OS-ref">
+					OS <span>(14)</span>
 					
 				</a></li>
 			

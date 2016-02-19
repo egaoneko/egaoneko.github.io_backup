@@ -166,45 +166,48 @@
 	   2015
 	 </span>
 	  <div class="article_body">
-	  <h2 id="01-rpm">01 RPM</h2>
+	  <h2 id="rpm">01 RPM</h2>
 
 <blockquote>
-<p>RPM 패키지 매니저(RPM Package Manager←Red Hat Package Manager)는 원래 레드햇에서 사용되었던 패키지 파일이었지만 현재는 많은 RPM 기반 배포판이 사용되고 있다. 이는 두 가지를 말하는데, 하나는 RPM 패키지 그 자체와 또 하나는 RPM 패키지를 관리하기 위한 도구이다. RPM을 사용하면 각종 소프트웨어의 설치 및 업데이트를 굉장히 편리하게 할 수 있다.<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+  <p>RPM 패키지 매니저(RPM Package Manager←Red Hat Package Manager)는 원래 레드햇에서 사용되었던 패키지 파일이었지만 현재는 많은 RPM 기반 배포판이 사용되고 있다. 이는 두 가지를 말하는데, 하나는 RPM 패키지 그 자체와 또 하나는 RPM 패키지를 관리하기 위한 도구이다. RPM을 사용하면 각종 소프트웨어의 설치 및 업데이트를 굉장히 편리하게 할 수 있다.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
 </blockquote>
 
 <p>이는 windows의 setup.exe 와 비슷하게 프로그램을 설치하게 해준다.</p>
 
-<h2 id="02-rpm-파일-형식">02 RPM 파일 형식</h2>
+<h2 id="rpm--">02 RPM 파일 형식</h2>
 
-<p><img src="/assets/media/linux-starter-guide/rpm.jpg" alt="screenshot"></p>
+<p><img src="/assets/media/linux-starter-guide/rpm.jpg" alt="screenshot" /></p>
 
 <ul>
-<li>패키지 이름 : gedit</li>
-<li>버전 : 2.6.1 (주버전, 부버전, 패치버전이며 높을수록 최신임)</li>
-<li>릴리즈번호 : 1 (문제점을 개선할 때 마다 붙여지는 번호)</li>
-<li>페도라버전 : fc11 (페도라에서 배포할 경우 붙여짐, fc11은 페도라 11용을 의미)</li>
-<li>아키텍처 : i586 (이 파일이 설치 가능한 CPU를 의미)</li>
+  <li>패키지 이름 : gedit</li>
+  <li>버전 : 2.6.1 (주버전, 부버전, 패치버전이며 높을수록 최신임)</li>
+  <li>릴리즈번호 : 1 (문제점을 개선할 때 마다 붙여지는 번호)</li>
+  <li>페도라버전 : fc11 (페도라에서 배포할 경우 붙여짐, fc11은 페도라 11용을 의미)</li>
+  <li>아키텍처 : i586 (이 파일이 설치 가능한 CPU를 의미)</li>
 </ul>
 
-<h2 id="03-rpm-명령어">03 RPM 명령어</h2>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #rpm [옵션] [패키지파일]
+<h2 id="rpm-">03 RPM 명령어</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #rpm [옵션] [패키지파일]
 
   옵션:
-    -U : 패키지가 설치되어 있지 않다면 설치, 설치되어 있다면 업그레이드
-    -v : 설치과정을 출력
-    -h : 설치진행과정을 특수문자&quot;#&quot;으로 표시
-    -e : 설치된 rpm삭제
-    -qa : 시스템에 패키지가 설치되어 있는지 확인
-    -qf : 이미 설치된 파일이 어느 패키지에 포함된 것인지 확인
-    -ql : 특정 패키지에 어떤 파일들이 포함되었는지 확인
-    -qi : 패키지 상세정보 출력
-</code></pre></div>
-<h2 id="04-yum">04 Yum</h2>
+  	-U : 패키지가 설치되어 있지 않다면 설치, 설치되어 있다면 업그레이드
+  	-v : 설치과정을 출력
+  	-h : 설치진행과정을 특수문자"#"으로 표시
+  	-e : 설치된 rpm삭제
+  	-qa : 시스템에 패키지가 설치되어 있는지 확인
+  	-qf : 이미 설치된 파일이 어느 패키지에 포함된 것인지 확인
+  	-ql : 특정 패키지에 어떤 파일들이 포함되었는지 확인
+  	-qi : 패키지 상세정보 출력
+</code></pre>
+</div>
+
+<h2 id="yum">04 Yum</h2>
 
 <blockquote>
-<p>Yum은 Yellow dog Updater, Modified의 약자로 RPM 기반의 시스템을 위한 자동 업데이터 겸 패키지 설치/제거 도구이다. 듀크 대학교의 Linux@DUKE 프로젝트의 일부분으로 개발되었다. yumex 같은 GUI 기반 확장 도구도 있다.</p>
+  <p>Yum은 Yellow dog Updater, Modified의 약자로 RPM 기반의 시스템을 위한 자동 업데이터 겸 패키지 설치/제거 도구이다. 듀크 대학교의 Linux@DUKE 프로젝트의 일부분으로 개발되었다. yumex 같은 GUI 기반 확장 도구도 있다.</p>
 
-<p>Yum 이전에 있었던 Yellowdog Updater (YUP) 도구를 대체하며, 듀크 대학교 물리학부에서 사용되었던 레드햇 리눅스 시스템 관리를 위해서 등장하였다. 그 이후로 페도라, CentOS 등 많은 RPM 기반 리눅스 배포판에서 사용되었다. 레드햇의 패키지 관리자 up2date에서도 Yum 저장소에 접근할 수 있다.<sup id="fnref2"><a href="#fn2" rel="footnote">2</a></sup></p>
+  <p>Yum 이전에 있었던 Yellowdog Updater (YUP) 도구를 대체하며, 듀크 대학교 물리학부에서 사용되었던 레드햇 리눅스 시스템 관리를 위해서 등장하였다. 그 이후로 페도라, CentOS 등 많은 RPM 기반 리눅스 배포판에서 사용되었다. 레드햇의 패키지 관리자 up2date에서도 Yum 저장소에 접근할 수 있다.<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup></p>
 </blockquote>
 
 <p>Yum은 쉽게 말하자면 RPM을 설치할 때 편리하게 해주는 툴이라고 생각 할 수 있다. RPM이 나오면서 리눅스에서의 설치는 편리해 졌지만 RPM의 가장 큰 문제점은 의존성이다. 여기서 의존성이라 함은 하나의 패키지를 설치하기 위해서는 그 이전의 특정 패키지가 필요하게 됨을 뜻한다.</p>
@@ -213,150 +216,159 @@
 
 <p>이런 의존성 문제를 완전히 해결한 것이 Yum인데 RPM같은 경우는 사용자가 직접 설치하고자 하는 파일을 인터넷에서 *.rpm을 다운받아 의존성을 따져가며 차례대로 설치하여야 했다. 하지만 Yum은 어떤 특정 RPM파일을 다운받고자 할 때, 의존성을 가지는 다른 *.rpm파일들도 알아서 인터넷을 통해 Fedora의 RPM파일이 저장된 저장소(Repository)에서 설치하고자 하는 RPM파일을 다운로드 한 다음에 설치까지 자동으로 해준다.</p>
 
-<p>이는 자동으로 인터넷을 통해 다운로드 하기 때문에 네트워크가 꼭 연결된 상태에서만 Yum을 사용해야 한며 그렇다면 저장소의 URL에 대한 정보는 /etc/yum.repos.d/ 디렉토리에 저장되어 있다.<sup id="fnref3"><a href="#fn3" rel="footnote">3</a></sup></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">Ubuntu에서는 yum이 아닌 apt-get을 사용한다.
-</code></pre></div>
-<h2 id="05-yum-명령어">05 Yum 명령어</h2>
+<p>이는 자동으로 인터넷을 통해 다운로드 하기 때문에 네트워크가 꼭 연결된 상태에서만 Yum을 사용해야 한며 그렇다면 저장소의 URL에 대한 정보는 /etc/yum.repos.d/ 디렉토리에 저장되어 있다.<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></p>
+
+<h2 id="yum-">05 Yum 명령어</h2>
 
 <ul>
-<li>#yum install [패키지 이름] : 패키지 설치 (기본 설치 명령어)</li>
-<li>#yum -y install [패키지 이름] : 무조건 yes로 모두 설치할 때 사용</li>
-<li>#yum check-update : 설치된 패키지 중에서 업데이트가 가능한 패키지의 목록을 출력</li>
-<li>#yum update [패키지 이름] : 패키지를 업데이트</li>
-<li>#yum remove [패키지 이름] : 패키지를 삭제</li>
-<li>#yum groupinstall [패키지 그룹 이름] : 패키지 그룹 설치</li>
-<li>#yum list [패키지 이름] : 패키지 리스트 확인</li>
-<li>#yum provides [파일이름] : 특정 파일이 속한 패키지 이름 확인</li>
+  <li>#yum install [패키지 이름] : 패키지 설치 (기본 설치 명령어)</li>
+  <li>#yum -y install [패키지 이름] : 무조건 yes로 모두 설치할 때 사용</li>
+  <li>#yum check-update : 설치된 패키지 중에서 업데이트가 가능한 패키지의 목록을 출력</li>
+  <li>#yum update [패키지 이름] : 패키지를 업데이트</li>
+  <li>#yum remove [패키지 이름] : 패키지를 삭제</li>
+  <li>#yum groupinstall [패키지 그룹 이름] : 패키지 그룹 설치</li>
+  <li>#yum list [패키지 이름] : 패키지 리스트 확인</li>
+  <li>#yum provides [파일이름] : 특정 파일이 속한 패키지 이름 확인</li>
 </ul>
 
-<h2 id="06-tar">06 tar</h2>
+<h2 id="tar">06 tar</h2>
 
-<p>타르(tar)는 컴퓨터에서, 테입 아카이브<sup id="fnref4"><a href="#fn4" rel="footnote">4</a></sup>를 위해 고안된 파일 형식과 이런 형식의 파일을 다루는데 사용되는 프로그램을 의미한다. 초기에는 테입 백업 목적으로, 순차적 입출력 장치에 직접 쓰도록 개발되었으나, 현재는, 배포 또는 아카이브 용도로 많은 파일을 디렉토리 구조, 파일 속성들을 보존하면서 하나의 큰 파일로 묶는 데 주로 사용된다.<sup id="fnref5"><a href="#fn5" rel="footnote">5</a></sup></p>
+<p>타르(tar)는 컴퓨터에서, 테입 아카이브<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>를 위해 고안된 파일 형식과 이런 형식의 파일을 다루는데 사용되는 프로그램을 의미한다. 초기에는 테입 백업 목적으로, 순차적 입출력 장치에 직접 쓰도록 개발되었으나, 현재는, 배포 또는 아카이브 용도로 많은 파일을 디렉토리 구조, 파일 속성들을 보존하면서 하나의 큰 파일로 묶는 데 주로 사용된다.<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup></p>
 
-<hr>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #tar [옵션] [파일명.tar] [폴더명]
+<hr />
 
-  옵션:
-    -c : 새로운 tar 파일을 생성
-    -x : 기본의 tar 파일을 해제
-    -v : 명령어 실행 시 과정을 화면에 출력
-    -f : 파일이름을 지정
-    -p : 퍼미션을 포함
-    -z : gzip을 이용
-</code></pre></div>
-<h2 id="07-gzip">07 gzip</h2>
-
-<p>gzip은 파일 압축에 쓰이는 응용 소프트웨어이다. gzip은 GNU<sup id="fnref6"><a href="#fn6" rel="footnote">6</a></sup> zip의 준말이며, 초기 유닉스 시스템에 쓰이던 압축 프로그램을 대체하기 위한 자유 소프트웨어이다.<sup id="fnref7"><a href="#fn7" rel="footnote">7</a></sup></p>
-
-<hr>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #gzip [옵션] [파일]
+<div class="highlighter-rouge"><pre class="highlight"><code>  #tar [옵션] [파일명.tar] [폴더명]
 
   옵션:
-    -n : n은 1부터 9까지 숫자로, 1이 가장 빠르지만 압축률은 가장 낮음
-    -c : 압축 결과를 출력하고 원본파일은 그대로 나둠
-    -d : 압축 해제
-    -f : 강제 압축
-    -l : 압축 파일의 정보 출력
-    -r : 디렉토리를 지정 시 디렉토리에 포함된 모든 파일 압축
-    -t : 압축 파일 테스트
-    -v : 압축 혹은 해제 시 자세한 정보 출력
-    -h : 도움말 출력
-    -V : 버전 정보 출력
-</code></pre></div>
-<hr>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #gunzip [옵션] [파일] : .gz 파일의 압축을 해제
+  	-c : 새로운 tar 파일을 생성
+  	-x : 기본의 tar 파일을 해제
+  	-v : 명령어 실행 시 과정을 화면에 출력
+  	-f : 파일이름을 지정
+  	-p : 퍼미션을 포함
+  	-z : gzip을 이용
+</code></pre>
+</div>
+
+<h2 id="gzip">07 gzip</h2>
+
+<p>gzip은 파일 압축에 쓰이는 응용 소프트웨어이다. gzip은 GNU<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup> zip의 준말이며, 초기 유닉스 시스템에 쓰이던 압축 프로그램을 대체하기 위한 자유 소프트웨어이다.<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup></p>
+
+<hr />
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #gzip [옵션] [파일]
 
   옵션:
-    -l : 압축 파일의 정보 출력
-    -r : 디렉토리를 지정 시 디렉토리 내의 모든 파일의 압축 해제
-    -t : 압축 파일 테스트
-    -v : 압축 혹은 해제 시 자세한 정보 출력
-    -h : 도움말 출력
-    -V : 버전 정보 출력
-</code></pre></div>
-<h2 id="08-bzip2">08 bzip2</h2>
+  	-n : n은 1부터 9까지 숫자로, 1이 가장 빠르지만 압축률은 가장 낮음
+  	-c : 압축 결과를 출력하고 원본파일은 그대로 나둠
+  	-d : 압축 해제
+  	-f : 강제 압축
+  	-l : 압축 파일의 정보 출력
+  	-r : 디렉토리를 지정 시 디렉토리에 포함된 모든 파일 압축
+  	-t : 압축 파일 테스트
+  	-v : 압축 혹은 해제 시 자세한 정보 출력
+  	-h : 도움말 출력
+  	-V : 버전 정보 출력
+</code></pre>
+</div>
+
+<hr />
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #gunzip [옵션] [파일] : .gz 파일의 압축을 해제
+
+  옵션:
+  	-l : 압축 파일의 정보 출력
+  	-r : 디렉토리를 지정 시 디렉토리 내의 모든 파일의 압축 해제
+  	-t : 압축 파일 테스트
+  	-v : 압축 혹은 해제 시 자세한 정보 출력
+  	-h : 도움말 출력
+  	-V : 버전 정보 출력
+</code></pre>
+</div>
+
+<h2 id="bzip2">08 bzip2</h2>
 
 <blockquote>
-<p>bzip2는 버로우즈-휠러 변환 기반의 압축 알고리즘 및 압축 소프트웨어이다. bzip2는 gzip와 비슷하게 파일 하나만을 압축하며, 압축한 파일에는 보통 .bz2 확장자가 붙고 따라서 tar와 함께 사용하는 것이 일반적이다. gzip보다 압축 효율이 훨씬 좋아 많이 사용되는 추세이다. 하지만 gzip보다 압축 해제 속도가 느리다.<sup id="fnref8"><a href="#fn8" rel="footnote">8</a></sup></p>
+  <p>bzip2는 버로우즈-휠러 변환 기반의 압축 알고리즘 및 압축 소프트웨어이다. bzip2는 gzip와 비슷하게 파일 하나만을 압축하며, 압축한 파일에는 보통 .bz2 확장자가 붙고 따라서 tar와 함께 사용하는 것이 일반적이다. gzip보다 압축 효율이 훨씬 좋아 많이 사용되는 추세이다. 하지만 gzip보다 압축 해제 속도가 느리다.<sup id="fnref:8"><a href="#fn:8" class="footnote">8</a></sup></p>
 </blockquote>
 
-<hr>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #bzip2 [옵션] [파일명]
+<hr />
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #bzip2 [옵션] [파일명]
 
   옵션:
-    -c : 압축되거나 압축을 푼 파일을 표준출력 내보냄
-    -d : 압축을 해제
-    -z : 파일을 압축
-    -f : 압축하거나 압축 해제 시 같은 이름의 파일이 있을 경우 덮어씌움
-    -k : 원본파일을 보존하며 압축하거나 해제
-    -v : 상세한 정보를 출력
-    -1~-9 : 압축 시 블록 크기를 지정
-</code></pre></div>
-<hr>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #bunzip2 [옵션] [파일] : .bz2 파일의 압축을 해제
-</code></pre></div>
-<hr>
-<div class="highlight"><pre><code class="language-text" data-lang="text">  #bzip2recover [손상된 압축 파일명] : bzip2 압축 파일 손상 시 손상된 압축 파일을 복구
-</code></pre></div>
-<hr>
+  	-c : 압축되거나 압축을 푼 파일을 표준출력 내보냄
+  	-d : 압축을 해제
+  	-z : 파일을 압축
+  	-f : 압축하거나 압축 해제 시 같은 이름의 파일이 있을 경우 덮어씌움
+  	-k : 원본파일을 보존하며 압축하거나 해제
+  	-v : 상세한 정보를 출력
+  	-1~-9 : 압축 시 블록 크기를 지정
+</code></pre>
+</div>
 
-<h2 id="관련글">관련글</h2>
+<hr />
 
-<h3 id="초보자를-위한-가이드">초보자를 위한 가이드</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>  #bunzip2 [옵션] [파일] : .bz2 파일의 압축을 해제
+</code></pre>
+</div>
+
+<hr />
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #bzip2recover [손상된 압축 파일명] : bzip2 압축 파일 손상 시 손상된 압축 파일을 복구
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="section">관련글</h2>
+
+<h3 id="section-1">초보자를 위한 가이드</h3>
 
 <ul>
-<li><a href="/os/2015/05/25/linux-starter-guide-0.html">[리눅스 정리 - 초보자를 위한 가이드] 들어가며,</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-1.html">[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-2.html">[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-3.html">[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-4.html">[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-5.html">[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-6.html">[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-7.html">[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-8.html">[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-9.html">[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-10.html">[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-11.html">[리눅스 정리 - 초보자를 위한 가이드] 마치며,</a></li>
-<li><a href="/os/2015/05/25/linux-starter-guide-12.html">[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-0.html">[리눅스 정리 - 초보자를 위한 가이드] 들어가며,</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-1.html">[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-2.html">[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-3.html">[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-4.html">[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-5.html">[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-6.html">[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-7.html">[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-8.html">[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-9.html">[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-10.html">[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-11.html">[리눅스 정리 - 초보자를 위한 가이드] 마치며,</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-12.html">[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</a></li>
 </ul>
 
 <div class="footnotes">
-<hr>
-<ol>
+  <ol>
+    <li id="fn:1">
+      <p>출처 : 위키백과 - RPM <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>출처 : 위키백과 - yum <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>출처 : <a href="http://babbo1836.blog.me/140203028271">Dexter님의 블로그</a></p>
 
-<li id="fn1">
-<p>출처 : 위키백과 - RPM&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn2">
-<p>출처 : 위키백과 - yum&nbsp;<a href="#fnref2" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn3">
-<p>출처 : <a href="http://babbo1836.blog.me/140203028271">Dexter님의 블로그</a>&nbsp;<a href="#fnref3" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn4">
-<p>압축 파일 또는 아카이브 파일(archive file)은 소스 볼륨과 미디어 정보, 파일 디렉터리 구조, 오류 감지, 복구 정보, 파일 설명을 포함할 수 있는 메타데이터가 포함된 하나 이상의 파일로 이루어진 파일을 말한다. 보통 무손실 데이터 압축의 형태를 가진다. 압축 파일은 일부나 전체로 암호화를 할 수 있다. 압축 파일은 여러 개의 데이터 파일을 하나의 파일로 묶어 갖고 다니거나 보관을 쉽게 하기 위해 쓰인다. 컴퓨터 압축 파일은 소프트웨어가 결정하는 압축 포맷을 사용하는 압축 소프트웨어, 광 디스크 저작 소프트웨어, 디스크 이미지 소프트웨어로 만든다. 압축 파일의 파일 확장자나 파일 헤더는 사용되는 파일 포맷을 지시하는 데 쓰인다. 압축 파일은 .zip, .rar, .7z, .tar 등의 확장자를 가진다. 다만 이 가운데 .tar은 압축 기능을 포함하지 않는다. 출처 : 위키백과 - 아카이브&nbsp;<a href="#fnref4" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn5">
-<p>출처 : 위키백과 - tar&nbsp;<a href="#fnref5" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn6">
-<p>GNU(&#39;그누&#39;로 발음)는 GNU 프로젝트를 통하여 개발한 유닉스 계열 컴퓨터 운영 체제이며 궁극적으로는 &quot;완전한 유닉스 호환 소프트웨어 시스템&quot;이 되는 것이 목표이다. 출처 : 위키백과 - GNU&nbsp;<a href="#fnref6" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn7">
-<p>출처 : 위키백과 - gzip&nbsp;<a href="#fnref7" rev="footnote">&#8617;</a></p>
-</li>
-
-<li id="fn8">
-<p>출처 : 위키백과 - bzip2&nbsp;<a href="#fnref8" rev="footnote">&#8617;</a></p>
-</li>
-
-</ol>
+      <p>Ubuntu에서는 yum이 아닌 apt-get을 사용한다. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>압축 파일 또는 아카이브 파일(archive file)은 소스 볼륨과 미디어 정보, 파일 디렉터리 구조, 오류 감지, 복구 정보, 파일 설명을 포함할 수 있는 메타데이터가 포함된 하나 이상의 파일로 이루어진 파일을 말한다. 보통 무손실 데이터 압축의 형태를 가진다. 압축 파일은 일부나 전체로 암호화를 할 수 있다. 압축 파일은 여러 개의 데이터 파일을 하나의 파일로 묶어 갖고 다니거나 보관을 쉽게 하기 위해 쓰인다. 컴퓨터 압축 파일은 소프트웨어가 결정하는 압축 포맷을 사용하는 압축 소프트웨어, 광 디스크 저작 소프트웨어, 디스크 이미지 소프트웨어로 만든다. 압축 파일의 파일 확장자나 파일 헤더는 사용되는 파일 포맷을 지시하는 데 쓰인다. 압축 파일은 .zip, .rar, .7z, .tar 등의 확장자를 가진다. 다만 이 가운데 .tar은 압축 기능을 포함하지 않는다. 출처 : 위키백과 - 아카이브 <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>출처 : 위키백과 - tar <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>GNU(‘그누’로 발음)는 GNU 프로젝트를 통하여 개발한 유닉스 계열 컴퓨터 운영 체제이며 궁극적으로는 “완전한 유닉스 호환 소프트웨어 시스템”이 되는 것이 목표이다. 출처 : 위키백과 - GNU <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p>출처 : 위키백과 - gzip <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:8">
+      <p>출처 : 위키백과 - bzip2 <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
 </div>
 
 	  </div>
@@ -367,8 +379,8 @@
 		  
 		  
 			 
-				<li><a href="/categories.html#os-ref">
-					os <span>(14)</span>
+				<li><a href="/categories.html#OS-ref">
+					OS <span>(14)</span>
 					
 				</a></li>
 			

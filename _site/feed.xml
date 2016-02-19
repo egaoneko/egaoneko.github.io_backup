@@ -7,72 +7,45 @@
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>[Python] list 복사</title>
-				<description>&lt;p&gt;Python에서 list의 복사를 어떻게 해야할까 찾아본 적이 있었다. Google에서 찾아보니 생각보다 많은 복사 방법들이 있었다. 특히 stackoverfolw의 &lt;a href=&quot;http://stackoverflow.com/questions/2612802/how-to-clone-or-copy-a-list-in-python&quot;&gt;이 글&lt;/a&gt;이 기억에 남는다.&lt;/p&gt;
-
-&lt;p&gt;위 글을 읽어보면, 아래와 같이 복사 방법에 대한 속도를 측정한 답글이 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;10.59 - &lt;a href=&quot;https://docs.python.org/2/library/copy.html#copy.deepcopy&quot;&gt;copy.deepcopy(old_list)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;10.16 - pure python Copy() method copying classes with deepcopy&lt;/li&gt;
-&lt;li&gt;1.488 - pure python Copy() method not copying classes (only dicts/lists/tuples)&lt;/li&gt;
-&lt;li&gt;0.325 - for item in old_list: new_list.append(item)&lt;/li&gt;
-&lt;li&gt;0.217 - &lt;a href=&quot;a%20list%20%5Bcomprehension%5D(https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions)&quot;&gt;i for i in old_list&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;0.186 - &lt;a href=&quot;https://docs.python.org/2/library/copy.html#copy.copy&quot;&gt;copy.copy(old_list)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;0.075 - list(old_list)&lt;/li&gt;
-&lt;li&gt;0.053 - new_list = []; new_list.extend(old_list)&lt;/li&gt;
-&lt;li&gt;0.039 - old_list&lt;a href=&quot;%5Blist%20slicing%5D(https://docs.python.org/2/tutorial/introduction.html#lists)&quot;&gt;:&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;위 결과를 보면, 속도는 &lt;code&gt;slicing&lt;/code&gt;이 가장 빠르다. 하지만 &lt;code&gt;slicing&lt;/code&gt;의 경우에는 얕은 복사가 이루어지고 &lt;code&gt;deepcopy&lt;/code&gt;의 경우에는 깊은 복사가 이루어지니 상황에 맞추어 사용해야 한다.&lt;/p&gt;
-
-&lt;p&gt;개인적으로는 지금까지는 깊은 복사를 할 경우가 적어, 주로 &lt;code&gt;deepcopy&lt;/code&gt;보다 &lt;code&gt;slicing&lt;/code&gt;을 더 많이 사용하고 있다.&lt;/p&gt;
-</description>
-				<pubDate>Sat, 20 Feb 2016 08:20:00 +0900</pubDate>
-				<link>/python/2016/02/20/python-list-clone.html</link>
-				<guid isPermaLink="true">/python/2016/02/20/python-list-clone.html</guid>
-			</item>
-		
-			<item>
 				<title>[리눅스] 유닉스, 리눅스 과련된 깨알 지식</title>
 				<description>&lt;p&gt;리눅스 정리라고 작성한 글에 잘못된 내용이 있다는 조언을 듣고 해당 부분에 대한 내용을 읽으며 이를 다른 분들께 전달하고 싶어 작성한다. 아래의 글은 페이스북의 김선영님께서 작성한 글을 가지고 왔다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;유닉스, 리눅스 관련된 깨알 지식입니다.&lt;/p&gt;
+  &lt;p&gt;유닉스, 리눅스 관련된 깨알 지식입니다.&lt;/p&gt;
 
-&lt;p&gt;1) 부모 프로세스가 죽는다고 자식 프로세스까지 죽지는 않습니다. 
+  &lt;p&gt;1) 부모 프로세스가 죽는다고 자식 프로세스까지 죽지는 않습니다. 
 부모(parent process)가 죽으면 자식(child process)은 고아 프로세스(orphan process)가 되고, step parent process로 최상위 프로세스(보통 init) 지정됩니다.
 daemon 형태의 프로세스는 모두 orphan process 형태로 작성된답니다. (daemon은 세션을 새로 열고 stdio를 닫는 몇가지 작업을 더 필요로 합니다. 자세한 것은 system programming에서 배웁니다.) [1]&lt;/p&gt;
 
-&lt;p&gt;2) 포그라운드 프로세스란 세션내에서 제어터미널(controlling terminal)을 소유한 상태의 프로세스를 의미합니다. 만일 시험을 친다면 세션과 제어 터미널의 두 단어가 등장하지 않는다면 definition에서 틀린 것으로 간주할 수 있습니다. (이 정의는 IEEE std 1003.1 표준 문서에 등장합니다.) [2]&lt;/p&gt;
+  &lt;p&gt;2) 포그라운드 프로세스란 세션내에서 제어터미널(controlling terminal)을 소유한 상태의 프로세스를 의미합니다. 만일 시험을 친다면 세션과 제어 터미널의 두 단어가 등장하지 않는다면 definition에서 틀린 것으로 간주할 수 있습니다. (이 정의는 IEEE std 1003.1 표준 문서에 등장합니다.) [2]&lt;/p&gt;
 
-&lt;p&gt;3) 백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [3]&lt;/p&gt;
+  &lt;p&gt;3) 백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [3]&lt;/p&gt;
 
-&lt;p&gt;4) 리다이렉션은 입출력되는 스트림의 방향을 재지정하는 것을 의미합니다. 표준입출력만 재지정할 수 있는 것은 아닙니다. 시스템에 이미 작성되어있는 많은 쉘 스크립트들이 특정 파일서술자(file descriptor)를 직접 열어서 리다이렉션을 하고 있습니다.
+  &lt;p&gt;4) 리다이렉션은 입출력되는 스트림의 방향을 재지정하는 것을 의미합니다. 표준입출력만 재지정할 수 있는 것은 아닙니다. 시스템에 이미 작성되어있는 많은 쉘 스크립트들이 특정 파일서술자(file descriptor)를 직접 열어서 리다이렉션을 하고 있습니다.
 예를 들어 read v_input &amp;lt;&amp;amp;10 처럼 명령하면 10번 fd로부터 방향 재지정을 통해 값을 읽어올 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;5) kill은 프로세스를 죽이는게 아닙니다.
+  &lt;p&gt;5) kill은 프로세스를 죽이는게 아닙니다.
 프로세스에 시그널을 송신하는 것이 정확한 기능입니다. 초기 유닉스 설계시에는 시그널은 프로세스를 죽이는 용도로 썼기 때문에 붙여졌던 이름이지만 현대에는 프로세스를 죽이지 않는 여러 시그널이 늘어났기 때문입니다.
 PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, 서점에 있는 리눅스 교재 중 상당수가 위 개념을 잘못 설명하고 있더군요. 혹시라고 잘못 배우신 분들은 이 기회에 올바른 지식으로 업데이트 하시기 바랍니다.
 특히 부모 프로세스 죽는다고 자식 프로세스가 죽는 경우는 없습니다. 로그오프 했을때 자식 프로세스들이 종료되는 것은 SIGHUP의 영향입니다. nohup 명령어가 바로 SIGHUP 시그널을 막아서 로그오프시 세션에 존재하는 프로세스 그룹의 연쇄 종료를 막아주는 기능입니다.
 또한 백그라운드 프로세스가 뒤에서 작동하면서 화면에 나타나지 않는다고 설명하는 경우도 있었는데 find / &amp;amp; 로 작동시켜보시면 백그라운드로 작동하더라도 얼마든지 화면출력은 가능합니다. 단지 CTRL-C를 눌러서 SIGINT를 보내보면 백그라운드는 제어 터미널을 소유하지 못했기 때문에 종료가 안되는 것뿐이죠.
 혹시라도 크로스 체크 하실 분들을 위해 참조 서적, 레퍼런스 사이트 목록.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;[1] APUE Chapter 9 Orphaned Process 정의 참조&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;[1] APUE Chapter 9 Orphaned Process 정의 참조&lt;/p&gt;
 
-&lt;p&gt;[2] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 foreground process 참조&lt;/p&gt;
+  &lt;p&gt;[2] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 foreground process 참조&lt;/p&gt;
 
-&lt;p&gt;[3] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 background process 참조&lt;/p&gt;
+  &lt;p&gt;[3] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 background process 참조&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;하단의 글은 해당글에 달린 댓글의 정광섭님께서 추가로 말씀해주신 글입니다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;한 가지 깨알 지식을 추가하면 프로세스 종료시에 kill -9 로 죽이는 경우가 있는데 이는 절대 피해야할 습관입니다. 보통 잘 만든 프로그램은 종료 시그널(SIGINT, SIGTERM 등)을 받으면 사용하던 리소스를 정리하고 파일을 닫고 마무리(시그널 핸들러) 하도록 구현되어 있는데 SIGKILL 과 SIGSTOP을 보내면은 핸들러를 호출할수 없으므로 사용하던 리소스가 깨진다거나 하는 문제가 발생할 수 있습니다.&lt;/p&gt;
+  &lt;p&gt;한 가지 깨알 지식을 추가하면 프로세스 종료시에 kill -9 로 죽이는 경우가 있는데 이는 절대 피해야할 습관입니다. 보통 잘 만든 프로그램은 종료 시그널(SIGINT, SIGTERM 등)을 받으면 사용하던 리소스를 정리하고 파일을 닫고 마무리(시그널 핸들러) 하도록 구현되어 있는데 SIGKILL 과 SIGSTOP을 보내면은 핸들러를 호출할수 없으므로 사용하던 리소스가 깨진다거나 하는 문제가 발생할 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;리눅스 책 광고를 하나 올리겠습니다. 입문서는 아니지만 위와같은 깨알 지식과 Redhat/CentOS 리눅스 기반으로 인프라를 구축하는 내용인 &amp;quot;리눅스를 활용한 회사 인프라 구축의 모든 것&amp;quot; 이라는 책이 있습니다. CentoOS 6 기준이긴 하지만 도움이 되실수 있을 것 같아서 올려봅니다. (CentOS 7 에 맞게 개정판을 내고 싶은데 책이 잘 안 팔립니다. &lt;sup&gt;&lt;sup&gt;)&lt;/sup&gt;&lt;/sup&gt; &lt;a href=&quot;http://www.yes24.com/24/goods/15542130?scode=032&amp;amp;OzSrank=7&quot;&gt;http://www.yes24.com/24/goods/15542130?scode=032&amp;amp;OzSrank=7&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;리눅스 책 광고를 하나 올리겠습니다. 입문서는 아니지만 위와같은 깨알 지식과 Redhat/CentOS 리눅스 기반으로 인프라를 구축하는 내용인 “리눅스를 활용한 회사 인프라 구축의 모든 것” 이라는 책이 있습니다. CentoOS 6 기준이긴 하지만 도움이 되실수 있을 것 같아서 올려봅니다. (CentOS 7 에 맞게 개정판을 내고 싶은데 책이 잘 안 팔립니다. ^^) http://www.yes24.com/24/goods/15542130?scode=032&amp;amp;OzSrank=7&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
 				<pubDate>Fri, 18 Sep 2015 09:00:00 +0900</pubDate>
@@ -82,73 +55,73 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 		
 			<item>
 				<title>[소규모 프로젝트] 스터디 사이트</title>
-				<description>&lt;p&gt;&lt;img src=&quot;/assets/media/lab-study.png&quot; alt=&quot;screenshot&quot;&gt;&lt;/p&gt;
+				<description>&lt;p&gt;&lt;img src=&quot;/assets/media/lab-study.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;프로그램-정보&quot;&gt;프로그램 정보&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;이름&lt;/strong&gt; : 스터디 사이트&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;유형&lt;/strong&gt; : 학교 프로젝트 - JSP&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;기간&lt;/strong&gt; : 4주 (15.05.25 ~ 15.06.19)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;담당&lt;/strong&gt; : 팀장
+&lt;h2 id=&quot;section&quot;&gt;프로그램 정보&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;게시판(스터디 등록, 홍보) 구현&lt;/li&gt;
-&lt;li&gt;덧글(Q&amp;amp;A) 구현&lt;/li&gt;
-&lt;li&gt;회원 관련 구현(로그인&amp;amp;로그오프, 회원가입, 비밀번호 찾기, 관리자 메뉴, 프로필, 프로필 수정)&lt;/li&gt;
-&lt;li&gt;서적 추가(네이버 OpenAPI를 사용)&lt;/li&gt;
-&lt;li&gt;스터디 신청 및 수락 구현&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;이름&lt;/strong&gt; : 스터디 사이트&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;유형&lt;/strong&gt; : 학교 프로젝트 - JSP&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;기간&lt;/strong&gt; : 4주 (15.05.25 ~ 15.06.19)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;담당&lt;/strong&gt; : 팀장
+    &lt;ul&gt;
+      &lt;li&gt;게시판(스터디 등록, 홍보) 구현&lt;/li&gt;
+      &lt;li&gt;덧글(Q&amp;amp;A) 구현&lt;/li&gt;
+      &lt;li&gt;회원 관련 구현(로그인&amp;amp;로그오프, 회원가입, 비밀번호 찾기, 관리자 메뉴, 프로필, 프로필 수정)&lt;/li&gt;
+      &lt;li&gt;서적 추가(네이버 OpenAPI를 사용)&lt;/li&gt;
+      &lt;li&gt;스터디 신청 및 수락 구현&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;개발-환경&quot;&gt;개발 환경&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;개발 환경&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;백 엔드
-
-&lt;ul&gt;
-&lt;li&gt;Mac OS&lt;/li&gt;
-&lt;li&gt;FreeMarker &amp;amp; Spring Boot&lt;/li&gt;
-&lt;li&gt;MySQL &amp;amp; JPA&lt;/li&gt;
-&lt;li&gt;Fake SMTP Server&lt;/li&gt;
-&lt;li&gt;Gradle&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;프론트 엔드
-
-&lt;ul&gt;
-&lt;li&gt;Javascript &amp;amp; jQuery&lt;/li&gt;
-&lt;li&gt;Bootstrap&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;협업 도구
-
-&lt;ul&gt;
-&lt;li&gt;github&lt;/li&gt;
-&lt;li&gt;waffle.io&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;IDE
-
-&lt;ul&gt;
-&lt;li&gt;IntelliJ&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;백 엔드
+    &lt;ul&gt;
+      &lt;li&gt;Mac OS&lt;/li&gt;
+      &lt;li&gt;FreeMarker &amp;amp; Spring Boot&lt;/li&gt;
+      &lt;li&gt;MySQL &amp;amp; JPA&lt;/li&gt;
+      &lt;li&gt;Fake SMTP Server&lt;/li&gt;
+      &lt;li&gt;Gradle&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프론트 엔드
+    &lt;ul&gt;
+      &lt;li&gt;Javascript &amp;amp; jQuery&lt;/li&gt;
+      &lt;li&gt;Bootstrap&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;협업 도구
+    &lt;ul&gt;
+      &lt;li&gt;github&lt;/li&gt;
+      &lt;li&gt;waffle.io&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IDE
+    &lt;ul&gt;
+      &lt;li&gt;IntelliJ&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;참고-자료&quot;&gt;참고 자료&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;참고 자료&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=7131200&quot;&gt;최범균의 jsp 2.2 웹 프로그래밍 기초부터 중급까지(최범균 저)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=5902081&quot;&gt;HeadFirst Servlets &amp;amp; JSP(브라얀 바샴, 버트 베이츠, 케이시 시에라 저)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=6810364&quot;&gt;스프링 인 액션(크레이그 월즈 저)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=7131200&quot;&gt;최범균의 jsp 2.2 웹 프로그래밍 기초부터 중급까지(최범균 저)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=5902081&quot;&gt;HeadFirst Servlets &amp;amp; JSP(브라얀 바샴, 버트 베이츠, 케이시 시에라 저)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=6810364&quot;&gt;스프링 인 액션(크레이그 월즈 저)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;소스-코드&quot;&gt;소스 코드&lt;/h2&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;소스 코드&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/egaoneko/lab_study&quot;&gt;Github - lab_study&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/egaoneko/lab_study&quot;&gt;Github - lab_study&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;발표-자료&quot;&gt;발표 자료&lt;/h2&gt;
+&lt;h2 id=&quot;section-4&quot;&gt;발표 자료&lt;/h2&gt;
 
-&lt;div&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/pMirEPTxGfsLWf&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/efem&quot; title=&quot;웹프 발표(EFEM)&quot; target=&quot;_blank&quot;&gt;웹프 발표(EFEM)&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/pMirEPTxGfsLWf&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/efem&quot; title=&quot;웹프 발표(EFEM)&quot; target=&quot;_blank&quot;&gt;웹프 발표(EFEM)&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/div&gt;
 </description>
 				<pubDate>Thu, 27 Aug 2015 01:10:00 +0900</pubDate>
 				<link>/project/2015/08/27/shortterm-project-lab-study.html</link>
@@ -157,59 +130,59 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 		
 			<item>
 				<title>[소규모 프로젝트] 스프링 쇼핑몰</title>
-				<description>&lt;p&gt;&lt;img src=&quot;/assets/media/lab-shop.png&quot; alt=&quot;screenshot&quot;&gt;&lt;/p&gt;
+				<description>&lt;p&gt;&lt;img src=&quot;/assets/media/lab-shop.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;프로그램-정보&quot;&gt;프로그램 정보&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;이름&lt;/strong&gt; : 스프링 쇼핑몰&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;유형&lt;/strong&gt; : 스터디 프로젝트 - JSP/Spring&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;기간&lt;/strong&gt; : 18주 (15.03.17 ~ 15.07.15)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;담당&lt;/strong&gt; : 팀원
+&lt;h2 id=&quot;section&quot;&gt;프로그램 정보&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;게시판(공지, 상품) 구현&lt;/li&gt;
-&lt;li&gt;덧글(리뷰) 구현&lt;/li&gt;
-&lt;li&gt;상품 관련 구현&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;이름&lt;/strong&gt; : 스프링 쇼핑몰&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;유형&lt;/strong&gt; : 스터디 프로젝트 - JSP/Spring&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;기간&lt;/strong&gt; : 18주 (15.03.17 ~ 15.07.15)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;담당&lt;/strong&gt; : 팀원
+    &lt;ul&gt;
+      &lt;li&gt;게시판(공지, 상품) 구현&lt;/li&gt;
+      &lt;li&gt;덧글(리뷰) 구현&lt;/li&gt;
+      &lt;li&gt;상품 관련 구현&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;개발-환경&quot;&gt;개발 환경&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;개발 환경&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;백 엔드
-
-&lt;ul&gt;
-&lt;li&gt;Linux(Ubuntu)&amp;amp; Mac OS&lt;/li&gt;
-&lt;li&gt;JSP &amp;amp; Spring&lt;/li&gt;
-&lt;li&gt;MySQL &amp;amp; MyBatis&lt;/li&gt;
-&lt;li&gt;Gradle&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;프론트 엔드
-
-&lt;ul&gt;
-&lt;li&gt;Javascript &amp;amp; jQuery&lt;/li&gt;
-&lt;li&gt;Bootstrap&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;협업 도구
-
-&lt;ul&gt;
-&lt;li&gt;github&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+  &lt;li&gt;백 엔드
+    &lt;ul&gt;
+      &lt;li&gt;Linux(Ubuntu)&amp;amp; Mac OS&lt;/li&gt;
+      &lt;li&gt;JSP &amp;amp; Spring&lt;/li&gt;
+      &lt;li&gt;MySQL &amp;amp; MyBatis&lt;/li&gt;
+      &lt;li&gt;Gradle&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프론트 엔드
+    &lt;ul&gt;
+      &lt;li&gt;Javascript &amp;amp; jQuery&lt;/li&gt;
+      &lt;li&gt;Bootstrap&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;협업 도구
+    &lt;ul&gt;
+      &lt;li&gt;github&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;참고-자료&quot;&gt;참고 자료&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;참고 자료&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=7131200&quot;&gt;최범균의 jsp 2.2 웹 프로그래밍 기초부터 중급까지(최범균 저)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=5902081&quot;&gt;HeadFirst Servlets &amp;amp; JSP(브라얀 바샴, 버트 베이츠, 케이시 시에라 저)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=6810364&quot;&gt;스프링 인 액션(크레이그 월즈 저)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=7131200&quot;&gt;최범균의 jsp 2.2 웹 프로그래밍 기초부터 중급까지(최범균 저)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=5902081&quot;&gt;HeadFirst Servlets &amp;amp; JSP(브라얀 바샴, 버트 베이츠, 케이시 시에라 저)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://book.naver.com/bookdb/book_detail.nhn?bid=6810364&quot;&gt;스프링 인 액션(크레이그 월즈 저)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;소스-코드&quot;&gt;소스 코드&lt;/h2&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;소스 코드&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/egaoneko/lab_shop&quot;&gt;Github - lab_shop&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/egaoneko/lab_shop&quot;&gt;Github - lab_shop&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
 				<pubDate>Thu, 27 Aug 2015 01:00:00 +0900</pubDate>
@@ -219,7 +192,9 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 		
 			<item>
 				<title>Coding Conventions & Secure Coding 조사</title>
-				<description>&lt;p&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/gDVvwDRl8aZuYd&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/ss-49635823&quot; title=&quot;Coding Conventions &amp;amp; Secure Coding&quot; target=&quot;_blank&quot;&gt;Coding Conventions &amp;amp; Secure Coding&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+				<description>&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/gDVvwDRl8aZuYd&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/ss-49635823&quot; title=&quot;Coding Conventions &amp;amp; Secure Coding&quot; target=&quot;_blank&quot;&gt;Coding Conventions &amp;amp; Secure Coding&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+
 </description>
 				<pubDate>Sun, 21 Jun 2015 09:00:02 +0900</pubDate>
 				<link>/study/2015/06/21/Coding-Conventions-Secure-Coding.html</link>
@@ -228,7 +203,9 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 		
 			<item>
 				<title>Continuous Integration 조사</title>
-				<description>&lt;p&gt;&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/3MPnjmyCh0VddP&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/ci-49635777&quot; title=&quot;Continuous Integration&quot; target=&quot;_blank&quot;&gt;Continuous Integration&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+				<description>&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/3MPnjmyCh0VddP&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/ci-49635777&quot; title=&quot;Continuous Integration&quot; target=&quot;_blank&quot;&gt;Continuous Integration&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+
 </description>
 				<pubDate>Sun, 21 Jun 2015 09:00:01 +0900</pubDate>
 				<link>/study/2015/06/21/Continuous-Integration.html</link>
@@ -237,24 +214,28 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 		
 			<item>
 				<title>IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책</title>
-				<description>&lt;p&gt;얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 &lt;a href=&quot;/project/2014/02/19/shortterm-project-c-chatting-program.html&quot;&gt;&amp;quot;IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제&amp;quot;&lt;/a&gt;라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.&lt;/p&gt;
+				<description>&lt;p&gt;얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 &lt;a href=&quot;/project/2014/02/19/shortterm-project-c-chatting-program.html&quot;&gt;“IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제”&lt;/a&gt;라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;This is a Spring Boot problem.&lt;/p&gt;
+  &lt;p&gt;This is a Spring Boot problem.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&quot;http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations&quot;&gt;http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations&lt;/a&gt; section &amp;quot;26.3.4 JSP limitations&amp;quot;&lt;/p&gt;
+  &lt;p&gt;See http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations section “26.3.4 JSP limitations”&lt;/p&gt;
 
-&lt;p&gt;Solutions:&lt;/p&gt;
+  &lt;p&gt;Solutions:&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Do not use JSP at all (recommended)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;As workaround, enable special Gradle task &amp;quot;Build xxx.war artifact&amp;quot; in run configuration to simulate &amp;quot;bootRun&amp;quot; Gradle task (see screenshot)&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;ol&gt;
+    &lt;li&gt;
+      &lt;p&gt;Do not use JSP at all (recommended)&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;As workaround, enable special Gradle task “Build xxx.war artifact” in run configuration to simulate “bootRun” Gradle task (see screenshot)&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/media/Run_Debug_Configurations.jpg&quot; alt=&quot;screenshot&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/media/Run_Debug_Configurations.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 &lt;code&gt;bootRun&lt;/code&gt;한 것과 동일하게 실행된다.&lt;/p&gt;
+&lt;p&gt;답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 &lt;code class=&quot;highlighter-rouge&quot;&gt;bootRun&lt;/code&gt;한 것과 동일하게 실행된다.&lt;/p&gt;
 </description>
 				<pubDate>Thu, 28 May 2015 06:20:00 +0900</pubDate>
 				<link>/intellij/2015/05/28/intellij-springboot-jsp-solution.html</link>
@@ -265,7 +246,7 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 				<title>[OSX] 맥에서 단어장 사용하기</title>
 				<description>&lt;p&gt;맥에서 사전을 통해 검색을하고 단어장에 저장하고 싶은데 마땅한 방법이 없어 고민하고 있었다. 그런 도중에 &lt;a href=&quot;http://macnews.tistory.com&quot;&gt;BACK TO THE MAC&lt;/a&gt;에서 좋은 해결책을 찾았다. 여기서 소개해준 방법을 이용하면 사전을 팝업해서 볼 수 있다. 필자는 사파리를 평소에 사용해서 늘 네이버나 다음을 로그인해두는데, 이 방법으로 실행한 팝업된 사전에서 간단하게 단어를 단어장 추가하여 사용하고 있다.&lt;/p&gt;
 
-&lt;h2 id=&quot;방법&quot;&gt;방법&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;방법&lt;/h2&gt;
 
 &lt;p&gt;먼저 아래 링크의 글을 읽어 오토메이터가 무엇인지 파악을 한다.&lt;/p&gt;
 
@@ -273,13 +254,14 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 
 &lt;p&gt;그런 다음 아래 링크의 글을 통해 팝업 사전을 구현한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://macnews.tistory.com/1991&quot;&gt;[부록] &amp;#39;텍스트 선택방식&amp;#39;으로 작동하는 개량된 OS X 팝업 사전 &amp;#39;PopClip도 지원&amp;#39;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://macnews.tistory.com/1991&quot;&gt;[부록] ‘텍스트 선택방식’으로 작동하는 개량된 OS X 팝업 사전 ‘PopClip도 지원’&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;이 방법만으로 팝업 사전을 사용할 수 있다. 단축키를 등록해두면 편하게 사용할 수 있으며, 추가로 PopClip Extension을 사용하면 더 편하게 사용할 수 있다. 필자는 Extension을 사용하기 위해 PopClip을 결제했다.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://macnews.tistory.com/1805&quot;&gt;[추천 유료앱] PopClip, 의외로 편리하고 유용한 작업능률 향상 앱. iOS 스타일의 팝업창을 OS X에 달아주자!&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;단어장에 저장하지 않고 간단히 검색해볼 때에는 기본 사전을 단축키를 통해서 사용하고, 단어장을 저장할 때나 좀 더 알아보고 싶을때는 상단에서 말한 방법을 이용하여 사용하고 있다. 맥은 사용하면 사용할수록 편한 기능이 많다는 것을 느낀다.&lt;/p&gt;
+
 </description>
 				<pubDate>Tue, 26 May 2015 19:30:00 +0900</pubDate>
 				<link>/program/2015/05/26/macos-dictionary.html</link>
@@ -289,149 +271,151 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 			<item>
 				<title>폰트 색깔 코드</title>
 				<description>&lt;div style=&quot;text-align:center;&quot;&gt;
-    &lt;p&gt;
-        &lt;font color=&quot;#000000&quot;&gt;■ 000000 black 블랙&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#2f4f4f&quot;&gt;■ 2f4f4f darkslategray 다크슬레이트그레이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#708090&quot;&gt;■ 708090 slategray 슬레이트그레이 &lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#778899&quot;&gt;■ 778899 lightslategray 라이트슬레이트그레이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#696969&quot;&gt;■ 696969 dimgray 딤그레이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#808080&quot;&gt;■ 808080 gray 그레이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#a9a9a9&quot;&gt;■ a9a9a9 darkgray 다크그레이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#c0c0c0&quot;&gt;■ c0c0c0 silver 실버&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#d3d3d3&quot;&gt;■ d3d3d3 lightgrey 라이트그레이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#dcdcdc&quot;&gt;■ dcdcdc gainsboro 게인스보로&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffffff&quot;&gt;■ ffffff white 화이트&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fff5ee&quot;&gt;■ fff5ee seashell 씨쉘&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fffafa&quot;&gt;■ fffafa snow 스노우&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f8f8ff&quot;&gt;■ f8f8ff ghostwhite 고스트화이트&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fffaf0&quot;&gt;■ fffaf0 floralwhite 후로랄화이트&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f5f5f5&quot;&gt;■ f5f5f5 whitesmoke 화이트스모크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f0f8ff&quot;&gt;■ f0f8ff aliceblue 앨리스블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f0ffff&quot;&gt;■ f0ffff azure 애쥬어&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fdf5e6&quot;&gt;■ fdf5e6 oldlace 올드래이스&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f5fffa&quot;&gt;■ f5fffa mintcream 민트크림&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffefd5&quot;&gt;■ ffefd5 papayawhip 파파야윕&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffdab9&quot;&gt;■ ffdab9 peachpuff 피치퍼프&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#faf0e6&quot;&gt;■ faf0e6 linen 린넨&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#eee8aa&quot;&gt;■ eee8aa palegoldenrod 팔레골덴로드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffe4e1&quot;&gt;■ ffe4e1 mistyrose 미스티로즈&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffe4b5&quot;&gt;■ ffe4b5 moccasin 모카신&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffdead&quot;&gt;■ ffdead navajowhite 나바조화이트&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#d2b48c&quot;&gt;■ d2b48c tan 탄&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f5deb3&quot;&gt;■ f5deb3 wheat 위트&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fafad2&quot;&gt;■ fafad2 lightgoldenrodyellow 라이트골덴로드옐로우&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffffe0&quot;&gt;■ ffffe0 lightyellow 라이트옐로우&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fff8dc&quot;&gt;■ fff8dc cornsilk 콘실크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#faebd7&quot;&gt;■ faebd7 antiquewhite 안티크화이트&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f5f5dc&quot;&gt;■ f5f5dc beige 베이지&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fffacd&quot;&gt;■ fffacd lemonchiffon 레몬치폰 &lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fffff0&quot;&gt;■ fffff0 ivory 아이보리&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f0e68c&quot;&gt;■ f0e68c khaki 카키&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#e6e6fa&quot;&gt;■ e6e6fa lavender 라벤더&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fff0f5&quot;&gt;■ fff0f5 lavenderblush 라벤더블러시&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffe4c4&quot;&gt;■ ffe4c4 bisque 비스크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffebcd&quot;&gt;■ ffebcd blanchedalmond 블란체달몬드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#deb887&quot;&gt;■ deb887 burlywood 벌리우드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#cd853f&quot;&gt;■ cd853f peru 페루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00ced1&quot;&gt;■ 00ced1 darkturquoise 다크터콰이즈&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00bfff&quot;&gt;■ 00bfff deepskyblue 딥스카이블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#7fffd4&quot;&gt;■ 7fffd4 aquamarine 아쿠아마린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#1e90ff&quot;&gt;■ 1e90ff dodgerblue 도저블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00ffff&quot;&gt;■ 00ffff cyan 시안&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f0fff0&quot;&gt;■ f0fff0 honeydew 허니듀&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#87cefa&quot;&gt;■ 87cefa lightskyblue 라이트스카이블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#afeeee&quot;&gt;■ afeeee paleturquoise 팔레터콰이즈&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#e0ffff&quot;&gt;■ e0ffff lightcyan 라이트시안&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#add8e6&quot;&gt;■ add8e6 lightblue 라이트블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#add8e6&quot;&gt;■ add8e6 lightsteelblue 라이트스틸블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#40e0d0&quot;&gt;■ 40e0d0 turquoise 터콰이즈&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#48d1cc&quot;&gt;■ 48d1cc mediumturquoise 미디엄터콰이즈&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00ffff&quot;&gt;■ 00ffff aqua 아쿠아&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#7b68ee&quot;&gt;■ 7b68ee mediumslateblue 미디움슬레이트블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#191970&quot;&gt;■ 191970 midnightblue 미드나이트블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#6495ed&quot;&gt;■ 6495ed cornflowerblue 콘플라워블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#0000cd&quot;&gt;■ 0000cd mediumblue 미디움블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#6a5acd&quot;&gt;■ 6a5acd slateblue 슬레이트블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#4682b4&quot;&gt;■ 4682b4 steelblue 스틸블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#0000ff&quot;&gt;■ 0000ff blue 블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#483d8b&quot;&gt;■ 483d8b darkslateblue 다크슬레이트블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#5f9ea0&quot;&gt;■ 5f9ea0 cadetblue 카뎃블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#87ceeb&quot;&gt;■ 87ceeb skyblue 스카이블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#4169e1&quot;&gt;■ 4169e1 royalblue 로열블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#b0e0e6&quot;&gt;■ b0e0e6 powderblue 파우더블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#000080&quot;&gt;■ 000080 navy 네이비&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00008b&quot;&gt;■ 00008b darkblue 다크블루&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#8a2be2&quot;&gt;■ 8a2be2 blueviolet 블루바이올렛&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#8b008b&quot;&gt;■ 8b008b darkmagenta 다크마그네타&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#9932cc&quot;&gt;■ 9932cc darkorchid 다크오치드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#9400d3&quot;&gt;■ 9400d3 darkviolet 다크바이올렛&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff00ff&quot;&gt;■ ff00ff magenta 마그네타&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff00ff&quot;&gt;■ ff00ff fuchsia 퍼츠샤&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#c71585&quot;&gt;■ c71585 mediumvioletred 미디움바이올렛레드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ba55d3&quot;&gt;■ ba55d3 mediumorchid 미디움오치드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#9370db&quot;&gt;■ 9370db mediumpurple 미디움퍼플&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#dc143c&quot;&gt;■ dc143c crimson 크림슨&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff1493&quot;&gt;■ ff1493 deeppink 딥핑크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffb6c1&quot;&gt;■ ffb6c1 lightpink 라이트핑크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff69b4&quot;&gt;■ ff69b4 hotpink 핫핑크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffc0cb&quot;&gt;■ ffc0cb pink 핑크&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#dda0dd&quot;&gt;■ dda0dd plum 플럼&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#800080&quot;&gt;■ 800080 purple 퍼플&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ee82ee&quot;&gt;■ ee82ee violet 바이올렛&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#d8bfd8&quot;&gt;■ d8bfd8 thistle 디스틀&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#da70d6&quot;&gt;■ da70d6 orchid 오치드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#4b0082&quot;&gt;■ 4b0082 indigo 인디고&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#a52a2a&quot;&gt;■ a52a2a brown 브라운&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#e9967a&quot;&gt;■ e9967a darksalmon 다크샐몬&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f08080&quot;&gt;■ f08080 lightcoral 라이트코랄&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#cd5c5c&quot;&gt;■ cd5c5c indianred 인디안레드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffa07a&quot;&gt;■ ffa07a lightsalmon 라이트샐몬&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#db7093&quot;&gt;■ db7093 palevioletred 팔레바이올렛레드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#f4a460&quot;&gt;■ f4a460 sandybrown 샌디브라운&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#fa8072&quot;&gt;■ fa8072 salmon 샐몬&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff6347&quot;&gt;■ ff6347 tomato 토마토&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff4500&quot;&gt;■ ff4500 orangered 오렌지레드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff0000&quot;&gt;■ ff0000 red 레드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#800000&quot;&gt;■ 800000 maroon 마룬&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#8b0000&quot;&gt;■ 8b0000 darkred 다크레드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#b22222&quot;&gt;■ b22222 firebrick 파이어브릭&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#d2691e&quot;&gt;■ d2691e chocolate 초콜렛&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#8b4513&quot;&gt;■ 8b4513 saddlebrown 새들브라운&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#a0522d&quot;&gt;■ a0522d sienna 시에나&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#bc8f8f&quot;&gt;■ bc8f8f rosybrown 로지브라운&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff7f50&quot;&gt;■ ff7f50 coral 코랄&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ff8c00&quot;&gt;■ ff8c00 darkorange 다크오렌지&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffa500&quot;&gt;■ ffa500 orange 오렌지&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#b8860b&quot;&gt;■ b8860b darkgoldenrod 다크골덴로드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffd700&quot;&gt;■ ffd700 gold 골드&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#ffff00&quot;&gt;■ ffff00 yellow 옐로우&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#7fff00&quot;&gt;■ 7fff00 chartreuse 차트리우스&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#7cfc00&quot;&gt;■ 7cfc00 lawngreen 라운그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00ff00&quot;&gt;■ 00ff00 lime 라임&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#32cd32&quot;&gt;■ 32cd32 limegreen 라임그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00ff7f&quot;&gt;■ 00ff7f springgreen 스프링그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#3cb371&quot;&gt;■ 3cb371 mediumseagreen 미디움씨그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#adff2f&quot;&gt;■ adff2f greenyellow 그린옐로우&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#8fbc8f&quot;&gt;■ 8fbc8f darkseagreen 다크씨그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#90ee90&quot;&gt;■ 0ee90 lightgreen 라이트그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#98fb98&quot;&gt;■ 8fb98 palegreen 팔레그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#9acd32&quot;&gt;■ 9acd32 yellowgreen 옐로우그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#2e8b57&quot;&gt;■ 2e8b57 seagreen 씨그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#00fa9a&quot;&gt;■ 00fa9a mediumspringgreen 미디움스프링그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#20b2aa&quot;&gt;■ 20b2aa lightseagreen 라이트씨그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#66cdaa&quot;&gt;■ 66cdaa mediumaquamarine 미디움아쿠아마린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#228b22&quot;&gt;■ 228b22 forestgreen 포레스트그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#008b8b&quot;&gt;■ 008b8b darkcyan 다크시안&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#008080&quot;&gt;■ 008080 teal 틸&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#006400&quot;&gt;■ 006400 darkgreen 다크그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#556b2f&quot;&gt;■ 556b2f darkolivegreen 다크올리브그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#008000&quot;&gt;■ 008000 green 그린&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#808000&quot;&gt;■ 808000 olive 올리브&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#6b8e23&quot;&gt;■ 6b8e23 olivedrab 올리브드래브&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#bdb76b&quot;&gt;■ bdb76b darkkhaki 다크카이&lt;br/&gt;&lt;/font&gt;
-        &lt;font color=&quot;#daa520&quot;&gt;■ daa520 goldenrod 골덴로드
-    &lt;/p&gt;
-&lt;/div&gt;
+	&lt;p&gt;
+		&lt;font color=&quot;#000000&quot;&gt;■ 000000 black 블랙&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#2f4f4f&quot;&gt;■ 2f4f4f darkslategray 다크슬레이트그레이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#708090&quot;&gt;■ 708090 slategray 슬레이트그레이 &lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#778899&quot;&gt;■ 778899 lightslategray 라이트슬레이트그레이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#696969&quot;&gt;■ 696969 dimgray 딤그레이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#808080&quot;&gt;■ 808080 gray 그레이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#a9a9a9&quot;&gt;■ a9a9a9 darkgray 다크그레이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#c0c0c0&quot;&gt;■ c0c0c0 silver 실버&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#d3d3d3&quot;&gt;■ d3d3d3 lightgrey 라이트그레이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#dcdcdc&quot;&gt;■ dcdcdc gainsboro 게인스보로&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffffff&quot;&gt;■ ffffff white 화이트&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fff5ee&quot;&gt;■ fff5ee seashell 씨쉘&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fffafa&quot;&gt;■ fffafa snow 스노우&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f8f8ff&quot;&gt;■ f8f8ff ghostwhite 고스트화이트&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fffaf0&quot;&gt;■ fffaf0 floralwhite 후로랄화이트&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f5f5f5&quot;&gt;■ f5f5f5 whitesmoke 화이트스모크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f0f8ff&quot;&gt;■ f0f8ff aliceblue 앨리스블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f0ffff&quot;&gt;■ f0ffff azure 애쥬어&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fdf5e6&quot;&gt;■ fdf5e6 oldlace 올드래이스&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f5fffa&quot;&gt;■ f5fffa mintcream 민트크림&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffefd5&quot;&gt;■ ffefd5 papayawhip 파파야윕&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffdab9&quot;&gt;■ ffdab9 peachpuff 피치퍼프&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#faf0e6&quot;&gt;■ faf0e6 linen 린넨&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#eee8aa&quot;&gt;■ eee8aa palegoldenrod 팔레골덴로드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffe4e1&quot;&gt;■ ffe4e1 mistyrose 미스티로즈&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffe4b5&quot;&gt;■ ffe4b5 moccasin 모카신&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffdead&quot;&gt;■ ffdead navajowhite 나바조화이트&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#d2b48c&quot;&gt;■ d2b48c tan 탄&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f5deb3&quot;&gt;■ f5deb3 wheat 위트&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fafad2&quot;&gt;■ fafad2 lightgoldenrodyellow 라이트골덴로드옐로우&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffffe0&quot;&gt;■ ffffe0 lightyellow 라이트옐로우&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fff8dc&quot;&gt;■ fff8dc cornsilk 콘실크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#faebd7&quot;&gt;■ faebd7 antiquewhite 안티크화이트&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f5f5dc&quot;&gt;■ f5f5dc beige 베이지&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fffacd&quot;&gt;■ fffacd lemonchiffon 레몬치폰 &lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fffff0&quot;&gt;■ fffff0 ivory 아이보리&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f0e68c&quot;&gt;■ f0e68c khaki 카키&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#e6e6fa&quot;&gt;■ e6e6fa lavender 라벤더&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fff0f5&quot;&gt;■ fff0f5 lavenderblush 라벤더블러시&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffe4c4&quot;&gt;■ ffe4c4 bisque 비스크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffebcd&quot;&gt;■ ffebcd blanchedalmond 블란체달몬드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#deb887&quot;&gt;■ deb887 burlywood 벌리우드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#cd853f&quot;&gt;■ cd853f peru 페루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00ced1&quot;&gt;■ 00ced1 darkturquoise 다크터콰이즈&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00bfff&quot;&gt;■ 00bfff deepskyblue 딥스카이블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#7fffd4&quot;&gt;■ 7fffd4 aquamarine 아쿠아마린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#1e90ff&quot;&gt;■ 1e90ff dodgerblue 도저블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00ffff&quot;&gt;■ 00ffff cyan 시안&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f0fff0&quot;&gt;■ f0fff0 honeydew 허니듀&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#87cefa&quot;&gt;■ 87cefa lightskyblue 라이트스카이블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#afeeee&quot;&gt;■ afeeee paleturquoise 팔레터콰이즈&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#e0ffff&quot;&gt;■ e0ffff lightcyan 라이트시안&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#add8e6&quot;&gt;■ add8e6 lightblue 라이트블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#add8e6&quot;&gt;■ add8e6 lightsteelblue 라이트스틸블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#40e0d0&quot;&gt;■ 40e0d0 turquoise 터콰이즈&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#48d1cc&quot;&gt;■ 48d1cc mediumturquoise 미디엄터콰이즈&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00ffff&quot;&gt;■ 00ffff aqua 아쿠아&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#7b68ee&quot;&gt;■ 7b68ee mediumslateblue 미디움슬레이트블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#191970&quot;&gt;■ 191970 midnightblue 미드나이트블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#6495ed&quot;&gt;■ 6495ed cornflowerblue 콘플라워블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#0000cd&quot;&gt;■ 0000cd mediumblue 미디움블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#6a5acd&quot;&gt;■ 6a5acd slateblue 슬레이트블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#4682b4&quot;&gt;■ 4682b4 steelblue 스틸블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#0000ff&quot;&gt;■ 0000ff blue 블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#483d8b&quot;&gt;■ 483d8b darkslateblue 다크슬레이트블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#5f9ea0&quot;&gt;■ 5f9ea0 cadetblue 카뎃블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#87ceeb&quot;&gt;■ 87ceeb skyblue 스카이블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#4169e1&quot;&gt;■ 4169e1 royalblue 로열블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#b0e0e6&quot;&gt;■ b0e0e6 powderblue 파우더블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#000080&quot;&gt;■ 000080 navy 네이비&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00008b&quot;&gt;■ 00008b darkblue 다크블루&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#8a2be2&quot;&gt;■ 8a2be2 blueviolet 블루바이올렛&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#8b008b&quot;&gt;■ 8b008b darkmagenta 다크마그네타&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#9932cc&quot;&gt;■ 9932cc darkorchid 다크오치드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#9400d3&quot;&gt;■ 9400d3 darkviolet 다크바이올렛&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff00ff&quot;&gt;■ ff00ff magenta 마그네타&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff00ff&quot;&gt;■ ff00ff fuchsia 퍼츠샤&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#c71585&quot;&gt;■ c71585 mediumvioletred 미디움바이올렛레드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ba55d3&quot;&gt;■ ba55d3 mediumorchid 미디움오치드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#9370db&quot;&gt;■ 9370db mediumpurple 미디움퍼플&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#dc143c&quot;&gt;■ dc143c crimson 크림슨&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff1493&quot;&gt;■ ff1493 deeppink 딥핑크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffb6c1&quot;&gt;■ ffb6c1 lightpink 라이트핑크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff69b4&quot;&gt;■ ff69b4 hotpink 핫핑크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffc0cb&quot;&gt;■ ffc0cb pink 핑크&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#dda0dd&quot;&gt;■ dda0dd plum 플럼&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#800080&quot;&gt;■ 800080 purple 퍼플&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ee82ee&quot;&gt;■ ee82ee violet 바이올렛&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#d8bfd8&quot;&gt;■ d8bfd8 thistle 디스틀&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#da70d6&quot;&gt;■ da70d6 orchid 오치드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#4b0082&quot;&gt;■ 4b0082 indigo 인디고&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#a52a2a&quot;&gt;■ a52a2a brown 브라운&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#e9967a&quot;&gt;■ e9967a darksalmon 다크샐몬&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f08080&quot;&gt;■ f08080 lightcoral 라이트코랄&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#cd5c5c&quot;&gt;■ cd5c5c indianred 인디안레드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffa07a&quot;&gt;■ ffa07a lightsalmon 라이트샐몬&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#db7093&quot;&gt;■ db7093 palevioletred 팔레바이올렛레드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#f4a460&quot;&gt;■ f4a460 sandybrown 샌디브라운&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#fa8072&quot;&gt;■ fa8072 salmon 샐몬&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff6347&quot;&gt;■ ff6347 tomato 토마토&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff4500&quot;&gt;■ ff4500 orangered 오렌지레드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff0000&quot;&gt;■ ff0000 red 레드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#800000&quot;&gt;■ 800000 maroon 마룬&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#8b0000&quot;&gt;■ 8b0000 darkred 다크레드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#b22222&quot;&gt;■ b22222 firebrick 파이어브릭&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#d2691e&quot;&gt;■ d2691e chocolate 초콜렛&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#8b4513&quot;&gt;■ 8b4513 saddlebrown 새들브라운&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#a0522d&quot;&gt;■ a0522d sienna 시에나&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#bc8f8f&quot;&gt;■ bc8f8f rosybrown 로지브라운&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff7f50&quot;&gt;■ ff7f50 coral 코랄&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ff8c00&quot;&gt;■ ff8c00 darkorange 다크오렌지&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffa500&quot;&gt;■ ffa500 orange 오렌지&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#b8860b&quot;&gt;■ b8860b darkgoldenrod 다크골덴로드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffd700&quot;&gt;■ ffd700 gold 골드&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#ffff00&quot;&gt;■ ffff00 yellow 옐로우&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#7fff00&quot;&gt;■ 7fff00 chartreuse 차트리우스&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#7cfc00&quot;&gt;■ 7cfc00 lawngreen 라운그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00ff00&quot;&gt;■ 00ff00 lime 라임&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#32cd32&quot;&gt;■ 32cd32 limegreen 라임그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00ff7f&quot;&gt;■ 00ff7f springgreen 스프링그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#3cb371&quot;&gt;■ 3cb371 mediumseagreen 미디움씨그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#adff2f&quot;&gt;■ adff2f greenyellow 그린옐로우&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#8fbc8f&quot;&gt;■ 8fbc8f darkseagreen 다크씨그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#90ee90&quot;&gt;■ 0ee90 lightgreen 라이트그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#98fb98&quot;&gt;■ 8fb98 palegreen 팔레그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#9acd32&quot;&gt;■ 9acd32 yellowgreen 옐로우그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#2e8b57&quot;&gt;■ 2e8b57 seagreen 씨그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#00fa9a&quot;&gt;■ 00fa9a mediumspringgreen 미디움스프링그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#20b2aa&quot;&gt;■ 20b2aa lightseagreen 라이트씨그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#66cdaa&quot;&gt;■ 66cdaa mediumaquamarine 미디움아쿠아마린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#228b22&quot;&gt;■ 228b22 forestgreen 포레스트그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#008b8b&quot;&gt;■ 008b8b darkcyan 다크시안&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#008080&quot;&gt;■ 008080 teal 틸&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#006400&quot;&gt;■ 006400 darkgreen 다크그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#556b2f&quot;&gt;■ 556b2f darkolivegreen 다크올리브그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#008000&quot;&gt;■ 008000 green 그린&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#808000&quot;&gt;■ 808000 olive 올리브&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#6b8e23&quot;&gt;■ 6b8e23 olivedrab 올리브드래브&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#bdb76b&quot;&gt;■ bdb76b darkkhaki 다크카이&lt;br /&gt;&lt;/font&gt;
+		&lt;font color=&quot;#daa520&quot;&gt;■ daa520 goldenrod 골덴로드
+	
+
+
+&lt;/font&gt;&lt;/p&gt;&lt;/div&gt;
 </description>
 				<pubDate>Tue, 26 May 2015 00:00:00 +0900</pubDate>
 				<link>/css/2015/05/26/color-code.html</link>
@@ -444,172 +428,2194 @@ PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, �
 
 &lt;p&gt;해결책은 해외 블로그에서 찾을 수 있었다. 원문은 이 &lt;a href=&quot;http://davidensinger.com/2013/11/building-a-better-sitemap-xml-with-jekyll/&quot;&gt;링크&lt;/a&gt;를 참조하기 바란다.&lt;/p&gt;
 
-&lt;h2 id=&quot;설정-방법&quot;&gt;설정 방법&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;설정 방법&lt;/h2&gt;
 
-&lt;h3 id=&quot;블로그-root폴더에-sitemap-xml파일을-생성하고-다음-내용을-작성한다&quot;&gt;블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.&lt;/h3&gt;
+&lt;h3 id=&quot;root-sitemapxml----&quot;&gt;블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.&lt;/h3&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;---
-layout: null
-sitemap:&lt;/p&gt;
+&lt;h2 id=&quot;xml&quot;&gt;```xml&lt;/h2&gt;
+&lt;p&gt;layout: null
+sitemap:
+  exclude: ‘yes’
+—
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;/p&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/09/18/linux-starter-guide-13.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-09-18T09:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/project/2015/08/27/shortterm-project-lab-study.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-08-27T01:10:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/project/2015/08/27/shortterm-project-lab-shop.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-08-27T01:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/study/2015/06/21/Coding-Conventions-Secure-Coding.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-06-21T09:00:02+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/study/2015/06/21/Continuous-Integration.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-06-21T09:00:01+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/intellij/2015/05/28/intellij-springboot-jsp-solution.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-28T06:20:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/program/2015/05/26/macos-dictionary.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-26T19:30:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/css/2015/05/26/color-code.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-26T00:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/blog/2015/05/25/jekyll-sitemap.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T11:50:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-12.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:12+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-11.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:11+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-10.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:10+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-9.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:09+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-8.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:08+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-7.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:07+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-6.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:06+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-5.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:05+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-4.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:04+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-3.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:03+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-2.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:02+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-1.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:01+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/os/2015/05/25/linux-starter-guide-0.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T06:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/clipping/2015/05/25/agile-clip.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T04:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/intellij/2015/05/25/intellij-springboot-jsp.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-25T01:30:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/program/2015/05/21/atom-snippnet-problem.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-21T11:54:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/program/2015/05/21/atom.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-21T11:47:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/jquery/2015/05/21/jquery-attr-prop.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-21T05:10:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/javascript/2015/05/12/ajax-async.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-12T06:02:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/blog/2015/05/10/jekyll-travis-ci.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-10T00:17:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/blog/2015/05/08/jekyll.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-08T10:29:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/coding/2015/05/08/fb-group-crawler.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-05-08T06:53:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/program/2015/02/26/wappalyzer.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-02-26T09:22:47+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/clipping/2015/02/24/slideshare-server-performance.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-02-24T23:46:24+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/clipping/2015/02/24/slideshare-for-fast-web-http2.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-02-24T23:41:30+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/journey/2015/01/19/rail-ro.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2015-01-19T10:19:09+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-12-15T21:23:18+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/project/2014/11/18/shortterm-project-java-diary.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-11-18T07:26:37+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/clipping/2014/10/17/java-web-roadmap.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-10-17T01:19:02+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/tips/2014/10/16/windows8-comodo-firewall-process-error.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-10-16T00:15:39+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/tips/2014/10/15/git-comodo-firewall-loading.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-10-15T04:42:46+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/python/2014/09/04/django-python3x-mysql-connector.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-09-04T21:30:25+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/python/2014/08/29/django-setup.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-08-29T22:14:49+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/project/2014/08/28/shortterm-project-pxa-270-calculator.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-08-28T17:22:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/tips/2014/05/06/windows7-windows-update-error-80240016-8020000e.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-05-06T22:25:33+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/tips/2014/05/06/ubuntu-dualboot-partion-error.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-05-06T19:30:58+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/seminar/2014/03/16/stdio-helloworld-daejeon.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-03-16T02:55:51+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/seminar/2014/03/16/stdio-helloworld-seoul.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-03-16T01:16:36+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/arduino/2014/03/09/arduino-error-stk500.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-03-09T22:08:10+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/game/2014/02/25/minecraft-server.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-02-25T02:56:54+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/java/2014/02/25/window-builder-dragdrop.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-02-25T01:06:29+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/java/2014/02/24/window-builder-add-file-open.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-02-24T20:43:24+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/java/2014/02/24/robocode.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-02-24T15:49:28+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/project/2014/02/19/shortterm-project-java-chatting-program.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-02-19T11:21:41+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/project/2014/02/19/shortterm-project-c-chatting-program.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2014-02-19T03:20:53+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/2010/03/01/profile.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2010-03-01T09:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/404.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/about/&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/categories.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/feed.xml&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/css/main.css&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+  
+    
+    &lt;url&gt;
+      &lt;loc&gt;/tags.html&lt;/loc&gt;
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+&lt;/urlset&gt;
+&lt;p&gt;```&lt;/p&gt;
 
-&lt;h2 id=&quot;exclude-39-yes-39&quot;&gt;  exclude: &amp;#39;yes&amp;#39;&lt;/h2&gt;
+&lt;h3 id=&quot;configyml---&quot;&gt;_config.yml에 다음 내용을 추가한다.&lt;/h3&gt;
 
-&lt;p&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;urlset xmlns=&amp;quot;&lt;a href=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;http://www.sitemaps.org/schemas/sitemap/0.9&lt;/a&gt;&amp;quot;&amp;gt;
-  {% for post in site.posts %}
-    {% unless post.published == false %}
-    &amp;lt;url&amp;gt;
-      &amp;lt;loc&amp;gt;{{ site.url }}{{ post.url }}&amp;lt;/loc&amp;gt;
-      {% if post.sitemap.lastmod %}
-        &amp;lt;lastmod&amp;gt;{{ post.sitemap.lastmod | date: &amp;quot;%Y-%m-%d&amp;quot; }}&amp;lt;/lastmod&amp;gt;
-      {% elsif post.date %}
-        &amp;lt;lastmod&amp;gt;{{ post.date | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% else %}
-        &amp;lt;lastmod&amp;gt;{{ site.time | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% endif %}
-      {% if post.sitemap.changefreq %}
-        &amp;lt;changefreq&amp;gt;{{ post.sitemap.changefreq }}&amp;lt;/changefreq&amp;gt;
-      {% else %}
-        &amp;lt;changefreq&amp;gt;monthly&amp;lt;/changefreq&amp;gt;
-      {% endif %}
-      {% if post.sitemap.priority %}
-        &amp;lt;priority&amp;gt;{{ post.sitemap.priority }}&amp;lt;/priority&amp;gt;
-      {% else %}
-        &amp;lt;priority&amp;gt;0.5&amp;lt;/priority&amp;gt;
-      {% endif %}
-    &amp;lt;/url&amp;gt;
-    {% endunless %}
-  {% endfor %}
-  {% for page in site.pages %}
-    {% unless page.sitemap.exclude == &amp;quot;yes&amp;quot; %}
-    &amp;lt;url&amp;gt;
-      &amp;lt;loc&amp;gt;{{ site.url }}{{ page.url | remove: &amp;quot;index.html&amp;quot; }}&amp;lt;/loc&amp;gt;
-      {% if page.sitemap.lastmod %}
-        &amp;lt;lastmod&amp;gt;{{ page.sitemap.lastmod | date: &amp;quot;%Y-%m-%d&amp;quot; }}&amp;lt;/lastmod&amp;gt;
-      {% elsif page.date %}
-        &amp;lt;lastmod&amp;gt;{{ page.date | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% else %}
-        &amp;lt;lastmod&amp;gt;{{ site.time | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% endif %}
-      {% if page.sitemap.changefreq %}
-        &amp;lt;changefreq&amp;gt;{{ page.sitemap.changefreq }}&amp;lt;/changefreq&amp;gt;
-      {% else %}
-        &amp;lt;changefreq&amp;gt;monthly&amp;lt;/changefreq&amp;gt;
-      {% endif %}
-      {% if page.sitemap.priority %}
-        &amp;lt;priority&amp;gt;{{ page.sitemap.priority }}&amp;lt;/priority&amp;gt;
-      {% else %}
-        &amp;lt;priority&amp;gt;0.3&amp;lt;/priority&amp;gt;
-      {% endif %}
-    &amp;lt;/url&amp;gt;
-    {% endunless %}
-  {% endfor %}
-&amp;lt;/urlset&amp;gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/egaoneko/f12498eecab878f8e229.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;YAML
+sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: &#39;monthly&#39;
+  exclude: &#39;yes&#39;
+&lt;/code&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;_config-yml에-다음-내용을-추가한다&quot;&gt;_config.yml에 다음 내용을 추가한다.&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-YAML&quot; data-lang=&quot;YAML&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;sitemap&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;lastmod&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;2014-01-23&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;priority&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;0.7&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;changefreq&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;monthly&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;yes&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2 id=&quot;추가-설정-방법&quot;&gt;추가 설정 방법&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;추가 설정 방법&lt;/h2&gt;
 
-&lt;p&gt;필자가 상단의 설정을 하고 블로그를 실행시켰을 경우 sitemap.xml에 생성되는 것은 확인되었으나, 필자의 경우 github를 통해 호스팅하여 &lt;code&gt;site.url&lt;/code&gt;을 설정해두지 않아 아래와 같이 sitemap.xml이 제대로 생성되지 않았다. 그래서 필자는 위와 다르게 설정을 다음과 같이 조금 변경해보았다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/blog/2015/05/25/jekyll-sitemap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T11:50:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&quot;블로그-root폴더에-sitemap-xml파일을-생성하고-다음-내용을-작성한다&quot;&gt;블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.&lt;/h3&gt;
+&lt;p&gt;필자가 상단의 설정을 하고 블로그를 실행시켰을 경우 sitemap.xml에 생성되는 것은 확인되었으나, 필자의 경우 github를 통해 호스팅하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;site.url&lt;/code&gt;을 설정해두지 않아 아래와 같이 sitemap.xml이 제대로 생성되지 않았다. 그래서 필자는 위와 다르게 설정을 다음과 같이 조금 변경해보았다.&lt;/p&gt;
 
-&lt;p&gt;&lt;noscript&gt;&lt;pre&gt;---
-layout: null
-sitemap:&lt;/p&gt;
+&lt;p&gt;```xml&lt;/p&gt;
+&lt;url&gt;
+      &lt;loc&gt;/blog/2015/05/25/jekyll-sitemap.html&lt;/loc&gt;
+      &lt;lastmod&gt;2015-05-25T11:50:00+09:00&lt;/lastmod&gt;
+      &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      &lt;priority&gt;0.5&lt;/priority&gt;
+&lt;/url&gt;
+&lt;p&gt;```&lt;/p&gt;
 
-&lt;h2 id=&quot;exclude-39-yes-39&quot;&gt;  exclude: &amp;#39;yes&amp;#39;&lt;/h2&gt;
+&lt;h3 id=&quot;root-sitemapxml-----1&quot;&gt;블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.&lt;/h3&gt;
 
-&lt;p&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;urlset xmlns=&amp;quot;&lt;a href=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;http://www.sitemaps.org/schemas/sitemap/0.9&lt;/a&gt;&amp;quot;&amp;gt;
-  {% for post in site.posts %}
-    {% unless post.published == false %}
-    &amp;lt;url&amp;gt;
-      {% if site.url %}
-        &amp;lt;loc&amp;gt;{{ site.url }}{{ post.url }}&amp;lt;/loc&amp;gt;
-      {% else %}
-        &amp;lt;loc&amp;gt;{{ site.sitemap.url }}{{ post.url }}&amp;lt;/loc&amp;gt;
-      {% endif %}
-      {% if post.sitemap.lastmod %}
-        &amp;lt;lastmod&amp;gt;{{ post.sitemap.lastmod | date: &amp;quot;%Y-%m-%d&amp;quot; }}&amp;lt;/lastmod&amp;gt;
-      {% elsif post.date %}
-        &amp;lt;lastmod&amp;gt;{{ post.date | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% else %}
-        &amp;lt;lastmod&amp;gt;{{ site.time | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% endif %}
-      {% if post.sitemap.changefreq %}
-        &amp;lt;changefreq&amp;gt;{{ post.sitemap.changefreq }}&amp;lt;/changefreq&amp;gt;
-      {% else %}
-        &amp;lt;changefreq&amp;gt;monthly&amp;lt;/changefreq&amp;gt;
-      {% endif %}
-      {% if post.sitemap.priority %}
-        &amp;lt;priority&amp;gt;{{ post.sitemap.priority }}&amp;lt;/priority&amp;gt;
-      {% else %}
-        &amp;lt;priority&amp;gt;0.5&amp;lt;/priority&amp;gt;
-      {% endif %}
-    &amp;lt;/url&amp;gt;
-    {% endunless %}
-  {% endfor %}
-  {% for page in site.pages %}
-    {% unless page.sitemap.exclude == &amp;quot;yes&amp;quot; %}
-    &amp;lt;url&amp;gt;
-      {% if site.url %}
-        &amp;lt;loc&amp;gt;{{ site.url }}{{ post.url }}&amp;lt;/loc&amp;gt;
-      {% else %}
-        &amp;lt;loc&amp;gt;{{ site.sitemap.url }}{{ page.url | remove: &amp;quot;index.html&amp;quot; }}&amp;lt;/loc&amp;gt;
-      {% endif %}
-      {% if page.sitemap.lastmod %}
-        &amp;lt;lastmod&amp;gt;{{ page.sitemap.lastmod | date: &amp;quot;%Y-%m-%d&amp;quot; }}&amp;lt;/lastmod&amp;gt;
-      {% elsif page.date %}
-        &amp;lt;lastmod&amp;gt;{{ page.date | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% else %}
-        &amp;lt;lastmod&amp;gt;{{ site.time | date_to_xmlschema }}&amp;lt;/lastmod&amp;gt;
-      {% endif %}
-      {% if page.sitemap.changefreq %}
-        &amp;lt;changefreq&amp;gt;{{ page.sitemap.changefreq }}&amp;lt;/changefreq&amp;gt;
-      {% else %}
-        &amp;lt;changefreq&amp;gt;monthly&amp;lt;/changefreq&amp;gt;
-      {% endif %}
-      {% if page.sitemap.priority %}
-        &amp;lt;priority&amp;gt;{{ page.sitemap.priority }}&amp;lt;/priority&amp;gt;
-      {% else %}
-        &amp;lt;priority&amp;gt;0.3&amp;lt;/priority&amp;gt;
-      {% endif %}
-    &amp;lt;/url&amp;gt;
-    {% endunless %}
-  {% endfor %}
-&amp;lt;/urlset&amp;gt;&lt;/pre&gt;&lt;/noscript&gt;&lt;script src=&quot;https://gist.github.com/egaoneko/38d617cef9b8b2550cee.js&quot;&gt; &lt;/script&gt;&lt;/p&gt;
+&lt;h2 id=&quot;xml-1&quot;&gt;```xml&lt;/h2&gt;
+&lt;p&gt;layout: null
+sitemap:
+  exclude: ‘yes’
+—
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;/p&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/09/18/linux-starter-guide-13.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-09-18T09:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/project/2015/08/27/shortterm-project-lab-study.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-08-27T01:10:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/project/2015/08/27/shortterm-project-lab-shop.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-08-27T01:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/study/2015/06/21/Coding-Conventions-Secure-Coding.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-06-21T09:00:02+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/study/2015/06/21/Continuous-Integration.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-06-21T09:00:01+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/intellij/2015/05/28/intellij-springboot-jsp-solution.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-28T06:20:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/program/2015/05/26/macos-dictionary.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-26T19:30:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/css/2015/05/26/color-code.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-26T00:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T11:50:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-12.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:12+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-11.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:11+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-10.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:10+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-9.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:09+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-8.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:08+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-7.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:07+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-6.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:06+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-5.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:05+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-4.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:04+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-3.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:03+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-2.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:02+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-1.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:01+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-0.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T06:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/clipping/2015/05/25/agile-clip.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T04:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/intellij/2015/05/25/intellij-springboot-jsp.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-25T01:30:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/program/2015/05/21/atom-snippnet-problem.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-21T11:54:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/program/2015/05/21/atom.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-21T11:47:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/jquery/2015/05/21/jquery-attr-prop.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-21T05:10:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/javascript/2015/05/12/ajax-async.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-12T06:02:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/blog/2015/05/10/jekyll-travis-ci.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-10T00:17:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/blog/2015/05/08/jekyll.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-08T10:29:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/coding/2015/05/08/fb-group-crawler.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-05-08T06:53:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/program/2015/02/26/wappalyzer.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-02-26T09:22:47+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/clipping/2015/02/24/slideshare-server-performance.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-02-24T23:46:24+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/clipping/2015/02/24/slideshare-for-fast-web-http2.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-02-24T23:41:30+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/journey/2015/01/19/rail-ro.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2015-01-19T10:19:09+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-12-15T21:23:18+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/project/2014/11/18/shortterm-project-java-diary.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-11-18T07:26:37+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/clipping/2014/10/17/java-web-roadmap.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-10-17T01:19:02+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/tips/2014/10/16/windows8-comodo-firewall-process-error.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-10-16T00:15:39+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/tips/2014/10/15/git-comodo-firewall-loading.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-10-15T04:42:46+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/python/2014/09/04/django-python3x-mysql-connector.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-09-04T21:30:25+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/python/2014/08/29/django-setup.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-08-29T22:14:49+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/project/2014/08/28/shortterm-project-pxa-270-calculator.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-08-28T17:22:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/tips/2014/05/06/windows7-windows-update-error-80240016-8020000e.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-05-06T22:25:33+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/tips/2014/05/06/ubuntu-dualboot-partion-error.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-05-06T19:30:58+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-daejeon.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-03-16T02:55:51+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-seoul.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-03-16T01:16:36+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/arduino/2014/03/09/arduino-error-stk500.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-03-09T22:08:10+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/game/2014/02/25/minecraft-server.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-02-25T02:56:54+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/java/2014/02/25/window-builder-dragdrop.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-02-25T01:06:29+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/java/2014/02/24/window-builder-add-file-open.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-02-24T20:43:24+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/java/2014/02/24/robocode.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-02-24T15:49:28+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/project/2014/02/19/shortterm-project-java-chatting-program.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-02-19T11:21:41+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/project/2014/02/19/shortterm-project-c-chatting-program.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2014-02-19T03:20:53+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/2010/03/01/profile.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2010-03-01T09:00:00+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/404.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/about/&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/categories.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/feed.xml&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/css/main.css&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+    
+  
+    
+    &lt;url&gt;
+      
+        &lt;loc&gt;http://egaoneko.github.io/tags.html&lt;/loc&gt;
+      
+      
+        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+      
+      
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      
+      
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      
+    &lt;/url&gt;
+    
+  
+&lt;/urlset&gt;
+&lt;p&gt;```&lt;/p&gt;
 
-&lt;h3 id=&quot;_config-yml에-다음-내용을-추가한다&quot;&gt;_config.yml에 다음 내용을 추가한다.&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-YAML&quot; data-lang=&quot;YAML&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;sitemap&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;lastmod&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;2014-01-23&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;priority&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;0.7&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;changefreq&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;monthly&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;github&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;주소&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;yes&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;configyml----1&quot;&gt;_config.yml에 다음 내용을 추가한다.&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;YAML
+sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: &#39;monthly&#39;
+  url: &#39;github 주소&#39;
+  exclude: &#39;yes&#39;
+&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;상단과 같이 설정할 경우 아래와 같이 정상적으로 sitemap.xml이 생성되는 것을 확인할 수 있다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T11:50:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+
+&lt;p&gt;```xml&lt;/p&gt;
+&lt;url&gt;
+      &lt;loc&gt;http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html&lt;/loc&gt;
+      &lt;lastmod&gt;2015-05-25T11:50:00+09:00&lt;/lastmod&gt;
+      &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      &lt;priority&gt;0.5&lt;/priority&gt;
+&lt;/url&gt;
+&lt;p&gt;```&lt;/p&gt;
+</description>
 				<pubDate>Mon, 25 May 2015 11:50:00 +0900</pubDate>
 				<link>/blog/2015/05/25/jekyll-sitemap.html</link>
 				<guid isPermaLink="true">/blog/2015/05/25/jekyll-sitemap.html</guid>
+			</item>
+		
+			<item>
+				<title>[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</title>
+				<description>&lt;h2 id=&quot;section&quot;&gt;01 퍼미션&lt;/h2&gt;
+
+&lt;p&gt;파일 혹은 디렉토리에 접근할 수 있는 권한을 퍼미션이라 하는데 이 권한을 통해 사용자는 파일이나 디렉토리에 대하여 다른 사용자의 접근을 제어할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/1.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/2.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;상단의 그림과 같이 읽기, 쓰기, 실행에 권한을 사용자, 사용자와 같은 그룹 그리고 그 외의 사용자에게 부여할 수 있다. 또한 각 권한은 숫자로 표현할 수 있으며 읽기는 4, 쓰기는 2 그리고 실행은 1로 표현하고 합산한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/3.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 그림을 보면 루트(/) 디렉토리 밑의 디렉토리들이 각 각의 역할에 맞게 권한이 설정 되어있는 것을 볼 수 있다. 특히 bin과 같이 사용자가 이용은 해야 가능해야 하지만 변경하면 안 되는 디렉토리는 쓰기 권한이 제한되어 있는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;02 권한 변경 명령어&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #chmod [옵션] [모드] [파일명] : 파일의 접근권한을 변경한다.
+
+  옵션:
+  	-R --recursive : 하위 디렉토리에 있는 모든 디렉토리/파일을 변경
+  	-v --verbose : 각 파일 정보를 상세히 출력
+
+  	ex) chmod 754 test.txt
+      	chmod u=rwx,g=rw,o=x test.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;setuid-setgid-sicky-bit&quot;&gt;03 SetUID, SetGID, Sicky Bit&lt;/h2&gt;
+
+&lt;h3 id=&quot;setuid----------&quot;&gt;SetUID : 해당 파일의 소유자의 실행권한이 없더라도 소유자의 실행권한으로 파일을 실행&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/4.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;소유자의 퍼미션에 s가 붙어있으면 소유권이 없더라도 실행할 수 있으며, “chmod 4744 test.sh” 같은 식으로 허가권을 주게 되면 test.sh를 소유자가 아닌 경우에도 소유자의 권한으로 실행 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/5.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;소유자의 실행권한으로 실행하였지만 프로세스 실행 UID가 root가 아닌 실행한 유저의 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;setgid--setuid------&quot;&gt;SetGID : SetUID와 유사하며, 그룹사용자로서의 실행권한을 얻을 수 있음&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/6.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;sticky-bit------------&quot;&gt;sticky bit : 이 비트가 설정되면 파일을 만든 사용자만이 그 파일에 대한 권리를 가짐&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/7.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;대표적인 디렉토리로는 “/tmp” 디렉토리가 sticky bit로 설정되어 있는 것을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/8.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위의 그림은 root 계정으로 루트(/) 디렉토리 아래에 “test”라는 디렉토리를 만들고 sticky bit와 모든 사용자에게 읽기, 쓰기, 실행 권한을 주었다. 그리고는 smilecat이라는 계정으로 “xx”라는 파일을 만들고 이 파일 또한 모든 사용자에게 읽기, 쓰기, 실행 권한을 주었다. 그리고 test1이라는 계정으로 “rm명령어”를 이용하여 파일을 삭제하려고 하면 위 그림과 같이 허용되지 않음을 알 수 있다. 비록 공동으로 사용하는 디렉토리지만 다른 사용자가 내가 만든 파일을 함부로 삭제할 수 없는 것이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;umask&quot;&gt;04 umask&lt;/h2&gt;
+
+&lt;p&gt;리눅스에서 파일이나 디렉토리를 생성할 때, 초기에 주어지는 퍼미션을 설정할 때 사용하는 명령어다. 기본 설정은 root계정은 “0022”로 일반 사용자 계정은 “0002”로 되어있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;기본 퍼미션&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;디렉토리 : 777&lt;/li&gt;
+  &lt;li&gt;파일 : 666&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;명령어&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #umask [옵션] [umask 값]
+
+  옵션:
+  	-S : 현재 umask를 u,g,o와 r,w,x로 표현
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;연산 방법&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;umask 값에 보수를 취한다.&lt;/li&gt;
+  &lt;li&gt;보수를 취한 값과 기본 퍼미션을 AND 연산을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/9.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/10.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;관련글&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;초보자를 위한 가이드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-0.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 들어가며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-1.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-2.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-3.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-4.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-5.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-6.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-7.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-8.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-9.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-10.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-11.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 마치며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-12.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+				<pubDate>Mon, 25 May 2015 06:00:12 +0900</pubDate>
+				<link>/os/2015/05/25/linux-starter-guide-12.html</link>
+				<guid isPermaLink="true">/os/2015/05/25/linux-starter-guide-12.html</guid>
 			</item>
 		
 	</channel>

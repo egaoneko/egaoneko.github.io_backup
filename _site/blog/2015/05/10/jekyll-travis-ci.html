@@ -170,14 +170,19 @@
 
 <p>github의 help 중 <a href="https://help.github.com/articles/troubleshooting-github-pages-build-failures/#viewing-build-error-messages">Troubleshooting GitHub Pages build failures</a>를 보면 error message들을 확인하는 방법을 소개한다. 필자는 Local에서 error message가 발생하지 않아서 Travis CI를 통해 error를 확인하였다.</p>
 
-<p>단지 Travis CI를 사용할 때 ruby버전이 낮아서 help에 소개된 방법으로는 오류가 발생하였고 이를 해결하기 위해 <code>.travis.yml</code>을 다음과 같이 바꾸어 설정하였다.</p>
+<p>단지 Travis CI를 사용할 때 ruby버전이 낮아서 help에 소개된 방법으로는 오류가 발생하였고 이를 해결하기 위해 <code class="highlighter-rouge">.travis.yml</code>을 다음과 같이 바꾸어 설정하였다.</p>
 
-<p>help에 소개되어 있는 <code>.travis.yml</code></p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">language: ruby
-script: <span class="s2">&quot;bundle exec jekyll build&quot;</span>
-</code></pre></div>
-<p>변경한 <code>.travis.yml</code></p>
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">language: ruby
+<p>help에 소개되어 있는 <code class="highlighter-rouge">.travis.yml</code></p>
+
+<p><code class="highlighter-rouge">bash
+language: ruby
+script: "bundle exec jekyll build"
+</code></p>
+
+<p>변경한 <code class="highlighter-rouge">.travis.yml</code></p>
+
+<p>```bash
+language: ruby
 rvm:
   - 2.1.0
   - jruby-18mode
@@ -185,10 +190,12 @@ rvm:
   - rbx-2
   - ruby-head
   - jruby-head
-  - ree
+  - ree</p>
 
-script: <span class="s2">&quot;bundle exec jekyll build&quot;</span>
-</code></pre></div>
+<p>script: “bundle exec jekyll build”
+```</p>
+
+
 	  </div>
 
 		
@@ -197,8 +204,8 @@ script: <span class="s2">&quot;bundle exec jekyll build&quot;</span>
 		  
 		  
 			 
-				<li><a href="/categories.html#blog-ref">
-					blog <span>(3)</span>
+				<li><a href="/categories.html#Blog-ref">
+					Blog <span>(3)</span>
 					
 				</a></li>
 			
