@@ -53,6 +53,11 @@
 			</a>
 			
 			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			
 			
 			<a type="button" class="navbar-toggle nav-link" href="mailto:egaoneko@naver.com">
 				<i class="fa fa-envelope"></i>
@@ -119,6 +124,13 @@
 		
 		
 		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/pub/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
 			<a class="btn btn-default btn-sm" href="mailto:egaoneko@naver.com">
 				<i class="fa fa-envelope fa-lg"></i>
 			</a>
@@ -126,7 +138,6 @@
 		
 	</ul>
 	<ul id="contact-list-secondary" class="list-unstyled list-inline">
-		
 		
 		<li>
 			<a class="btn btn-default btn-sm" href="/feed.xml">
@@ -194,7 +205,7 @@
 
 <p><img src="/assets/media/linux-starter-guide/%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B83.png" alt="screenshot"></p>
 
-<h4 id="쉘-스크립트의-변수는-다음과-같은-특징을-가진다.">쉘 스크립트의 변수는 다음과 같은 특징을 가진다.</h4>
+<h4 id="쉘-스크립트의-변수는-다음과-같은-특징을-가진다">쉘 스크립트의 변수는 다음과 같은 특징을 가진다.</h4>
 
 <ul>
 <li>타입이 존재하지 않음 (문자열로 취급)</li>
@@ -206,7 +217,7 @@
 
 <hr>
 
-<h3 id="리스트-변수-(list-varialbe)">리스트 변수 (list varialbe)</h3>
+<h3 id="리스트-변수-list-varialbe">리스트 변수 (list varialbe)</h3>
 
 <p>한 변수에 여러 개의 값 (문자열)을 저장할 수 있는 변수</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">  # 이름=(단어리스트)
@@ -242,7 +253,7 @@
 
 <hr>
 
-<h3 id="표준-입력-읽기-(read-명령어)">표준 입력 읽기 (read 명령어)</h3>
+<h3 id="표준-입력-읽기-read-명령어">표준 입력 읽기 (read 명령어)</h3>
 
 <p>표준입력에서 한 줄을 읽어서 단어들을 변수들에 순서대로 저장하며 남은 단어들은 마지막 변수에 모두 저장한다.</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">  # read 변수1, ...., 변수n
@@ -251,7 +262,7 @@
 </code></pre></div>
 <hr>
 
-<h3 id="사전-정의-환경변수-(의미가-정해진-환경변수)">사전 정의 환경변수 (의미가 정해진 환경변수)</h3>
+<h3 id="사전-정의-환경변수-의미가-정해진-환경변수">사전 정의 환경변수 (의미가 정해진 환경변수)</h3>
 
 <table><thead>
 <tr>
@@ -342,7 +353,7 @@
 </code></pre></div>
 <hr>
 
-<h3 id="콘-쉘의-let-&quot;수식&quot;을-이용한-산술-수식">콘 쉘의 let &quot;수식&quot;을 이용한 산술 수식</h3>
+<h3 id="콘-쉘의-let-quot-수식-quot-을-이용한-산술-수식">콘 쉘의 let &quot;수식&quot;을 이용한 산술 수식</h3>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">((</span>수식<span class="o">))</span> <span class="o">=</span> <span class="nb">let</span> <span class="s2">&quot; 수식 &quot;</span>
 
 <span class="k">if</span> <span class="o">((</span> <span class="nv">$# </span>!<span class="o">=</span> <span class="m">1</span> <span class="o">))</span>
@@ -351,7 +362,7 @@
 </code></pre></div>
 <hr>
 
-<h3 id="변수-타입-선언-(declare)">변수 타입 선언 (declare)</h3>
+<h3 id="변수-타입-선언-declare">변수 타입 선언 (declare)</h3>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">declare</span> -i a <span class="o">(</span>a는 정수형 변수<span class="o">)</span>
 <span class="nv">$ a</span><span class="o">=</span>12
 <span class="nv">$ a</span><span class="o">=</span>a+1 <span class="o">(</span><span class="nb">let</span> 필요 없음<span class="o">)</span>
@@ -536,7 +547,7 @@
 </code></pre></div>
 <hr>
 
-<h3 id="반복문-(for)-:-리스트의-각-값에-대해서-명령어들을-반복">반복문 (for) : 리스트의 각 값에 대해서 명령어들을 반복</h3>
+<h3 id="반복문-for-리스트의-각-값에-대해서-명령어들을-반복">반복문 (for) : 리스트의 각 값에 대해서 명령어들을 반복</h3>
 <div class="highlight"><pre><code class="language-text" data-lang="text">                for 변수 in 단어리스트 (모든 명령줄 인수 처리 : $*)
                 do
                     명령어리스트
@@ -544,7 +555,7 @@
 </code></pre></div>
 <hr>
 
-<h3 id="반복문-(while)-:-조건에-따라-명령어들을-반복-실행">반복문 (while) : 조건에 따라 명령어들을 반복 실행</h3>
+<h3 id="반복문-while-조건에-따라-명령어들을-반복-실행">반복문 (while) : 조건에 따라 명령어들을 반복 실행</h3>
 <div class="highlight"><pre><code class="language-text" data-lang="text">                while 조건식
                 do
                     명령어리스트
@@ -552,7 +563,7 @@
 </code></pre></div>
 <hr>
 
-<h3 id="반복문-(until)-:-조건에-따라-명령어들을-반복-실행">반복문 (until) : 조건에 따라 명령어들을 반복 실행</h3>
+<h3 id="반복문-until-조건에-따라-명령어들을-반복-실행">반복문 (until) : 조건에 따라 명령어들을 반복 실행</h3>
 <div class="highlight"><pre><code class="language-text" data-lang="text">                until 조건식 (조건식을 while문의 정반대로 넣어야 함)
                 do
                     명령어리스트
@@ -797,7 +808,7 @@ cat <span class="s">&lt;&lt; END</span>
 		<footer>
 			<hr/>
 			<p>
-				Copyright &copy; 2015 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
 			</p>
 		</footer>
 	</div>

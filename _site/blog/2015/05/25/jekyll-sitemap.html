@@ -53,6 +53,11 @@
 			</a>
 			
 			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			
 			
 			<a type="button" class="navbar-toggle nav-link" href="mailto:egaoneko@naver.com">
 				<i class="fa fa-envelope"></i>
@@ -119,6 +124,13 @@
 		
 		
 		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/pub/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
 			<a class="btn btn-default btn-sm" href="mailto:egaoneko@naver.com">
 				<i class="fa fa-envelope fa-lg"></i>
 			</a>
@@ -126,7 +138,6 @@
 		
 	</ul>
 	<ul id="contact-list-secondary" class="list-unstyled list-inline">
-		
 		
 		<li>
 			<a class="btn btn-default btn-sm" href="/feed.xml">
@@ -161,11 +172,67 @@
 
 <h2 id="설정-방법">설정 방법</h2>
 
-<h3 id="블로그-root폴더에-sitemap.xml파일을-생성하고-다음-내용을-작성한다.">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
+<h3 id="블로그-root폴더에-sitemap-xml파일을-생성하고-다음-내용을-작성한다">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
 
-<script src="https://gist.github.com/egaoneko/f12498eecab878f8e229.js"> </script>
+<p><noscript><pre>---
+layout: null
+sitemap:</p>
 
-<h3 id="_config.yml에-다음-내용을-추가한다.">_config.yml에 다음 내용을 추가한다.</h3>
+<h2 id="exclude-39-yes-39">  exclude: &#39;yes&#39;</h2>
+
+<p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;<a href="http://www.sitemaps.org/schemas/sitemap/0.9">http://www.sitemaps.org/schemas/sitemap/0.9</a>&quot;&gt;
+  {% for post in site.posts %}
+    {% unless post.published == false %}
+    &lt;url&gt;
+      &lt;loc&gt;{{ site.url }}{{ post.url }}&lt;/loc&gt;
+      {% if post.sitemap.lastmod %}
+        &lt;lastmod&gt;{{ post.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
+      {% elsif post.date %}
+        &lt;lastmod&gt;{{ post.date | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% else %}
+        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% endif %}
+      {% if post.sitemap.changefreq %}
+        &lt;changefreq&gt;{{ post.sitemap.changefreq }}&lt;/changefreq&gt;
+      {% else %}
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      {% endif %}
+      {% if post.sitemap.priority %}
+        &lt;priority&gt;{{ post.sitemap.priority }}&lt;/priority&gt;
+      {% else %}
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      {% endif %}
+    &lt;/url&gt;
+    {% endunless %}
+  {% endfor %}
+  {% for page in site.pages %}
+    {% unless page.sitemap.exclude == &quot;yes&quot; %}
+    &lt;url&gt;
+      &lt;loc&gt;{{ site.url }}{{ page.url | remove: &quot;index.html&quot; }}&lt;/loc&gt;
+      {% if page.sitemap.lastmod %}
+        &lt;lastmod&gt;{{ page.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
+      {% elsif page.date %}
+        &lt;lastmod&gt;{{ page.date | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% else %}
+        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% endif %}
+      {% if page.sitemap.changefreq %}
+        &lt;changefreq&gt;{{ page.sitemap.changefreq }}&lt;/changefreq&gt;
+      {% else %}
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      {% endif %}
+      {% if page.sitemap.priority %}
+        &lt;priority&gt;{{ page.sitemap.priority }}&lt;/priority&gt;
+      {% else %}
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      {% endif %}
+    &lt;/url&gt;
+    {% endunless %}
+  {% endfor %}
+&lt;/urlset&gt;</pre></noscript><script src="https://gist.github.com/egaoneko/f12498eecab878f8e229.js"> </script></p>
+
+<h3 id="_config-yml에-다음-내용을-추가한다">_config.yml에 다음 내용을 추가한다.</h3>
 <div class="highlight"><pre><code class="language-YAML" data-lang="YAML"><span class="l-Scalar-Plain">sitemap</span><span class="p-Indicator">:</span>
   <span class="l-Scalar-Plain">lastmod</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-01-23</span>
   <span class="l-Scalar-Plain">priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.7</span>
@@ -182,11 +249,75 @@
       <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
 <span class="nt">&lt;/url&gt;</span>
 </code></pre></div>
-<h3 id="블로그-root폴더에-sitemap.xml파일을-생성하고-다음-내용을-작성한다.">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
+<h3 id="블로그-root폴더에-sitemap-xml파일을-생성하고-다음-내용을-작성한다">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
 
-<script src="https://gist.github.com/egaoneko/38d617cef9b8b2550cee.js"> </script>
+<p><noscript><pre>---
+layout: null
+sitemap:</p>
 
-<h3 id="_config.yml에-다음-내용을-추가한다.">_config.yml에 다음 내용을 추가한다.</h3>
+<h2 id="exclude-39-yes-39">  exclude: &#39;yes&#39;</h2>
+
+<p>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;<a href="http://www.sitemaps.org/schemas/sitemap/0.9">http://www.sitemaps.org/schemas/sitemap/0.9</a>&quot;&gt;
+  {% for post in site.posts %}
+    {% unless post.published == false %}
+    &lt;url&gt;
+      {% if site.url %}
+        &lt;loc&gt;{{ site.url }}{{ post.url }}&lt;/loc&gt;
+      {% else %}
+        &lt;loc&gt;{{ site.sitemap.url }}{{ post.url }}&lt;/loc&gt;
+      {% endif %}
+      {% if post.sitemap.lastmod %}
+        &lt;lastmod&gt;{{ post.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
+      {% elsif post.date %}
+        &lt;lastmod&gt;{{ post.date | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% else %}
+        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% endif %}
+      {% if post.sitemap.changefreq %}
+        &lt;changefreq&gt;{{ post.sitemap.changefreq }}&lt;/changefreq&gt;
+      {% else %}
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      {% endif %}
+      {% if post.sitemap.priority %}
+        &lt;priority&gt;{{ post.sitemap.priority }}&lt;/priority&gt;
+      {% else %}
+        &lt;priority&gt;0.5&lt;/priority&gt;
+      {% endif %}
+    &lt;/url&gt;
+    {% endunless %}
+  {% endfor %}
+  {% for page in site.pages %}
+    {% unless page.sitemap.exclude == &quot;yes&quot; %}
+    &lt;url&gt;
+      {% if site.url %}
+        &lt;loc&gt;{{ site.url }}{{ post.url }}&lt;/loc&gt;
+      {% else %}
+        &lt;loc&gt;{{ site.sitemap.url }}{{ page.url | remove: &quot;index.html&quot; }}&lt;/loc&gt;
+      {% endif %}
+      {% if page.sitemap.lastmod %}
+        &lt;lastmod&gt;{{ page.sitemap.lastmod | date: &quot;%Y-%m-%d&quot; }}&lt;/lastmod&gt;
+      {% elsif page.date %}
+        &lt;lastmod&gt;{{ page.date | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% else %}
+        &lt;lastmod&gt;{{ site.time | date_to_xmlschema }}&lt;/lastmod&gt;
+      {% endif %}
+      {% if page.sitemap.changefreq %}
+        &lt;changefreq&gt;{{ page.sitemap.changefreq }}&lt;/changefreq&gt;
+      {% else %}
+        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+      {% endif %}
+      {% if page.sitemap.priority %}
+        &lt;priority&gt;{{ page.sitemap.priority }}&lt;/priority&gt;
+      {% else %}
+        &lt;priority&gt;0.3&lt;/priority&gt;
+      {% endif %}
+    &lt;/url&gt;
+    {% endunless %}
+  {% endfor %}
+&lt;/urlset&gt;</pre></noscript><script src="https://gist.github.com/egaoneko/38d617cef9b8b2550cee.js"> </script></p>
+
+<h3 id="_config-yml에-다음-내용을-추가한다">_config.yml에 다음 내용을 추가한다.</h3>
 <div class="highlight"><pre><code class="language-YAML" data-lang="YAML"><span class="l-Scalar-Plain">sitemap</span><span class="p-Indicator">:</span>
   <span class="l-Scalar-Plain">lastmod</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-01-23</span>
   <span class="l-Scalar-Plain">priority</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.7</span>
@@ -287,7 +418,7 @@
 		  <li class="previous"><a href="/os/2015/05/25/linux-starter-guide-12.html" title="[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션">&larr; Previous</a></li>
 		  
 		  
-		  <li class="next"><a href="/html/css/2015/05/26/color-code.html" title="폰트 색깔 코드">Next &rarr;</a></li>
+		  <li class="next"><a href="/css/2015/05/26/color-code.html" title="폰트 색깔 코드">Next &rarr;</a></li>
 		  
 		</ul>
 
@@ -317,7 +448,7 @@
 		<footer>
 			<hr/>
 			<p>
-				Copyright &copy; 2015 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
 			</p>
 		</footer>
 	</div>

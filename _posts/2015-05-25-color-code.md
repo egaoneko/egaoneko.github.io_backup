@@ -2,7 +2,7 @@
 layout: post
 title: '폰트 색깔 코드'
 date: 2015-05-25 15:00:00
-categories: 'HTML/CSS'
+categories: 'CSS'
 tags: [CSS, Clipping]
 published: true
 ---

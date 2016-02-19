@@ -37,11 +37,11 @@ author:
   name: Donghyun Seo
   email: egaoneko@naver.com
   github: egaoneko
-  twitter: 
-  pinterest: 
-  linkedin: 
+  twitter:
+  pinterest:
+  linkedin: donghyunseo
   bio: How do you define yourself?
-  email_md5: 
+  email_md5:
 
 rss_path: feed.xml
 categories_path: categories.html
