@@ -1,5 +1,8 @@
 ---
 layout: default
-comments: true
 ---
 {% include post.html %}
+
+{% if site.disqus and page.comments %}
+    {% include disqus.html %}
+{% endif %}

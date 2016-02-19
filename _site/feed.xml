@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title></title>
-		<description>SmileCat's Blog</description>
+		<description>Stylish Jekyll Theme</description>
 		<link>/</link>
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
@@ -1270,7 +1270,7 @@ sitemap:
     &lt;url&gt;
       &lt;loc&gt;/404.html&lt;/loc&gt;
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -1285,7 +1285,7 @@ sitemap:
     &lt;url&gt;
       &lt;loc&gt;/about/&lt;/loc&gt;
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -1300,7 +1300,7 @@ sitemap:
     &lt;url&gt;
       &lt;loc&gt;/categories.html&lt;/loc&gt;
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -1315,7 +1315,7 @@ sitemap:
     &lt;url&gt;
       &lt;loc&gt;/feed.xml&lt;/loc&gt;
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -1330,22 +1330,7 @@ sitemap:
     &lt;url&gt;
       &lt;loc&gt;/&lt;/loc&gt;
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
-      
-      
-        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
-      
-      
-        &lt;priority&gt;0.3&lt;/priority&gt;
-      
-    &lt;/url&gt;
-    
-  
-    
-    &lt;url&gt;
-      &lt;loc&gt;/css/main.css&lt;/loc&gt;
-      
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -1362,7 +1347,7 @@ sitemap:
     &lt;url&gt;
       &lt;loc&gt;/tags.html&lt;/loc&gt;
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -2351,7 +2336,7 @@ sitemap:
         &lt;loc&gt;http://egaoneko.github.io/404.html&lt;/loc&gt;
       
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -2368,7 +2353,7 @@ sitemap:
         &lt;loc&gt;http://egaoneko.github.io/about/&lt;/loc&gt;
       
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -2385,7 +2370,7 @@ sitemap:
         &lt;loc&gt;http://egaoneko.github.io/categories.html&lt;/loc&gt;
       
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -2402,7 +2387,7 @@ sitemap:
         &lt;loc&gt;http://egaoneko.github.io/feed.xml&lt;/loc&gt;
       
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -2419,24 +2404,7 @@ sitemap:
         &lt;loc&gt;http://egaoneko.github.io/&lt;/loc&gt;
       
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
-      
-      
-        &lt;changefreq&gt;monthly&lt;/changefreq&gt;
-      
-      
-        &lt;priority&gt;0.3&lt;/priority&gt;
-      
-    &lt;/url&gt;
-    
-  
-    
-    &lt;url&gt;
-      
-        &lt;loc&gt;http://egaoneko.github.io/css/main.css&lt;/loc&gt;
-      
-      
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
@@ -2455,7 +2423,7 @@ sitemap:
         &lt;loc&gt;http://egaoneko.github.io/tags.html&lt;/loc&gt;
       
       
-        &lt;lastmod&gt;2016-02-20T02:05:44+09:00&lt;/lastmod&gt;
+        &lt;lastmod&gt;2016-02-20T04:27:26+09:00&lt;/lastmod&gt;
       
       
         &lt;changefreq&gt;monthly&lt;/changefreq&gt;
