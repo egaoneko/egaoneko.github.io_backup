@@ -20,8 +20,6 @@
 paginate: 10 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md", "Gemfile",".travis.yml","cibuild",vendor] # files to exclude
-highlighter: pygments
-markdown: redcarpet
 redcarpet:
   extensions: ["footnotes", "no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data", "tables"]
 
@@ -47,14 +45,25 @@ rss_path: feed.xml
 categories_path: categories.html
 tags_path: tags.html
 
+github: [metadata]
+kramdown:
+    input: GFM
+    hard_wrap: false
 safe: true
 lsi: false
+incremental: false
+highlighter: rouge
+gist:
+    noscript: false
 
 gems:
 - jekyll-mentions
 - jemoji
 - jekyll-redirect-from
 - jekyll-sitemap
+- jekyll-coffeescript
+- jekyll-paginate
+- jekyll-gist
 
 sitemap:
   lastmod: 2014-01-23
