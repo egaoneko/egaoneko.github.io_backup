@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SmileCat's Blog</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/ico/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/ico/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/ico/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
+	<link rel="manifest" href="/assets/ico/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/ico/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="http://www.gravatar.com/avatar/?s=35" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>SmileCat's Blog </h1>
+</div>
+
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    May
+    8th,
+    
+    2015
+  </span>
+
+  <h2>
+    <a href="/blog/2015/05/08/jekyll.html">Jekyll 참고 사이트 정리</a>
+  </h2>
+
+  <div>
+    
+    
+    egloos로 시작한 블로그가 어느덧 Jekyll까지 오게 되었다. egloos, Tistory, Dokuwiki, Wordpress 순으로 건너오면서 이런 저런 이유를 들며 옮겨갔다. 이번에 옮기게 된 이유는 Hosting이 부담스러웠고 맥북을 구매하고 ruby의 이용이 편했기 때문이다. 기존에 Jekyll을 고려하고 있다가 기회를 봐서 옮기게 되었다. 옮기고 나서는 아주 만족스럽게 이용하고 있다. 근래에 자주 사용하던 마크다운을 사용할 수...</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    May
+    8th,
+    
+    2015
+  </span>
+
+  <h2>
+    <a href="/coding/2015/05/08/fb-group-crawler.html">Facebook Group Crawler</a>
+  </h2>
+
+  <div>
+    
+    
+    Facebook Group Crawler fb-hfc를 참조하여 작성하였습니다. 우분투 및 OSX 에서만 작동하는 것을 확인했습니다. 설치 apt-get install python-lxml pip install -r requirements.txt 실행 직접 실행 python fb-hfc.py -username '&lt;username&gt;' -password '&lt;password&gt;' -query '&lt;graph search query&gt;' -group &lt;name=url=id&gt; username: Facebook ID password: Facebook PW query : Member group : 그룹별명=그룹주소=그룹ID 그룹 아이디는...</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    February
+    26th,
+    
+    2015
+  </span>
+
+  <h2>
+    <a href="/program/2015/02/26/wappalyzer.html">[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능</a>
+  </h2>
+
+  <div>
+    
+    
+    
+
+wappalyzer는 현재 보고 있는 사이트의 소프트웨어가 무엇으로 구성되어 있는지 확인할 수 있게 해주는 확장기능입니다.
+
+
+
+파이어폭스에서는 위와 같이 주소창에 이 사이트를 구성하는 소프트웨어를 보여줍니다.
+
+wappalyzer는 크롬과 파이어폭스 확장기능으로 설치할 수 있으며 그외 다른 브라우저는 북마크 툴바로 이용할 수 있습니다.
+
+추가로, 대형 포털 사이트의 경우 잘 나타나지 않는다고 합니다.
+</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    February
+    24th,
+    
+    2015
+  </span>
+
+  <h2>
+    <a href="/clipping/2015/02/24/slideshare-server-performance.html">[Slideshare] 서버 성능에 대한 정의와 이해</a>
+  </h2>
+
+  <div>
+    
+    
+     
+
+** 서버 성능에 대한 정의와 이해 ** from Sunny Kwak
+
+</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    February
+    24th,
+    
+    2015
+  </span>
+
+  <h2>
+    <a href="/clipping/2015/02/24/slideshare-for-fast-web-http2.html">[Slideshare] 더 빠른 웹을 위해: HTTP/2</a>
+  </h2>
+
+  <div>
+    
+    
+     
+
+** 더 빠른 웹을 위해: HTTP/2 ** from EungJun Yi
+
+</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    January
+    19th,
+    
+    2015
+  </span>
+
+  <h2>
+    <a href="/journey/2015/01/19/rail-ro.html">내일로 (15.01.06 ~ 15.01.12)</a>
+  </h2>
+
+  <div>
+    
+    
+    15.01.06 ~ 15.01.12 사이에 다녀온 내일로에 대해 이야기 하고자 합니다. 이번에 다녀온 내일로는 제 첫 내일로였습니다. 일정 일정은 아래와 같아요. 6일(수원) : 수원화성 -&gt; 한국 민속촌 7일(아산~대전) : 현충사 -&gt; 대전시민 천문대 8일(순천~여수) : 보성 녹차밭 -&gt; 오동도 9일(순천~청도) : 순천만 자연 생태 공원 -&gt; 와인터널 10일(부산~울산) : 태종대 -&gt;...</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    December
+    15th,
+    
+    2014
+  </span>
+
+  <h2>
+    <a href="/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html">[TED] 사이먼 시넥: 위대한 리더들이 행동을 이끌어내는 법</a>
+  </h2>
+
+  <div>
+    
+    
+    From TED
+
+
+From Youtube
+
+
+</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    November
+    18th,
+    
+    2014
+  </span>
+
+  <h2>
+    <a href="/project/2014/11/18/shortterm-project-java-diary.html">[소규모 프로젝트] Java Diary</a>
+  </h2>
+
+  <div>
+    
+    
+    프로그램 정보 이름 : Devgrus Diary 유형 : 스터디 프로젝트 - Java 기간 : 4주 (14.11.01 ~ 14.11.23) 역할 : 팀장 전체 프로그램 구현 개발 환경 Windows 7 Java Eclipse + WindowBuilder SQLite3 참고 자료 Java 기본 문법 - Java의 정석 (남궁성 저) Java 기본 문법 - 난 정말 Java를...</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    October
+    17th,
+    
+    2014
+  </span>
+
+  <h2>
+    <a href="/clipping/2014/10/17/java-web-roadmap.html">[Youtube] 자바 웹 개발자의 학습 로드맵 -박재성</a>
+  </h2>
+
+  <div>
+    
+    
+    스피커 박재성 자바지기 커뮤니티 운영(www.javajigi.net) 지속가능한 프로그래머(www.slipp.net)  내용 메모 시간이 없다. 단기 속성 : 이클립스 -&gt; Java -&gt; JSP 서블릿 -&gt; Spring + MyBatis 이후 과정을 밟아라 시간이 있다. 장기 과정: 통합 개발 도구 Java JSP/Servlets : JSP도 중요하지만 Servlets이 더 중요하다. Servlets의 라이프 사이클을 잘 알아야한다. 빌드 도구 :...</p>
+    
+    
+  </div>
+
+</article>
+
+
+<article class="home">
+
+  <span class="post-date">
+    
+    October
+    16th,
+    
+    2014
+  </span>
+
+  <h2>
+    <a href="/tips/2014/10/16/windows8-comodo-firewall-process-error.html">[Windows8.1 & COMODO Firewall] Windows8.1에서 COMODO Firewall을 사용할 때, 프로세스 종료 문제</a>
+  </h2>
+
+  <div>
+    
+    
+    현재 제가 사용하고 있는 보안 프로그램의 조합은 Avast!(백신) + COMODO Firewall(방화벽) 입니다. 얼마전에 다시 Windows8.1 embedded를 노트북에 깔면서 명령 프롬프트가 종료되지 않는 문제가 발생했어요. 심지어 “taskkill”에 “/f” 옵션을 줘도 종료가 되지 않더라고요. 종료 방법은 오로지 “exit”을 프롬프트에 직접 줘야만 되더라고요. dokuwiki on stick의 서버와 같이 입력 불가능한 프롬프트는 PC의 계정...</p>
+    
+    
+  </div>
+
+</article>
+
+<hr/>
+
+<ul class="pager">
+
+  
+  <li class="previous">
+    
+    <a href="/page3">&larr; Newer</a>
+    
+  </li>
+  
+
+  <li>
+    <span class="page_number">Page: 4 of 6</span>
+  </li>
+
+  
+  <li class="next">
+    <a href="/page5">Older &rarr;</a>
+  </li>
+  
+
+</ul>
+
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-62717870-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+

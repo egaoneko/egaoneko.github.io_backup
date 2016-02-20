@@ -5,6 +5,8 @@ date: 2014-02-24 16:06:29
 categories: Java
 tags: [Java, Window Builder]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/window-builder7.jpg)

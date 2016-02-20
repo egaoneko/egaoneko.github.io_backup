@@ -5,6 +5,8 @@ date: 2015-08-26 16:10:00
 categories: Project
 tags: [Web, Spring Boot, JPA,FreeMarker, ]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/lab-study.png)

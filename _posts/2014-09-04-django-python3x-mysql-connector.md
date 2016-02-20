@@ -5,6 +5,8 @@ date: 2014-09-04 12:30:25
 categories: Python
 tags: [Python, Connector, Django, MySQL, Web]
 published: true
+fullview: false
+comments: true
 ---
 
 Django에서 MySQL을 이용하기 위해서 Python과 MySQL을 이어줄 Connector가 필요했는데 Python의 MySQL Connector는 MySQL 공식 홈페이지에서 다운받아 사용하였다.

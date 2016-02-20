@@ -5,6 +5,8 @@ date: 2015-05-07 21:53:00
 categories: Coding
 tags: [Python, Crawler]
 published: true
+fullview: false
+comments: true
 ---
 
 ## Facebook Group Crawler

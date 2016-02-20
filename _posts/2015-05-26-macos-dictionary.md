@@ -5,6 +5,8 @@ date: 2015-05-26 10:30:00
 categories: Program
 tags: [OSX, Dictionary]
 published: true
+fullview: false
+comments: true
 ---
 
 맥에서 사전을 통해 검색을하고 단어장에 저장하고 싶은데 마땅한 방법이 없어 고민하고 있었다. 그런 도중에 [BACK TO THE MAC](http://macnews.tistory.com)에서 좋은 해결책을 찾았다. 여기서 소개해준 방법을 이용하면 사전을 팝업해서 볼 수 있다. 필자는 사파리를 평소에 사용해서 늘 네이버나 다음을 로그인해두는데, 이 방법으로 실행한 팝업된 사전에서 간단하게 단어를 단어장 추가하여 사용하고 있다.

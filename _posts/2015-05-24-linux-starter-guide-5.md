@@ -5,6 +5,8 @@ date: 2015-05-24 21:00:05
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 ## 01 표준 스트림의 종류

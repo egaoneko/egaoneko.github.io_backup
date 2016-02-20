@@ -5,6 +5,8 @@ date: 2014-05-06 10:30:58
 categories: Tips
 tags: [OS, ubuntu]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/ubuntu1.PNG)

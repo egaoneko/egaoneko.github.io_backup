@@ -23,7 +23,7 @@ tagline:
     <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
   </h2>
 
-  <!--div>
+  <div>
     {% if post.fullview %}
     {{ post.content }}
     {% else %}
@@ -32,10 +32,10 @@ tagline:
     {% elsif post.description %}
     {{ post.description }}
     {% else %}
-    {{ post.excerpt }}
+    {{ post.content | strip_html | truncatewords: 50 }}</p>
     {% endif %}
     {% endif %}
-</div-->
+  </div>
 
 </article>
 {% endfor %}

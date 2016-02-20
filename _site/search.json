@@ -1,0 +1,394 @@
+[
+  {
+    "title"    : "[Python] list 복사",
+    "category" : "Python",
+    "tags"     : "Python and List",
+    "url"      : "/python/2016/02/20/python-list-clone.html",
+    "date"     : "20/2/2016"
+  },
+  {
+    "title"    : "[리눅스] 유닉스, 리눅스 과련된 깨알 지식",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/09/18/linux-starter-guide-13.html",
+    "date"     : "18/9/2015"
+  },
+  {
+    "title"    : "[소규모 프로젝트] 스터디 사이트",
+    "category" : "Project",
+    "tags"     : "Web, Spring Boot, JPA, and FreeMarker",
+    "url"      : "/project/2015/08/27/shortterm-project-lab-study.html",
+    "date"     : "27/8/2015"
+  },
+  {
+    "title"    : "[소규모 프로젝트] 스프링 쇼핑몰",
+    "category" : "Project",
+    "tags"     : "Web, JSP, and Spring",
+    "url"      : "/project/2015/08/27/shortterm-project-lab-shop.html",
+    "date"     : "27/8/2015"
+  },
+  {
+    "title"    : "Coding Conventions &amp; Secure Coding 조사",
+    "category" : "Study",
+    "tags"     : "Contious Integration and Secure Coding",
+    "url"      : "/study/2015/06/21/Coding-Conventions-Secure-Coding.html",
+    "date"     : "21/6/2015"
+  },
+  {
+    "title"    : "Continuous Integration 조사",
+    "category" : "Study",
+    "tags"     : "Contious and Integration",
+    "url"      : "/study/2015/06/21/Continuous-Integration.html",
+    "date"     : "21/6/2015"
+  },
+  {
+    "title"    : "IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책",
+    "category" : "IntelliJ",
+    "tags"     : "IntelliJ, Spring Boot, and Jsp",
+    "url"      : "/intellij/2015/05/28/intellij-springboot-jsp-solution.html",
+    "date"     : "28/5/2015"
+  },
+  {
+    "title"    : "[OSX] 맥에서 단어장 사용하기",
+    "category" : "Program",
+    "tags"     : "OSX and Dictionary",
+    "url"      : "/program/2015/05/26/macos-dictionary.html",
+    "date"     : "26/5/2015"
+  },
+  {
+    "title"    : "폰트 색깔 코드",
+    "category" : "CSS",
+    "tags"     : "CSS and Clipping",
+    "url"      : "/css/2015/05/26/color-code.html",
+    "date"     : "26/5/2015"
+  },
+  {
+    "title"    : "플러그인 설치 없이 Jekyll에서 Sitemap.xml 생성하기",
+    "category" : "Blog",
+    "tags"     : "Blog, Jekyll, and Sitemap.xml",
+    "url"      : "/blog/2015/05/25/jekyll-sitemap.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-12.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 마치며,",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-11.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-10.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-9.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-8.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-7.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-6.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-5.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-4.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-3.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-2.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-1.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[리눅스 정리 - 초보자를 위한 가이드] 들어가며,",
+    "category" : "OS",
+    "tags"     : "OS, Linux, and guide",
+    "url"      : "/os/2015/05/25/linux-starter-guide-0.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "[Clipping] 애자일 소프트웨어 개발(Agile Software Development)",
+    "category" : "Clipping",
+    "tags"     : "Agile",
+    "url"      : "/clipping/2015/05/25/agile-clip.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제",
+    "category" : "IntelliJ",
+    "tags"     : "IntelliJ, Spring Boot, and Jsp",
+    "url"      : "/intellij/2015/05/25/intellij-springboot-jsp.html",
+    "date"     : "25/5/2015"
+  },
+  {
+    "title"    : "Atom에서 autocomplete-plus를 사용 중 tab과 enter가 작동하지 않는 경우",
+    "category" : "Program",
+    "tags"     : "Atom and autocomplete-plus",
+    "url"      : "/program/2015/05/21/atom-snippnet-problem.html",
+    "date"     : "21/5/2015"
+  },
+  {
+    "title"    : "[Atom] Sublime Text 만큼 매력적인 에디터",
+    "category" : "Program",
+    "tags"     : "Atom, github, and editor",
+    "url"      : "/program/2015/05/21/atom.html",
+    "date"     : "21/5/2015"
+  },
+  {
+    "title"    : "jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요!",
+    "category" : "jQuery",
+    "tags"     : "jQuery, .attr(), and .prop()",
+    "url"      : "/jquery/2015/05/21/jquery-attr-prop.html",
+    "date"     : "21/5/2015"
+  },
+  {
+    "title"    : "Ajax의 async설정",
+    "category" : "Javascript",
+    "tags"     : "Javascript, Ajax, and async",
+    "url"      : "/javascript/2015/05/12/ajax-async.html",
+    "date"     : "12/5/2015"
+  },
+  {
+    "title"    : "Travis CI를 사용해서 Jekyll Build error message 보기",
+    "category" : "Blog",
+    "tags"     : "Blog, Jekyll, and Travis CI",
+    "url"      : "/blog/2015/05/10/jekyll-travis-ci.html",
+    "date"     : "10/5/2015"
+  },
+  {
+    "title"    : "Jekyll 참고 사이트 정리",
+    "category" : "Blog",
+    "tags"     : "Blog and Jekyll",
+    "url"      : "/blog/2015/05/08/jekyll.html",
+    "date"     : "8/5/2015"
+  },
+  {
+    "title"    : "Facebook Group Crawler",
+    "category" : "Coding",
+    "tags"     : "Python and Crawler",
+    "url"      : "/coding/2015/05/08/fb-group-crawler.html",
+    "date"     : "8/5/2015"
+  },
+  {
+    "title"    : "[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능",
+    "category" : "Program",
+    "tags"     : "wappalyzer and Web",
+    "url"      : "/program/2015/02/26/wappalyzer.html",
+    "date"     : "26/2/2015"
+  },
+  {
+    "title"    : "[Slideshare] 서버 성능에 대한 정의와 이해",
+    "category" : "Clipping",
+    "tags"     : "Slideshare and Server",
+    "url"      : "/clipping/2015/02/24/slideshare-server-performance.html",
+    "date"     : "24/2/2015"
+  },
+  {
+    "title"    : "[Slideshare] 더 빠른 웹을 위해: HTTP/2",
+    "category" : "Clipping",
+    "tags"     : "Slideshare, Http, and Web",
+    "url"      : "/clipping/2015/02/24/slideshare-for-fast-web-http2.html",
+    "date"     : "24/2/2015"
+  },
+  {
+    "title"    : "내일로 (15.01.06 ~ 15.01.12)",
+    "category" : "Journey",
+    "tags"     : "내일로 and 여행",
+    "url"      : "/journey/2015/01/19/rail-ro.html",
+    "date"     : "19/1/2015"
+  },
+  {
+    "title"    : "[TED] 사이먼 시넥: 위대한 리더들이 행동을 이끌어내는 법",
+    "category" : "Clipping",
+    "tags"     : "TED and 사이먼 시넥",
+    "url"      : "/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html",
+    "date"     : "15/12/2014"
+  },
+  {
+    "title"    : "[소규모 프로젝트] Java Diary",
+    "category" : "Project",
+    "tags"     : "Java, SQLite, Window Builder, and 소규모 프로젝트",
+    "url"      : "/project/2014/11/18/shortterm-project-java-diary.html",
+    "date"     : "18/11/2014"
+  },
+  {
+    "title"    : "[Youtube] 자바 웹 개발자의 학습 로드맵 -박재성",
+    "category" : "Clipping",
+    "tags"     : "Youtube, Java, Road Map, and Web",
+    "url"      : "/clipping/2014/10/17/java-web-roadmap.html",
+    "date"     : "17/10/2014"
+  },
+  {
+    "title"    : "[Windows8.1 &amp; COMODO Firewall] Windows8.1에서 COMODO Firewall을 사용할 때, 프로세스 종료 문제",
+    "category" : "Tips",
+    "tags"     : "comodo firewall, OS, and Windows8.1",
+    "url"      : "/tips/2014/10/16/windows8-comodo-firewall-process-error.html",
+    "date"     : "16/10/2014"
+  },
+  {
+    "title"    : "[Git&amp;COMODO Firewall] Git과 COMODO Firewall을 사용할 때 마우스 우클릭 로딩 문제",
+    "category" : "Tips",
+    "tags"     : "comodo firewall and git",
+    "url"      : "/tips/2014/10/15/git-comodo-firewall-loading.html",
+    "date"     : "15/10/2014"
+  },
+  {
+    "title"    : "[Django] python3.x mysql connector",
+    "category" : "Python",
+    "tags"     : "Python, Connector, Django, MySQL, and Web",
+    "url"      : "/python/2014/09/04/django-python3x-mysql-connector.html",
+    "date"     : "4/9/2014"
+  },
+  {
+    "title"    : "[Django] Django 설치",
+    "category" : "Python",
+    "tags"     : "Python, Django, 설치, and Web",
+    "url"      : "/python/2014/08/29/django-setup.html",
+    "date"     : "29/8/2014"
+  },
+  {
+    "title"    : "[소규모 프로젝트] PXA – 270에서 구현한 사칙연산 계산기",
+    "category" : "Project",
+    "tags"     : "C, PXA-270, 리눅스, and 임베디드",
+    "url"      : "/project/2014/08/28/shortterm-project-pxa-270-calculator.html",
+    "date"     : "28/8/2014"
+  },
+  {
+    "title"    : "[Windows7] Windows 업데이트 오류 80240016 &amp; 8020000E",
+    "category" : "Tips",
+    "tags"     : "OS and Windows7",
+    "url"      : "/tips/2014/05/06/windows7-windows-update-error-80240016-8020000e.html",
+    "date"     : "6/5/2014"
+  },
+  {
+    "title"    : "[Ubuntu] 듀얼부팅 구성시 Ubuntu에서 Windows파티션을 인식하지 못할 때",
+    "category" : "Tips",
+    "tags"     : "OS and ubuntu",
+    "url"      : "/tips/2014/05/06/ubuntu-dualboot-partion-error.html",
+    "date"     : "6/5/2014"
+  },
+  {
+    "title"    : "[STD.IO] Hello, World!_Daejeon_정리",
+    "category" : "Seminar",
+    "tags"     : "daejeon, Hello World, STD.IO, and 세미나",
+    "url"      : "/seminar/2014/03/16/stdio-helloworld-daejeon.html",
+    "date"     : "16/3/2014"
+  },
+  {
+    "title"    : "[STD.IO] Hello, World!_Seoul_정리",
+    "category" : "Seminar",
+    "tags"     : "Hello World, seoul, STD.IO, and 세미나",
+    "url"      : "/seminar/2014/03/16/stdio-helloworld-seoul.html",
+    "date"     : "16/3/2014"
+  },
+  {
+    "title"    : "[오류] avrdude: stk500_getsync(): not in sync: resp=0x00",
+    "category" : "Arduino",
+    "tags"     : "아두이노 and 오류",
+    "url"      : "/arduino/2014/03/09/arduino-error-stk500.html",
+    "date"     : "9/3/2014"
+  },
+  {
+    "title"    : "[마인크래프트] 서버를 여는 세 가지의 방법",
+    "category" : "Game",
+    "tags"     : "가상 서버 호스팅, 마인크래프트, 서버, 포트 포워딩, and 하마치",
+    "url"      : "/game/2014/02/25/minecraft-server.html",
+    "date"     : "25/2/2014"
+  },
+  {
+    "title"    : "[Java 이야기] Window Builder에 Drag&amp;Drop",
+    "category" : "Java",
+    "tags"     : "Java and Window Builder",
+    "url"      : "/java/2014/02/25/window-builder-dragdrop.html",
+    "date"     : "25/2/2014"
+  },
+  {
+    "title"    : "[Java 이야기] 추가한 파일 Window Builder로 열기",
+    "category" : "Java",
+    "tags"     : "Java and Window Builder",
+    "url"      : "/java/2014/02/24/window-builder-add-file-open.html",
+    "date"     : "24/2/2014"
+  },
+  {
+    "title"    : "[Java 교육 툴] 로보코드 (Robocode)",
+    "category" : "Java",
+    "tags"     : "Java, ROBOCODE, 교육 툴, 로보코드, and 자바",
+    "url"      : "/java/2014/02/24/robocode.html",
+    "date"     : "24/2/2014"
+  },
+  {
+    "title"    : "[소규모 프로젝트] Java Chatting Program",
+    "category" : "Project",
+    "tags"     : "Java, MySQL, window builder, 소규모 프로젝트, and 윤성우",
+    "url"      : "/project/2014/02/19/shortterm-project-java-chatting-program.html",
+    "date"     : "19/2/2014"
+  },
+  {
+    "title"    : "[소규모 프로젝트] C Chatting Program",
+    "category" : "Project",
+    "tags"     : "C, TCP/IP, 소규모 프로젝트, and 윤성우",
+    "url"      : "/project/2014/02/19/shortterm-project-c-chatting-program.html",
+    "date"     : "19/2/2014"
+  },
+  {
+    "title"    : "About Me",
+    "category" : "",
+    "tags"     : "",
+    "url"      : "/2010/03/01/profile.html",
+    "date"     : "1/3/2010"
+  }
+]

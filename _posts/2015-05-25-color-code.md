@@ -5,6 +5,8 @@ date: 2015-05-25 15:00:00
 categories: 'CSS'
 tags: [CSS, Clipping]
 published: true
+fullview: false
+comments: true
 ---
 
 <div style="text-align:center;">

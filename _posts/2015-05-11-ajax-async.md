@@ -5,6 +5,8 @@ date: 2015-05-11 21:02:00
 categories: Javascript
 tags: [Javascript, Ajax, async]
 published: true
+fullview: false
+comments: true
 ---
 
 Spring에서 게시글과 덧글을 작성하고, 게시글에 덧글을 Ajax를 사용하여 붙이는 방식으로 작성해 나가고 있었다. 우여곡절 끝에 Ajax를 통해 덧글은 비동기적으로 작동하여 게시글 읽기 페이지가 다시 불러오지 않고 덧글 부분만 불러올 수 있게 되었다.

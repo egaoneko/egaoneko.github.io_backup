@@ -5,6 +5,8 @@ date: 2015-05-24 19:00:00
 categories: Clipping
 tags: Agile
 published: true
+fullview: false
+comments: true
 ---
 
 과제를 하기위해 애자일 개발 방법론에 대해 조사해보았다. 찾아보면서 과제를 작성하였는데 깊이 작성할 과제가 아니였기 때문에 조금씩 읽어보고 과제를 먼저 작성하였다.

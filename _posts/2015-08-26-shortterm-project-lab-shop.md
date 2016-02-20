@@ -5,6 +5,8 @@ date: 2015-08-26 16:00:00
 categories: Project
 tags: [Web, JSP, Spring]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/lab-shop.png)

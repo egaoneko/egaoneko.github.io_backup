@@ -5,6 +5,8 @@ date: 2014-12-15 12:23:18
 categories: Clipping
 tags: [TED, 사이먼 시넥]
 published: true
+fullview: false
+comments: true
 ---
 
 ## From TED

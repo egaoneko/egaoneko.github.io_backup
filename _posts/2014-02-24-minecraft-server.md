@@ -5,6 +5,8 @@ date: 2014-02-24 17:56:54
 categories: Game
 tags: [가상 서버 호스팅, 마인크래프트, 서버, 포트 포워딩, 하마치]
 published: true
+fullview: false
+comments: true
 ---
 
 ![ screenshot]({{ site.baseurl }}/assets/media/minecraft1.jpg)

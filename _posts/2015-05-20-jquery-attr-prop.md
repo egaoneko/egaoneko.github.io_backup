@@ -5,6 +5,8 @@ date: 2015-05-20 20:10:00
 categories: jQuery
 tags: [jQuery, '.attr()', '.prop()']
 published: true
+fullview: false
+comments: true
 ---
 
 HTML의 input태그에서 전체 상품이라는 태그를 만들었다. 이 태그의 기본 ``value``속성을 ``0``으로 설정하고 상품을 제거할 때마다 이 값을 jQuery의 ``.attr()``로 변경하여 사용하고 있었다. 코드는 다음과 같이 작성하였었고 그냥 사용할때는 문제없이 작동하는 것처럼 보였다.

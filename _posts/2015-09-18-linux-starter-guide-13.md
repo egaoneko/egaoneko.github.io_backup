@@ -5,6 +5,8 @@ date: 2015-09-18 00:00:00
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 리눅스 정리라고 작성한 글에 잘못된 내용이 있다는 조언을 듣고 해당 부분에 대한 내용을 읽으며 이를 다른 분들께 전달하고 싶어 작성한다. 아래의 글은 페이스북의 김선영님께서 작성한 글을 가지고 왔다.

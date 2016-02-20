@@ -5,6 +5,8 @@ date: 2015-02-26 00:22:47
 categories: Program
 tags: [wappalyzer, Web]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/wappalyzer.png)

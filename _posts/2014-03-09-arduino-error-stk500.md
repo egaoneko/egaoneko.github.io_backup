@@ -5,6 +5,8 @@ date: 2014-03-09 13:08:10
 categories: Arduino
 tags: [아두이노, 오류]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.baseurl }}/assets/media/arduino-error-stk5001.PNG)

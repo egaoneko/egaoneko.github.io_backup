@@ -5,6 +5,8 @@ date: 2014-10-14 19:42:46
 categories: Tips
 tags: [comodo firewall, git]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/git.png)

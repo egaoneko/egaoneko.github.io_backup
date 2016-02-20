@@ -5,6 +5,8 @@ date: 2014-05-06 13:25:33
 categories: Tips
 tags: [OS, Windows7]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/windows-error1.PNG)

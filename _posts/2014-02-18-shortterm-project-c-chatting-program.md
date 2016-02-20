@@ -5,6 +5,8 @@ date: 2014-02-18 18:20:53
 categories: Project
 tags: [C, TCP/IP, 소규모 프로젝트, 윤성우]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.baseurl }}/assets/media/c_chatting_program.png)

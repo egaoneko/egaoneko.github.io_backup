@@ -5,6 +5,8 @@ date: 2015-05-21 02:54:00
 categories: Program
 tags: [Atom, autocomplete-plus]
 published: true
+fullview: false
+comments: true
 ---
 
 [관련 글]({% post_url 2015-05-21-atom %})에서 Atom에 대해 글을 작성했었다. 설치하고 사용중에 autocomlete을 사용할 때 tab이나 enter가 정상적으로 작동하지 않는 문제가 생겼다. 정확한 원인을 찾지 못해 google을 검색하던 도중에 해결 방법을 찾았다.

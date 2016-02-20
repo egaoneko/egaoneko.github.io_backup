@@ -5,6 +5,8 @@ date: 2014-08-28 08:22:00
 categories: Project
 tags: [C, PXA-270, 리눅스, 임베디드]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/embedded-calculator.png)

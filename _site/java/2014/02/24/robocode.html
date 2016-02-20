@@ -144,13 +144,13 @@
 		<div class="page-header">
   <h1>[Java 교육 툴] 로보코드 (Robocode) </h1>
 </div>
-	
+
 <article>
 
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   February 
+	   February
 	   24th,
 	   
 	   2014
@@ -245,415 +245,421 @@
 
 <p><strong>아래는 Sample 로봇 “Walls”의 코드이다.</strong></p>
 
-<p>```java
-/<strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>***
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cm">/***********************************************************************
      * Copyright (c) 2001-2013 Mathew A. Nelson and Robocode contributors
      * All rights reserved. This program and the accompanying materials
      * are made available under the terms of the Eclipse Public License v1.0
      * which accompanies this distribution, and is available at
      * http://robocode.sourceforge.net/license/epl-v10.html
-   **</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong><strong>**</strong>*/
-    package sample;</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>import robocode.HitRobotEvent;
-import robocode.Robot;
-import robocode.ScannedRobotEvent;
- 
-import java.awt.*;
- 
- 
-/**    * Walls - a sample robot by Mathew Nelson, and maintained by Flemming N. Larsen    * &lt;p/&gt;    * Moves around the outer edge with the gun facing in.    *    * @author Mathew A. Nelson (original)    * @author Flemming N. Larsen (contributor)    */
-public class Walls extends Robot {
- 
-    boolean peek; // Don't turn if there's a robot there
-    double moveAmount; // How much to move
- 
-    /**
-   * run: Move around the walls
-   */
-    public void run() {
-        // Set colors
-        setBodyColor(Color.black);
-        setGunColor(Color.black);
-        setRadarColor(Color.orange);
-        setBulletColor(Color.cyan);
-        setScanColor(Color.cyan);
- 
-        // Initialize moveAmount to the maximum possible for this battlefield.
-        moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
-        // Initialize peek to false
-        peek = false;
- 
-        // turnLeft to face a wall.
-        // getHeading() % 90 means the remainder of
-        // getHeading() divided by 90.
-        turnLeft(getHeading() % 90);
-        ahead(moveAmount);
-        // Turn the gun to turn right 90 degrees.
-        peek = true;
-        turnGunRight(90);
-        turnRight(90);
- 
-        while (true) {
-            // Look before we turn when ahead() completes.
-            peek = true;
-            // Move up the wall
-            ahead(moveAmount);
-            // Don't look now
-            peek = false;
-            // Turn to the next wall
-            turnRight(90);
-        }
-    }
- 
-    /**
-   * onHitRobot:  Move away a bit.
-   */
-    public void onHitRobot(HitRobotEvent e) {
-        // If he's in front of us, set back up a bit.
-        if (e.getBearing() &gt; -90 &amp;&amp; e.getBearing() &lt; 90) {
-            back(100);
-        } // else he's in back of us, so set ahead a bit.
-        else {
-            ahead(100);
-        }
-    }
- 
-    /**
-   * onScannedRobot:  Fire!
-   */
-    public void onScannedRobot(ScannedRobotEvent e) {
-        fire(2);
-        // Note that scan is called automatically when the robot is moving.
-        // By calling it manually here, we make sure we generate another scan event if there's a robot on the next
-        // wall, so that we do not start moving up it until it's gone.
-        if (peek) {
-            scan();
-        }
-    }
-} ```
+   ***********************************************************************/</span>
+    <span class="kn">package</span> <span class="n">sample</span><span class="o">;</span>
+     
+     
+    <span class="kn">import</span> <span class="nn">robocode.HitRobotEvent</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">robocode.Robot</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">robocode.ScannedRobotEvent</span><span class="o">;</span>
+     
+    <span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+     
+     
+    <span class="cm">/**
+   * Walls - a sample robot by Mathew Nelson, and maintained by Flemming N. Larsen
+   * &lt;p/&gt;
+   * Moves around the outer edge with the gun facing in.
+   *
+   * &lt;a href='https://github.com/author' class='user-mention'&gt;@author&lt;/a&gt; Mathew A. Nelson (original)
+   * &lt;a href='https://github.com/author' class='user-mention'&gt;@author&lt;/a&gt; Flemming N. Larsen (contributor)
+   */</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Walls</span> <span class="kd">extends</span> <span class="n">Robot</span> <span class="o">{</span>
+     
+        <span class="kt">boolean</span> <span class="n">peek</span><span class="o">;</span> <span class="c1">// Don't turn if there's a robot there</span>
+        <span class="kt">double</span> <span class="n">moveAmount</span><span class="o">;</span> <span class="c1">// How much to move</span>
+     
+        <span class="cm">/**
+       * run: Move around the walls
+       */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Set colors</span>
+            <span class="n">setBodyColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">black</span><span class="o">);</span>
+            <span class="n">setGunColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">black</span><span class="o">);</span>
+            <span class="n">setRadarColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">orange</span><span class="o">);</span>
+            <span class="n">setBulletColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">cyan</span><span class="o">);</span>
+            <span class="n">setScanColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">cyan</span><span class="o">);</span>
+     
+            <span class="c1">// Initialize moveAmount to the maximum possible for this battlefield.</span>
+            <span class="n">moveAmount</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">getBattleFieldWidth</span><span class="o">(),</span> <span class="n">getBattleFieldHeight</span><span class="o">());</span>
+            <span class="c1">// Initialize peek to false</span>
+            <span class="n">peek</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+     
+            <span class="c1">// turnLeft to face a wall.</span>
+            <span class="c1">// getHeading() % 90 means the remainder of</span>
+            <span class="c1">// getHeading() divided by 90.</span>
+            <span class="n">turnLeft</span><span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">%</span> <span class="mi">90</span><span class="o">);</span>
+            <span class="n">ahead</span><span class="o">(</span><span class="n">moveAmount</span><span class="o">);</span>
+            <span class="c1">// Turn the gun to turn right 90 degrees.</span>
+            <span class="n">peek</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="n">turnGunRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+            <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+     
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// Look before we turn when ahead() completes.</span>
+                <span class="n">peek</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="c1">// Move up the wall</span>
+                <span class="n">ahead</span><span class="o">(</span><span class="n">moveAmount</span><span class="o">);</span>
+                <span class="c1">// Don't look now</span>
+                <span class="n">peek</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="c1">// Turn to the next wall</span>
+                <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+     
+        <span class="cm">/**
+       * onHitRobot:  Move away a bit.
+       */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onHitRobot</span><span class="o">(</span><span class="n">HitRobotEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// If he's in front of us, set back up a bit.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">()</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">90</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">back</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+            <span class="o">}</span> <span class="c1">// else he's in back of us, so set ahead a bit.</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="n">ahead</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+     
+        <span class="cm">/**
+       * onScannedRobot:  Fire!
+       */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onScannedRobot</span><span class="o">(</span><span class="n">ScannedRobotEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">fire</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+            <span class="c1">// Note that scan is called automatically when the robot is moving.</span>
+            <span class="c1">// By calling it manually here, we make sure we generate another scan event if there's a robot on the next</span>
+            <span class="c1">// wall, so that we do not start moving up it until it's gone.</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">peek</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">scan</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 </code></pre>
 </div>
 
 <p><strong>아래는 Sample 로봇 “Walls”을 바탕으로 만든 코드이다.</strong></p>
 
-<p>```java
-    package avangers;</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>import java.awt.geom.Point2D;
-import robocode.*;
-import robocode.util.Utils;
-import java.awt.Color;
-import java.awt.geom.*;
-import java.util.*;
-import java.security.cert.*;
- 
- 
- 
-public class Hulk extends Avanger {
- 
-    /* 적 변수 선언 및 저장 */
-    Hashtable targets;            // 적의 데이터를 해시 테이블에 저장
-    Enemy target;
-    Enemy trackTarget=null;
-    
-    /*변수 선언 */
-    final double PI = Math.PI;    
-    
-    int hitBullet=0;
-    int hitWall=0;
-    int hitMyBullet=0;
-    int dodgeCount=0;
-    double bulletBearing;
-    int teamCount=3;
-    boolean live=true;
-    boolean eLive=true;
-    
-    double gapX;
-    double gapY;
-    double gap;
-    
-    double move;
-    
-    /* 역할 파트*/
-    boolean leader;
-    boolean dodgeMan;
-    
-    /* 레이더 부분 */
-    Radar rad;
+<div class="highlighter-rouge"><pre class="highlight"><code>    <span class="kn">package</span> <span class="n">avangers</span><span class="o">;</span>
+     
+    <span class="kn">import</span> <span class="nn">java.awt.geom.Point2D</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">robocode.*</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">robocode.util.Utils</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.awt.Color</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.awt.geom.*</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.security.cert.*</span><span class="o">;</span>
+     
+     
+     
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hulk</span> <span class="kd">extends</span> <span class="n">Avanger</span> <span class="o">{</span>
+     
+        <span class="cm">/* 적 변수 선언 및 저장 */</span>
+        <span class="n">Hashtable</span> <span class="n">targets</span><span class="o">;</span>            <span class="c1">// 적의 데이터를 해시 테이블에 저장</span>
+        <span class="n">Enemy</span> <span class="n">target</span><span class="o">;</span>
+        <span class="n">Enemy</span> <span class="n">trackTarget</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
         
-    /* 전략부분 */
-    TournamentStrategy tStrategy;
- 
-    /* 회피 참조 변수 */
-    Dodge dodD;
-    WallSmooth dodW;
-    DodgeBullet dodB;
-    
-    public void run() {
+        <span class="cm">/*변수 선언 */</span>
+        <span class="kd">final</span> <span class="kt">double</span> <span class="n">PI</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">PI</span><span class="o">;</span>    
         
-        /* 적 변수 초기화 */
-        targets = new Hashtable();
-        target = new Enemy(this, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0L, 0.0D,"Loki", 0.0D, 0.0D);
- 
-        /* 로봇 설정 부분 */
-        setAdjustGunForRobotTurn(true);
-        setAdjustRadarForGunTurn(true);
- 
-        setColors(Color.GREEN, Color.ORANGE, Color.BLACK);
+        <span class="kt">int</span> <span class="n">hitBullet</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">hitWall</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">hitMyBullet</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">dodgeCount</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">bulletBearing</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">teamCount</span><span class="o">=</span><span class="mi">3</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">live</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">eLive</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
         
-        /*레이더 부분*/
-        turnRadarRightRadians(2*PI);
-        rad=new Radar(this,targets);
-                
-        /*리더 체크 부분 */
-        leader=isLeader();
+        <span class="kt">double</span> <span class="n">gapX</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">gapY</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">gap</span><span class="o">;</span>
         
-        /* 전략부분 */
-        tStrategy = new TournamentStrategy(this,targets);
+        <span class="kt">double</span> <span class="n">move</span><span class="o">;</span>
         
-        dodD= new Dodge(this,targets);
-        dodW=new WallSmooth(this,targets);
-        dodB=new DodgeBullet(this,targets);
+        <span class="cm">/* 역할 파트*/</span>
+        <span class="kt">boolean</span> <span class="n">leader</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">dodgeMan</span><span class="o">;</span>
         
-        
-        /* 벽으로 이동*/            
-        if(eLive){
-            move = Math.max(getBattleFieldWidth()-18-getX(), getBattleFieldHeight()-18-getY());
-            turnLeft(getHeading() % 90);
-            ahead(move);
-            turnRight(90);
-        }
-        
-        while(true) {
- 
-            rad.meleeRadar(this);            
- 
-            /* 벽에 출돌을 최소화 및 경로 이탈시 재 진입 */
-            if(eLive){
-                if(getX()&lt;=30&amp;&amp;getY()&lt;=30){
-                    ahead(600-getY()-18);
-                    turnRight(90);
-                }
-                else if(getX()&lt;=30&amp;&amp;getY()&gt;=570){
-                    ahead(800-getX()-18);
-                    turnRight(90);
-                }
-                else if(getX()&gt;=770&amp;&amp;getY()&gt;=570){
-                    ahead(getY()-18);
-                    turnRight(90);
-                }
-                else if(getX()&gt;=770&amp;&amp;getY()&lt;=30){
-                    ahead(getX()-18);
-                    turnRight(90);
-                }
-                else if(getY()&lt;=30){
-                    ahead(getX()-18);
-                    turnRight(90);
-                }
-                else if(getX()&lt;=30){
-                    ahead(600-getY()-18);
-                    turnRight(90);
-                }
-                else if(getY()&gt;=570){
-                    ahead(800-getX()-18);
-                    turnRight(90);
-                }
-                else if(getX()&gt;=770){
-                    ahead(getY()-18);
-                    turnRight(90);
-                }
-                else{
-                    move = Math.max(getBattleFieldWidth()-18-getX(), getBattleFieldHeight()-18-getY());
-                    turnLeft(getHeading() % 90);
-                    ahead(move);
-                    turnRight(90);    
+        <span class="cm">/* 레이더 부분 */</span>
+        <span class="n">Radar</span> <span class="n">rad</span><span class="o">;</span>
             
-                }
-            }
-            //tStrategy.tStrategyTo12();
- 
-            /*적 리더가 사망시 드로이드 제거를 위해 벽에서 이동 탈출*/
-            if(!eLive)
-                dodW.wallSmoothMove();
+        <span class="cm">/* 전략부분 */</span>
+        <span class="n">TournamentStrategy</span> <span class="n">tStrategy</span><span class="o">;</span>
+     
+        <span class="cm">/* 회피 참조 변수 */</span>
+        <span class="n">Dodge</span> <span class="n">dodD</span><span class="o">;</span>
+        <span class="n">WallSmooth</span> <span class="n">dodW</span><span class="o">;</span>
+        <span class="n">DodgeBullet</span> <span class="n">dodB</span><span class="o">;</span>
         
-            execute();
-        }
-    }
- 
- 
-    /* 스캔 Event */
-    public void onScannedRobot(ScannedRobotEvent e) {
-        
-        /* 적 Data 생성 및 업데이트 */
-        Enemy en;
-        
-        if(!isTeammate(e.getName()))
-            if (targets.containsKey(e.getName())) {
-                en = (Enemy)targets.get(e.getName());
-                en.update(e.getEnergy(), getX() + e.getDistance() * Math.cos(Math.toRadians(normalRelativeAngle(90.0D - (getHeading() + e.getBearing())))), getY() + e.getDistance() * Math.sin(Math.toRadians(normalRelativeAngle(90.0D - (getHeading() + e.getBearing())))), e.getHeading(), e.getBearing(), e.getVelocity(), getTime(), e.getDistance(), e.getHeadingRadians(), e.getBearingRadians());
-            } 
-            else {
-                en = new Enemy (this, e.getEnergy(), getX() + e.getDistance() * Math.cos(Math.toRadians(normalRelativeAngle(90.0D - (getHeading() + e.getBearing())))), getY() + e.getDistance() * Math.sin(Math.toRadians(normalRelativeAngle(90.0D - (getHeading() + e.getBearing())))), e.getHeading(), e.getBearing(), e.getVelocity(), getTime(), e.getDistance(), e.getName(), e.getHeadingRadians(), e.getBearingRadians());
-                targets.put(e.getName(),en);
-            }
-        
-        gapX = e.getDistance() * Math.cos(Math.toRadians(normalRelativeAngle(90.0D - (getHeading() + e.getBearing()))));
-        gapY = e.getDistance() * Math.sin(Math.toRadians(normalRelativeAngle(90.0D - (getHeading() + e.getBearing()))));
-        gap = Math.toDegrees(Math.atan2(gapX, gapY));
- 
-        turnGunRight(Utils.normalRelativeAngleDegrees(gap - getGunHeading()));
-        if(!isTeammate(e.getName()))
-            /* 거리 200 이하 */
-            if(e.getDistance()&lt;=200){
-                setBulletColor(Color.RED);
-                fire(3);
-            }
-            /* 거리 500 이하 */
-            else if(e.getDistance()&lt;=500){
-                setBulletColor(Color.YELLOW);
-                fire(3);
-            }
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
             
-            /* 거리 500 이상 */
-            else{
-                setBulletColor(Color.BLACK);
-                fire(3);
-            }
-        
-    }
-        
-    /* 적 로봇의 생사 유무 Event */
-    public void onRobotDeath(RobotDeathEvent e) {
-        if(isTeammate(e.getName())) // 팀원인 경우 팀원 숫자를 한명 줄임
-            teamCount--;
-        else{
-            Enemy en = (Enemy)targets.get(e.getName());
-            en.live = false;
-            if(en.eLeader)
-                eLive=false;
-        }
-    
-    }
-    
-    /* 적과 충돌 했을 때 */
-    public void onHitRobot(HitRobotEvent e) {
-        if (e.getBearing() &gt; -90 &amp;&amp; e.getBearing() &lt; 90) {
-            back(100);
-        }
-        else {
-            ahead(100);
-        }
-    }
-        
-    
-    /* 적에 의해 피탄 당했을 때 Event. 방향 변환에 사용*/
-    public void onHitByBullet(HitByBulletEvent e) {
-        Enemy en = (Enemy)targets.get(e.getName());
-        
-        hitBullet++;
-        dodgeCount++;
-        if(dodgeCount&gt;10)
-            dodgeCount=0;        
-        bulletBearing=e.getBearing();
-        
-    }
-    
-    /* 적을 피격했을 때 Event */
-    public void onBulletHit(BulletHitEvent e){
-        hitMyBullet++;
-    }
-    
-    /* 벽에 출돌했을 때 Event */
-    public void onHitWall(HitWallEvent e) {
-        
-        hitWall++;
-    }
-    
-    /* 특정 좌표로 이동 */
-    void goTo(double x, double y){
-        double angle = normalAbsoluteHeading(Math.toDegrees(1.570796326794897D - Math.atan2(getY() - y, getX() - x)));
-        int dir = 1;
-        double distance=0;
- 
-        angle = normalRelativeAngle(getHeading() - angle + 180.0D);
-        if (angle &gt; 90.0D)
-        {
-          angle -= 180.0D;
-          dir = -1;
-        }
-        else if (angle &lt; -90.0D)
-        {
-          angle += 180.0D;
-          dir = -1;
-        }
-        
-        distance=Math.pow((x-getX())*(x-getX())+(y-getY())*(y-getY()), 0.5);
-        setTurnLeft(angle);
-        
-        ahead(distance * dir);
+            <span class="cm">/* 적 변수 초기화 */</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Hashtable</span><span class="o">();</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Enemy</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mi">0L</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span><span class="s">"Loki"</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">,</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">);</span>
+     
+            <span class="cm">/* 로봇 설정 부분 */</span>
+            <span class="n">setAdjustGunForRobotTurn</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">setAdjustRadarForGunTurn</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+     
+            <span class="n">setColors</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">,</span> <span class="n">Color</span><span class="o">.</span><span class="na">ORANGE</span><span class="o">,</span> <span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+            
+            <span class="cm">/*레이더 부분*/</span>
+            <span class="n">turnRadarRightRadians</span><span class="o">(</span><span class="mi">2</span><span class="o">*</span><span class="n">PI</span><span class="o">);</span>
+            <span class="n">rad</span><span class="o">=</span><span class="k">new</span> <span class="n">Radar</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">targets</span><span class="o">);</span>
+                    
+            <span class="cm">/*리더 체크 부분 */</span>
+            <span class="n">leader</span><span class="o">=</span><span class="n">isLeader</span><span class="o">();</span>
+            
+            <span class="cm">/* 전략부분 */</span>
+            <span class="n">tStrategy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TournamentStrategy</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">targets</span><span class="o">);</span>
+            
+            <span class="n">dodD</span><span class="o">=</span> <span class="k">new</span> <span class="n">Dodge</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">targets</span><span class="o">);</span>
+            <span class="n">dodW</span><span class="o">=</span><span class="k">new</span> <span class="n">WallSmooth</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">targets</span><span class="o">);</span>
+            <span class="n">dodB</span><span class="o">=</span><span class="k">new</span> <span class="n">DodgeBullet</span><span class="o">(</span><span class="k">this</span><span class="o">,</span><span class="n">targets</span><span class="o">);</span>
+            
+            
+            <span class="cm">/* 벽으로 이동*/</span>            
+            <span class="k">if</span><span class="o">(</span><span class="n">eLive</span><span class="o">){</span>
+                <span class="n">move</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">getBattleFieldWidth</span><span class="o">()-</span><span class="mi">18</span><span class="o">-</span><span class="n">getX</span><span class="o">(),</span> <span class="n">getBattleFieldHeight</span><span class="o">()-</span><span class="mi">18</span><span class="o">-</span><span class="n">getY</span><span class="o">());</span>
+                <span class="n">turnLeft</span><span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">%</span> <span class="mi">90</span><span class="o">);</span>
+                <span class="n">ahead</span><span class="o">(</span><span class="n">move</span><span class="o">);</span>
+                <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+            <span class="o">}</span>
+            
+            <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+     
+                <span class="n">rad</span><span class="o">.</span><span class="na">meleeRadar</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>            
+     
+                <span class="cm">/* 벽에 출돌을 최소화 및 경로 이탈시 재 진입 */</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">eLive</span><span class="o">){</span>
+                    <span class="k">if</span><span class="o">(</span><span class="n">getX</span><span class="o">()&lt;=</span><span class="mi">30</span><span class="o">&amp;&amp;</span><span class="n">getY</span><span class="o">()&lt;=</span><span class="mi">30</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="mi">600</span><span class="o">-</span><span class="n">getY</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getX</span><span class="o">()&lt;=</span><span class="mi">30</span><span class="o">&amp;&amp;</span><span class="n">getY</span><span class="o">()&gt;=</span><span class="mi">570</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="mi">800</span><span class="o">-</span><span class="n">getX</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getX</span><span class="o">()&gt;=</span><span class="mi">770</span><span class="o">&amp;&amp;</span><span class="n">getY</span><span class="o">()&gt;=</span><span class="mi">570</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="n">getY</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getX</span><span class="o">()&gt;=</span><span class="mi">770</span><span class="o">&amp;&amp;</span><span class="n">getY</span><span class="o">()&lt;=</span><span class="mi">30</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="n">getX</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getY</span><span class="o">()&lt;=</span><span class="mi">30</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="n">getX</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getX</span><span class="o">()&lt;=</span><span class="mi">30</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="mi">600</span><span class="o">-</span><span class="n">getY</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getY</span><span class="o">()&gt;=</span><span class="mi">570</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="mi">800</span><span class="o">-</span><span class="n">getX</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">getX</span><span class="o">()&gt;=</span><span class="mi">770</span><span class="o">){</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="n">getY</span><span class="o">()-</span><span class="mi">18</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>
+                    <span class="o">}</span>
+                    <span class="k">else</span><span class="o">{</span>
+                        <span class="n">move</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">getBattleFieldWidth</span><span class="o">()-</span><span class="mi">18</span><span class="o">-</span><span class="n">getX</span><span class="o">(),</span> <span class="n">getBattleFieldHeight</span><span class="o">()-</span><span class="mi">18</span><span class="o">-</span><span class="n">getY</span><span class="o">());</span>
+                        <span class="n">turnLeft</span><span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">%</span> <span class="mi">90</span><span class="o">);</span>
+                        <span class="n">ahead</span><span class="o">(</span><span class="n">move</span><span class="o">);</span>
+                        <span class="n">turnRight</span><span class="o">(</span><span class="mi">90</span><span class="o">);</span>    
                 
-    }
-    
-    /* 리더 확인 메소드 */
-    boolean isLeader(){
-        if(getEnergy()&gt;200)
-            return true; // 리더
-        return false; // 노예
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="c1">//tStrategy.tStrategyTo12();</span>
+     
+                <span class="cm">/*적 리더가 사망시 드로이드 제거를 위해 벽에서 이동 탈출*/</span>
+                <span class="k">if</span><span class="o">(!</span><span class="n">eLive</span><span class="o">)</span>
+                    <span class="n">dodW</span><span class="o">.</span><span class="na">wallSmoothMove</span><span class="o">();</span>
+            
+                <span class="n">execute</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+     
+     
+        <span class="cm">/* 스캔 Event */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onScannedRobot</span><span class="o">(</span><span class="n">ScannedRobotEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            
+            <span class="cm">/* 적 Data 생성 및 업데이트 */</span>
+            <span class="n">Enemy</span> <span class="n">en</span><span class="o">;</span>
+            
+            <span class="k">if</span><span class="o">(!</span><span class="n">isTeammate</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">()))</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">targets</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">()))</span> <span class="o">{</span>
+                    <span class="n">en</span> <span class="o">=</span> <span class="o">(</span><span class="n">Enemy</span><span class="o">)</span><span class="n">targets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                    <span class="n">en</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEnergy</span><span class="o">(),</span> <span class="n">getX</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toRadians</span><span class="o">(</span><span class="n">normalRelativeAngle</span><span class="o">(</span><span class="mf">90.0</span><span class="n">D</span> <span class="o">-</span> <span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">())))),</span> <span class="n">getY</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toRadians</span><span class="o">(</span><span class="n">normalRelativeAngle</span><span class="o">(</span><span class="mf">90.0</span><span class="n">D</span> <span class="o">-</span> <span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">())))),</span> <span class="n">e</span><span class="o">.</span><span class="na">getHeading</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getVelocity</span><span class="o">(),</span> <span class="n">getTime</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getHeadingRadians</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearingRadians</span><span class="o">());</span>
+                <span class="o">}</span> 
+                <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">en</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Enemy</span> <span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getEnergy</span><span class="o">(),</span> <span class="n">getX</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toRadians</span><span class="o">(</span><span class="n">normalRelativeAngle</span><span class="o">(</span><span class="mf">90.0</span><span class="n">D</span> <span class="o">-</span> <span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">())))),</span> <span class="n">getY</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toRadians</span><span class="o">(</span><span class="n">normalRelativeAngle</span><span class="o">(</span><span class="mf">90.0</span><span class="n">D</span> <span class="o">-</span> <span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">())))),</span> <span class="n">e</span><span class="o">.</span><span class="na">getHeading</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getVelocity</span><span class="o">(),</span> <span class="n">getTime</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getHeadingRadians</span><span class="o">(),</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearingRadians</span><span class="o">());</span>
+                    <span class="n">targets</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span><span class="n">en</span><span class="o">);</span>
+                <span class="o">}</span>
+            
+            <span class="n">gapX</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toRadians</span><span class="o">(</span><span class="n">normalRelativeAngle</span><span class="o">(</span><span class="mf">90.0</span><span class="n">D</span> <span class="o">-</span> <span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">()))));</span>
+            <span class="n">gapY</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toRadians</span><span class="o">(</span><span class="n">normalRelativeAngle</span><span class="o">(</span><span class="mf">90.0</span><span class="n">D</span> <span class="o">-</span> <span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">()))));</span>
+            <span class="n">gap</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">toDegrees</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">atan2</span><span class="o">(</span><span class="n">gapX</span><span class="o">,</span> <span class="n">gapY</span><span class="o">));</span>
+     
+            <span class="n">turnGunRight</span><span class="o">(</span><span class="n">Utils</span><span class="o">.</span><span class="na">normalRelativeAngleDegrees</span><span class="o">(</span><span class="n">gap</span> <span class="o">-</span> <span class="n">getGunHeading</span><span class="o">()));</span>
+            <span class="k">if</span><span class="o">(!</span><span class="n">isTeammate</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">()))</span>
+                <span class="cm">/* 거리 200 이하 */</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()&lt;=</span><span class="mi">200</span><span class="o">){</span>
+                    <span class="n">setBulletColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">);</span>
+                    <span class="n">fire</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="cm">/* 거리 500 이하 */</span>
+                <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getDistance</span><span class="o">()&lt;=</span><span class="mi">500</span><span class="o">){</span>
+                    <span class="n">setBulletColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">YELLOW</span><span class="o">);</span>
+                    <span class="n">fire</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+                <span class="o">}</span>
+                
+                <span class="cm">/* 거리 500 이상 */</span>
+                <span class="k">else</span><span class="o">{</span>
+                    <span class="n">setBulletColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+                    <span class="n">fire</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+                <span class="o">}</span>
+            
+        <span class="o">}</span>
+            
+        <span class="cm">/* 적 로봇의 생사 유무 Event */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onRobotDeath</span><span class="o">(</span><span class="n">RobotDeathEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">isTeammate</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">()))</span> <span class="c1">// 팀원인 경우 팀원 숫자를 한명 줄임</span>
+                <span class="n">teamCount</span><span class="o">--;</span>
+            <span class="k">else</span><span class="o">{</span>
+                <span class="n">Enemy</span> <span class="n">en</span> <span class="o">=</span> <span class="o">(</span><span class="n">Enemy</span><span class="o">)</span><span class="n">targets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                <span class="n">en</span><span class="o">.</span><span class="na">live</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">en</span><span class="o">.</span><span class="na">eLeader</span><span class="o">)</span>
+                    <span class="n">eLive</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
         
-    }
- 
-    /* 절대 각도 계산 */
-    public double normalAbsoluteHeading(double angle){
-      if (angle &lt; 0.0D) {
-        return 360.0D + angle % 360.0D;
-      }
-      return angle % 360.0D;
-    }
- 
-    /* 상대 각도 계산 */
-    public double normalRelativeAngle(double angle){
-      if (angle &gt; 180.0D)
-        return (angle + 180.0D) % 360.0D - 180.0D;
-      if (angle &lt; -180.0D)
-        return (angle - 180.0D) % 360.0D + 180.0D;
-      return angle;
-    }
-    
-    /* 변수 반환 함수 */
-    int getDodgeCount() {
-        return dodgeCount;
-    }
-    
-    int getHitBullet() {
-        return hitBullet;
-    }
-    
-    int getHitWall() {
-        return hitWall;
-    }
-    
-    int getHitMyBullet() {
-        return hitMyBullet;
-    }
-    
-    int getTeamCount() {
-        return teamCount;
-    }
-    
-    double getBulletBearing() {
-        return bulletBearing;
-    }
-    
-    boolean getLeader() {
-        return leader;
-    }
-    
-    boolean getDodgeMan() {
-        return dodgeMan;
-    }
-    
-} ```
+        <span class="o">}</span>
+        
+        <span class="cm">/* 적과 충돌 했을 때 */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onHitRobot</span><span class="o">(</span><span class="n">HitRobotEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">()</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">90</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">back</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="n">ahead</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+            
+        
+        <span class="cm">/* 적에 의해 피탄 당했을 때 Event. 방향 변환에 사용*/</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onHitByBullet</span><span class="o">(</span><span class="n">HitByBulletEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Enemy</span> <span class="n">en</span> <span class="o">=</span> <span class="o">(</span><span class="n">Enemy</span><span class="o">)</span><span class="n">targets</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+            
+            <span class="n">hitBullet</span><span class="o">++;</span>
+            <span class="n">dodgeCount</span><span class="o">++;</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">dodgeCount</span><span class="o">&gt;</span><span class="mi">10</span><span class="o">)</span>
+                <span class="n">dodgeCount</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>        
+            <span class="n">bulletBearing</span><span class="o">=</span><span class="n">e</span><span class="o">.</span><span class="na">getBearing</span><span class="o">();</span>
+            
+        <span class="o">}</span>
+        
+        <span class="cm">/* 적을 피격했을 때 Event */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onBulletHit</span><span class="o">(</span><span class="n">BulletHitEvent</span> <span class="n">e</span><span class="o">){</span>
+            <span class="n">hitMyBullet</span><span class="o">++;</span>
+        <span class="o">}</span>
+        
+        <span class="cm">/* 벽에 출돌했을 때 Event */</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="n">onHitWall</span><span class="o">(</span><span class="n">HitWallEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            
+            <span class="n">hitWall</span><span class="o">++;</span>
+        <span class="o">}</span>
+        
+        <span class="cm">/* 특정 좌표로 이동 */</span>
+        <span class="kt">void</span> <span class="n">goTo</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">){</span>
+            <span class="kt">double</span> <span class="n">angle</span> <span class="o">=</span> <span class="n">normalAbsoluteHeading</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">toDegrees</span><span class="o">(</span><span class="mf">1.570796326794897</span><span class="n">D</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="na">atan2</span><span class="o">(</span><span class="n">getY</span><span class="o">()</span> <span class="o">-</span> <span class="n">y</span><span class="o">,</span> <span class="n">getX</span><span class="o">()</span> <span class="o">-</span> <span class="n">x</span><span class="o">)));</span>
+            <span class="kt">int</span> <span class="n">dir</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="kt">double</span> <span class="n">distance</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+     
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">normalRelativeAngle</span><span class="o">(</span><span class="n">getHeading</span><span class="o">()</span> <span class="o">-</span> <span class="n">angle</span> <span class="o">+</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">angle</span> <span class="o">&gt;</span> <span class="mf">90.0</span><span class="n">D</span><span class="o">)</span>
+            <span class="o">{</span>
+              <span class="n">angle</span> <span class="o">-=</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">;</span>
+              <span class="n">dir</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">90.0</span><span class="n">D</span><span class="o">)</span>
+            <span class="o">{</span>
+              <span class="n">angle</span> <span class="o">+=</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">;</span>
+              <span class="n">dir</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+            
+            <span class="n">distance</span><span class="o">=</span><span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">((</span><span class="n">x</span><span class="o">-</span><span class="n">getX</span><span class="o">())*(</span><span class="n">x</span><span class="o">-</span><span class="n">getX</span><span class="o">())+(</span><span class="n">y</span><span class="o">-</span><span class="n">getY</span><span class="o">())*(</span><span class="n">y</span><span class="o">-</span><span class="n">getY</span><span class="o">()),</span> <span class="mf">0.5</span><span class="o">);</span>
+            <span class="n">setTurnLeft</span><span class="o">(</span><span class="n">angle</span><span class="o">);</span>
+            
+            <span class="n">ahead</span><span class="o">(</span><span class="n">distance</span> <span class="o">*</span> <span class="n">dir</span><span class="o">);</span>
+                    
+        <span class="o">}</span>
+        
+        <span class="cm">/* 리더 확인 메소드 */</span>
+        <span class="kt">boolean</span> <span class="n">isLeader</span><span class="o">(){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">getEnergy</span><span class="o">()&gt;</span><span class="mi">200</span><span class="o">)</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="c1">// 리더</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// 노예</span>
+            
+        <span class="o">}</span>
+     
+        <span class="cm">/* 절대 각도 계산 */</span>
+        <span class="kd">public</span> <span class="kt">double</span> <span class="n">normalAbsoluteHeading</span><span class="o">(</span><span class="kt">double</span> <span class="n">angle</span><span class="o">){</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="n">D</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="mf">360.0</span><span class="n">D</span> <span class="o">+</span> <span class="n">angle</span> <span class="o">%</span> <span class="mf">360.0</span><span class="n">D</span><span class="o">;</span>
+          <span class="o">}</span>
+          <span class="k">return</span> <span class="n">angle</span> <span class="o">%</span> <span class="mf">360.0</span><span class="n">D</span><span class="o">;</span>
+        <span class="o">}</span>
+     
+        <span class="cm">/* 상대 각도 계산 */</span>
+        <span class="kd">public</span> <span class="kt">double</span> <span class="n">normalRelativeAngle</span><span class="o">(</span><span class="kt">double</span> <span class="n">angle</span><span class="o">){</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">angle</span> <span class="o">&gt;</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">)</span>
+            <span class="k">return</span> <span class="o">(</span><span class="n">angle</span> <span class="o">+</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">)</span> <span class="o">%</span> <span class="mf">360.0</span><span class="n">D</span> <span class="o">-</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">;</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">180.0</span><span class="n">D</span><span class="o">)</span>
+            <span class="k">return</span> <span class="o">(</span><span class="n">angle</span> <span class="o">-</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">)</span> <span class="o">%</span> <span class="mf">360.0</span><span class="n">D</span> <span class="o">+</span> <span class="mf">180.0</span><span class="n">D</span><span class="o">;</span>
+          <span class="k">return</span> <span class="n">angle</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="cm">/* 변수 반환 함수 */</span>
+        <span class="kt">int</span> <span class="n">getDodgeCount</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">dodgeCount</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">int</span> <span class="n">getHitBullet</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">hitBullet</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">int</span> <span class="n">getHitWall</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">hitWall</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">int</span> <span class="n">getHitMyBullet</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">hitMyBullet</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">int</span> <span class="n">getTeamCount</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">teamCount</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">double</span> <span class="n">getBulletBearing</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">bulletBearing</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">boolean</span> <span class="n">getLeader</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">leader</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="kt">boolean</span> <span class="n">getDodgeMan</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">dodgeMan</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+    <span class="o">}</span>
 </code></pre>
 </div>
 <div class="footnotes">
@@ -671,7 +677,7 @@ public class Hulk extends Avanger {
 		  <li><i class="fa fa-folder-open"></i></li>
 		  
 		  
-			 
+			
 				<li><a href="/categories.html#Java-ref">
 					Java <span>(3)</span>
 					
@@ -679,42 +685,42 @@ public class Hulk extends Avanger {
 			
 		  
 		</ul>
-		  
+		
 
 		
 		<ul class="list-inline">
 		  <li><i class="fa fa-tags"></i></li>
 		  
 		  
-			 
+			
 				<li>
 					<a href="/tags.html#Java-ref">
 					Java <span>(6)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#ROBOCODE-ref">
 					ROBOCODE <span>(1)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#교육 툴-ref">
 					교육 툴 <span>(1)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#로보코드-ref">
 					로보코드 <span>(1)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#자바-ref">
 					자바 <span>(1)</span>
@@ -725,7 +731,7 @@ public class Hulk extends Avanger {
 		  
 		  
 		</ul>
-		  
+		
 
 		<hr>
 
@@ -750,7 +756,7 @@ public class Hulk extends Avanger {
       </section>
 
       <section class="col-sm-6 author">
-        <img src="http://www.gravatar.com/avatar/" class="img-rounded author-image" />
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
         <h4 class="section-title author-name">Donghyun Seo</h4>
         <p class="author-bio">How do you define yourself?</p>
       </section>
@@ -769,12 +775,29 @@ public class Hulk extends Avanger {
 
 		<hr>
 	</div>
-	
+
 	<div class="col-sm-2 sidebar-2">
-	
+
 	</div>
 </article>
 <div class="clearfix"></div>
+
+
+
+    
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
 
 

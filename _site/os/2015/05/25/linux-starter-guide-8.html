@@ -144,13 +144,13 @@
 		<div class="page-header">
   <h1>[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트 </h1>
 </div>
-	
+
 <article>
 
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   May 
+	   May
 	   25th,
 	   
 	   2015
@@ -348,45 +348,45 @@
 
 <h3 id="section-5">본 쉘의 산술 연산</h3>
 
-<p><code class="highlighter-rouge">bash
-$ a=2+3
-$ echo $a
-$ a=`expr 2 + 3` (반드시 빈칸)
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">a</span><span class="o">=</span>2+3
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$a</span>
+<span class="gp">$ </span><span class="nv">a</span><span class="o">=</span><span class="sb">`</span>expr 2 + 3<span class="sb">`</span> <span class="o">(</span>반드시 빈칸<span class="o">)</span>
+</code></pre>
+</div>
 
 <hr />
 
 <h3 id="let----">콘 쉘의 let 명령어를 이용한 산술 연산</h3>
 
-<p><code class="highlighter-rouge">bash
-$ let 변수=수식
-$ let a=2*3
-$ echo $a
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">let </span>변수<span class="o">=</span>수식
+<span class="gp">$ </span><span class="nb">let </span><span class="nv">a</span><span class="o">=</span>2<span class="k">*</span>3
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$a</span>
 6
-</code></p>
+</code></pre>
+</div>
 
 <hr />
 
 <h3 id="let-----1">콘 쉘의 let “수식”을 이용한 산술 수식</h3>
 
-<p>```bash
-((수식)) = let “ 수식 “</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">((</span>수식<span class="o">))</span> <span class="o">=</span> <span class="nb">let</span> <span class="s2">" 수식 "</span>
 
-<p>if (( $# != 1 ))
-then
-fi
-```</p>
+<span class="k">if</span> <span class="o">((</span> <span class="nv">$# </span>!<span class="o">=</span> 1 <span class="o">))</span>
+<span class="k">then
+fi</span>
+</code></pre>
+</div>
 
 <hr />
 
 <h3 id="declare">변수 타입 선언 (declare)</h3>
 
-<p><code class="highlighter-rouge">bash
-$ declare -i a (a는 정수형 변수)
-$ a=12
-$ a=a+1 (let 필요 없음)
-$ echo $a
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">declare</span> -i a <span class="o">(</span>a는 정수형 변수<span class="o">)</span>
+<span class="gp">$ </span><span class="nv">a</span><span class="o">=</span>12
+<span class="gp">$ </span><span class="nv">a</span><span class="o">=</span>a+1 <span class="o">(</span><span class="nb">let </span>필요 없음<span class="o">)</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$a</span>
+</code></pre>
+</div>
 
 <table>
   <thead>
@@ -632,88 +632,89 @@ $ echo $a
 
 <h2 id="section-14">05 쉘 스크립트 사용 예</h2>
 
-<p>```bash
-#! /bin/bash</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
 
-<p>FCnt=0
-LFlag=0
-PFlag=0
-IFlag=0
-FFlag=0
-trash=~/.trash</p>
+<span class="nv">FCnt</span><span class="o">=</span>0
+<span class="nv">LFlag</span><span class="o">=</span>0
+<span class="nv">PFlag</span><span class="o">=</span>0
+<span class="nv">IFlag</span><span class="o">=</span>0
+<span class="nv">FFlag</span><span class="o">=</span>0
+<span class="nv">trash</span><span class="o">=</span>~/.trash
 
-<p>error ()
-{
-cat « END
+error <span class="o">()</span>
+<span class="o">{</span>
+cat <span class="sh">&lt;&lt; END
 echo 휴지통 관리 프로그램 사용법 :
-echo   trash -p : “휴지통 비우기”
-echo   trash -i : “휴지통 비우기(확인)”
-echo   trash -l : “휴지통 확인”
-echo   trash 파일* : “휴지통에 버리기”
+echo   trash -p : "휴지통 비우기"
+echo   trash -i : "휴지통 비우기(확인)"
+echo   trash -l : "휴지통 확인"
+echo   trash 파일* : "휴지통에 버리기"
 END
-exit 1
-}</p>
+</span><span class="nb">exit </span>1
+<span class="o">}</span>
 
-<p>for list in $*
-do
-  case $list in
-    “-p”)
-        PFlag=1
-        ;;
-    “-i”)
-    IFlag=1
-    ;;
-    “-l”)
-        LFlag=1
-        ;;
-    “-*”)
-        echo $list 는 잘못된 옵션
+<span class="k">for </span>list <span class="k">in</span> <span class="nv">$*</span>
+<span class="k">do
+  case</span> <span class="nv">$list</span> <span class="k">in</span>
+    <span class="s2">"-p"</span><span class="p">)</span>
+        <span class="nv">PFlag</span><span class="o">=</span>1
+        <span class="p">;;</span>
+    <span class="s2">"-i"</span><span class="p">)</span>
+    <span class="nv">IFlag</span><span class="o">=</span>1
+    <span class="p">;;</span>
+    <span class="s2">"-l"</span><span class="p">)</span>
+        <span class="nv">LFlag</span><span class="o">=</span>1
+        <span class="p">;;</span>
+    <span class="s2">"-*"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="nv">$list</span> 는 잘못된 옵션
     error
-        ;;
-    *)
-        FFlag=1
-        fileList[$FCnt]=$list
-        let FCnt=FCnt+1
-        ;;
-    esac
-done</p>
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nv">FFlag</span><span class="o">=</span>1
+        fileList[<span class="nv">$FCnt</span><span class="o">]=</span><span class="nv">$list</span>
+        <span class="nb">let </span><span class="nv">FCnt</span><span class="o">=</span>FCnt+1
+        <span class="p">;;</span>
+    <span class="k">esac</span>
+<span class="k">done
 
-<p>let total=$LFlag+$PFlag+$FFlag+$IFlag
-if (( total != 1 ))
-then
-   error
-fi</p>
+</span><span class="nb">let </span><span class="nv">total</span><span class="o">=</span><span class="nv">$LFlag</span>+<span class="nv">$PFlag</span>+<span class="nv">$FFlag</span>+<span class="nv">$IFlag</span>
+<span class="k">if</span> <span class="o">((</span> total !<span class="o">=</span> 1 <span class="o">))</span>
+<span class="k">then
+   </span>error
+<span class="k">fi
 
-<p>if [ ! -d $trash ]
-then
-    ‘mkdir’ $trash
-fi</p>
+if</span> <span class="o">[</span> ! -d <span class="nv">$trash</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="s1">'mkdir'</span> <span class="nv">$trash</span>
+<span class="k">fi
 
-<p>if (( LFlag == 1 ))
-then
-   ‘ls’ -lgF $trash
-   exit 0
-fi</p>
+if</span> <span class="o">((</span> LFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'ls'</span> -lgF <span class="nv">$trash</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
 
-<p>if (( PFlag == 1 ))
-then
-   ‘rm’ $trash/*
-   exit 0
-fi</p>
+if</span> <span class="o">((</span> PFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'rm'</span> <span class="nv">$trash</span>/<span class="k">*</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
 
-<p>if (( IFlag == 1 ))
-then
-   ‘rm’ -i $trash/*
-   exit 0
-fi</p>
+if</span> <span class="o">((</span> IFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'rm'</span> -i <span class="nv">$trash</span>/<span class="k">*</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
 
-<p>if ((FFlag == 1 ))
-then
-   ‘mv’ ${fileList[*]} $trash
-   exit 0
-fi
-exit 0
-```</p>
+
+if</span> <span class="o">((</span>FFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'mv'</span> <span class="k">${</span><span class="nv">fileList</span><span class="p">[*]</span><span class="k">}</span> <span class="nv">$trash</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
+</span><span class="nb">exit </span>0
+</code></pre>
+</div>
 
 <hr />
 
@@ -752,7 +753,7 @@ exit 0
 		  <li><i class="fa fa-folder-open"></i></li>
 		  
 		  
-			 
+			
 				<li><a href="/categories.html#OS-ref">
 					OS <span>(14)</span>
 					
@@ -760,28 +761,28 @@ exit 0
 			
 		  
 		</ul>
-		  
+		
 
 		
 		<ul class="list-inline">
 		  <li><i class="fa fa-tags"></i></li>
 		  
 		  
-			 
+			
 				<li>
 					<a href="/tags.html#OS-ref">
 					OS <span>(17)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#Linux-ref">
 					Linux <span>(14)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#guide-ref">
 					guide <span>(14)</span>
@@ -792,7 +793,7 @@ exit 0
 		  
 		  
 		</ul>
-		  
+		
 
 		<hr>
 
@@ -817,7 +818,7 @@ exit 0
       </section>
 
       <section class="col-sm-6 author">
-        <img src="http://www.gravatar.com/avatar/" class="img-rounded author-image" />
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
         <h4 class="section-title author-name">Donghyun Seo</h4>
         <p class="author-bio">How do you define yourself?</p>
       </section>
@@ -836,12 +837,29 @@ exit 0
 
 		<hr>
 	</div>
-	
+
 	<div class="col-sm-2 sidebar-2">
-	
+
 	</div>
 </article>
 <div class="clearfix"></div>
+
+
+
+    
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
 
 

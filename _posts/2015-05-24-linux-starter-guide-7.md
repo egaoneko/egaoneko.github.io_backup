@@ -5,6 +5,8 @@ date: 2015-05-24 21:00:07
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 사용자 관리를 통해 여러 유저에게 다양한 접근 권한을 부여할 수 있다. 유저는 고유 ID 1개와 기본그룹 ID 1개 그리고 보조그룹 ID 여러 개로 구성된다. UID, GID는 숫자로 구성되고 식별자 역할을 수행한다.

@@ -5,6 +5,8 @@ date: 2015-05-24 21:00:03
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 ## 01 디렉토리 구조

@@ -144,13 +144,13 @@
 		<div class="page-header">
   <h1>Ajax의 async설정 </h1>
 </div>
-	
+
 <article>
 
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   May 
+	   May
 	   12th,
 	   
 	   2015
@@ -160,37 +160,37 @@
 
 <p>문득, 덧글 쓰기 부분과 답글, 삭제같은 부분을 로그인하지 않은 사용자에게 보여주지 않도록 만들고 싶은 욕구가 생겼다.</p>
 
-<p><code class="highlighter-rouge">javascript
-function isLogin() {
-    var ret;
-    $.ajax({
-        type: "GET",
-        url: contextPath + "/isLogin.do",
-        success: function() {
-            ret = true;
-        },
-        statusCode: {
-            500: function() {
-                alert("로그인을 하지 않았습니다.");
-                ret = false;
-            }
-        },
-    });
-    return ret
-}
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isLogin</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ret</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s2">"GET"</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="nx">contextPath</span> <span class="o">+</span> <span class="s2">"/isLogin.do"</span><span class="p">,</span>
+        <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">ret</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="na">statusCode</span><span class="p">:</span> <span class="p">{</span>
+            <span class="mi">500</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s2">"로그인을 하지 않았습니다."</span><span class="p">);</span>
+                <span class="nx">ret</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">ret</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p>위와 같이 Ajax를 이용하여 로그인을 하였으면 <code class="highlighter-rouge">true</code>를, 로그인을 하지 않았으면 <code class="highlighter-rouge">false</code>를 반환하는 함수를 작성하였다.</p>
 
-<p>```javascript
-function toggleWrite(separator) {</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">toggleWrite</span><span class="p">(</span><span class="nx">separator</span><span class="p">)</span> <span class="p">{</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>if(isLogin()==false){
-    return;
-}
+    <span class="k">if</span><span class="p">(</span><span class="nx">isLogin</span><span class="p">()</span><span class="o">==</span><span class="kc">false</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
 
-$('#'+separator+'_write').toggle()
-$('#'+separator+'_write_btn').toggle() } ```
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#'</span><span class="o">+</span><span class="nx">separator</span><span class="o">+</span><span class="s1">'_write'</span><span class="p">).</span><span class="nx">toggle</span><span class="p">()</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#'</span><span class="o">+</span><span class="nx">separator</span><span class="o">+</span><span class="s1">'_write_btn'</span><span class="p">).</span><span class="nx">toggle</span><span class="p">()</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
@@ -215,26 +215,26 @@ $('#'+separator+'_write_btn').toggle() } ```
 
 <p>이를 해결하는 방법은 정말 간단하다. 아래와 같이 Ajax를 작성할때 <code class="highlighter-rouge">async</code>속성의 값을 <code class="highlighter-rouge">false</code>로 작성하면 된다. 이렇게 값을 설정하면 Ajax는 더 이상 비동기방식으로 동작하지 않고 동기방식으로 동작하게 되고 위에서 겪었던 문제를 해결할 수 있다.</p>
 
-<p><code class="highlighter-rouge">javascript
-function isLogin() {
-    var ret;
-    $.ajax({
-        type: "GET",
-        url: contextPath + "/isLogin.do",
-        success: function() {
-            ret = true;
-        },
-        statusCode: {
-            500: function() {
-                alert("로그인을 하지 않았습니다.");
-                ret = false;
-            }
-        },
-        async: false
-    });
-    return ret
-}
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">isLogin</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">ret</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s2">"GET"</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="nx">contextPath</span> <span class="o">+</span> <span class="s2">"/isLogin.do"</span><span class="p">,</span>
+        <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">ret</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="na">statusCode</span><span class="p">:</span> <span class="p">{</span>
+            <span class="mi">500</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s2">"로그인을 하지 않았습니다."</span><span class="p">);</span>
+                <span class="nx">ret</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="na">async</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">ret</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <p><code class="highlighter-rouge">async</code>에 대하여 더 알고 싶은 것이 있다면 다음 <a href="http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings">jQuery API 문서</a>에서 확인할 수 있다.</p>
 
@@ -245,7 +245,7 @@ function isLogin() {
 		  <li><i class="fa fa-folder-open"></i></li>
 		  
 		  
-			 
+			
 				<li><a href="/categories.html#Javascript-ref">
 					Javascript <span>(1)</span>
 					
@@ -253,28 +253,28 @@ function isLogin() {
 			
 		  
 		</ul>
-		  
+		
 
 		
 		<ul class="list-inline">
 		  <li><i class="fa fa-tags"></i></li>
 		  
 		  
-			 
+			
 				<li>
 					<a href="/tags.html#Javascript-ref">
 					Javascript <span>(1)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#Ajax-ref">
 					Ajax <span>(1)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#async-ref">
 					async <span>(1)</span>
@@ -285,7 +285,7 @@ function isLogin() {
 		  
 		  
 		</ul>
-		  
+		
 
 		<hr>
 
@@ -310,7 +310,7 @@ function isLogin() {
       </section>
 
       <section class="col-sm-6 author">
-        <img src="http://www.gravatar.com/avatar/" class="img-rounded author-image" />
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
         <h4 class="section-title author-name">Donghyun Seo</h4>
         <p class="author-bio">How do you define yourself?</p>
       </section>
@@ -329,12 +329,29 @@ function isLogin() {
 
 		<hr>
 	</div>
-	
+
 	<div class="col-sm-2 sidebar-2">
-	
+
 	</div>
 </article>
 <div class="clearfix"></div>
+
+
+
+    
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
 
 

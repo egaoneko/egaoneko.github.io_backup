@@ -15,7 +15,7 @@ defaults:
     values:
       title: SmileCat's Blog
 
-description: Stylish Jekyll Theme
+description: SmileCat's Blog
 author:
   name: Donghyun Seo
   email: egaoneko@naver.com
@@ -39,12 +39,6 @@ github: [metadata]
 kramdown:
     input: GFM
     hard_wrap: false
-safe: true
-lsi: false
-incremental: false
-highlighter: rouge
-gist:
-    noscript: false
 
 gems:
 - jekyll-mentions

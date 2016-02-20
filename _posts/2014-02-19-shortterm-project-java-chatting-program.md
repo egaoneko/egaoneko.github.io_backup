@@ -5,6 +5,8 @@ date: 2014-02-19 02:21:41
 categories: Project
 tags: [Java, MySQL, window builder, 소규모 프로젝트, 윤성우]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.baseurl }}/assets/media/java-chatting-program1.jpg)

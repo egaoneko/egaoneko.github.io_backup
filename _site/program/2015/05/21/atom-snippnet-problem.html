@@ -144,13 +144,13 @@
 		<div class="page-header">
   <h1>Atom에서 autocomplete-plus를 사용 중 tab과 enter가 작동하지 않는 경우 </h1>
 </div>
-	
+
 <article>
 
 	<div class="col-sm-10">
 	 <span class="post-date">
 	   
-	   May 
+	   May
 	   21st,
 	     
 	   2015
@@ -166,10 +166,10 @@
   <li>아래의 코드를 <code class="highlighter-rouge">keymap.cson</code>에 붙여넣어 <code class="highlighter-rouge">enter</code>에 대한 기능을 overwrite한다.</li>
 </ul>
 
-<p><code class="highlighter-rouge">
-'atom-text-editor:not(mini).autocomplete-active':
+<div class="highlighter-rouge"><pre class="highlight"><code>'atom-text-editor:not(mini).autocomplete-active':
     'enter': 'autocomplete-plus:confirm'
-</code></p>
+</code></pre>
+</div>
 
 <p>위 작업을 수행하면 emmet 플러그인은 <code class="highlighter-rouge">tab</code>으로 사용할 수 있으며, built-in 플러그인은 <code class="highlighter-rouge">enter</code>을 통하여 사용할 수 있다.</p>
 
@@ -181,7 +181,7 @@
 		  <li><i class="fa fa-folder-open"></i></li>
 		  
 		  
-			 
+			
 				<li><a href="/categories.html#Program-ref">
 					Program <span>(4)</span>
 					
@@ -189,21 +189,21 @@
 			
 		  
 		</ul>
-		  
+		
 
 		
 		<ul class="list-inline">
 		  <li><i class="fa fa-tags"></i></li>
 		  
 		  
-			 
+			
 				<li>
 					<a href="/tags.html#Atom-ref">
 					Atom <span>(2)</span>
 					,
 					</a>
 				</li>
-			 
+			
 				<li>
 					<a href="/tags.html#autocomplete-plus-ref">
 					autocomplete-plus <span>(1)</span>
@@ -214,7 +214,7 @@
 		  
 		  
 		</ul>
-		  
+		
 
 		<hr>
 
@@ -239,7 +239,7 @@
       </section>
 
       <section class="col-sm-6 author">
-        <img src="http://www.gravatar.com/avatar/" class="img-rounded author-image" />
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
         <h4 class="section-title author-name">Donghyun Seo</h4>
         <p class="author-bio">How do you define yourself?</p>
       </section>
@@ -258,12 +258,29 @@
 
 		<hr>
 	</div>
-	
+
 	<div class="col-sm-2 sidebar-2">
-	
+
 	</div>
 </article>
 <div class="clearfix"></div>
+
+
+
+    
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
 
 

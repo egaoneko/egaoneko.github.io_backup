@@ -5,6 +5,8 @@ date: 2015-05-09 15:17:00
 categories: Blog
 tags: [Blog, Jekyll, Travis CI]
 published: true
+fullview: false
+comments: true
 ---
 
 Wordpress에서 Jekyll로 migration을 시도하고 Jekyll에 맞춘 파일은 github로 올렸을 때 페이지가 생성되지 않는 오류가 있었다. Local에서는 문제없이 실행되던 것들이 github로 올리면 문제가 발생하였고 이를 해결할 방법을 열심히 찾았었는데 그 방법은 github의 help에 있었다.

@@ -5,6 +5,8 @@ date: 2014-11-17 22:26:37
 categories: Project
 tags: [Java, SQLite, Window Builder, 소규모 프로젝트]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/Devgrus-Diary.png)

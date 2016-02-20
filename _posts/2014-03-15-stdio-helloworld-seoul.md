@@ -5,6 +5,8 @@ date: 2014-03-15 16:16:36
 categories: Seminar
 tags: [Hello World, seoul, STD.IO, 세미나]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/helloworld.jpg)

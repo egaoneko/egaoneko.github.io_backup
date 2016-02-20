@@ -5,6 +5,8 @@ date: 2015-05-25 02:50:00
 categories: Blog
 tags: [Blog, Jekyll, Sitemap.xml]
 published: true
+fullview: false
+comments: true
 ---
 
 운영하고있는 Jekyll블로그의 Sitemap.xml을 구글 웹마스터에 제출하고자 방법을 찾아보았다. 몇몇 방법들 있었지만 플러그인을 설치하지 않고 Sitemap.xml을 얻어 내고 싶었다.

@@ -5,6 +5,8 @@ date: 2014-10-15 15:15:39
 categories: Tips
 tags: [comodo firewall, OS, Windows8.1]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.url }}/assets/media/comodo.png)

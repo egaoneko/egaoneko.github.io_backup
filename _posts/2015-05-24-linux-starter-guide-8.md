@@ -5,6 +5,8 @@ date: 2015-05-24 21:00:08
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 쉘 스크립트 부분에 대한 전반적인 내용은 유닉스 리눅스 사용에서 프로그래밍까지(창병모 저)라는 책을 참조하며 작성하였다.

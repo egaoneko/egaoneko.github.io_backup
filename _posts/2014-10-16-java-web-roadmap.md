@@ -5,6 +5,8 @@ date: 2014-10-16 16:19:02
 categories: Clipping
 tags: [Youtube, Java, Road Map, Web]
 published: true
+fullview: false
+comments: true
 ---
 
 <iframe width="676" height="380" src="//www.youtube.com/embed/3mgMwObtaQ0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>

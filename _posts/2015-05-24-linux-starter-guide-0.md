@@ -5,6 +5,8 @@ date: 2015-05-24 21:00:00
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 ![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/linux04.jpg)

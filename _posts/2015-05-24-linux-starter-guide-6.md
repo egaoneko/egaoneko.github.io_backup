@@ -5,6 +5,8 @@ date: 2015-05-24 21:00:06
 categories: OS
 tags: [OS, Linux, guide]
 published: true
+fullview: false
+comments: true
 ---
 
 >vi는 Emacs와 함께 유닉스 환경에서 가장 많이 쓰이는 문서 편집기이다. 간결하면서도, 강력한 기능으로 열광적인 사용자가 많다. 현재는 오리지널 vi를 사용하는 경우는 거의 없고, 일반적으로 기능을 모방하여 만들어진 클론을 사용하고 있다.
