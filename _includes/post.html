@@ -119,5 +119,9 @@
 	<div class="col-sm-2 sidebar-2">
 
 	</div>
+
+    {% if site.disqus and page.comments %}
+        {% include disqus.html %}
+    {% endif %}
 </article>
 <div class="clearfix"></div>
