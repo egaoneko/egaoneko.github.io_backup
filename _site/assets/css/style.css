@@ -283,3 +283,15 @@ footer {
 ul.dropdown-menu>li>a>i.fa {
     width: 1.3em;
 }
+
+
+#sidebar-menu {
+	margin-top: 50px;
+}
+
+#sidebar-menu a {
+	color: #ddd;
+}
+#sidebar-menu a:hover {
+	color: #FFF;
+}

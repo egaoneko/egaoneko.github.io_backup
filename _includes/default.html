@@ -65,7 +65,7 @@
 			</a>
 			{% endif %}
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
-				<img src="http://www.gravatar.com/avatar/{{site.author.email_md5}}?s=35" class="img-circle" />
+				<img src="{{ site.BASE_PATH }}/assets/media/logo.jpg" style="width: 35px;" class="img-circle" />
 				{{ site.title }}
 			</a>
 		</div>
@@ -83,6 +83,11 @@
 
 	<!-- nav-menu-dropdown -->
 	<div class="btn-group hidden-xs" id="nav-menu">
+		<a href="#" class="btn btn-default">
+			<i class="fa fa-arrow-up"></i>
+		</a>
+	</div>
+	<!-- div class="btn-group hidden-xs" id="nav-menu">
 		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-bars"></i>
 		</button>
@@ -94,7 +99,7 @@
 			<li class="divider"></li>
 			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
 		</ul>
-	</div>
+	</div -->
 
 	<div class="col-sm-3 sidebar hidden-xs" style="{% if site.sidebar_background_image %}background: url({{site.sidebar_background_image}}) no-repeat center center !important;{% endif %}">
 		{% include sidebar.html %}

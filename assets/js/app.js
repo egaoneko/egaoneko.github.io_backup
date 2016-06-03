@@ -32,6 +32,12 @@
 
     // initial activation
     activateTab();
+
+    // search form init
+    $('#search_box').keypress(function (event) {
+        var key_code = event.keyCode || window.event.keyCode;
+        if (key_code == 13) document.getElementById('search_form').submit();
+    });
   };
 
   // run init on document ready
