@@ -2,7 +2,7 @@
 layout: post
 title: 'Facebook Group Crawler'
 date: 2015-05-07 21:53:00
-categories: Coding
+categories: Programming
 tags: [Python, Crawler]
 published: true
 fullview: false
@@ -181,7 +181,7 @@ def facebook_login(username,password):
 	print ("\nLogin to Facebook...."),
 	log_write("<Init>Login to Facebook....\n")
 
-	sys.stdout.flush() 
+	sys.stdout.flush()
 	url = "http://www.facebook.com"
 	driver.get(url)
 	elem = driver.find_element_by_id("email")
@@ -215,7 +215,7 @@ def group_member(cur, group):
 	status_dic['group_id'] = group_id
 
 	status_dic['start_time'] = time.ctime()
-	start_sdate = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())) 
+	start_sdate = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 
 	print "\n<Member, Start>Parsing Group : " + Fore.YELLOW + group_name + "\n"
 	log_write("<Member, Start>Parsing Group : "+ group_name + "\n")
@@ -240,7 +240,7 @@ def group_member(cur, group):
 	# 파싱할 요소
 	xpath_name_params1 = ".//div[@class='fsl fwb fcb']/a/@href"		# 아이디 값
 	xpath_name_params2 = ".//div[@class='fsl fwb fcb']/a/text()"	# 이름 값
-	xpath_name_params3 = ".//div[@class='fsm fwn fcg']/abbr/@title"	# 가입 
+	xpath_name_params3 = ".//div[@class='fsm fwn fcg']/abbr/@title"	# 가입
 
 	html_source = driver.page_source
 

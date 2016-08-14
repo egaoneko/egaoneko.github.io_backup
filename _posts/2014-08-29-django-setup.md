@@ -2,7 +2,7 @@
 layout: post
 title: '[Django] Django 설치'
 date: 2014-08-29 13:14:49
-categories: Python
+categories: Programming
 tags: [Python, Django, 설치, Web]
 published: true
 fullview: false
@@ -58,5 +58,3 @@ pip install Django==1.6.5
 {% highlight bash %}
 pip install https://www.djangoproject.com/download/1.7c2/tarball/
 {% endhighlight %}
-
-

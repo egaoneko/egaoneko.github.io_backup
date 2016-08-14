@@ -14,4 +14,3 @@ comments: true
 STD.IO의 컨퍼런스 중 서울 건국대에서 열렸던 Hello, World!의 각 세션별 내용 정리입니다.
 
 [Downloads]({{ site.baseurl }}/assets/downloads/stdio-helloworld.pdf)
-

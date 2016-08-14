@@ -2,7 +2,7 @@
 layout: post
 title: '[OSX] 맥에서 단어장 사용하기'
 date: 2015-05-26 10:30:00
-categories: Program
+categories: Etc
 tags: [OSX, Dictionary]
 published: true
 fullview: false
@@ -27,4 +27,3 @@ comments: true
 [[추천 유료앱] PopClip, 의외로 편리하고 유용한 작업능률 향상 앱. iOS 스타일의 팝업창을 OS X에 달아주자!](http://macnews.tistory.com/1805)
 
 단어장에 저장하지 않고 간단히 검색해볼 때에는 기본 사전을 단축키를 통해서 사용하고, 단어장을 저장할 때나 좀 더 알아보고 싶을때는 상단에서 말한 방법을 이용하여 사용하고 있다. 맥은 사용하면 사용할수록 편한 기능이 많다는 것을 느낀다.
-

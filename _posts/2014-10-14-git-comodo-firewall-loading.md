@@ -2,7 +2,7 @@
 layout: post
 title: '[Git&COMODO Firewall] Git과 COMODO Firewall을 사용할 때 마우스 우클릭 로딩 문제'
 date: 2014-10-14 19:42:46
-categories: Tips
+categories: Etc
 tags: [comodo firewall, git]
 published: true
 fullview: false
@@ -31,4 +31,3 @@ Git을 설치하면 상단과 같이 "마우스 우클릭"했을 때의 메뉴�
 > If this didn't work for you, try adding the "git.exe" and "sh.exe" to this list and the anti-virus exclusions.
 
 [원본 주소](http://stackoverflow.com/questions/22077556/git-bash-is-slow-on- startup-and-commands)
-

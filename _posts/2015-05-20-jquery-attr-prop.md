@@ -2,7 +2,7 @@
 layout: post
 title: 'jQuery에서 .attr()로 속성 값을 변경하여도 값이 변하지 않아요!'
 date: 2015-05-20 20:10:00
-categories: jQuery
+categories: Programming
 tags: [jQuery, '.attr()', '.prop()']
 published: true
 fullview: false

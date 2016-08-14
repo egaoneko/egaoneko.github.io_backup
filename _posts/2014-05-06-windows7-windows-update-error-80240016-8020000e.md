@@ -2,7 +2,7 @@
 layout: post
 title: '[Windows7] Windows 업데이트 오류 80240016 & 8020000E'
 date: 2014-05-06 13:25:33
-categories: Tips
+categories: Etc
 tags: [OS, Windows7]
 published: true
 fullview: false
@@ -20,4 +20,3 @@ comments: true
 ![screenshot]({{ site.url }}/assets/media/windows-error3.PNG)
 
 위의 절차를 따랐지만 해당 과정을 수행해도 오류는 남아있었고, 그래서 위 글의 조언에 따라 [Windows Update Agent](http://support.microsoft.com/kb/949104)의 링크로 가서 프로그램을 다운받아 수행한 후 해결되었습니다. 위의 어느 과정에서 해결될 지는 모르겠으나 이것이 제가 해결했던 전 과정입니다.
-

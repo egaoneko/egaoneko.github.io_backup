@@ -2,7 +2,7 @@
 layout: post
 title: '[Java 이야기] Window Builder에 Drag&Drop'
 date: 2014-02-24 16:06:29
-categories: Java
+categories: Programming
 tags: [Java, Window Builder]
 published: true
 fullview: false
@@ -24,4 +24,3 @@ comments: true
 ![screenshot]({{ site.url }}/assets/media/window-builder10.jpg)
 
 클릭하시면 위의 이미지와 같이 Drag&Drop으로 GUI를 꾸밀 수 있어요. System항목의 Marquee를 선택하면 여러 개체를 동시에 선택도 가능하고요. 한 가지 아쉬운 점이 이렇게 GroupLayout을 구성하면 각 개체끼리 위치가 연결되어서 가끔 뜻하지 않게 이동되는 경우도 있더라고요. 그럴 경우 되돌리기로 돌려주시면 되고요. 혹시라도 이 부분에 대해 해결책을 알고 계신 분은 댓글 좀 부탁드려요.
-

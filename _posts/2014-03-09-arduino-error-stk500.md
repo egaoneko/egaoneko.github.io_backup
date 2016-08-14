@@ -2,7 +2,7 @@
 layout: post
 title: '[오류] avrdude: stk500_getsync(): not in sync: resp=0x00'
 date: 2014-03-09 13:08:10
-categories: Arduino
+categories: Programming
 tags: [아두이노, 오류]
 published: true
 fullview: false
@@ -20,6 +20,3 @@ comments: true
 ![screenshot]({{ site.baseurl }}/assets/media/arduino-error-stk5003.png)
 
 두번째로 프로그래머 부분인데요. 이 부분에서 AVR ISP로 잡혀있었는데 이걸 AVRISP mk2로 바꾸었어요. 사실 이 부분이 아두이노에서 어떤 역활을 하는지 잘 모르겠지만 바꿔보니 해당 오류와 파생되었던 오류들도 해결되었네요.
-
-
-

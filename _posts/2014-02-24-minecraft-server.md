@@ -2,7 +2,7 @@
 layout: post
 title: '[마인크래프트] 서버를 여는 세 가지의 방법'
 date: 2014-02-24 17:56:54
-categories: Game
+categories: Etc
 tags: [가상 서버 호스팅, 마인크래프트, 서버, 포트 포워딩, 하마치]
 published: true
 fullview: false
@@ -79,5 +79,3 @@ comments: true
 [https://netherbox.com](https://netherbox.com)라는 사이트인데 직접 운영해보지 않아서 자세한 것은 모르겠지만 마인크래프트를 전문적으로 서버 호스팅하는 것 같네요.
 
 개인적으로 사용해본 [DigitalOcean](https://www.digitalocean.com)과 비슷한 램에 비슷한 가격이네요. 서버 호스팅이 익숙하시다면 여러 용도로 사용할 수 있는 DigitalOcean같은 서버 호스팅이 좋겠지만 어렵다면 netherbox도 한 방법이 아닐까 하네요.
-
-

@@ -2,7 +2,7 @@
 layout: post
 title: 'Ajax의 async설정'
 date: 2015-05-11 21:02:00
-categories: Javascript
+categories: Programming
 tags: [Javascript, Ajax, async]
 published: true
 fullview: false

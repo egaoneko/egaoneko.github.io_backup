@@ -2,7 +2,7 @@
 layout: post
 title: '[Java 이야기] 추가한 파일 Window Builder로 열기'
 date: 2014-02-24 11:43:24
-categories: Java
+categories: Programming
 tags: [Java, Window Builder]
 published: true
 fullview: false
@@ -32,6 +32,3 @@ Eclipse로 Java GUI를 만들어야 할 때 Visual Studio 시리즈처럼 쉽게
 ![screenshot]({{ site.url }}/assets/media/window-builder6.jpg)
 
 클릭하고나면 이렇게 Source버튼과 Design버튼이 나타나며 Window Builder을 사용할 수 있어요. 이런 간단한 방법만 알아두면 쉽게 프로젝트를 수행할 수 있고 같이 프로젝트 하는 사람들의 파일을 받아도 부담 없이 열어볼 수 있어요.
-
-
-

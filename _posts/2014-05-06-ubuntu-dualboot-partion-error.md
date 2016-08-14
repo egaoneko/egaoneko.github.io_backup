@@ -2,7 +2,7 @@
 layout: post
 title: '[Ubuntu] 듀얼부팅 구성시 Ubuntu에서 Windows파티션을 인식하지 못할 때'
 date: 2014-05-06 10:30:58
-categories: Tips
+categories: OS
 tags: [OS, ubuntu]
 published: true
 fullview: false

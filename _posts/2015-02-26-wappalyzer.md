@@ -2,7 +2,7 @@
 layout: post
 title: '[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능'
 date: 2015-02-26 00:22:47
-categories: Program
+categories: Tool
 tags: [wappalyzer, Web]
 published: true
 fullview: false

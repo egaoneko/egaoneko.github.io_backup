@@ -2,7 +2,7 @@
 layout: post
 title: '폰트 색깔 코드'
 date: 2015-05-25 15:00:00
-categories: 'CSS'
+categories: 'Programming'
 tags: [CSS, Clipping]
 published: true
 fullview: false
@@ -153,4 +153,3 @@ comments: true
 		<font color="#daa520">■ daa520 goldenrod 골덴로드
 	</p>
 </div>
-

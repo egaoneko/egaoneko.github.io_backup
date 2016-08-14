@@ -2,7 +2,7 @@
 layout: post
 title: '[Windows8.1 & COMODO Firewall] Windows8.1에서 COMODO Firewall을 사용할 때, 프로세스 종료 문제'
 date: 2014-10-15 15:15:39
-categories: Tips
+categories: Etc
 tags: [comodo firewall, OS, Windows8.1]
 published: true
 fullview: false
@@ -77,4 +77,3 @@ COMODO Firewall의 HIPS기능이 해당 문제를 발생시켰네요. HIPS기능
 * "Activites to Monitor" > "Processes' Terminations" : 감시할 활동 부분의 프로세스 제거 부분을 체크 해제하면 됩니다.
 
 위의 방법을 사용하면 발생하는 문제를 해결할 수는 있었어요. 물론 이게 보안에 어떤 영향을 끼칠지 모르고 했지만요. 해당 부분 체크해도 Windows7에서는 문제가 발생하지 않네요. 이 부분에 대해서는 추가 문의를 했어요.저는 일단 해당 부분만 체크 해제하고 사용하고 있습니다. 추가로 응답이 오면 추가하도록 할게요.
-

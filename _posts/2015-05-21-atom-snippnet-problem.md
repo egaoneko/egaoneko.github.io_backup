@@ -2,7 +2,7 @@
 layout: post
 title: 'Atom에서 autocomplete-plus를 사용 중 tab과 enter가 작동하지 않는 경우'
 date: 2015-05-21 02:54:00
-categories: Program
+categories: Tool
 tags: [Atom, autocomplete-plus]
 published: true
 fullview: false
@@ -23,5 +23,3 @@ comments: true
 ```
 
 위 작업을 수행하면 emmet 플러그인은 ``tab``으로 사용할 수 있으며, built-in 플러그인은 ``enter``을 통하여 사용할 수 있다.
-
-

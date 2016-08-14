@@ -2,7 +2,7 @@
 layout: post
 title: '[Django] python3.x mysql connector'
 date: 2014-09-04 12:30:25
-categories: Python
+categories: Programming
 tags: [Python, Connector, Django, MySQL, Web]
 published: true
 fullview: false
@@ -25,4 +25,3 @@ Django에서 MySQL Connector를 이용하는 방법은 Django 공식 홈페이�
 
 > [Django에서 mysql-connector 사용하기](http://dev.mysql.com/doc/connector-python/en
 /connector-python-django-backend.html)
-

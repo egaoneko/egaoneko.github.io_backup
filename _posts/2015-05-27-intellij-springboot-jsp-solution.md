@@ -2,14 +2,14 @@
 layout: post
 title: 'IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책'
 date: 2015-05-27 21:20:00
-categories: IntelliJ
+categories: Tool
 tags: [IntelliJ, Spring Boot, Jsp]
 published: true
 fullview: false
 comments: true
 ---
 
-얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 ["IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제"]({% post_url 2014-02-18-shortterm-project-c-chatting-program %})라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.
+얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 ["IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제"]({% post_url 2015-05-24-intellij-springboot-jsp %})라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.
 
 >This is a Spring Boot problem.
 >
