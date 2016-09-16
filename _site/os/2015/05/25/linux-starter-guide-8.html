@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/ico/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/ico/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/ico/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
+	<link rel="manifest" href="/assets/ico/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/ico/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/logo.jpg" style="width: 35px;" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<a href="#" class="btn btn-default">
+			<i class="fa fa-arrow-up"></i>
+		</a>
+	</div>
+	<!-- div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div -->
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+
+<!--form id="search_form" action="/search.html" method="get" class="text-center" style="margin-bottom: 20px;">
+  <input type="text" id="search_box" name="query" placeholder="Search...">
+</form-->
+
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+	<!--ul id="contact-list-secondary" class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul-->
+</div>
+
+<div id="sidebar-menu" class="text-center">
+	<h3><a href="/">Home</a></h3>
+	<h3><a href="/2010/03/01/profile.html">About</a></h3>
+	<h3><a href="/categories.html">Categories</a></h3>
+	<h3><a href="/tags.html">Tags</a></h3>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트 </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   May
+	   25th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>쉘 스크립트 부분에 대한 전반적인 내용은 유닉스 리눅스 사용에서 프로그래밍까지(창병모 저)라는 책을 참조하며 작성하였다.</p>
+
+<blockquote>
+  <p>쉘 스크립트(shell script)는 쉘이나 명령 줄 인터프리터에서 돌아가도록 작성되었거나 한 운영 체제를 위해 쓰인 스크립트이다. 단순한 도메인 고유 언어로 여기기도 한다. 쉘 스크립트가 수행하는 일반 기능으로는 파일 이용, 프로그램 실행, 문자열 출력 등이 있다.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+</blockquote>
+
+<hr />
+
+<p><strong>장점</strong></p>
+
+<p>쉘 스크립트를 기록하는 것은 다른 프로그래밍 언어의 같은 코드로 쓰인 것보다 훨씬 더 빠른 경우가 많다. 다른 해석 언어에 비해, 쉘 스크립트는 컴파일 단계가 없기 때문에 스크립트는 디버깅을 하는 동안 빠르게 실행할 수 있다.</p>
+
+<p>또한 Python과 같이 독립적으로 설치할 필요가 없기 때문에 쉘 자체가 프로그램 개발 툴로 사용할 수 있다.</p>
+
+<hr />
+
+<p><strong>단점</strong></p>
+
+<p>한 가지 단점으로는 실행되는 각 명령에 대한 잠재적으로 새로운 하부 프로세스의 수많은 필요에 따라 속도가 느려질 수 있다.</p>
+
+<p>단순 sh 스크립트는 다양한 종류의 유닉스, 리눅스, BSD 운영 체제, therof 버전, 시스템 유틸리티와 잘 호환된다는 장점이 있지만 더 복잡한 쉘 스크립트는 쉘, 유틸리티, 다른 필수 요소 간의 약간의 차이가 많은 경우 실패할 가능성이 있다. 레리 월은 다음과 같은 유명한 말을 남겼다: “쉘 스크립트보다 쉘을 포팅하는 게 더 쉽다”</p>
+
+<p>이와 비슷하게, 더 많은 복잡한 스크립트들은 쉘 스크립트 언어 자체의 제한 안에서 실행할 수 있다. 이러한 제한 때문에 다양한 쉘이 문제를 개선할 목적으로 고품질의 코드와 확장을 기록하기 힘들 수 있다.</p>
+
+<h2 id="section">01 쉘 레벨 및 변수</h2>
+
+<p>쉘에서 쉘을 재귀적으로 실행할 수 되며 이는 #echo $SHLVL이라는 명령어를 통해서 현재 쉘의 쉘 레벨을 확인할 수 있다.</p>
+
+<p><img src="/assets/media/linux-starter-guide/스크립트1.png" alt="screenshot" />
+<img src="/assets/media/linux-starter-guide/쉘레벨.jpg" alt="screenshot" /></p>
+
+<p>쉘의 변수는 환경변수와 지역변수 두 종류로 나눌 수 있는데 환경 변수는 값이 자식 프로세스에게 상속되며 지역변수는 그렇지 않다.</p>
+
+<p><img src="/assets/media/linux-starter-guide/스크립트2.png" alt="screenshot" /></p>
+
+<p>#export [변수명]=[값]을 통해 변수를 선언하게 되면 쉘 레벨과 관계없이 변수 공유가 가능하다.</p>
+
+<p><img src="/assets/media/linux-starter-guide/스크립트3.png" alt="screenshot" /></p>
+
+<h4 id="section-1">쉘 스크립트의 변수는 다음과 같은 특징을 가진다.</h4>
+
+<ul>
+  <li>타입이 존재하지 않음 (문자열로 취급)</li>
+  <li>대소문자 구별</li>
+  <li>미리 선언할 필요가 없음</li>
+  <li>변수 사용은 $[변수명]</li>
+  <li>정의는 [변수명]=[값]</li>
+</ul>
+
+<hr />
+
+<h3 id="list-varialbe">리스트 변수 (list varialbe)</h3>
+
+<p>한 변수에 여러 개의 값 (문자열)을 저장할 수 있는 변수</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  # 이름=(단어리스트)
+        ex) # cities=(서울 부산 인천)
+</code></pre>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">리스트 사용</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">${name[i]}</td>
+      <td style="text-align: center">리스트 변수 name의 i번째 원소 (i=0, 1…)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">${name[*]}</td>
+      <td style="text-align: center">“$1 $2 …” 리스트 변수 name의 모든 원소</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">${name[@]}</td>
+      <td style="text-align: center">“$1” “$2” … 리스트 변수 name의 모든 원소</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">${#name[*]}</td>
+      <td style="text-align: center">리스트 변수 name 내의 원소 개수</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">${#name[@]}</td>
+      <td style="text-align: center">리스트 변수 name 내의 원소 개수</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="read-">표준 입력 읽기 (read 명령어)</h3>
+
+<p>표준입력에서 한 줄을 읽어서 단어들을 변수들에 순서대로 저장하며 남은 단어들은 마지막 변수에 모두 저장한다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  # read 변수1, ...., 변수n
+            ex) # read x y
+                Merry Christmas!
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="section-2">사전 정의 환경변수 (의미가 정해진 환경변수)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">이름</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$USER</td>
+      <td style="text-align: center">사용자 이름</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$TERM</td>
+      <td style="text-align: center">터미널 타입</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$PATH</td>
+      <td style="text-align: center">명령어를 검색할 디렉터리들의 리스트</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$HOME</td>
+      <td style="text-align: center">홈 디렉터리</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$SHELL</td>
+      <td style="text-align: center">로그인 쉘의 경로명</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$MAIL</td>
+      <td style="text-align: center">메일 박스의 경로명</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$HOSTNAME</td>
+      <td style="text-align: center">호스트 이름</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="section-3">사전 정의 지역변수</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">이름</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$$</td>
+      <td style="text-align: center">쉘의 프로세스 번호</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$0</td>
+      <td style="text-align: center">쉘 스크립트 이름</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$1 ~ $9</td>
+      <td style="text-align: center">명령줄 인수</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$*</td>
+      <td style="text-align: center">모든 명령줄 인수 리스트</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$#	명령줄</td>
+      <td style="text-align: center">인수의 개수</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="section-4">02 산술 연산</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>앞으로 나오는 연산이나 조건문, 반복문등, 앞선 변수 모두 띄어쓰기를 확실하게 구분하여야 오류가 발생하지 않는다.
+그리고 쉘 스크립트에서는 일반적으로 인자나 변수는 문자열 취급하기 때문에 다른 방식으로 연산을 한다.
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="section-5">본 쉘의 산술 연산</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">a</span><span class="o">=</span>2+3
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$a</span>
+<span class="gp">$ </span><span class="nv">a</span><span class="o">=</span><span class="sb">`</span>expr 2 + 3<span class="sb">`</span> <span class="o">(</span>반드시 빈칸<span class="o">)</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="let----">콘 쉘의 let 명령어를 이용한 산술 연산</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">let </span>변수<span class="o">=</span>수식
+<span class="gp">$ </span><span class="nb">let </span><span class="nv">a</span><span class="o">=</span>2<span class="k">*</span>3
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$a</span>
+6
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="let-----1">콘 쉘의 let “수식”을 이용한 산술 수식</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">((</span>수식<span class="o">))</span> <span class="o">=</span> <span class="nb">let</span> <span class="s2">" 수식 "</span>
+
+<span class="k">if</span> <span class="o">((</span> <span class="nv">$# </span>!<span class="o">=</span> 1 <span class="o">))</span>
+<span class="k">then
+fi</span>
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="declare">변수 타입 선언 (declare)</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">declare</span> -i a <span class="o">(</span>a는 정수형 변수<span class="o">)</span>
+<span class="gp">$ </span><span class="nv">a</span><span class="o">=</span>12
+<span class="gp">$ </span><span class="nv">a</span><span class="o">=</span>a+1 <span class="o">(</span><span class="nb">let </span>필요 없음<span class="o">)</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="nv">$a</span>
+</code></pre>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">이름</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">declare -r 변수</td>
+      <td style="text-align: center">읽기 전용 변수로 선언</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">declare -i변수</td>
+      <td style="text-align: center">정수형 변수로 선언</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">declare -a 변수</td>
+      <td style="text-align: center">배열 변수로 선언</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">declare -f</td>
+      <td style="text-align: center">스크립트 안에정의된 모든 함수들을 보여준다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">declare -f 함수</td>
+      <td style="text-align: center">해당 함수 내용을 보여준다.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">declare -x 변수</td>
+      <td style="text-align: center">환경변수로 export</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="section-6">03 비교 연산</h2>
+
+<h3 id="section-7">산술 비교 연산</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">산술 비교 연산자</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">정수1 -eq정수2</td>
+      <td style="text-align: center">두 정수가 같으면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">정수1 -ne 정수2</td>
+      <td style="text-align: center">두 정수가 다르면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">정수1 -gt 정수2</td>
+      <td style="text-align: center">정수1이 정수2보다 크면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">정수1 -ge 정수2</td>
+      <td style="text-align: center">정수1이 정수2보다 크거나 같으면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">정수1 -lt 정수2</td>
+      <td style="text-align: center">정수1이 정수2보다 작으면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">정수1 -le 정수2</td>
+      <td style="text-align: center">정수1이 정수2보다 작거나 같으면 참 아니면 거짓</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="section-8">문자열 비교 연산</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">문자열 비교 연산자</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">문자열1 == 문자열2</td>
+      <td style="text-align: center">두 문자열이 같으면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">문자열1  != 문자열2</td>
+      <td style="text-align: center">두 문자열이 다르면 참 아니면 거짓</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-n 문자열</td>
+      <td style="text-align: center">문자열이 null이 아니면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-z 문자열</td>
+      <td style="text-align: center">문자열이 null이면 참</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="section-9">파일 관련 연산</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">파일 관련 연산자</th>
+      <th style="text-align: center">의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">-a 파일</td>
+      <td style="text-align: center">해당 파일이 존재하면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-e 파일</td>
+      <td style="text-align: center">해당 파일이 존재하면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-r 파일</td>
+      <td style="text-align: center">사용자가 해당 파일을 읽을 수 있으면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-w 파일</td>
+      <td style="text-align: center">사용자가 해당 파일을 쓸 수 있으면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-x 파일</td>
+      <td style="text-align: center">사용자가 해당 파일을 실행할 수 있으면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-o 파일</td>
+      <td style="text-align: center">사용자가 해당 파일의 소유자이면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-z 파일</td>
+      <td style="text-align: center">해당 파일의 크기가 0이면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-f 파일</td>
+      <td style="text-align: center">해당 파일이 일반 파일이면 참</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-d 파일</td>
+      <td style="text-align: center">해당 파일이 디렉터리이면 참</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="bash-">04 Bash 제어구조</h2>
+
+<h3 id="section-10">조건문</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                if 조건식
+                then
+                    명령어리스트
+                else
+                    명령어리스트
+                fi
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="section-11">중첩 조건문</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                if 조건식
+                then
+                    명령어리스트
+                elfi
+                then
+                    명령어리스트
+                else
+                    명령어리스트
+                fi
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="section-12">스위치</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                case 단어 in
+                    패턴1) 명령어리스트;;
+                    패턴2) 명령어리스트;;
+                    ......
+                    *) 명령어리스트;;
+                esac
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="for-------">반복문 (for) : 리스트의 각 값에 대해서 명령어들을 반복</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                for 변수 in 단어리스트 (모든 명령줄 인수 처리 : $*)
+                do
+                    명령어리스트
+                done
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="while------">반복문 (while) : 조건에 따라 명령어들을 반복 실행</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                while 조건식
+                do
+                    명령어리스트
+                done
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="until------">반복문 (until) : 조건에 따라 명령어들을 반복 실행</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                until 조건식 (조건식을 while문의 정반대로 넣어야 함)
+                do
+                    명령어리스트
+                done
+</code></pre>
+</div>
+
+<hr />
+
+<h3 id="section-13">함수</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>                함수이름()
+                {
+                    명령어리스트
+                }
+</code></pre>
+</div>
+
+<h2 id="section-14">05 쉘 스크립트 사용 예</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#! /bin/bash</span>
+
+<span class="nv">FCnt</span><span class="o">=</span>0
+<span class="nv">LFlag</span><span class="o">=</span>0
+<span class="nv">PFlag</span><span class="o">=</span>0
+<span class="nv">IFlag</span><span class="o">=</span>0
+<span class="nv">FFlag</span><span class="o">=</span>0
+<span class="nv">trash</span><span class="o">=</span>~/.trash
+
+error <span class="o">()</span>
+<span class="o">{</span>
+cat <span class="sh">&lt;&lt; END
+echo 휴지통 관리 프로그램 사용법 :
+echo   trash -p : "휴지통 비우기"
+echo   trash -i : "휴지통 비우기(확인)"
+echo   trash -l : "휴지통 확인"
+echo   trash 파일* : "휴지통에 버리기"
+END
+</span><span class="nb">exit </span>1
+<span class="o">}</span>
+
+<span class="k">for </span>list <span class="k">in</span> <span class="nv">$*</span>
+<span class="k">do
+  case</span> <span class="nv">$list</span> <span class="k">in</span>
+    <span class="s2">"-p"</span><span class="p">)</span>
+        <span class="nv">PFlag</span><span class="o">=</span>1
+        <span class="p">;;</span>
+    <span class="s2">"-i"</span><span class="p">)</span>
+    <span class="nv">IFlag</span><span class="o">=</span>1
+    <span class="p">;;</span>
+    <span class="s2">"-l"</span><span class="p">)</span>
+        <span class="nv">LFlag</span><span class="o">=</span>1
+        <span class="p">;;</span>
+    <span class="s2">"-*"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="nv">$list</span> 는 잘못된 옵션
+    error
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nv">FFlag</span><span class="o">=</span>1
+        fileList[<span class="nv">$FCnt</span><span class="o">]=</span><span class="nv">$list</span>
+        <span class="nb">let </span><span class="nv">FCnt</span><span class="o">=</span>FCnt+1
+        <span class="p">;;</span>
+    <span class="k">esac</span>
+<span class="k">done
+
+</span><span class="nb">let </span><span class="nv">total</span><span class="o">=</span><span class="nv">$LFlag</span>+<span class="nv">$PFlag</span>+<span class="nv">$FFlag</span>+<span class="nv">$IFlag</span>
+<span class="k">if</span> <span class="o">((</span> total !<span class="o">=</span> 1 <span class="o">))</span>
+<span class="k">then
+   </span>error
+<span class="k">fi
+
+if</span> <span class="o">[</span> ! -d <span class="nv">$trash</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="s1">'mkdir'</span> <span class="nv">$trash</span>
+<span class="k">fi
+
+if</span> <span class="o">((</span> LFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'ls'</span> -lgF <span class="nv">$trash</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
+
+if</span> <span class="o">((</span> PFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'rm'</span> <span class="nv">$trash</span>/<span class="k">*</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
+
+if</span> <span class="o">((</span> IFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'rm'</span> -i <span class="nv">$trash</span>/<span class="k">*</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
+
+
+if</span> <span class="o">((</span>FFlag <span class="o">==</span> 1 <span class="o">))</span>
+<span class="k">then</span>
+   <span class="s1">'mv'</span> <span class="k">${</span><span class="nv">fileList</span><span class="p">[*]</span><span class="k">}</span> <span class="nv">$trash</span>
+   <span class="nb">exit </span>0
+<span class="k">fi
+</span><span class="nb">exit </span>0
+</code></pre>
+</div>
+
+<hr />
+
+<h2 id="section-15">관련글</h2>
+
+<h3 id="section-16">초보자를 위한 가이드</h3>
+
+<ul>
+  <li><a href="/os/2015/05/25/linux-starter-guide-0.html">[리눅스 정리 - 초보자를 위한 가이드] 들어가며,</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-1.html">[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-2.html">[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-3.html">[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-4.html">[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-5.html">[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-6.html">[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-7.html">[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-8.html">[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-9.html">[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-10.html">[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-11.html">[리눅스 정리 - 초보자를 위한 가이드] 마치며,</a></li>
+  <li><a href="/os/2015/05/25/linux-starter-guide-12.html">[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</a></li>
+</ul>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>출처 : 위키백과 – 쉘 스크립트 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			
+				<li><a href="/categories.html#OS-ref">
+					OS <span>(15)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			
+				<li>
+					<a href="/tags.html#OS-ref">
+					OS <span>(17)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#Linux-ref">
+					Linux <span>(14)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#guide-ref">
+					guide <span>(14)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Donghyun Seo</h4>
+        <p class="author-bio">How do you define yourself?</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/os/2015/05/25/linux-starter-guide-7.html" title="[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/os/2015/05/25/linux-starter-guide-9.html" title="[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+
+    
+        
+<div id="disqus_thread" class="col-sm-10"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-62717870-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+

@@ -1,0 +1,2576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title></title>
+		<description>SmileCat's Blog</description>
+		<link>/</link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>[리눅스] 유닉스, 리눅스 과련된 깨알 지식</title>
+				<description>&lt;p&gt;리눅스 정리라고 작성한 글에 잘못된 내용이 있다는 조언을 듣고 해당 부분에 대한 내용을 읽으며 이를 다른 분들께 전달하고 싶어 작성한다. 아래의 글은 페이스북의 김선영님께서 작성한 글을 가지고 왔다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;유닉스, 리눅스 관련된 깨알 지식입니다.&lt;/p&gt;
+
+  &lt;p&gt;1) 부모 프로세스가 죽는다고 자식 프로세스까지 죽지는 않습니다. 
+부모(parent process)가 죽으면 자식(child process)은 고아 프로세스(orphan process)가 되고, step parent process로 최상위 프로세스(보통 init) 지정됩니다.
+daemon 형태의 프로세스는 모두 orphan process 형태로 작성된답니다. (daemon은 세션을 새로 열고 stdio를 닫는 몇가지 작업을 더 필요로 합니다. 자세한 것은 system programming에서 배웁니다.) [1]&lt;/p&gt;
+
+  &lt;p&gt;2) 포그라운드 프로세스란 세션내에서 제어터미널(controlling terminal)을 소유한 상태의 프로세스를 의미합니다. 만일 시험을 친다면 세션과 제어 터미널의 두 단어가 등장하지 않는다면 definition에서 틀린 것으로 간주할 수 있습니다. (이 정의는 IEEE std 1003.1 표준 문서에 등장합니다.) [2]&lt;/p&gt;
+
+  &lt;p&gt;3) 백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [3]&lt;/p&gt;
+
+  &lt;p&gt;4) 리다이렉션은 입출력되는 스트림의 방향을 재지정하는 것을 의미합니다. 표준입출력만 재지정할 수 있는 것은 아닙니다. 시스템에 이미 작성되어있는 많은 쉘 스크립트들이 특정 파일서술자(file descriptor)를 직접 열어서 리다이렉션을 하고 있습니다.
+예를 들어 read v_input &amp;lt;&amp;amp;10 처럼 명령하면 10번 fd로부터 방향 재지정을 통해 값을 읽어올 수 있습니다.&lt;/p&gt;
+
+  &lt;p&gt;5) kill은 프로세스를 죽이는게 아닙니다.
+프로세스에 시그널을 송신하는 것이 정확한 기능입니다. 초기 유닉스 설계시에는 시그널은 프로세스를 죽이는 용도로 썼기 때문에 붙여졌던 이름이지만 현대에는 프로세스를 죽이지 않는 여러 시그널이 늘어났기 때문입니다.
+PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, 서점에 있는 리눅스 교재 중 상당수가 위 개념을 잘못 설명하고 있더군요. 혹시라고 잘못 배우신 분들은 이 기회에 올바른 지식으로 업데이트 하시기 바랍니다.
+특히 부모 프로세스 죽는다고 자식 프로세스가 죽는 경우는 없습니다. 로그오프 했을때 자식 프로세스들이 종료되는 것은 SIGHUP의 영향입니다. nohup 명령어가 바로 SIGHUP 시그널을 막아서 로그오프시 세션에 존재하는 프로세스 그룹의 연쇄 종료를 막아주는 기능입니다.
+또한 백그라운드 프로세스가 뒤에서 작동하면서 화면에 나타나지 않는다고 설명하는 경우도 있었는데 find / &amp;amp; 로 작동시켜보시면 백그라운드로 작동하더라도 얼마든지 화면출력은 가능합니다. 단지 CTRL-C를 눌러서 SIGINT를 보내보면 백그라운드는 제어 터미널을 소유하지 못했기 때문에 종료가 안되는 것뿐이죠.
+혹시라도 크로스 체크 하실 분들을 위해 참조 서적, 레퍼런스 사이트 목록.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[1] APUE Chapter 9 Orphaned Process 정의 참조&lt;/p&gt;
+
+  &lt;p&gt;[2] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 foreground process 참조&lt;/p&gt;
+
+  &lt;p&gt;[3] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 background process 참조&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;하단의 글은 해당글에 달린 댓글의 정광섭님께서 추가로 말씀해주신 글입니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;한 가지 깨알 지식을 추가하면 프로세스 종료시에 kill -9 로 죽이는 경우가 있는데 이는 절대 피해야할 습관입니다. 보통 잘 만든 프로그램은 종료 시그널(SIGINT, SIGTERM 등)을 받으면 사용하던 리소스를 정리하고 파일을 닫고 마무리(시그널 핸들러) 하도록 구현되어 있는데 SIGKILL 과 SIGSTOP을 보내면은 핸들러를 호출할수 없으므로 사용하던 리소스가 깨진다거나 하는 문제가 발생할 수 있습니다.&lt;/p&gt;
+
+  &lt;p&gt;리눅스 책 광고를 하나 올리겠습니다. 입문서는 아니지만 위와같은 깨알 지식과 Redhat/CentOS 리눅스 기반으로 인프라를 구축하는 내용인 “리눅스를 활용한 회사 인프라 구축의 모든 것” 이라는 책이 있습니다. CentoOS 6 기준이긴 하지만 도움이 되실수 있을 것 같아서 올려봅니다. (CentOS 7 에 맞게 개정판을 내고 싶은데 책이 잘 안 팔립니다. ^^) http://www.yes24.com/24/goods/15542130?scode=032&amp;amp;OzSrank=7&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+				<pubDate>Fri, 18 Sep 2015 09:00:00 +0900</pubDate>
+				<link>/os/2015/09/18/linux-starter-guide-13.html</link>
+				<guid isPermaLink="true">/os/2015/09/18/linux-starter-guide-13.html</guid>
+			</item>
+		
+			<item>
+				<title>Coding Conventions & Secure Coding 조사</title>
+				<description>&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/gDVvwDRl8aZuYd&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/ss-49635823&quot; title=&quot;Coding Conventions &amp;amp; Secure Coding&quot; target=&quot;_blank&quot;&gt;Coding Conventions &amp;amp; Secure Coding&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+</description>
+				<pubDate>Sun, 21 Jun 2015 09:00:02 +0900</pubDate>
+				<link>/research/2015/06/21/Coding-Conventions-Secure-Coding.html</link>
+				<guid isPermaLink="true">/research/2015/06/21/Coding-Conventions-Secure-Coding.html</guid>
+			</item>
+		
+			<item>
+				<title>Continuous Integration 조사</title>
+				<description>&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/3MPnjmyCh0VddP&quot; width=&quot;425&quot; height=&quot;355&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/DonghyunSeo3/ci-49635777&quot; title=&quot;Continuous Integration&quot; target=&quot;_blank&quot;&gt;Continuous Integration&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/DonghyunSeo3&quot; target=&quot;_blank&quot;&gt;Donghyun Seo&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+
+</description>
+				<pubDate>Sun, 21 Jun 2015 09:00:01 +0900</pubDate>
+				<link>/research/2015/06/21/Continuous-Integration.html</link>
+				<guid isPermaLink="true">/research/2015/06/21/Continuous-Integration.html</guid>
+			</item>
+		
+			<item>
+				<title>IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책</title>
+				<description>&lt;p&gt;얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 &lt;a href=&quot;/tool/2015/05/25/intellij-springboot-jsp.html&quot;&gt;“IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제”&lt;/a&gt;라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is a Spring Boot problem.&lt;/p&gt;
+
+  &lt;p&gt;See http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-jsp-limitations section “26.3.4 JSP limitations”&lt;/p&gt;
+
+  &lt;p&gt;Solutions:&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;
+      &lt;p&gt;Do not use JSP at all (recommended)&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;p&gt;As workaround, enable special Gradle task “Build xxx.war artifact” in run configuration to simulate “bootRun” Gradle task (see screenshot)&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/Run_Debug_Configurations.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 &lt;code class=&quot;highlighter-rouge&quot;&gt;bootRun&lt;/code&gt;한 것과 동일하게 실행된다.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 28 May 2015 06:20:00 +0900</pubDate>
+				<link>/tool/2015/05/28/intellij-springboot-jsp-solution.html</link>
+				<guid isPermaLink="true">/tool/2015/05/28/intellij-springboot-jsp-solution.html</guid>
+			</item>
+		
+			<item>
+				<title>[OSX] 맥에서 단어장 사용하기</title>
+				<description>&lt;p&gt;맥에서 사전을 통해 검색을하고 단어장에 저장하고 싶은데 마땅한 방법이 없어 고민하고 있었다. 그런 도중에 &lt;a href=&quot;http://macnews.tistory.com&quot;&gt;BACK TO THE MAC&lt;/a&gt;에서 좋은 해결책을 찾았다. 여기서 소개해준 방법을 이용하면 사전을 팝업해서 볼 수 있다. 필자는 사파리를 평소에 사용해서 늘 네이버나 다음을 로그인해두는데, 이 방법으로 실행한 팝업된 사전에서 간단하게 단어를 단어장 추가하여 사용하고 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;방법&lt;/h2&gt;
+
+&lt;p&gt;먼저 아래 링크의 글을 읽어 오토메이터가 무엇인지 파악을 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://macnews.tistory.com/1986&quot;&gt;OS X의 오토메이터를 이용해 네이버 사전, 다음 사전 앱을 뚝딱 만들어 보세요!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;그런 다음 아래 링크의 글을 통해 팝업 사전을 구현한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://macnews.tistory.com/1991&quot;&gt;[부록] ‘텍스트 선택방식’으로 작동하는 개량된 OS X 팝업 사전 ‘PopClip도 지원’&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이 방법만으로 팝업 사전을 사용할 수 있다. 단축키를 등록해두면 편하게 사용할 수 있으며, 추가로 PopClip Extension을 사용하면 더 편하게 사용할 수 있다. 필자는 Extension을 사용하기 위해 PopClip을 결제했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://macnews.tistory.com/1805&quot;&gt;[추천 유료앱] PopClip, 의외로 편리하고 유용한 작업능률 향상 앱. iOS 스타일의 팝업창을 OS X에 달아주자!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;단어장에 저장하지 않고 간단히 검색해볼 때에는 기본 사전을 단축키를 통해서 사용하고, 단어장을 저장할 때나 좀 더 알아보고 싶을때는 상단에서 말한 방법을 이용하여 사용하고 있다. 맥은 사용하면 사용할수록 편한 기능이 많다는 것을 느낀다.&lt;/p&gt;
+</description>
+				<pubDate>Tue, 26 May 2015 19:30:00 +0900</pubDate>
+				<link>/etc/2015/05/26/macos-dictionary.html</link>
+				<guid isPermaLink="true">/etc/2015/05/26/macos-dictionary.html</guid>
+			</item>
+		
+			<item>
+				<title>플러그인 설치 없이 Jekyll에서 Sitemap.xml 생성하기</title>
+				<description>&lt;p&gt;운영하고있는 Jekyll블로그의 Sitemap.xml을 구글 웹마스터에 제출하고자 방법을 찾아보았다. 몇몇 방법들 있었지만 플러그인을 설치하지 않고 Sitemap.xml을 얻어 내고 싶었다.&lt;/p&gt;
+
+&lt;p&gt;해결책은 해외 블로그에서 찾을 수 있었다. 원문은 이 &lt;a href=&quot;http://davidensinger.com/2013/11/building-a-better-sitemap-xml-with-jekyll/&quot;&gt;링크&lt;/a&gt;를 참조하기 바란다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;설정 방법&lt;/h2&gt;
+
+&lt;h3 id=&quot;root-sitemapxml----&quot;&gt;블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+layout: null
+sitemap:
+  exclude: &#39;yes&#39;
+---
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;urlset&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/09/18/linux-starter-guide-13.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-09-18T09:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/research/2015/06/21/Coding-Conventions-Secure-Coding.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-06-21T09:00:02+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/research/2015/06/21/Continuous-Integration.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-06-21T09:00:01+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/tool/2015/05/28/intellij-springboot-jsp-solution.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-28T06:20:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/etc/2015/05/26/macos-dictionary.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-26T19:30:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/blog/2015/05/25/jekyll-sitemap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T11:50:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-12.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:12+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-11.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:11+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-10.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:10+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-9.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:09+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-8.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:08+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-7.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:07+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-6.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:06+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-5.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:05+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-4.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:04+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-3.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:03+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-2.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:02+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-1.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:01+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2015/05/25/linux-starter-guide-0.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/clipping/2015/05/25/agile-clip.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T04:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/tool/2015/05/25/intellij-springboot-jsp.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T01:30:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/tool/2015/05/21/atom-snippnet-problem.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-21T11:54:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/blog/2015/05/10/jekyll-travis-ci.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-10T00:17:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/blog/2015/05/08/jekyll.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-08T10:29:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/programming/2015/05/08/fb-group-crawler.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-08T06:53:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/clipping/2015/02/24/slideshare-server-performance.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-02-24T23:46:24+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/clipping/2015/02/24/slideshare-for-fast-web-http2.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-02-24T23:41:30+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-12-15T21:23:18+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/clipping/2014/10/17/java-web-roadmap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-10-17T01:19:02+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/etc/2014/10/16/windows8-comodo-firewall-process-error.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-10-16T00:15:39+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/etc/2014/10/15/git-comodo-firewall-loading.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-10-15T04:42:46+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/python/2014/09/04/django-python3x-mysql-connector.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-09-04T21:30:25+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/python/2014/08/29/django-setup.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-08-29T22:14:49+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/etc/2014/05/06/windows7-windows-update-error-80240016-8020000e.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-05-06T22:25:33+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/os/2014/05/06/ubuntu-dualboot-partion-error.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-05-06T19:30:58+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/seminar/2014/03/16/stdio-helloworld-daejeon.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-03-16T02:55:51+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/seminar/2014/03/16/stdio-helloworld-seoul.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-03-16T01:16:36+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/programming/2014/03/09/arduino-error-stk500.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-03-09T22:08:10+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/etc/2014/02/25/minecraft-server.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-25T02:56:54+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/java/2014/02/25/window-builder-dragdrop.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-25T01:06:29+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/java/2014/02/24/window-builder-add-file-open.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-24T20:43:24+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/java/2014/02/24/robocode.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-24T15:49:28+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/2010/03/01/profile.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2010-03-01T09:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/404.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/about/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/categories.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/feed.xml&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/search.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/tags.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/page2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/page3/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/page4/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/page5/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/urlset&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configyml---&quot;&gt;_config.yml에 다음 내용을 추가한다.&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-YAML&quot;&gt;sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: &#39;monthly&#39;
+  exclude: &#39;yes&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;추가 설정 방법&lt;/h2&gt;
+
+&lt;p&gt;필자가 상단의 설정을 하고 블로그를 실행시켰을 경우 sitemap.xml에 생성되는 것은 확인되었으나, 필자의 경우 github를 통해 호스팅하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;site.url&lt;/code&gt;을 설정해두지 않아 아래와 같이 sitemap.xml이 제대로 생성되지 않았다. 그래서 필자는 위와 다르게 설정을 다음과 같이 조금 변경해보았다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;/blog/2015/05/25/jekyll-sitemap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T11:50:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;root-sitemapxml-----1&quot;&gt;블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+layout: null
+sitemap:
+  exclude: &#39;yes&#39;
+---
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;urlset&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/09/18/linux-starter-guide-13.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-09-18T09:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/research/2015/06/21/Coding-Conventions-Secure-Coding.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-06-21T09:00:02+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/research/2015/06/21/Continuous-Integration.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-06-21T09:00:01+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/tool/2015/05/28/intellij-springboot-jsp-solution.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-28T06:20:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/etc/2015/05/26/macos-dictionary.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-26T19:30:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T11:50:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-12.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:12+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-11.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:11+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-10.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:10+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-9.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:09+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-8.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:08+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-7.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:07+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-6.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:06+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-5.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:05+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-4.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:04+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-3.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:03+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-2.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:02+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-1.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:01+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-0.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T06:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/clipping/2015/05/25/agile-clip.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T04:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/tool/2015/05/25/intellij-springboot-jsp.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T01:30:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/tool/2015/05/21/atom-snippnet-problem.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-21T11:54:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/blog/2015/05/10/jekyll-travis-ci.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-10T00:17:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/blog/2015/05/08/jekyll.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-08T10:29:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/programming/2015/05/08/fb-group-crawler.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-08T06:53:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/clipping/2015/02/24/slideshare-server-performance.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-02-24T23:46:24+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/clipping/2015/02/24/slideshare-for-fast-web-http2.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-02-24T23:41:30+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-12-15T21:23:18+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/clipping/2014/10/17/java-web-roadmap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-10-17T01:19:02+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/etc/2014/10/16/windows8-comodo-firewall-process-error.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-10-16T00:15:39+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/etc/2014/10/15/git-comodo-firewall-loading.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-10-15T04:42:46+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/python/2014/09/04/django-python3x-mysql-connector.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-09-04T21:30:25+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/python/2014/08/29/django-setup.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-08-29T22:14:49+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/etc/2014/05/06/windows7-windows-update-error-80240016-8020000e.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-05-06T22:25:33+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/os/2014/05/06/ubuntu-dualboot-partion-error.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-05-06T19:30:58+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-daejeon.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-03-16T02:55:51+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-seoul.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-03-16T01:16:36+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/programming/2014/03/09/arduino-error-stk500.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-03-09T22:08:10+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/etc/2014/02/25/minecraft-server.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-25T02:56:54+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/java/2014/02/25/window-builder-dragdrop.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-25T01:06:29+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/java/2014/02/24/window-builder-add-file-open.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-24T20:43:24+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/java/2014/02/24/robocode.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-02-24T15:49:28+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/2010/03/01/profile.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2010-03-01T09:00:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/404.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/about/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/categories.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/feed.xml&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/search.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/tags.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/page2/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/page3/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/page4/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/page5/&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2016-09-16T14:25:52+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+      
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+    
+  
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/urlset&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;configyml----1&quot;&gt;_config.yml에 다음 내용을 추가한다.&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-YAML&quot;&gt;sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: &#39;monthly&#39;
+  url: &#39;github 주소&#39;
+  exclude: &#39;yes&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;상단과 같이 설정할 경우 아래와 같이 정상적으로 sitemap.xml이 생성되는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html&lt;span class=&quot;nt&quot;&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2015-05-25T11:50:00+09:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;changefreq&amp;gt;&lt;/span&gt;monthly&lt;span class=&quot;nt&quot;&gt;&amp;lt;/changefreq&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;priority&amp;gt;&lt;/span&gt;0.5&lt;span class=&quot;nt&quot;&gt;&amp;lt;/priority&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+				<pubDate>Mon, 25 May 2015 11:50:00 +0900</pubDate>
+				<link>/blog/2015/05/25/jekyll-sitemap.html</link>
+				<guid isPermaLink="true">/blog/2015/05/25/jekyll-sitemap.html</guid>
+			</item>
+		
+			<item>
+				<title>[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션</title>
+				<description>&lt;h2 id=&quot;section&quot;&gt;01 퍼미션&lt;/h2&gt;
+
+&lt;p&gt;파일 혹은 디렉토리에 접근할 수 있는 권한을 퍼미션이라 하는데 이 권한을 통해 사용자는 파일이나 디렉토리에 대하여 다른 사용자의 접근을 제어할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/1.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/2.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;상단의 그림과 같이 읽기, 쓰기, 실행에 권한을 사용자, 사용자와 같은 그룹 그리고 그 외의 사용자에게 부여할 수 있다. 또한 각 권한은 숫자로 표현할 수 있으며 읽기는 4, 쓰기는 2 그리고 실행은 1로 표현하고 합산한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/3.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 그림을 보면 루트(/) 디렉토리 밑의 디렉토리들이 각 각의 역할에 맞게 권한이 설정 되어있는 것을 볼 수 있다. 특히 bin과 같이 사용자가 이용은 해야 가능해야 하지만 변경하면 안 되는 디렉토리는 쓰기 권한이 제한되어 있는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;02 권한 변경 명령어&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #chmod [옵션] [모드] [파일명] : 파일의 접근권한을 변경한다.
+
+  옵션:
+  	-R --recursive : 하위 디렉토리에 있는 모든 디렉토리/파일을 변경
+  	-v --verbose : 각 파일 정보를 상세히 출력
+
+  	ex) chmod 754 test.txt
+      	chmod u=rwx,g=rw,o=x test.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;setuid-setgid-sicky-bit&quot;&gt;03 SetUID, SetGID, Sicky Bit&lt;/h2&gt;
+
+&lt;h3 id=&quot;setuid----------&quot;&gt;SetUID : 해당 파일의 소유자의 실행권한이 없더라도 소유자의 실행권한으로 파일을 실행&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/4.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;소유자의 퍼미션에 s가 붙어있으면 소유권이 없더라도 실행할 수 있으며, “chmod 4744 test.sh” 같은 식으로 허가권을 주게 되면 test.sh를 소유자가 아닌 경우에도 소유자의 권한으로 실행 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/5.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;소유자의 실행권한으로 실행하였지만 프로세스 실행 UID가 root가 아닌 실행한 유저의 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;setgid--setuid------&quot;&gt;SetGID : SetUID와 유사하며, 그룹사용자로서의 실행권한을 얻을 수 있음&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/6.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;sticky-bit------------&quot;&gt;sticky bit : 이 비트가 설정되면 파일을 만든 사용자만이 그 파일에 대한 권리를 가짐&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/7.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;대표적인 디렉토리로는 “/tmp” 디렉토리가 sticky bit로 설정되어 있는 것을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/8.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위의 그림은 root 계정으로 루트(/) 디렉토리 아래에 “test”라는 디렉토리를 만들고 sticky bit와 모든 사용자에게 읽기, 쓰기, 실행 권한을 주었다. 그리고는 smilecat이라는 계정으로 “xx”라는 파일을 만들고 이 파일 또한 모든 사용자에게 읽기, 쓰기, 실행 권한을 주었다. 그리고 test1이라는 계정으로 “rm명령어”를 이용하여 파일을 삭제하려고 하면 위 그림과 같이 허용되지 않음을 알 수 있다. 비록 공동으로 사용하는 디렉토리지만 다른 사용자가 내가 만든 파일을 함부로 삭제할 수 없는 것이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;umask&quot;&gt;04 umask&lt;/h2&gt;
+
+&lt;p&gt;리눅스에서 파일이나 디렉토리를 생성할 때, 초기에 주어지는 퍼미션을 설정할 때 사용하는 명령어다. 기본 설정은 root계정은 “0022”로 일반 사용자 계정은 “0002”로 되어있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;기본 퍼미션&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;디렉토리 : 777&lt;/li&gt;
+  &lt;li&gt;파일 : 666&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;명령어&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #umask [옵션] [umask 값]
+
+  옵션:
+  	-S : 현재 umask를 u,g,o와 r,w,x로 표현
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;연산 방법&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;umask 값에 보수를 취한다.&lt;/li&gt;
+  &lt;li&gt;보수를 취한 값과 기본 퍼미션을 AND 연산을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/9.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/10.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;관련글&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;초보자를 위한 가이드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-0.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 들어가며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-1.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-2.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-3.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-4.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-5.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-6.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-7.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-8.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-9.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-10.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-11.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 마치며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-12.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+				<pubDate>Mon, 25 May 2015 06:00:12 +0900</pubDate>
+				<link>/os/2015/05/25/linux-starter-guide-12.html</link>
+				<guid isPermaLink="true">/os/2015/05/25/linux-starter-guide-12.html</guid>
+			</item>
+		
+			<item>
+				<title>[리눅스 정리 - 초보자를 위한 가이드] 마치며,</title>
+				<description>&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/리눅스.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 문서를 마치기전에 서론으로 잠시 돌아가 추가로 작성하였듯이 당초 목표와 다르게 추가된 부분이 있어 생각보다 문서의 양이 길어졌다. 하지만 정리를 하면서 부족하고 궁금했던 부분이 채워질 수 있었기에 개인적으로 만족한다.&lt;/p&gt;
+
+&lt;p&gt;이 문서에서 이야기한 리눅스는 많은 부분이 빠져있고 간략하게 이야기한 부분도 정말 많다. 여기서 다루지 못한 부분은 책이나 검색으로 찾아보면 쉽게 찾을 수 있다. 쉘 스크립트와 리눅스에서 C프로그래밍에 대하여 좀 더 알고 싶다면 개인적으로는 유닉스 리눅스 사용에서 프로그래밍까지라는 책을 추천한다. 학교 강의를 수강할 때 사용하였던 책인데 리눅스에 대해서 그리고 앞서 언급한 부분에 대해서 처음 리눅스를 접하는 사람이 읽기 쉽게 되어있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;관련글&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;초보자를 위한 가이드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-0.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 들어가며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-1.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-2.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-3.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-4.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-5.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-6.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-7.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-8.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-9.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-10.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-11.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 마치며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-12.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+				<pubDate>Mon, 25 May 2015 06:00:11 +0900</pubDate>
+				<link>/os/2015/05/25/linux-starter-guide-11.html</link>
+				<guid isPermaLink="true">/os/2015/05/25/linux-starter-guide-11.html</guid>
+			</item>
+		
+			<item>
+				<title>[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치</title>
+				<description>&lt;h2 id=&quot;rpm&quot;&gt;01 RPM&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RPM 패키지 매니저(RPM Package Manager←Red Hat Package Manager)는 원래 레드햇에서 사용되었던 패키지 파일이었지만 현재는 많은 RPM 기반 배포판이 사용되고 있다. 이는 두 가지를 말하는데, 하나는 RPM 패키지 그 자체와 또 하나는 RPM 패키지를 관리하기 위한 도구이다. RPM을 사용하면 각종 소프트웨어의 설치 및 업데이트를 굉장히 편리하게 할 수 있다.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이는 windows의 setup.exe 와 비슷하게 프로그램을 설치하게 해준다.&lt;/p&gt;
+
+&lt;h2 id=&quot;rpm--&quot;&gt;02 RPM 파일 형식&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/rpm.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;패키지 이름 : gedit&lt;/li&gt;
+  &lt;li&gt;버전 : 2.6.1 (주버전, 부버전, 패치버전이며 높을수록 최신임)&lt;/li&gt;
+  &lt;li&gt;릴리즈번호 : 1 (문제점을 개선할 때 마다 붙여지는 번호)&lt;/li&gt;
+  &lt;li&gt;페도라버전 : fc11 (페도라에서 배포할 경우 붙여짐, fc11은 페도라 11용을 의미)&lt;/li&gt;
+  &lt;li&gt;아키텍처 : i586 (이 파일이 설치 가능한 CPU를 의미)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;rpm-&quot;&gt;03 RPM 명령어&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #rpm [옵션] [패키지파일]
+
+  옵션:
+  	-U : 패키지가 설치되어 있지 않다면 설치, 설치되어 있다면 업그레이드
+  	-v : 설치과정을 출력
+  	-h : 설치진행과정을 특수문자&quot;#&quot;으로 표시
+  	-e : 설치된 rpm삭제
+  	-qa : 시스템에 패키지가 설치되어 있는지 확인
+  	-qf : 이미 설치된 파일이 어느 패키지에 포함된 것인지 확인
+  	-ql : 특정 패키지에 어떤 파일들이 포함되었는지 확인
+  	-qi : 패키지 상세정보 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;yum&quot;&gt;04 Yum&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Yum은 Yellow dog Updater, Modified의 약자로 RPM 기반의 시스템을 위한 자동 업데이터 겸 패키지 설치/제거 도구이다. 듀크 대학교의 Linux@DUKE 프로젝트의 일부분으로 개발되었다. yumex 같은 GUI 기반 확장 도구도 있다.&lt;/p&gt;
+
+  &lt;p&gt;Yum 이전에 있었던 Yellowdog Updater (YUP) 도구를 대체하며, 듀크 대학교 물리학부에서 사용되었던 레드햇 리눅스 시스템 관리를 위해서 등장하였다. 그 이후로 페도라, CentOS 등 많은 RPM 기반 리눅스 배포판에서 사용되었다. 레드햇의 패키지 관리자 up2date에서도 Yum 저장소에 접근할 수 있다.&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yum은 쉽게 말하자면 RPM을 설치할 때 편리하게 해주는 툴이라고 생각 할 수 있다. RPM이 나오면서 리눅스에서의 설치는 편리해 졌지만 RPM의 가장 큰 문제점은 의존성이다. 여기서 의존성이라 함은 하나의 패키지를 설치하기 위해서는 그 이전의 특정 패키지가 필요하게 됨을 뜻한다.&lt;/p&gt;
+
+&lt;p&gt;예를 들면 페도라의 기본 웹 브라우저인 Firefox는 X윈도우에서 가동되는데 X윈도우가 설치되지 않은 상태에서 Firefox를 설치한다면 의존성 때문에 설치가 되지 않을 것이다.&lt;/p&gt;
+
+&lt;p&gt;이런 의존성 문제를 완전히 해결한 것이 Yum인데 RPM같은 경우는 사용자가 직접 설치하고자 하는 파일을 인터넷에서 *.rpm을 다운받아 의존성을 따져가며 차례대로 설치하여야 했다. 하지만 Yum은 어떤 특정 RPM파일을 다운받고자 할 때, 의존성을 가지는 다른 *.rpm파일들도 알아서 인터넷을 통해 Fedora의 RPM파일이 저장된 저장소(Repository)에서 설치하고자 하는 RPM파일을 다운로드 한 다음에 설치까지 자동으로 해준다.&lt;/p&gt;
+
+&lt;p&gt;이는 자동으로 인터넷을 통해 다운로드 하기 때문에 네트워크가 꼭 연결된 상태에서만 Yum을 사용해야 한며 그렇다면 저장소의 URL에 대한 정보는 /etc/yum.repos.d/ 디렉토리에 저장되어 있다.&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;yum-&quot;&gt;05 Yum 명령어&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;#yum install [패키지 이름] : 패키지 설치 (기본 설치 명령어)&lt;/li&gt;
+  &lt;li&gt;#yum -y install [패키지 이름] : 무조건 yes로 모두 설치할 때 사용&lt;/li&gt;
+  &lt;li&gt;#yum check-update : 설치된 패키지 중에서 업데이트가 가능한 패키지의 목록을 출력&lt;/li&gt;
+  &lt;li&gt;#yum update [패키지 이름] : 패키지를 업데이트&lt;/li&gt;
+  &lt;li&gt;#yum remove [패키지 이름] : 패키지를 삭제&lt;/li&gt;
+  &lt;li&gt;#yum groupinstall [패키지 그룹 이름] : 패키지 그룹 설치&lt;/li&gt;
+  &lt;li&gt;#yum list [패키지 이름] : 패키지 리스트 확인&lt;/li&gt;
+  &lt;li&gt;#yum provides [파일이름] : 특정 파일이 속한 패키지 이름 확인&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tar&quot;&gt;06 tar&lt;/h2&gt;
+
+&lt;p&gt;타르(tar)는 컴퓨터에서, 테입 아카이브&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;를 위해 고안된 파일 형식과 이런 형식의 파일을 다루는데 사용되는 프로그램을 의미한다. 초기에는 테입 백업 목적으로, 순차적 입출력 장치에 직접 쓰도록 개발되었으나, 현재는, 배포 또는 아카이브 용도로 많은 파일을 디렉토리 구조, 파일 속성들을 보존하면서 하나의 큰 파일로 묶는 데 주로 사용된다.&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #tar [옵션] [파일명.tar] [폴더명]
+
+  옵션:
+  	-c : 새로운 tar 파일을 생성
+  	-x : 기본의 tar 파일을 해제
+  	-v : 명령어 실행 시 과정을 화면에 출력
+  	-f : 파일이름을 지정
+  	-p : 퍼미션을 포함
+  	-z : gzip을 이용
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;gzip&quot;&gt;07 gzip&lt;/h2&gt;
+
+&lt;p&gt;gzip은 파일 압축에 쓰이는 응용 소프트웨어이다. gzip은 GNU&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; zip의 준말이며, 초기 유닉스 시스템에 쓰이던 압축 프로그램을 대체하기 위한 자유 소프트웨어이다.&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #gzip [옵션] [파일]
+
+  옵션:
+  	-n : n은 1부터 9까지 숫자로, 1이 가장 빠르지만 압축률은 가장 낮음
+  	-c : 압축 결과를 출력하고 원본파일은 그대로 나둠
+  	-d : 압축 해제
+  	-f : 강제 압축
+  	-l : 압축 파일의 정보 출력
+  	-r : 디렉토리를 지정 시 디렉토리에 포함된 모든 파일 압축
+  	-t : 압축 파일 테스트
+  	-v : 압축 혹은 해제 시 자세한 정보 출력
+  	-h : 도움말 출력
+  	-V : 버전 정보 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #gunzip [옵션] [파일] : .gz 파일의 압축을 해제
+
+  옵션:
+  	-l : 압축 파일의 정보 출력
+  	-r : 디렉토리를 지정 시 디렉토리 내의 모든 파일의 압축 해제
+  	-t : 압축 파일 테스트
+  	-v : 압축 혹은 해제 시 자세한 정보 출력
+  	-h : 도움말 출력
+  	-V : 버전 정보 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;bzip2&quot;&gt;08 bzip2&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bzip2는 버로우즈-휠러 변환 기반의 압축 알고리즘 및 압축 소프트웨어이다. bzip2는 gzip와 비슷하게 파일 하나만을 압축하며, 압축한 파일에는 보통 .bz2 확장자가 붙고 따라서 tar와 함께 사용하는 것이 일반적이다. gzip보다 압축 효율이 훨씬 좋아 많이 사용되는 추세이다. 하지만 gzip보다 압축 해제 속도가 느리다.&lt;sup id=&quot;fnref:8&quot;&gt;&lt;a href=&quot;#fn:8&quot; class=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #bzip2 [옵션] [파일명]
+
+  옵션:
+  	-c : 압축되거나 압축을 푼 파일을 표준출력 내보냄
+  	-d : 압축을 해제
+  	-z : 파일을 압축
+  	-f : 압축하거나 압축 해제 시 같은 이름의 파일이 있을 경우 덮어씌움
+  	-k : 원본파일을 보존하며 압축하거나 해제
+  	-v : 상세한 정보를 출력
+  	-1~-9 : 압축 시 블록 크기를 지정
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #bunzip2 [옵션] [파일] : .bz2 파일의 압축을 해제
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #bzip2recover [손상된 압축 파일명] : bzip2 압축 파일 손상 시 손상된 압축 파일을 복구
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;관련글&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;초보자를 위한 가이드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-0.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 들어가며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-1.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-2.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-3.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-4.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-5.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-6.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-7.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-8.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-9.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-10.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-11.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 마치며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-12.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;출처 : 위키백과 - RPM &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;출처 : 위키백과 - yum &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;출처 : &lt;a href=&quot;http://babbo1836.blog.me/140203028271&quot;&gt;Dexter님의 블로그&lt;/a&gt;&lt;/p&gt;
+
+      &lt;p&gt;Ubuntu에서는 yum이 아닌 apt-get을 사용한다. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;압축 파일 또는 아카이브 파일(archive file)은 소스 볼륨과 미디어 정보, 파일 디렉터리 구조, 오류 감지, 복구 정보, 파일 설명을 포함할 수 있는 메타데이터가 포함된 하나 이상의 파일로 이루어진 파일을 말한다. 보통 무손실 데이터 압축의 형태를 가진다. 압축 파일은 일부나 전체로 암호화를 할 수 있다. 압축 파일은 여러 개의 데이터 파일을 하나의 파일로 묶어 갖고 다니거나 보관을 쉽게 하기 위해 쓰인다. 컴퓨터 압축 파일은 소프트웨어가 결정하는 압축 포맷을 사용하는 압축 소프트웨어, 광 디스크 저작 소프트웨어, 디스크 이미지 소프트웨어로 만든다. 압축 파일의 파일 확장자나 파일 헤더는 사용되는 파일 포맷을 지시하는 데 쓰인다. 압축 파일은 .zip, .rar, .7z, .tar 등의 확장자를 가진다. 다만 이 가운데 .tar은 압축 기능을 포함하지 않는다. 출처 : 위키백과 - 아카이브 &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;출처 : 위키백과 - tar &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot;&gt;
+      &lt;p&gt;GNU(‘그누’로 발음)는 GNU 프로젝트를 통하여 개발한 유닉스 계열 컴퓨터 운영 체제이며 궁극적으로는 “완전한 유닉스 호환 소프트웨어 시스템”이 되는 것이 목표이다. 출처 : 위키백과 - GNU &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:7&quot;&gt;
+      &lt;p&gt;출처 : 위키백과 - gzip &lt;a href=&quot;#fnref:7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:8&quot;&gt;
+      &lt;p&gt;출처 : 위키백과 - bzip2 &lt;a href=&quot;#fnref:8&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+				<pubDate>Mon, 25 May 2015 06:00:10 +0900</pubDate>
+				<link>/os/2015/05/25/linux-starter-guide-10.html</link>
+				<guid isPermaLink="true">/os/2015/05/25/linux-starter-guide-10.html</guid>
+			</item>
+		
+			<item>
+				<title>[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스</title>
+				<description>&lt;p&gt;프로세스(process)는 컴퓨터에서 연속적으로 실행되고 있는 컴퓨터 프로그램이다. 종종 스케줄링의 대상이 되는 작업(task)이라는 용어와 거의 같은 의미로 쓰인다. 여러 개의 프로세서를 사용하는 것을 멀티프로세싱이라고 하며 같은 시간에 여러 개의 프로그램을 띄우는 시분할 방식을 멀티태스킹이라고 한다. 프로세스 관리는 운영 체제의 중요한 부분으로 자리 잡혀 있다.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;즉, 간단히 말해 컴퓨터 안에 실행중인 프로그램을 프로세스라고 하며 실행중이지 않으면 프로그램이라 보면 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;01 프로세스의 실행방식&lt;/h2&gt;
+
+&lt;h3 id=&quot;foreground&quot;&gt;Foreground&lt;/h3&gt;
+
+&lt;p&gt;~~한 사용자가 하나의 단말기에서 2개 이상의 프로그램을 동시에 수행시킬 때, 그중 단말기를 점유하고 사용자에 의해 대화식으로 사용되는 프로그램. 사용자의 입장에서 보면 맨 앞에 있는 프로그램이므로 전면이라고 하고, 다른 프로그램은 그 프로그램의 뒤에서 보이지 않게 수행되므로 후면이라고 한다.~~&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;~~우선순위(priority)가 높은 작업이 먼저 실시되고, 그 실시 도중 남는 시간이 있을 경우에 우선도가 낮은 작업이 실행되는 환경. 즉, 입출력 없이 CPU 계산만 많은 경우 프로그램의 우선순위가 후면으로 밀리게 된다. 일반적으로 배치 프로그램(batch program)은 이 환경에서 실행된다.~~&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;~~예를 들면 노래를 틀어놓고 인터넷을 한다고 하면 Foreground는 인터넷이고 Background는 음악 플레이어가 된다.~~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/포그라운드.jpg&quot; alt=&quot;screenshot&quot; /&gt;
+&lt;img src=&quot;/assets/media/linux-starter-guide/백그라운드.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;~~좌측이 Foreground이며 sleep명령어가 실행되는 동안은 echo명령어를 수행하지 않았다. 반면에 우측의 Background는 sleep명령 뒤에도 echo명령을 수행하였으며 sleep명령후에는 스스로 종료되었다.~~&lt;/p&gt;
+
+&lt;h3 id=&quot;foreground--background&quot;&gt;Foreground &amp;amp; Background&lt;/h3&gt;
+
+&lt;p&gt;페이스북의 김선영님께서 Foreground와 Background에 대해 잘못된 내용임을 알려주어 하단의 내용을 추가한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;특히 얼마전에도 이야기 했지만 포그라운드, 백그라운드는 정의는 잘못된 내용이 인터넷이나 잘못된 기초 책에 많이 돌아다닙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;IEEE std 표준 정의에 의해 포그라운드, 백그라운드에는 session, controlling terminal의 관계가 정의되어야 합니다. 포그라운드는 세션내에 포그라운드 프로세스 그룹에서 controlling terminal을 소유한 프로세스를 의미하여, 백그라운드는 controlling terminal을 소유하지 못한 프로세스를 의미합니다. 전면에서 작동한다거나 후면에서 작동한다는 이야기는 사실과 많이 다르며 잘못된 내용이 인터넷과 기초책에 무분별하게 돌아다닌 결과입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;포그라운드 프로세스란 세션내에서 제어터미널(controlling terminal)을 소유한 상태의 프로세스를 의미합니다. 만일 시험을 친다면 세션과 제어 터미널의 두 단어가 등장하지 않는다면 definition에서 틀린 것으로 간주할 수 있습니다. (이 정의는 IEEE std 1003.1 표준 문서에 등장합니다.) [1]&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [2]&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[1] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 foreground process 참조&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[2] &lt;a href=&quot;http://www.opengroup.org&quot;&gt;IEEE std. 1003.1&lt;/a&gt;의 background process 참조&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;02 프로세스 명령어&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #ps [옵션] : 현 프로세스 조회 명령어
+
+  옵션:
+  	-a : 현재 실행 중인 모든 프로세스 출력
+  	-ef : 현재 실행 중인 프로세스를 간단히 출력
+  	-aux : 현재 실행 중인 프로세스를 자세히 출력
+  	-u : 사용자와 프로세스 시간 출력
+  	-x : 히든 프로세스 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #kill [옵션] PID : 프로세스 종료 명령어
+
+  옵션:
+  	-9 : 프로세스 강제 종료 명령어
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #uname -p : CPU 정보를 알려줌
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #free [옵션] : 메모리와 가상 메모리의 상태를 보여주는 명령어
+
+  옵션:
+  	-b : 사용량을 바이트 단위로 출력
+  	-m : 사용량을 메가바이트 단위로 출력
+  	-s [숫자] : 입력한 숫자의 초단위로 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #pstree : 부모, 자식 관계를 나타내는 트리를 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #top [옵션] : 프로세스별 CPU와 메모리 점유율을 출력
+
+  옵셥:
+  	-d [숫자] : 입력한 숫자만큼의 시간마다 다시 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #nice [-n 조정수치] [옵션] : 프로세스의 우선순위를 변경할 수 있는 NICE 값을 설정
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #renice [- 조정수치] : 이미 실행되 있는 프로세스의 우선순위를 변경
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  /proc 디렉토리 : 현재 메모리에 존재하는 모든 작업들이 파일형태로 존재
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/proc.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;03 데몬&lt;/h2&gt;
+
+&lt;p&gt;일반적으로 프로그램은 설치 시 하드디스크에 설치되며 동그란 모양의 하드디스크에 깔려있는 프로그램을 읽어오기 위해서 수없이 회전하여 설치되어 있는 섹터를 검색 하고 검색한 부분을 읽어오게 된다. 하지만 하드디스크에서 읽어오는 것은 CPU와 RAM에 비해 상당히 느리다.&lt;/p&gt;
+
+&lt;p&gt;그래서 cpu와 하드디스크 사이에 RAM이라는 공간에 실행중인 프로세스를 복사하여 실행시키며 이렇게 하여 속도를 높여 사용하는데 이것을 보고 프로세스를 RAM에 상주시킨다고 한다.&lt;/p&gt;
+
+&lt;p&gt;이러한 프로세스는 총 3가지의 종류가 있는데 대화형, 배치형, 데몬형이다. 먼저 대화형은 우리가 흔히 쓰는 프로세스를 말한다. 배치형은 내가 명령을 입력장치로 넣지 않아도 알아서 실행되며 시작 프로그램을 예로 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;마지막 데몬형은 실행되어도 화면에 출력이 안 되며 Backgound 형태로 돌아가며, 우리가 실행되고 있는지 아닌지를 잘 느끼지 못하는 프로그램이다. 윈도우에서는 서비스 리눅스에서는 데몬이라 불린다.&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;04 데몬의 종류&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/데몬.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;standalone&quot;&gt;Standalone&lt;/h3&gt;
+
+&lt;p&gt;항상 준비 되어있는 프로세스들을 의미하며 항상 실행 중에 있기 때문에 메모리에 상주 되어 있다. 따라서 응답 속도가 빠르지만 메모리에 부하를 준다. init.d, sendmail, apache, mysql, name server, nfs등이 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;xinetd&quot;&gt;Xinetd&lt;/h3&gt;
+
+&lt;p&gt;xinetd자체는 항상 준비되어있는 프로세스이며 Standalone 방식인 반면, xinetd의 내부는 xinetd방식이다. xinetd에 요청이 들어오면 xinetd가 자신에게 종속되어 있는 프로그램을 실행시키며 처리가 끝나면 다시 휴면상태로 되돌린다.&lt;/p&gt;
+
+&lt;p&gt;xinetd를 부모라고 생각하고, 그 안에 포함되어 있는 프로그램들을 자식이라고 생각한다면 요청 들어오면 부모가 깨워서 밖에 내보내는 것으로 볼 수 있다. 따라서 응답처리속도도 느리지만 요청이 들어오지 않을 경우 휴면상태이므로 메모리를 차지하지 않는다.&lt;/p&gt;
+
+&lt;p&gt;xinetd에는 블랙리스트 시스템이 들어 있으며 xinetd가 좋지 못한 요청이라고 간주하면 프로그램들을 밖으로 내보내지 않는다. xinetd.d,telnet,PoP3등이 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/xinetd.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;05 서비스 관리&lt;/h2&gt;
+
+&lt;p&gt;시스템이 부팅될 때 많은 서비스 데몬들이 실행되는데 그 중 불필요한 데몬도 있다. 이러한 불필요한 데몬들은 시스템 자원을 낭비하므로 필요 없는 서비스는 실행되지 않도록 해주기 위해 ntsysv나 chkconfig명령을 사용하여 설정 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;그리고 현재 실행중인 데몬을 제어하려면 service 명령어나 /etc/rc.d/init.d에 있는 실행스크립트를 이용하여 제어할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #ntsysv : 커서로 이동하며 스페이스바를 누르면 선택/해제가 가능
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/ntsysv.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #chkconfig [옵션] 데몬 [상태] : 시스템을 부팅할 때 런레벨에 따라 자동으로 실행되는 데몬들을 확인할 수 있고 특정 서비스를 추가, 수정할 수 있음
+
+  옵션:
+  	--level : 적용할 런레벨을 선택
+  	--add : 데몬을 추가
+  	--del : 데몬을 삭제
+  	--list : 현재 데몬들의 목록을 출력
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/chkconfig.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  #service [데몬] [상태] : 현재 실행중인 데몬을 제어
+
+  옵션:
+  	start : 데몬을 실행
+  	stop : 데몬을 중지
+  	restart : 데몬을 재시작
+  	status : 데몬의 상태
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/service.jpg&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;06 좀비 프로세스와 퇴치 방법&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/media/linux-starter-guide/좀비.png&quot; alt=&quot;screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 프로세스의 상태를 확인하다보면 좀비 상태인 프로세스들을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;좀비 프로세스는 실행이 완료 되었음에도 불구하고, 소멸되지 않은 프로세스를 말하며 main 함수가 반환되면 소멸한다. 따라서 소멸되지 않았다는 것은 프로세스가 사용한 리소스가 메모리 공간에 여전히 존재한다는 의미이다.&lt;/p&gt;
+
+&lt;p&gt;이 좀비 프로세스의 생성은 자식 프로세스가 종료되면서 반환하는 상태 값이 부모 프로세스에게 전달되지 않으면 해당 프로세스는 소멸되지 않고 좀비가 되는 것이 원인이다.&lt;/p&gt;
+
+&lt;p&gt;이는 프로그램을 작성할 때 반환하는 상태 값을 받을 수 있도록 wait(), waitpid() 함수를 사용함으로써 해결 할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;관련글&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;초보자를 위한 가이드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-0.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 들어가며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-1.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 1장. 실습환경 구축&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-2.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-3.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 3장. 디렉토리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-4.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 4장. 파일 시스템&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-5.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 5장. 표준 스트림&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-6.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-7.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 7장. 사용자 관리&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-8.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 8장. 쉘 스크립트&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-9.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 9장. 프로세스&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-10.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-11.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 마치며,&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/os/2015/05/25/linux-starter-guide-12.html&quot;&gt;[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;출처 : 위키백과 - 프로세스 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;출처 : IT용어사전, 한국정보통신기술협회 &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;출처 : 컴퓨터인터넷IT용어대사전, 2011.1.20, 일진사 &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;출처 : &lt;a href=&quot;http://blog.naver.com/bbaroo27/100183424345&quot;&gt;용식이님의 블로그&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+				<pubDate>Mon, 25 May 2015 06:00:09 +0900</pubDate>
+				<link>/os/2015/05/25/linux-starter-guide-9.html</link>
+				<guid isPermaLink="true">/os/2015/05/25/linux-starter-guide-9.html</guid>
+			</item>
+		
+	</channel>
+</rss>

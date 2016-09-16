@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>플러그인 설치 없이 Jekyll에서 Sitemap.xml 생성하기</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/ico/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/ico/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/ico/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
+	<link rel="manifest" href="/assets/ico/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/ico/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/logo.jpg" style="width: 35px;" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<a href="#" class="btn btn-default">
+			<i class="fa fa-arrow-up"></i>
+		</a>
+	</div>
+	<!-- div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div -->
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+
+<!--form id="search_form" action="/search.html" method="get" class="text-center" style="margin-bottom: 20px;">
+  <input type="text" id="search_box" name="query" placeholder="Search...">
+</form-->
+
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+	<!--ul id="contact-list-secondary" class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul-->
+</div>
+
+<div id="sidebar-menu" class="text-center">
+	<h3><a href="/">Home</a></h3>
+	<h3><a href="/2010/03/01/profile.html">About</a></h3>
+	<h3><a href="/categories.html">Categories</a></h3>
+	<h3><a href="/tags.html">Tags</a></h3>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>플러그인 설치 없이 Jekyll에서 Sitemap.xml 생성하기 </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   May
+	   25th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>운영하고있는 Jekyll블로그의 Sitemap.xml을 구글 웹마스터에 제출하고자 방법을 찾아보았다. 몇몇 방법들 있었지만 플러그인을 설치하지 않고 Sitemap.xml을 얻어 내고 싶었다.</p>
+
+<p>해결책은 해외 블로그에서 찾을 수 있었다. 원문은 이 <a href="http://davidensinger.com/2013/11/building-a-better-sitemap-xml-with-jekyll/">링크</a>를 참조하기 바란다.</p>
+
+<h2 id="section">설정 방법</h2>
+
+<h3 id="root-sitemapxml----">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+layout: null
+sitemap:
+  exclude: 'yes'
+---
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;urlset</span> <span class="na">xmlns=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="nt">&gt;</span>
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/09/18/linux-starter-guide-13.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-09-18T09:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/research/2015/06/21/Coding-Conventions-Secure-Coding.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-06-21T09:00:02+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/research/2015/06/21/Continuous-Integration.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-06-21T09:00:01+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/tool/2015/05/28/intellij-springboot-jsp-solution.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-28T06:20:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/etc/2015/05/26/macos-dictionary.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-26T19:30:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/blog/2015/05/25/jekyll-sitemap.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T11:50:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-12.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:12+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-11.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:11+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-10.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:10+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-9.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:09+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-8.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:08+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-7.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:07+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-6.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:06+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-5.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:05+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-4.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:04+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-3.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:03+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-2.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:02+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-1.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:01+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2015/05/25/linux-starter-guide-0.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/clipping/2015/05/25/agile-clip.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T04:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/tool/2015/05/25/intellij-springboot-jsp.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T01:30:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/tool/2015/05/21/atom-snippnet-problem.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-21T11:54:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/blog/2015/05/10/jekyll-travis-ci.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-10T00:17:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/blog/2015/05/08/jekyll.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-08T10:29:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/programming/2015/05/08/fb-group-crawler.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-08T06:53:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/clipping/2015/02/24/slideshare-server-performance.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-02-24T23:46:24+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/clipping/2015/02/24/slideshare-for-fast-web-http2.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-02-24T23:41:30+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-12-15T21:23:18+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/clipping/2014/10/17/java-web-roadmap.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-10-17T01:19:02+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/etc/2014/10/16/windows8-comodo-firewall-process-error.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-10-16T00:15:39+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/etc/2014/10/15/git-comodo-firewall-loading.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-10-15T04:42:46+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/python/2014/09/04/django-python3x-mysql-connector.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-09-04T21:30:25+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/python/2014/08/29/django-setup.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-08-29T22:14:49+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/etc/2014/05/06/windows7-windows-update-error-80240016-8020000e.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-05-06T22:25:33+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/os/2014/05/06/ubuntu-dualboot-partion-error.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-05-06T19:30:58+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/seminar/2014/03/16/stdio-helloworld-daejeon.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-03-16T02:55:51+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/seminar/2014/03/16/stdio-helloworld-seoul.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-03-16T01:16:36+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/programming/2014/03/09/arduino-error-stk500.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-03-09T22:08:10+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/etc/2014/02/25/minecraft-server.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-25T02:56:54+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/java/2014/02/25/window-builder-dragdrop.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-25T01:06:29+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/java/2014/02/24/window-builder-add-file-open.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-24T20:43:24+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/java/2014/02/24/robocode.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-24T15:49:28+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/2010/03/01/profile.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2010-03-01T09:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/404.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/about/<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/categories.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/feed.xml<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/search.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/tags.html<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/page2/<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/page3/<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/page4/<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/page5/<span class="nt">&lt;/loc&gt;</span>
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+<span class="nt">&lt;/urlset&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="configyml---">_config.yml에 다음 내용을 추가한다.</h3>
+
+<pre><code class="language-YAML">sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: 'monthly'
+  exclude: 'yes'
+</code></pre>
+
+<h2 id="section-1">추가 설정 방법</h2>
+
+<p>필자가 상단의 설정을 하고 블로그를 실행시켰을 경우 sitemap.xml에 생성되는 것은 확인되었으나, 필자의 경우 github를 통해 호스팅하여 <code class="highlighter-rouge">site.url</code>을 설정해두지 않아 아래와 같이 sitemap.xml이 제대로 생성되지 않았다. 그래서 필자는 위와 다르게 설정을 다음과 같이 조금 변경해보았다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>/blog/2015/05/25/jekyll-sitemap.html<span class="nt">&lt;/loc&gt;</span>
+      <span class="nt">&lt;lastmod&gt;</span>2015-05-25T11:50:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="root-sitemapxml-----1">블로그 Root폴더에 sitemap.xml파일을 생성하고 다음 내용을 작성한다.</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+layout: null
+sitemap:
+  exclude: 'yes'
+---
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;urlset</span> <span class="na">xmlns=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="nt">&gt;</span>
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/09/18/linux-starter-guide-13.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-09-18T09:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/research/2015/06/21/Coding-Conventions-Secure-Coding.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-06-21T09:00:02+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/research/2015/06/21/Continuous-Integration.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-06-21T09:00:01+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/tool/2015/05/28/intellij-springboot-jsp-solution.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-28T06:20:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/etc/2015/05/26/macos-dictionary.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-26T19:30:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T11:50:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-12.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:12+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-11.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:11+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-10.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:10+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-9.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:09+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-8.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:08+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-7.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:07+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-6.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:06+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-5.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:05+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-4.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:04+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-3.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:03+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-2.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:02+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-1.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:01+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2015/05/25/linux-starter-guide-0.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T06:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/clipping/2015/05/25/agile-clip.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T04:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/tool/2015/05/25/intellij-springboot-jsp.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-25T01:30:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/tool/2015/05/21/atom-snippnet-problem.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-21T11:54:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/blog/2015/05/10/jekyll-travis-ci.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-10T00:17:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/blog/2015/05/08/jekyll.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-08T10:29:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/programming/2015/05/08/fb-group-crawler.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-05-08T06:53:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/clipping/2015/02/24/slideshare-server-performance.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-02-24T23:46:24+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/clipping/2015/02/24/slideshare-for-fast-web-http2.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2015-02-24T23:41:30+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/clipping/2014/12/15/ted-simon_sinek_how_great_leaders_inspire_action.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-12-15T21:23:18+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/clipping/2014/10/17/java-web-roadmap.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-10-17T01:19:02+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/etc/2014/10/16/windows8-comodo-firewall-process-error.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-10-16T00:15:39+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/etc/2014/10/15/git-comodo-firewall-loading.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-10-15T04:42:46+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/python/2014/09/04/django-python3x-mysql-connector.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-09-04T21:30:25+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/python/2014/08/29/django-setup.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-08-29T22:14:49+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/etc/2014/05/06/windows7-windows-update-error-80240016-8020000e.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-05-06T22:25:33+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/os/2014/05/06/ubuntu-dualboot-partion-error.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-05-06T19:30:58+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-daejeon.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-03-16T02:55:51+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/seminar/2014/03/16/stdio-helloworld-seoul.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-03-16T01:16:36+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/programming/2014/03/09/arduino-error-stk500.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-03-09T22:08:10+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/etc/2014/02/25/minecraft-server.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-25T02:56:54+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/java/2014/02/25/window-builder-dragdrop.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-25T01:06:29+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/java/2014/02/24/window-builder-add-file-open.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-24T20:43:24+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/java/2014/02/24/robocode.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2014-02-24T15:49:28+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/2010/03/01/profile.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2010-03-01T09:00:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/404.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/about/<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/categories.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/feed.xml<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/search.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/tags.html<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/page2/<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/page3/<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/page4/<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+    
+    <span class="nt">&lt;url&gt;</span>
+      
+        <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/page5/<span class="nt">&lt;/loc&gt;</span>
+      
+      
+        <span class="nt">&lt;lastmod&gt;</span>2016-09-16T14:25:52+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      
+      
+        <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      
+      
+        <span class="nt">&lt;priority&gt;</span>0.3<span class="nt">&lt;/priority&gt;</span>
+      
+    <span class="nt">&lt;/url&gt;</span>
+    
+  
+<span class="nt">&lt;/urlset&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="configyml----1">_config.yml에 다음 내용을 추가한다.</h3>
+
+<pre><code class="language-YAML">sitemap:
+  lastmod: 2014-01-23
+  priority: 0.7
+  changefreq: 'monthly'
+  url: 'github 주소'
+  exclude: 'yes'
+</code></pre>
+
+<p>상단과 같이 설정할 경우 아래와 같이 정상적으로 sitemap.xml이 생성되는 것을 확인할 수 있다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;url&gt;</span>
+      <span class="nt">&lt;loc&gt;</span>http://egaoneko.github.io/blog/2015/05/25/jekyll-sitemap.html<span class="nt">&lt;/loc&gt;</span>
+      <span class="nt">&lt;lastmod&gt;</span>2015-05-25T11:50:00+09:00<span class="nt">&lt;/lastmod&gt;</span>
+      <span class="nt">&lt;changefreq&gt;</span>monthly<span class="nt">&lt;/changefreq&gt;</span>
+      <span class="nt">&lt;priority&gt;</span>0.5<span class="nt">&lt;/priority&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+</code></pre>
+</div>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			
+				<li><a href="/categories.html#Blog-ref">
+					Blog <span>(3)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			
+				<li>
+					<a href="/tags.html#Blog-ref">
+					Blog <span>(3)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#Jekyll-ref">
+					Jekyll <span>(3)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#Sitemap.xml-ref">
+					Sitemap.xml <span>(1)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=플러그인 설치 없이 Jekyll에서 Sitemap.xml 생성하기"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Donghyun Seo</h4>
+        <p class="author-bio">How do you define yourself?</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/os/2015/05/25/linux-starter-guide-12.html" title="[리눅스 정리 - 초보자를 위한 가이드] 추가. 퍼미션">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/etc/2015/05/26/macos-dictionary.html" title="[OSX] 맥에서 단어장 사용하기">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+
+    
+        
+<div id="disqus_thread" class="col-sm-10"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-62717870-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>[리눅스] 유닉스, 리눅스 과련된 깨알 지식</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/ico/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/ico/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/ico/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
+	<link rel="manifest" href="/assets/ico/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/ico/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/logo.jpg" style="width: 35px;" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<a href="#" class="btn btn-default">
+			<i class="fa fa-arrow-up"></i>
+		</a>
+	</div>
+	<!-- div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div -->
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+
+<!--form id="search_form" action="/search.html" method="get" class="text-center" style="margin-bottom: 20px;">
+  <input type="text" id="search_box" name="query" placeholder="Search...">
+</form-->
+
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+	<!--ul id="contact-list-secondary" class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul-->
+</div>
+
+<div id="sidebar-menu" class="text-center">
+	<h3><a href="/">Home</a></h3>
+	<h3><a href="/2010/03/01/profile.html">About</a></h3>
+	<h3><a href="/categories.html">Categories</a></h3>
+	<h3><a href="/tags.html">Tags</a></h3>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>[리눅스] 유닉스, 리눅스 과련된 깨알 지식 </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   September
+	   18th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>리눅스 정리라고 작성한 글에 잘못된 내용이 있다는 조언을 듣고 해당 부분에 대한 내용을 읽으며 이를 다른 분들께 전달하고 싶어 작성한다. 아래의 글은 페이스북의 김선영님께서 작성한 글을 가지고 왔다.</p>
+
+<blockquote>
+  <p>유닉스, 리눅스 관련된 깨알 지식입니다.</p>
+
+  <p>1) 부모 프로세스가 죽는다고 자식 프로세스까지 죽지는 않습니다. 
+부모(parent process)가 죽으면 자식(child process)은 고아 프로세스(orphan process)가 되고, step parent process로 최상위 프로세스(보통 init) 지정됩니다.
+daemon 형태의 프로세스는 모두 orphan process 형태로 작성된답니다. (daemon은 세션을 새로 열고 stdio를 닫는 몇가지 작업을 더 필요로 합니다. 자세한 것은 system programming에서 배웁니다.) [1]</p>
+
+  <p>2) 포그라운드 프로세스란 세션내에서 제어터미널(controlling terminal)을 소유한 상태의 프로세스를 의미합니다. 만일 시험을 친다면 세션과 제어 터미널의 두 단어가 등장하지 않는다면 definition에서 틀린 것으로 간주할 수 있습니다. (이 정의는 IEEE std 1003.1 표준 문서에 등장합니다.) [2]</p>
+
+  <p>3) 백그라운드 프로세스란 세션내에서 제어터미널을 소유하지 못한 상태의 프로세스를 의미합니다. [3]</p>
+
+  <p>4) 리다이렉션은 입출력되는 스트림의 방향을 재지정하는 것을 의미합니다. 표준입출력만 재지정할 수 있는 것은 아닙니다. 시스템에 이미 작성되어있는 많은 쉘 스크립트들이 특정 파일서술자(file descriptor)를 직접 열어서 리다이렉션을 하고 있습니다.
+예를 들어 read v_input &lt;&amp;10 처럼 명령하면 10번 fd로부터 방향 재지정을 통해 값을 읽어올 수 있습니다.</p>
+
+  <p>5) kill은 프로세스를 죽이는게 아닙니다.
+프로세스에 시그널을 송신하는 것이 정확한 기능입니다. 초기 유닉스 설계시에는 시그널은 프로세스를 죽이는 용도로 썼기 때문에 붙여졌던 이름이지만 현대에는 프로세스를 죽이지 않는 여러 시그널이 늘어났기 때문입니다.
+PS. 얼마전 강의를 위해 리눅스 교재를 보러 서점에 갔는데, 서점에 있는 리눅스 교재 중 상당수가 위 개념을 잘못 설명하고 있더군요. 혹시라고 잘못 배우신 분들은 이 기회에 올바른 지식으로 업데이트 하시기 바랍니다.
+특히 부모 프로세스 죽는다고 자식 프로세스가 죽는 경우는 없습니다. 로그오프 했을때 자식 프로세스들이 종료되는 것은 SIGHUP의 영향입니다. nohup 명령어가 바로 SIGHUP 시그널을 막아서 로그오프시 세션에 존재하는 프로세스 그룹의 연쇄 종료를 막아주는 기능입니다.
+또한 백그라운드 프로세스가 뒤에서 작동하면서 화면에 나타나지 않는다고 설명하는 경우도 있었는데 find / &amp; 로 작동시켜보시면 백그라운드로 작동하더라도 얼마든지 화면출력은 가능합니다. 단지 CTRL-C를 눌러서 SIGINT를 보내보면 백그라운드는 제어 터미널을 소유하지 못했기 때문에 종료가 안되는 것뿐이죠.
+혹시라도 크로스 체크 하실 분들을 위해 참조 서적, 레퍼런스 사이트 목록.</p>
+</blockquote>
+
+<blockquote>
+  <p>[1] APUE Chapter 9 Orphaned Process 정의 참조</p>
+
+  <p>[2] <a href="http://www.opengroup.org">IEEE std. 1003.1</a>의 foreground process 참조</p>
+
+  <p>[3] <a href="http://www.opengroup.org">IEEE std. 1003.1</a>의 background process 참조</p>
+</blockquote>
+
+<p>하단의 글은 해당글에 달린 댓글의 정광섭님께서 추가로 말씀해주신 글입니다.</p>
+
+<blockquote>
+  <p>한 가지 깨알 지식을 추가하면 프로세스 종료시에 kill -9 로 죽이는 경우가 있는데 이는 절대 피해야할 습관입니다. 보통 잘 만든 프로그램은 종료 시그널(SIGINT, SIGTERM 등)을 받으면 사용하던 리소스를 정리하고 파일을 닫고 마무리(시그널 핸들러) 하도록 구현되어 있는데 SIGKILL 과 SIGSTOP을 보내면은 핸들러를 호출할수 없으므로 사용하던 리소스가 깨진다거나 하는 문제가 발생할 수 있습니다.</p>
+
+  <p>리눅스 책 광고를 하나 올리겠습니다. 입문서는 아니지만 위와같은 깨알 지식과 Redhat/CentOS 리눅스 기반으로 인프라를 구축하는 내용인 “리눅스를 활용한 회사 인프라 구축의 모든 것” 이라는 책이 있습니다. CentoOS 6 기준이긴 하지만 도움이 되실수 있을 것 같아서 올려봅니다. (CentOS 7 에 맞게 개정판을 내고 싶은데 책이 잘 안 팔립니다. ^^) http://www.yes24.com/24/goods/15542130?scode=032&amp;OzSrank=7</p>
+</blockquote>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			
+				<li><a href="/categories.html#OS-ref">
+					OS <span>(15)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			
+				<li>
+					<a href="/tags.html#OS-ref">
+					OS <span>(17)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#Linux-ref">
+					Linux <span>(14)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#guide-ref">
+					guide <span>(14)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[리눅스] 유닉스, 리눅스 과련된 깨알 지식"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Donghyun Seo</h4>
+        <p class="author-bio">How do you define yourself?</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/research/2015/06/21/Coding-Conventions-Secure-Coding.html" title="Coding Conventions & Secure Coding 조사">&larr; Previous</a></li>
+		  
+		  
+			<li class="next disabled"><a>Next &rarr;</a>
+		  
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+
+    
+        
+<div id="disqus_thread" class="col-sm-10"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-62717870-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+

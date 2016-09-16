@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Facebook Group Crawler</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/ico/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/ico/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/ico/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
+	<link rel="manifest" href="/assets/ico/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/ico/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/logo.jpg" style="width: 35px;" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<a href="#" class="btn btn-default">
+			<i class="fa fa-arrow-up"></i>
+		</a>
+	</div>
+	<!-- div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div -->
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+
+<!--form id="search_form" action="/search.html" method="get" class="text-center" style="margin-bottom: 20px;">
+  <input type="text" id="search_box" name="query" placeholder="Search...">
+</form-->
+
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+	<!--ul id="contact-list-secondary" class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul-->
+</div>
+
+<div id="sidebar-menu" class="text-center">
+	<h3><a href="/">Home</a></h3>
+	<h3><a href="/2010/03/01/profile.html">About</a></h3>
+	<h3><a href="/categories.html">Categories</a></h3>
+	<h3><a href="/tags.html">Tags</a></h3>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>Facebook Group Crawler </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   May
+	   8th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <h2 id="facebook-group-crawler">Facebook Group Crawler</h2>
+
+<p><a href="https://github.com/prili/fb-hfc">fb-hfc</a>를 참조하여 작성하였습니다.
+우분투 및 OSX 에서만 작동하는 것을 확인했습니다.</p>
+
+<h2 id="section">설치</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>apt-get install python-lxml
+pip install -r requirements.txt
+</code></pre>
+</div>
+
+<h2 id="section-1">실행</h2>
+
+<h3 id="section-2">직접 실행</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">python</span> <span class="n">fb</span><span class="o">-</span><span class="n">hfc</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">username</span> <span class="s">'&lt;username&gt;'</span>  <span class="o">-</span><span class="n">password</span> <span class="s">'&lt;password&gt;'</span> <span class="o">-</span><span class="n">query</span> <span class="s">'&lt;graph search query&gt;'</span> <span class="o">-</span><span class="n">group</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">=</span><span class="n">url</span><span class="o">=</span><span class="nb">id</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<p>username: Facebook ID
+password: Facebook PW
+query : Member
+group : 그룹별명=그룹주소=그룹ID</p>
+
+<p>그룹 아이디는 <a href="http://lookup-id.com">Lookup-ID</a>라는 사이트를 이용할 수 있습니다.</p>
+
+<h3 id="shell--">Shell을 통한 실행</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">username</span><span class="o">=</span>
+<span class="nv">password</span><span class="o">=</span>
+
+cat ./source/group_list.txt | <span class="se">\</span>
+<span class="k">while </span><span class="nb">read </span>line
+<span class="k">do
+	</span><span class="nb">echo</span> -e <span class="s2">"</span><span class="se">\n\n\n</span><span class="s2"> </span><span class="nv">$line</span><span class="s2">"</span>
+	python fb-crawler.py -username <span class="nv">$username</span> -password <span class="nv">$password</span> -query member -group <span class="nv">$line</span>
+
+    <span class="nv">pids</span><span class="o">=</span><span class="k">$(</span>pidof /usr/bin/Xvfb<span class="k">)</span>
+	<span class="nb">echo</span> <span class="s2">"Xvfb pids : </span><span class="nv">$pids</span><span class="s2">"</span>
+	<span class="nb">kill</span> <span class="nv">$pids</span>
+	ps
+<span class="k">done</span>
+</code></pre>
+</div>
+
+<p>username: Facebook ID
+password: Facebook PW</p>
+
+<p>상단의 값을 입력 후 하위폴더 source에 그룹의 리스트를</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>name=url=id
+name=url=id
+</code></pre>
+</div>
+
+<p>와 같이 작성하면 됩니다.</p>
+
+<h2 id="section-3">한계</h2>
+
+<p>멤버수가 8000~9000명인 그룹의 경우 데이터가 정확하지 않으며, 9000명이상인 그룹에서는 그 이상의 데이터를 가져올 수가 없습니다.</p>
+
+<h2 id="section-4">소스</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.action_chains</span> <span class="kn">import</span> <span class="n">ActionChains</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">init</span>
+<span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">Fore</span><span class="p">,</span> <span class="n">Back</span><span class="p">,</span> <span class="n">Style</span>
+<span class="kn">import</span> <span class="nn">lxml.html</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c"># OSX에서 동작할 수 있도록 추가</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s">'win32'</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s">'darwin'</span><span class="p">:</span>
+  <span class="kn">from</span> <span class="nn">pyvirtualdisplay</span> <span class="kn">import</span> <span class="n">Display</span>
+
+<span class="n">init</span><span class="p">(</span><span class="n">autoreset</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">"-----------------------------------------------------------------------------"</span>
+<span class="k">print</span> <span class="s">"          Facebook group crawler"</span>
+<span class="k">print</span> <span class="s">"-----------------------------------------------------------------------------"</span>
+<span class="k">print</span> <span class="s">"Examples:"</span>
+<span class="k">print</span> <span class="s">"1. Generates Group Member List:"</span>
+<span class="k">print</span> <span class="s">"python fb-hfc.py -username '&lt;username&gt;'  -password '&lt;password&gt;' </span><span class="se">\n</span><span class="s">-query '&lt;graph search query&gt;' -group &lt;name=url=id&gt;"</span>
+<span class="k">print</span> <span class="s">"-----------------------------------------------------------------------------"</span>
+
+<span class="c"># 입력 값 파싱</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">usage</span><span class="o">=</span><span class="s">"-h for full usage"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-username'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"username"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'facebook username to login with (e.g. example@example.com)'</span><span class="p">,</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-password'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"password"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'facebook password to login with (e.g. </span><span class="se">\'</span><span class="s">password</span><span class="se">\'</span><span class="s">)'</span><span class="p">,</span><span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-query'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"query"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Run method'</span><span class="p">,</span><span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-group'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"group"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'group name, group url, group id (e.g. "name=url=id")'</span><span class="p">,</span><span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="c"># 파싱된 입력 값 검증</span>
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">query</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+	<span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">"You must give atleast one method -query"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">query</span> <span class="ow">and</span> <span class="n">args</span><span class="o">.</span><span class="n">group</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+	<span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">"-You must provide -group"</span><span class="p">)</span>
+
+<span class="c"># DB 연결</span>
+<span class="k">def</span> <span class="nf">connect_db</span><span class="p">(</span><span class="n">group_id</span><span class="p">):</span>
+
+	<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'./db/'</span><span class="o">+</span><span class="n">group_id</span><span class="o">+</span><span class="s">'.db'</span><span class="p">)</span>
+	<span class="c"># con = sqlite3.connect('./test/'+group_id+'.db')</span>
+	<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+	<span class="n">query</span> <span class="o">=</span> <span class="s">"create table if not exists id_"</span> <span class="o">+</span> <span class="n">group_id</span> <span class="o">+</span> <span class="s">"_member (id text primary key not null , name text not null, date datetime not null)"</span>
+	<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">con</span><span class="p">,</span> <span class="n">cur</span>
+
+<span class="c"># DB 해제</span>
+<span class="k">def</span> <span class="nf">disconnect_db</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+
+	<span class="n">db</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+	<span class="n">db</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+	<span class="n">db</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c"># 로그 작성</span>
+<span class="k">def</span> <span class="nf">log_write</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+	<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"./source/log.txt"</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+	<span class="c"># f = open("log_test.txt", 'a')</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%</span><span class="s">s] </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">(),</span> <span class="n">log</span><span class="p">))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"-"</span><span class="o">*</span><span class="mi">80</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c"># 상태 로그 작성</span>
+<span class="k">def</span> <span class="nf">status_member_write</span><span class="p">(</span><span class="n">dic</span><span class="p">):</span>
+	<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"./source/status_member.txt"</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+	<span class="c"># f = open("status_member_test.txt", 'a')</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Group Name"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'group_name'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Group URL"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'group_url'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Group Id"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'group_id'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Start Time"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'start_time'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"End Time"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'end_time'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Elapsed Time"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'el_time'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Params Results"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'params_results'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Data Len"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'data_len'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"[</span><span class="si">%20</span><span class="s">s] : </span><span class="si">%</span><span class="s">s</span><span class="se">\n</span><span class="s">"</span> <span class="o">%</span> <span class="p">(</span><span class="s">"Success"</span><span class="p">,</span> <span class="n">dic</span><span class="p">[</span><span class="s">'success'</span><span class="p">]))</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"-"</span><span class="o">*</span><span class="mi">80</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c"># 주어진 시간과 현재 시간의 차이 값 반환</span>
+<span class="k">def</span> <span class="nf">elapsed_time</span><span class="p">(</span><span class="n">sdate</span><span class="p">):</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sdate</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">sdate</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sdate</span><span class="p">[:</span><span class="mi">4</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sdate</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sdate</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">8</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sdate</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sdate</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">12</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sdate</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="mi">14</span><span class="p">]))</span>
+    <span class="n">days</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">-</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
+    <span class="n">sec</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="o">-</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span>
+    <span class="n">hour</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="mi">3600</span><span class="p">)</span>
+    <span class="n">minute</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">sec</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">days</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minute</span><span class="p">,</span> <span class="n">sec</span>
+
+<span class="c"># 페이스북 로그인</span>
+<span class="k">def</span> <span class="nf">facebook_login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">):</span>
+	<span class="k">print</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Login to Facebook...."</span><span class="p">),</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Init&gt;Login to Facebook....</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+	<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span> 
+	<span class="n">url</span> <span class="o">=</span> <span class="s">"http://www.facebook.com"</span>
+	<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+	<span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">"email"</span><span class="p">)</span>
+	<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+	<span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s">"pass"</span><span class="p">)</span>
+	<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+	<span class="n">elem</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">Keys</span><span class="o">.</span><span class="n">RETURN</span><span class="p">)</span>
+	<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="n">html_source</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+	<span class="k">if</span> <span class="s">"Please re-enter your password"</span> <span class="ow">in</span> <span class="n">html_source</span> <span class="ow">or</span> <span class="s">"Incorrect Email"</span> <span class="ow">in</span> <span class="n">html_source</span><span class="p">:</span>
+		<span class="k">print</span> <span class="n">Fore</span><span class="o">.</span><span class="n">RED</span> <span class="o">+</span> <span class="s">"Incorrect Username or Password"</span>
+		<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Init&gt;Incorrect Username or Password</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+		<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+		<span class="nb">exit</span><span class="p">()</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">print</span> <span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span> <span class="o">+</span> <span class="s">"Success</span><span class="se">\n</span><span class="s">"</span>
+		<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Init&gt;Success</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">driver</span><span class="o">.</span><span class="n">get_cookies</span><span class="p">()</span>
+
+<span class="c"># 페이스북 그룹 멤버 크롤링</span>
+<span class="k">def</span> <span class="nf">group_member</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
+
+	<span class="n">group_name</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+	<span class="n">group_url</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+	<span class="n">group_id</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+	<span class="c"># 상태 파일 저장을 위한 초기화</span>
+	<span class="n">status_dic</span> <span class="o">=</span> <span class="p">{}</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'group_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_name</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'group_url'</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_url</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'group_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_id</span>
+
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'start_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span>
+	<span class="n">start_sdate</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y</span><span class="si">%</span><span class="s">m</span><span class="si">%</span><span class="s">d</span><span class="si">%</span><span class="s">H</span><span class="si">%</span><span class="s">M</span><span class="si">%</span><span class="s">S'</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span> 
+
+	<span class="k">print</span> <span class="s">"</span><span class="se">\n</span><span class="s">&lt;Member, Start&gt;Parsing Group : "</span> <span class="o">+</span> <span class="n">Fore</span><span class="o">.</span><span class="n">YELLOW</span> <span class="o">+</span> <span class="n">group_name</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Member, Start&gt;Parsing Group : "</span><span class="o">+</span> <span class="n">group_name</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+	<span class="c"># 크롤링할 주소</span>
+	<span class="n">graph_search_query</span> <span class="o">=</span> <span class="s">"https://www.facebook.com/groups/"</span><span class="o">+</span><span class="n">group_url</span><span class="o">+</span><span class="s">"/members"</span>
+
+	<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+	<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">graph_search_query</span><span class="p">)</span>
+
+	<span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">graph_search_query</span><span class="p">)</span>
+
+	<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+		<span class="k">try</span><span class="p">:</span>
+			<span class="c"># 더 보기 클릭</span>
+			<span class="n">elem</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s">".//a[&lt;a href='https://github.com/class' class='user-mention'&gt;@class&lt;/a&gt;='pam uiBoxLightblue uiMorePagerPrimary']"</span><span class="p">)</span>
+			<span class="n">elem</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+		<span class="k">except</span><span class="p">:</span>
+			<span class="k">break</span>
+
+	<span class="c"># 파싱할 요소</span>
+	<span class="n">xpath_name_params1</span> <span class="o">=</span> <span class="s">".//div[&lt;a href='https://github.com/class' class='user-mention'&gt;@class&lt;/a&gt;='fsl fwb fcb']/a/&lt;a href='https://github.com/href' class='user-mention'&gt;@href&lt;/a&gt;"</span>		<span class="c"># 아이디 값</span>
+	<span class="n">xpath_name_params2</span> <span class="o">=</span> <span class="s">".//div[&lt;a href='https://github.com/class' class='user-mention'&gt;@class&lt;/a&gt;='fsl fwb fcb']/a/text()"</span>	<span class="c"># 이름 값</span>
+	<span class="n">xpath_name_params3</span> <span class="o">=</span> <span class="s">".//div[&lt;a href='https://github.com/class' class='user-mention'&gt;@class&lt;/a&gt;='fsm fwn fcg']/abbr/&lt;a href='https://github.com/title' class='user-mention'&gt;@title&lt;/a&gt;"</span>	<span class="c"># 가입 </span>
+
+	<span class="n">html_source</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+
+	<span class="n">html_lxml</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">html_source</span><span class="p">))</span>				<span class="c"># parse to lxml object</span>
+	<span class="n">params_result1</span> <span class="o">=</span> <span class="n">html_lxml</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">xpath_name_params1</span><span class="p">)</span>
+	<span class="n">params_result2</span> <span class="o">=</span> <span class="n">html_lxml</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">xpath_name_params2</span><span class="p">)</span>
+	<span class="n">params_result3</span> <span class="o">=</span> <span class="n">html_lxml</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">xpath_name_params3</span><span class="p">)</span>
+
+	<span class="n">params_results</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params_result1</span><span class="p">))</span> <span class="o">+</span><span class="s">", "</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params_result2</span><span class="p">))</span> <span class="o">+</span><span class="s">", "</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params_result3</span><span class="p">))</span>
+	<span class="k">print</span> <span class="s">"&lt;Member, Parsing&gt; Param Results : "</span> <span class="o">+</span> <span class="n">params_results</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Member, Parsing&gt; Param Results : "</span> <span class="o">+</span> <span class="n">params_results</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'params_results'</span><span class="p">]</span> <span class="o">=</span> <span class="n">params_results</span>
+
+	<span class="c"># ID 값을 추출하기</span>
+	<span class="n">params_result1_res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+	<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_result1</span><span class="p">:</span>
+			<span class="k">if</span> <span class="s">"profile.php"</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+				<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=</span><span class="err">\</span><span class="s">profile</span><span class="err">\</span><span class="s">.php</span><span class="err">\</span><span class="s">?id=)(.*</span><span class="se">\n</span><span class="s">?)(?=&amp;fref=grp_mmbr_list)'</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+					<span class="n">params_result1_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'(?&lt;=</span><span class="err">\</span><span class="s">.com</span><span class="err">\</span><span class="s">/)(.*</span><span class="se">\n</span><span class="s">?)(?=</span><span class="err">\</span><span class="s">?)'</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+					<span class="n">params_result1_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+
+	<span class="n">data</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">params_result1_res</span><span class="p">,</span> <span class="n">params_result2</span><span class="p">,</span> <span class="n">params_result3</span><span class="p">)</span>
+	<span class="n">data_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+	<span class="k">print</span> <span class="s">"&lt;Member, Parsing&gt; Data Len : "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_len</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Member, Parsing&gt; Data Len : "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_len</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'data_len'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_len</span><span class="p">)</span>
+
+	<span class="n">success</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="c"># DB에 입력</span>
+	<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+		<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"select count(*) from id_"</span> <span class="o">+</span> <span class="n">group_id</span> <span class="o">+</span> <span class="s">"_member where id = '"</span> <span class="o">+</span> <span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">"'"</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">:</span>
+			<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+				<span class="n">param1_en</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"'"</span><span class="p">,</span> <span class="s">"''"</span><span class="p">)</span>
+				<span class="n">param2_en</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">)</span>
+				<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">param2_en</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+					<span class="n">param2_en</span> <span class="o">=</span> <span class="n">param2_en</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"년 "</span><span class="p">,</span><span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"월 "</span><span class="p">,</span><span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"일"</span><span class="p">,</span><span class="s">" "</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+				<span class="k">else</span> <span class="p">:</span>
+					<span class="n">param2_en</span> <span class="o">=</span> <span class="n">param2_en</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"년 "</span><span class="p">,</span><span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"월 "</span><span class="p">,</span><span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"일"</span><span class="p">,</span><span class="s">" "</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+				<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"insert into id_"</span><span class="o">+</span> <span class="n">group_id</span> <span class="o">+</span> <span class="s">"_member(id, name, date) values ('"</span><span class="o">+</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s">"', '"</span><span class="o">+</span><span class="n">param1_en</span><span class="o">+</span><span class="s">"', '"</span><span class="o">+</span><span class="n">param2_en</span><span class="o">+</span><span class="s">"')"</span><span class="p">)</span>
+				<span class="n">success</span> <span class="o">=</span> <span class="n">success</span> <span class="o">+</span> <span class="mi">1</span>
+
+	<span class="k">print</span> <span class="s">"&lt;Member, Parsing&gt; Success In Database : "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">success</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Member, Parsing&gt; Success In Database : "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">success</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'success'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
+
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'end_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">()</span>
+
+	<span class="n">el_time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">(</span><span class="n">start_sdate</span><span class="p">))</span>
+
+	<span class="k">print</span> <span class="s">"&lt;Member, Parsing&gt; Elapsed Time : "</span> <span class="o">+</span> <span class="n">el_time</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Member, Parsing&gt; Elapsed Time : "</span> <span class="o">+</span> <span class="n">el_time</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">status_dic</span><span class="p">[</span><span class="s">'el_time'</span><span class="p">]</span> <span class="o">=</span> <span class="n">el_time</span>
+
+
+	<span class="k">print</span> <span class="s">"&lt;Member, End&gt;Parsing Group : "</span> <span class="o">+</span> <span class="n">Fore</span><span class="o">.</span><span class="n">YELLOW</span> <span class="o">+</span> <span class="n">group_name</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+	<span class="n">log_write</span><span class="p">(</span><span class="s">"&lt;Member, End&gt;Parsing Group : "</span><span class="o">+</span> <span class="n">group_name</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+	<span class="n">status_member_write</span><span class="p">(</span><span class="n">status_dic</span><span class="p">)</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">username</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">password</span>
+
+<span class="c"># OSX에서 동작할 수 있도록 추가</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s">'win32'</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s">'darwin'</span> <span class="p">:</span>
+	<span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1600</span><span class="p">,</span> <span class="mi">900</span><span class="p">))</span>
+	<span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+
+<span class="n">cookies</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">cookies</span> <span class="o">=</span> <span class="n">facebook_login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">query</span> <span class="p">:</span>
+	<span class="n">group</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="s">''</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'='</span><span class="p">)</span>
+
+	<span class="k">try</span><span class="p">:</span>
+		<span class="n">db</span> <span class="o">=</span> <span class="n">connect_db</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+		<span class="n">group_member</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">group</span><span class="p">)</span>
+	<span class="k">except</span> <span class="nb">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+		<span class="k">print</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+		<span class="n">log_write</span><span class="p">(</span><span class="s">"#####Error##### : "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="k">finally</span><span class="p">:</span>
+		<span class="n">disconnect_db</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">exit</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h2 id="section-5">의의</h2>
+
+<p>Facebook의 멤버수를 수집하여 분석할 일이 있어서 작성했어요. 거의 참조해서 만들었지만 평소에 관심이 있던 크롤러를 경험해 볼 수 있어서 좋았네요. 하지만 좀 더 나은 데이터를 얻을 수 없는 한계와 이 방식이 상당히 무거운 것이 아쉽네요. 시간이 날때 좀 더 좋은 방법에 대해 연구해봐야겠네요.</p>
+
+<p>###<a href="https://github.com/egaoneko/fb-group-crawler">github link</a></p>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			
+				<li><a href="/categories.html#Coding-ref">
+					Coding <span>(1)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			
+				<li>
+					<a href="/tags.html#Python-ref">
+					Python <span>(4)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#Crawler-ref">
+					Crawler <span>(1)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Facebook Group Crawler"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Donghyun Seo</h4>
+        <p class="author-bio">How do you define yourself?</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/etc/2015/02/26/wappalyzer.html" title="[Wappalyzer] 사이트에 사용된 소프트웨어를 알아볼 수 있게 해주는 확장기능">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/blog/2015/05/08/jekyll.html" title="Jekyll 참고 사이트 정리">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+
+    
+        
+<div id="disqus_thread" class="col-sm-10"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-62717870-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+

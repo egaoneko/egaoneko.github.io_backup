@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>[마인크래프트] 서버를 여는 세 가지의 방법</title>
+	
+	<meta name="author" content="Donghyun Seo">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/ico/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/ico/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/ico/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/ico/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/ico/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/ico/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/assets/ico/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
+	<link rel="manifest" href="/assets/ico/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/ico/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/egaoneko">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="https://kr.linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="/assets/media/logo.jpg" style="width: 35px;" class="img-circle" />
+				
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/2010/03/01/profile.html">About</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<a href="#" class="btn btn-default">
+			<i class="fa fa-arrow-up"></i>
+		</a>
+	</div>
+	<!-- div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/2010/03/01/profile.html"><i class="fa fa-search"></i>About</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div -->
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+
+<!--form id="search_form" action="/search.html" method="get" class="text-center" style="margin-bottom: 20px;">
+  <input type="text" id="search_box" name="query" placeholder="Search...">
+</form-->
+
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="/assets/media/logo.jpg" class="img-circle" />
+	</a>
+	<h3 class="title">
+        <a href="/"></a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	How do you define yourself?
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/egaoneko">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/donghyunseo">
+				<i class="fa fa-linkedin fa-lg"></i>
+			</a>
+		</li>
+		
+
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul>
+	<!--ul id="contact-list-secondary" class="list-unstyled list-inline">
+		<li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li>
+	</ul-->
+</div>
+
+<div id="sidebar-menu" class="text-center">
+	<h3><a href="/">Home</a></h3>
+	<h3><a href="/2010/03/01/profile.html">About</a></h3>
+	<h3><a href="/categories.html">Categories</a></h3>
+	<h3><a href="/tags.html">Tags</a></h3>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>[마인크래프트] 서버를 여는 세 가지의 방법 </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   February
+	   25th,
+	   
+	   2014
+	 </span>
+	  <div class="article_body">
+	  <p><img src="/assets/media/minecraft1.jpg" alt=" screenshot" /></p>
+
+<p>마인크래프트 특유의 게임내의 생존 방식, 시스템 등과 여러 개발자들에 의해 모드와 플러그인 등이 한동안 재미를 주었던 기억에 이 글을 쓰게 되네요. 개인적으로는 Java로 만들어졌으며 Eclipse를 통해서 이런저런 시도가 가능하다는 점에서 좀 더 관심이 갔었기도 하고요.</p>
+
+<p>이번 포스트는 마인크래프트 서버에 대해 이야기하고자 하지만 서버에 대한 여는 법이나 설치법에 대한 것은 아니에요. 서버의 여는 세 가지 방법에 대한 소개와 간단히 난이도를 소개하는 방향으로 포스팅을 하려고 합니다. 사실 여는 법이나 설치법은 간단한 검색만으로도 쉽게 찾을 수 있고 저보다 저 자세히 설명들 해주셔서 여기서는 빼고자 해요.</p>
+
+<h2 id="section">1) 하마치를 통해서 여는 법 (난이도 하)</h2>
+
+<p><img src="/assets/media/minecraft2.jpg" alt=" screenshot" /></p>
+
+<p>하마치를 통해서 여는 법은 앞으로 소개할 어느 방법보다 쉽게 열 수 있어요. 하마치를 통해서 가상 LAN과 유사한 네트워크를 만드는데 간단한 설치 한번으로 이용이 가능해요. 저도 한번 하마치 서버를 열어본 적이 있긴 한데 개인적으로 선호하는 방법은 아니네요. 일단 블로그나 카페를 통한 설치 파일은 믿을 수가 없고 공식 홈페이지 비슷한 곳이 있긴 하지만 여기가 공식 홈페이지가 맞는지 잘 모르겠더라고요. 그래도 조금 더 신용이 가는 후자 쪽을 선택해서 사용해봤는데 보안 부분이 불안한 것 빼고는 편하게 사용했어요.</p>
+
+<p>요약하자면</p>
+
+<ul>
+  <li>보안이 약간 위험하지만 그래도 난 편한 것이 좋아!</li>
+  <li>도메인 서버, 노하마치 서버 어렵고 골치 아파!</li>
+</ul>
+
+<p>위와 같은 분이시라면 하마치 서버를 추천할게요.</p>
+
+<ul>
+  <li>하마치 다운로드 : <a href="https://secure.logmein.com/KR/products/hamachi/download.aspx">https://secure.logmein.com/KR/products/hamachi/download.aspx </a>/ <a href="http://hamachi.downloader.co.kr/Hamachi_home">http://hamachi.downloader.co.kr/Hamachi_home</a></li>
+  <li>서버 여는 법 : <a href="http://blog.naver.com/chtwon1263?Redirect=Log&amp;logNo=150165710919">http://blog.naver.com/chtwon1263?Redirect=Log&amp;logNo=150165710919</a></li>
+</ul>
+
+<p>하마치 다운로드는 공식 홈페이지에서 받는 것을 추천하는데 사실 어느 것이 공식 홈페이지 인지 잘 모르겠네요. 저는 두 번째 링크에서 받아서 사용했지만 첫 번째 링크가 공식 홈페이지라는 말이 있네요. 지금 확인해보니 첫 번째 링크가 좀 더 신용이 가기는 합니다. 홈페이지 내부를 좀 돌아다녀 보고 제품도 보고 연락처나 커뮤니티 메뉴 다국어 등 전반적으로 두 번째보다는 신용이 가네요. 두 번째는 다운로드와 설명만 있고 우측 상단에서 다른 나라 언어로 바꾸어 보았지만 가입과 로그인 부분만 해당 언어로 바뀌지 제품 설명에 대한 부분은 변화가 없네요.</p>
+
+<h2 id="section-1">2) 포트포워딩을 통해서 여는 법 (난이도 중)</h2>
+
+<p><img src="/assets/media/minecraft3.jpg" alt=" screenshot" /></p>
+
+<p>이 방법은 하마치보다는 조금 더 손이 가는 작업이 필요한 방법입니다. 그렇다고 엄청 어렵지는 않는데 포트 포워딩이라든가 낯선 용어가 많이 나와 당황 하실 수 있으나 차근차근 하시면 못할 정도는 아니에요. 게다가 도메인과 연결에 연결해 쓰는 방법도 있어서 인터넷에 노마하치 서버라고 찾으면 이 방법에 대한 많은 글을 찾을 수 있어요. 보안 부분은 하마치처럼 설치해야하는 방법은 아니다보니 좀 더 나은 것 같네요.</p>
+
+<p>요약하자면</p>
+
+<ul>
+  <li>하마치 설치는 불안해, 조금 어려워도 할 수 있어!</li>
+  <li>도메인을 사용하고 싶어!</li>
+</ul>
+
+<p>위와 같은 분이시라면 포트포워딩을 추천할게요.</p>
+
+<ul>
+  <li>포트포워딩으로 하는 법 : <a href="http://fogria.tistory.com/293">http://fogria.tistory.com/293</a></li>
+  <li>도메인 연결 하는 법 : <a href="http://blog.naver.com/dlflfh07/110182881744">http://blog.naver.com/dlflfh07/110182881744</a></li>
+</ul>
+
+<h2 id="section-2">3) 가상 서버 호스팅(혹은 서버호스팅)을 통해서 여는 법 (난이도 상)</h2>
+
+<p><img src="/assets/media/minecraft4.jpg" alt=" screenshot" /></p>
+
+<p>위의 두 방법 중 제일 어려운 편에 속하는 방법이네요. 저는 가상 서버 호스팅 서비스 중 리눅스 서버를 구매해 사용하고 있어 이 방법으로 서버를 열어봤네요. 가상 서버 호스팅 서비스 중 윈도우 서버도 있는데 이를 통해하면 리눅스보다 구현에 좀 더 쉬울 수 있어요. 사실 가상 서버 호스팅이나 서버 호스팅이나 구현 방법이 동일한데 가상 호스팅은 가격이 싸지만 성능이 딸리고 서버 호스팅은 성능 면에서 좋지만 가격이 비싸네요. 윈도우보다 리눅스 서버가 가격이 싸고 성능이 좋게 판매하고 있고요. 마인크래프트 서버를 만들기 위해 서버 호스팅을 하는 것은 개인적으로 봤을 때는 비싼 느낌이 있는데 가상 서버 호스팅으로 서버를 만들어봤는데 서버로 운영하기엔 성능이 너무 나쁘네요. 친구랑 단둘이 하실 것이라면 문제가 없지만 아니라면 포트포워딩 방법이 더 나은 것 같네요.</p>
+
+<p>요약하자면</p>
+
+<ul>
+  <li>내 컴퓨터가 아니니까 보안 위험이 없다!</li>
+  <li>리눅스로 공부할 것도 있고 개인서버도 하나 가지고 싶은데 마크까지!</li>
+  <li>매달 조금씩 돈이 나가지만 즐기기 위해선 이정도 쯤이야!</li>
+</ul>
+
+<p>위와 같은 분이시라면 가상 서버 호스팅(서버 호스팅)을 추천할게요.</p>
+
+<ul>
+  <li>가상 서버 호스팅　：<a href="http://kkwaks.net/717">http://kkwaks.net/717</a></li>
+  <li>서버 여는 법 : <a href="http://inunmc.tistory.com/2">http://inunmc.tistory.com/2</a></li>
+</ul>
+
+<h2 id="section-3">추가된 내용</h2>
+
+<ul>
+  <li>2015-05-24에 추가된 글입니다.</li>
+</ul>
+
+<p>마인크래프트를 하면 머리가 아퍼서 못한지 오래됬네요. 그리고 티스토리에서 다른 블로그로 옮기고 티스토리를 방치해뒀는데 그곳에서 달린 댓글을 보고 추가글을 작성하게 됬네요.</p>
+
+<p>서버 호스팅 사이트를 하나 추천 받았네요.</p>
+
+<p><a href="https://netherbox.com">https://netherbox.com</a>라는 사이트인데 직접 운영해보지 않아서 자세한 것은 모르겠지만 마인크래프트를 전문적으로 서버 호스팅하는 것 같네요.</p>
+
+<p>개인적으로 사용해본 <a href="https://www.digitalocean.com">DigitalOcean</a>과 비슷한 램에 비슷한 가격이네요. 서버 호스팅이 익숙하시다면 여러 용도로 사용할 수 있는 DigitalOcean같은 서버 호스팅이 좋겠지만 어렵다면 netherbox도 한 방법이 아닐까 하네요.</p>
+
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			
+				<li><a href="/categories.html#Game-ref">
+					Game <span>(1)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			
+				<li>
+					<a href="/tags.html#가상 서버 호스팅-ref">
+					가상 서버 호스팅 <span>(1)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#마인크래프트-ref">
+					마인크래프트 <span>(1)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#서버-ref">
+					서버 <span>(1)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#포트 포워딩-ref">
+					포트 포워딩 <span>(1)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#하마치-ref">
+					하마치 <span>(1)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=[마인크래프트] 서버를 여는 세 가지의 방법"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="/assets/media/logo.jpg" class="img-rounded author-image" />
+        <h4 class="section-title author-name">Donghyun Seo</h4>
+        <p class="author-bio">How do you define yourself?</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/java/2014/02/25/window-builder-dragdrop.html" title="[Java 이야기] Window Builder에 Drag&Drop">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/arduino/2014/03/09/arduino-error-stk500.html" title="[오류] avrdude: stk500_getsync(): not in sync: resp=0x00">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+
+    
+        
+<div id="disqus_thread" class="col-sm-10"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'egaoneko';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    
+</article>
+<div class="clearfix"></div>
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				Copyright &copy; 2016 Donghyun Seo All rights reserved. / Theme: <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek. <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/2.0/kr/88x31.png" /></a><br />이 블로그의 모든 저작물들은 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/kr/">크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.</a>
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-62717870-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
