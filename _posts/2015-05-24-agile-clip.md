@@ -1,8 +1,8 @@
 ---
 layout: post
-title: '[Clipping] 애자일 소프트웨어 개발(Agile Software Development)'
+title: '애자일 소프트웨어 개발(Agile Software Development)'
 date: 2015-05-24 19:00:00
-categories: Clipping
+categories: Research
 tags: Agile
 published: true
 fullview: false

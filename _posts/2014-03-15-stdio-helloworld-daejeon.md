@@ -2,7 +2,7 @@
 layout: post
 title: '[STD.IO] Hello, World!_Daejeon_정리'
 date: 2014-03-15 17:55:51
-categories: Seminar
+categories: Review
 tags: [daejeon, Hello World, STD.IO, 세미나]
 published: true
 fullview: false
