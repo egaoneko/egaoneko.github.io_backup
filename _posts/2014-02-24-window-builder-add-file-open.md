@@ -1,8 +1,8 @@
 ---
 layout: post
-title: '[Java 이야기] 추가한 파일 Window Builder로 열기'
+title: '[Window Builder] 추가한 파일 Window Builder로 열기'
 date: 2014-02-24 11:43:24
-categories: Programming
+categories: Java
 tags: [Java, Window Builder]
 published: true
 fullview: false

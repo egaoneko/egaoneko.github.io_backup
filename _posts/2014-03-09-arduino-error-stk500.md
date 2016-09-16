@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[오류] avrdude: stk500_getsync(): not in sync: resp=0x00'
+title: '[Arduino] avrdude: stk500_getsync(): not in sync: resp=0x00'
 date: 2014-03-09 13:08:10
 categories: Programming
 tags: [아두이노, 오류]

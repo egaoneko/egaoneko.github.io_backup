@@ -2,7 +2,7 @@
 layout: post
 title: 'Coding Conventions & Secure Coding 조사'
 date: 2015-06-21 00:00:02
-categories: Study
+categories: Research
 tags: ['Contious Integration', 'Secure Coding']
 published: true
 fullview: false

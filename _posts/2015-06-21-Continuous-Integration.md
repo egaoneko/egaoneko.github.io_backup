@@ -2,7 +2,7 @@
 layout: post
 title: 'Continuous Integration 조사'
 date: 2015-06-21 00:00:01
-categories: Study
+categories: Research
 tags: 'Contious Integration'
 published: true
 fullview: false

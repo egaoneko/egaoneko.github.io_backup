@@ -2,7 +2,7 @@
 layout: post
 title: '[Django] python3.x mysql connector'
 date: 2014-09-04 12:30:25
-categories: Programming
+categories: Python
 tags: [Python, Connector, Django, MySQL, Web]
 published: true
 fullview: false
