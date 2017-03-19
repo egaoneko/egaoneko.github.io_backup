@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'debounce 와 throttle'
-date: 2017-01-29 20:30:00
+date: 2017-03-19 20:30:00
 categories: JavaScript
 tags: [JavaScript, debounce, throttle]
 published: true
