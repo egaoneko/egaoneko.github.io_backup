@@ -176,3 +176,57 @@ BUBBLE : depth9
 ```
 
 propagation.js를 함께 사용하고 `stopPropagtion`을 적용하여 위와 같이 `stopPropagation`이 잘 작동함을 확인할 수 있었다.
+
+```javascript
+if (hammer.Manager) {
+    // This looks like the Hammer constructor.
+    // Overload the constructors with our own.
+    var Hammer = hammer;
+
+    var PropagatingHammer = function(element, options) {
+        var o = Object.create(_options);
+        if (options) Hammer.assign(o, options);
+        return propagating(new Hammer(element, o), o);
+    };
+    Hammer.assign(PropagatingHammer, Hammer);
+
+    PropagatingHammer.Manager = function (element, options) {
+        var o = Object.create(_options);
+        if (options) Hammer.assign(o, options);
+        return propagating(new Hammer.Manager(element, o), o);
+    };
+
+    return PropagatingHammer;
+}
+
+...
+
+wrapper.on = function (events, handler) {
+    // register the handler
+    split(events).forEach(function (event) {
+        var _handlers = wrapper._handlers[event];
+        if (!_handlers) {
+            wrapper._handlers[event] = _handlers = [];
+
+            // register the static, propagated handler
+            hammer.on(event, propagatedHandler);
+        }
+        _handlers.push(handler);
+    });
+
+    return wrapper;
+};
+```
+
+상단의 코드는 propagation.js의 코드 일부이다. 위와 같이 Hammer.js를 한번 wrap해서 propation을 처리하고 있다.
+
+## Hammer.js with angular.js
+
+Angular.js 에서 Hammer.js를 사용하고자 하면 [angular-hammer](https://github.com/RyanMullins/angular-hammer)라는 라이브러리가 있다. `hmTouchEvents`에 대한 의존성을 추가하고, 아래와 같이 사용하면 쉽게 사용할 수 있다.
+
+```xml
+<div hm-tap="onHammer"></div>
+<div hm-tap="model.name = 'Ryan'"></div>
+```
+
+추가로, angular-hammer를 사용하면서 `stopPropagtion`을 사용하고 싶다면 [angular-hammer-propagating](https://github.com/EpocSquadron/angular-hammer-propagating)를 사용하면 된다. angular-hammer를 fork하여 작성되었는데, 앞서 말한 propagation.js을 사용하여 `stopPropagtion`을 처리하고 있다.
