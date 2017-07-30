@@ -48,17 +48,13 @@ comments: true
 
 소유자의 실행권한으로 실행하였지만 프로세스 실행 UID가 root가 아닌 실행한 유저의 것을 확인할 수 있다.
 
-* * *
-
 ### SetGID : SetUID와 유사하며, 그룹사용자로서의 실행권한을 얻을 수 있음 
 
 ![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/6.jpg)
 
-* * *
-
 ### sticky bit : 이 비트가 설정되면 파일을 만든 사용자만이 그 파일에 대한 권리를 가짐
 
-{{ programming:os:linux:리눅스_정리:7.jpg }}![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/7.jpg)
+![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/6.jpg)
 
 대표적인 디렉토리로는 “/tmp” 디렉토리가 sticky bit로 설정되어 있는 것을 볼 수 있다.
 
