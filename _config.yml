@@ -15,6 +15,7 @@ defaults:
     values:
       title: SmileCat's Blog
 
+name: SmileCat's Blog
 description: SmileCat's Blog
 author:
   name: Donghyun Seo
