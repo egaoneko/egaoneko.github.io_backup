@@ -21,7 +21,7 @@ comments: true
 
 ### CRP 란
 
-HTML, CSS 및 자바스크립트 바이트를 수신한 후 렌더링된 픽셀로 변환하기 위해 필요한 처리까지 그 사이에 포함된 단계, 즉, 브라우저가 서버에서 응답을 받아 하나의 화면을 그려내는 것을 주요 랜더링 경로(CRP)라고 한다.
+HTML, CSS 및 JavaScript 바이트를 수신한 후 렌더링된 픽셀로 변환하기 위해 필요한 처리까지 그 사이에 포함된 단계, 즉, 브라우저가 서버에서 응답을 받아 하나의 화면을 그려내는 것을 주요 랜더링 경로(CRP)라고 한다.
 
 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)에서 아래와 같이 해당 과정에 대해서 잘 요약해서 설명해주셨다.
 
@@ -80,7 +80,7 @@ HTML과 CSS는 위와 같은 과정을 통해 DOM과 CSSOM으로 변환된다.
 
 #### DOM(Document Object Model) Tree 생성
 
-DOM은 HTML 문서의 객체 표현이고 외부를 향하는 자바스크립트와 같은 프로그래밍 언어와 HTML 문서의 연결 지점(인터페이스)이다. 자바스크립트를 이용해 DOM에 접근하는 경우가 많이 있지만, 그렇다고 해서 자바스크립트 언어의 한 부분은 아니며, 기타 언어들로 DOM에 접근할 수도 있다. 트리의 최상위 객체는 문서이다.
+DOM은 HTML 문서의 객체 표현이고 외부를 향하는 JavaScript와 같은 프로그래밍 언어와 HTML 문서의 연결 지점(인터페이스)이다. JavaScript를 이용해 DOM에 접근하는 경우가 많이 있지만, 그렇다고 해서 JavaScript의 한 부분은 아니며, 기타 언어들로 DOM에 접근할 수도 있다. 트리의 최상위 객체는 문서이다.
 
 * [브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)
 * [문서 객체 모델 (DOM) - MDN](https://developer.mozilla.org/ko/docs/Gecko_DOM_Reference)
@@ -92,7 +92,7 @@ HTML을 파싱하면 위와 같은 DOM Tree가 생성된다. DOM Tree는 문서 
 
 #### CSSOM(CSS Object Model) Tree
 
-CSSOM은 자바스크립트 언어와 같은 프로그래밍 언어가 CSS를 조작 할 수있게 해주는 API 세트이며, 이를 통해 CSS양식을 동적으로 읽고 수정할 수 있다.
+CSSOM은 스JavaScript와 같은 프로그래밍 언어가 CSS를 조작 할 수 있게 해주는 API 세트이며, 이를 통해 CSS양식을 동적으로 읽고 수정할 수 있다.
 
 * [CSS Object Model - MDN](https://developer.mozilla.org/ko/docs/Web/API/CSS_Object_Model)
 
@@ -158,3 +158,96 @@ Render Tree 생성, Layout 및 Paint 작업을 수행하는데 필요한 시간�
 위 영상은 Gecko에서 reflow를 거쳐서 화면에 paint되기까지를 보여준다.
 
 > 앞에서 설명한 각 과정들은 많은 부분이 생략되어 있다. 특히 Layout과 Paint 부분은 많이 생략되어 있으므로, 해당 부분이 궁금하다면 [브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)를 참고하면 좋을 것 같다.
+
+### Rendor-Blocking
+
+Render Tree를 생성하는데 DOM 및 CSSOM이 둘다 필요하기 때문에 HTML 및 CSS는 둘다 렌더링 차단 리소스이다. 또한, JavaScript를 사용하면 DOM 및 CSSOM을 쿼리하고 수정할 수 있기 때문에, JavaScript는 DOM 생성을 차단하고 페이지가 렌더링될 때 지연시킬 수도 있다.
+
+HTML의 경우 DOM이 없으면 렌더링 할 것이 없기 때문에 렌더링 차단 이유가 명확하지만, CSS나 JavaScript는 요구 사항은 상황에 따라 이유가 다소 불명확할 수 있다.
+
+아래는 렌더랑 차단 요소의 요약이다.
+
+* HTML
+    * 렌더링 차단 리소스
+* CSS
+    * 기본적으로는, 렌더링 차단 리소스
+    * 미디어 유형과 미디어 쿼리를 통해 일부 CSS 리소스를 렌더링을 비차단 리소스로 표시가 가능 (최적화 요소)
+    * 브라우저는 차단 동작이든 비차단 동작이든 관계없이 모든 CSS 리소스를 다운로드
+* JavaScript
+    * 명시적으로 비동기로 선언되지 않은 경우, DOM 생성을 차단
+    * 자바스크립트 실행은 CSSOM을 차단
+
+#### CSS : 차단 vs. 비차단 리소스
+
+```xml
+<link href="style.css" rel="stylesheet">
+<link href="style.css"    rel="stylesheet" media="all">
+<link href="portrait.css" rel="stylesheet" media="orientation:portrait">
+<link href="print.css" rel="stylesheet" media="print">
+<link href="other.css" rel="stylesheet" media="(min-width: 40em)">
+```
+
+#### JavaScript : 파서차단 vs. 비동기
+
+```xml
+<script>document.write("Hello, world");</script>
+<script src="app.js"></script>
+<script src="app.js" defer></script>
+<script src="app.js" async></script>
+```
+
+### CRP 측정
+
+최적화를 하고자 하면 최적화하고자 하는 대상에 대해서 측정이 필요하다. 본 글에서는 아래의 몇가지 방법에 대해서 살표보고자 한다.
+
+#### Chrome DevTools
+
+[Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/?hl=ko)는 Google Chrome에 내장되어있는 웹 저작 및 디버깅 도구이며, DevTools를 이용하여 사이트를 반복하고, 디버깅하고, 프로파일링할 수 있다. 자세한 도구의 사용법은 [타임라인 도구 사용법](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=ko)를 하기 바란다. DevTools를 사용하여 CRP뿐만 아니라 다양한 요소에 대해서 측정이 가능이 가능하지만, CRP를 측정면에서 본다면 다음 언급된 Lighthouse라는 도구가 더 유용하다.
+
+![chrome devtools]({{ site.baseurl }}/assets/media/critical-rendering-path/chrome-devtools.png)
+
+#### Lighthouse
+
+[Lighthouse](https://developers.google.com/web/tools/lighthouse/?hl=ko)는 웹 앱 감사 도구이며 해당 페이지에 대해 일련의 테스트를 수행한 다음, 이 페이지의 결과를 통합된 보고서로 표시해준다. Lighthouse를 Chrome 확장 프로그램이나 NPM 모듈로서 실행할 수 있으며, 이는 Lighthouse와 지속적 통합 시스템을 통합하는데 유용하다.
+
+![lighthouse]({{ site.baseurl }}/assets/media/critical-rendering-path/lighthouse.png)
+
+특히, 아래와 같이 별도로 해당 페이지에 대한 CRP 측정 결과를 보여주므로 CRP 측정에 유용하다.
+
+![lighthouse crp]({{ site.baseurl }}/assets/media/critical-rendering-path/lighthouse-crp.png)
+
+#### Navigation Timing API
+
+Navigation Timing API와 기타 여러 브라우저 이벤트를 조합해서 사용는 [Navigation Timing API](https://developer.mozilla.org/ko/docs/Navigation_timing) 접근방식에서는 [RUM(Real User Monitoring)](https://en.wikipedia.org/wiki/Real_user_monitoring) 지표를 캡처하며, 이 지표는 실제 사용자의 사이트 상호작용으로부터 캡처되며, 다양한 기기와 네트워크 조건에서 사용자가 경험하는 실제 CRP 성능을 정확하게 보여준다.
+
+![dom navtiming]({{ site.baseurl }}/assets/media/critical-rendering-path/dom-navtiming.png)
+
+```html
+<html>
+  <head>
+    <title>Critical Path: Measure</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+    <script>
+      function measureCRP() {
+        var t = window.performance.timing,
+          interactive = t.domInteractive - t.domLoading,
+          dcl = t.domContentLoadedEventStart - t.domLoading,
+          complete = t.domComplete - t.domLoading;
+        var stats = document.createElement('p');
+        stats.textContent = 'interactive: ' + interactive + 'ms, ' +
+            'dcl: ' + dcl + 'ms, complete: ' + complete + 'ms';
+        document.body.appendChild(stats);
+      }
+    </script>
+  </head>
+  <body onload="measureCRP()">
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+  </body>
+</html>
+```
+
+![device navtiming small]({{ site.baseurl }}/assets/media/critical-rendering-path/device-navtiming-small.png)
+
+* [Sample](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/measure_crp.html)
