@@ -56,3 +56,6 @@ sitemap:
   changefreq: 'monthly'
   url: 'http://egaoneko.github.io'
   exclude: 'yes'
+
+future: true
+timezone: 'Asia/Seoul'
