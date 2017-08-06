@@ -1,23 +1,21 @@
 ---
 layout: post
 title: 'Critical Rendering Path 최적화 도전기'
-date: 2017-08-05 00:00:00
+date: 2017-08-07 00:00:00
 categories: Frontend
 tags: [CRP, frontend, performance, optimization]
-published: false
+published: true
 fullview: false
 comments: true
 ---
 
-최근 브라우저가 어떻게 작동하는지 궁금하던 차에 회사 직원분의 공유를 통해 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)라는 글을 접하게 되었다. 해당 글에서 흥미로운 주제인 **주요 렌더링 경로(Critical Rendering Path, 이하 CRP)**에 대해서 접하게 되어 이와 관련된 Udacity 강좌와 여러 글들에 대해 찾아보게 되었고, 이를 바탕으로 현재 재직하고 있는 회사의 웹페이지에 해당 개념을 적용해보는 도전기를 공유하기 위해 이 글을 작성하고자 한다.
+최근 브라우저가 어떻게 작동하는지 궁금하던 차에 회사 직원분의 공유를 통해 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)라는 글을 접하게 되었다. 해당 글에서 흥미로운 주제인 **주요 렌더링 경로(Critical Rendering Path, 이하 CRP)**에 대해서 알게 되어 이와 관련된 Udacity 강좌와 여러 글들에 대해 찾아보게 되었고, 이를 바탕으로 현재 재직하고 있는 회사의 웹페이지에 해당 개념을 적용해보는 도전기를 공유하기 위해 이 글을 작성하고자 한다.
 
 본 글에서는 CRP에 대해 상세한 내용을 다루지 않을 것이기 때문에 상세한 내용이 궁금하다면 글 맨 하단의 참조 링크들을 확인하길 바란다. 특히 Google에서 제작한 Udacity의 [Website Performance Optimization](https://www.udacity.com/course/website-performance-optimization--ud884)와 [Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/?hl=ko)는 쉽게 설명해주어 좋은데, 심지어 번역도 되어있으니 처음 본다면 꼭 한번 보면 좋을 것 같다.
 
 앞서 언급하였듯이 이 글은 재직하고 있는 회사의 웹페이지에 CRP 최적화를 시도해본 도전기를 공유하고자 작성하였으며, 측정 도구로는 Google에서 제작한 [Lighthouse](https://developers.google.com/web/tools/lighthouse/?hl=ko)를 사용하였다. Lighthouse를 사용하여 측정할 때, CRP에 대해서만 측장하기 위해 **Performacne**옵션만 설정하여 측정하였다.
 
 ## 주요 렌더링 경로(Critical Rederning Path)
-
-위에서 언급하였듯이 본 글에서는 CRP에 대해서 간단히 언급만 하고 넘어가고자 한다.
 
 ### CRP 란
 
@@ -26,6 +24,7 @@ HTML, CSS 및 JavaScript 바이트를 수신한 후 렌더링된 픽셀로 변�
 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)에서 아래와 같이 해당 과정에 대해서 잘 요약해서 설명해주셨다.
 
 ![critical rendering path]({{ site.baseurl }}/assets/media/critical-rendering-path/critical-rendering-path.png)
+
 **[브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)**
 
 1. 서버에서 응답으로 받은 HTML 데이터를 파싱한다.
@@ -39,6 +38,14 @@ HTML, CSS 및 JavaScript 바이트를 수신한 후 렌더링된 픽셀로 변�
 CRP를 최적화하는 작업은 위 단계에서 1단계~6단계를 수행할 때 걸린 총 시간을 최소화하는 프로세스이다.
 
 #### HTML Parsing
+
+![construction]({{ site.baseurl }}/assets/media/critical-rendering-path/construction.png)
+
+**[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
+
+* 바이트 → 문자 → 토큰 → 노드 → 객체 모델
+
+HTML과 CSS는 위와 같은 과정을 통해 DOM과 CSSOM으로 변환된다.
 
 * `basic_dom.html`
 
@@ -68,14 +75,8 @@ img { float: right }
 
 * [Sample](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/basic_dom.html)
 
-![construction]({{ site.baseurl }}/assets/media/critical-rendering-path/construction.png)
-**[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
-
-* 바이트 → 문자 → 토큰 → 노드 → 객체 모델
-
-HTML과 CSS는 위와 같은 과정을 통해 DOM과 CSSOM으로 변환된다.
-
 ![full process]({{ site.baseurl }}/assets/media/critical-rendering-path/full-process.png)
+
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
 #### DOM(Document Object Model) Tree 생성
@@ -86,6 +87,7 @@ DOM은 HTML 문서의 객체 표현이고 외부를 향하는 JavaScript와 같�
 * [문서 객체 모델 (DOM) - MDN](https://developer.mozilla.org/ko/docs/Gecko_DOM_Reference)
 
 ![dom tree]({{ site.baseurl }}/assets/media/critical-rendering-path/dom-tree.png)
+
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
 HTML을 파싱하면 위와 같은 DOM Tree가 생성된다. DOM Tree는 문서 마크업의 속성 및 관계를 포함하지만 요소가 렌더링될 때 어떻게 표시될지에 대해서는 알려주지 않으며, 이것은 CSSOM의 책임입니다.
@@ -97,6 +99,7 @@ CSSOM은 스JavaScript와 같은 프로그래밍 언어가 CSS를 조작 할 수
 * [CSS Object Model - MDN](https://developer.mozilla.org/ko/docs/Web/API/CSS_Object_Model)
 
 ![cssom tree]({{ site.baseurl }}/assets/media/critical-rendering-path/cssom-tree.png)
+
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
 Style Sheet를 파싱하면 위와 같은 CSSOM Tree가 생성된다.
@@ -106,6 +109,7 @@ Style Sheet를 파싱하면 위와 같은 CSSOM Tree가 생성된다.
 HTML 및 CSS 입력을 기반으로 빌드한 서로 독립적인 객체인 DOM 및 CSSOM 트리를 병합하여 브라우저가 화면에 픽셀을 렌더링하도록 Render Tree를 형성한다. 이때 Render Tree에는 페이지를 렌더링하는데 필요한 노드만 포함된다.
 
 ![render tree construction]({{ site.baseurl }}/assets/media/critical-rendering-path/render-tree-construction.png)
+
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction/?hl=ko)**
 
 모든 노드의 콘텐츠 및 스타일 정보를 모두 포함하는 Render Tree가 생성되었으므로 Layout단계로 진행할 수 있다.
@@ -133,6 +137,7 @@ Layout 프로세스에서는 뷰포트 내에서 각 요소의 정확한 위치�
 ```
 
 ![layout viewport]({{ site.baseurl }}/assets/media/critical-rendering-path/layout-viewport.png)
+
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction/?hl=ko)**
 
 * [Sample](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/nested.html)
@@ -156,6 +161,22 @@ Render Tree 생성, Layout 및 Paint 작업을 수행하는데 필요한 시간�
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZTnIxIA5KGw" frameborder="0" allowfullscreen></iframe>
 
 위 영상은 Gecko에서 reflow를 거쳐서 화면에 paint되기까지를 보여준다.
+
+#### 동작 과정 예
+
+Webkit과 Gecko 브라우저에서의 동작 과정 예이다.
+
+##### Webkit
+
+![webkit]({{ site.baseurl }}/assets/media/critical-rendering-path/webkit.png)
+
+**[브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)**
+
+##### Gecko
+
+![gecko]({{ site.baseurl }}/assets/media/critical-rendering-path/gecko.png)
+
+**[브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)**
 
 > 앞에서 설명한 각 과정들은 많은 부분이 생략되어 있다. 특히 Layout과 Paint 부분은 많이 생략되어 있으므로, 해당 부분이 궁금하다면 [브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)를 참고하면 좋을 것 같다.
 
@@ -269,26 +290,31 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 ##### HTML waterfall
 
 ![waterfall dom]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, CSS and inline JS waterfall
 
 ![waterfall dom css js inline]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js-inline.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, CSS and extenal and sync JS waterfall
 
 ![waterfall dom css js]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, CSS and extenal and async JS waterfall
 
 ![waterfall dom css js async]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js-async.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, inline CSS and inline JS waterfall
 
 ![waterfall dom css inline js inline]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-inline-js-inline.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 #### 성능 패턴
@@ -309,6 +335,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 ```
 
 ![analysis dom]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 * 1개의 주요 리소스
@@ -331,6 +358,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 ```
 
 ![analysis dom css]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 * 2개의 주요 리소스
@@ -354,6 +382,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 ```
 
 ![analysis dom css js]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-js.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 * 3개의 주요 리소스
@@ -377,6 +406,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 ```
 
 ![analysis dom css js async]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-js-async.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 * 2개의 주요 리소스
@@ -400,6 +430,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 ```
 
 ![analysis dom css nb js async]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-nb-js-async.png)
+
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 * 1개의 주요 리소스
@@ -437,12 +468,12 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 주요 렌더링 경로를 최적화할 때 주의해야 할 사항은 다음과 같다.
 
-* 렌더링 차단 자바스크립트 및 CSS 제거
-* 자바스크립트 사용 최적화
-    * 비동기 자바스크립트 리소스 선호
+* 렌더링 차단 JavaScript 및 CSS 제거
+* JavaScript 사용 최적화
+    * 비동기 JavaScript 리소스 선호
     * 동기식 서버 호출 금지
-    * 자바스크립트 파싱 지연
-    * 장기적으로 실행되는 자바스크립트 피하기
+    * JavaScript 파싱 지연
+    * 장기적으로 실행되는 JavaScript 피하기
 * CSS 사용 최적화
     * CSS를 문서 헤드에 넣기
     * CSS 가져오기(`@import`) 피하기
@@ -478,16 +509,38 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ### Lighthouse 결과 분석
 
-|  | Critical resources | Critical path length | Critical bytes(KB) | First miningful paint(ms) | First interactive(ms) | Consistently Interactive(ms) |
+|  | Critical resources | Critical path length | Critical bytes(KB) | First meaningful paint(ms) | First interactive(ms) | Consistently Interactive(ms) |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | PC | 23 | 23 | 140.5 | 3,090 | 4,510 | 측정 실패 |
 | Mobile | 15 | 15 | 281.27 | 3,380 | 5,280 | 11,490 |
 
+* Critical resources : 페이지의 초기 렌더링을 차단할 수 있는 리소스
+* Critical path length : 주요 리소스와 해당 바이트 크기 간의 종속성 그래프를 나타내는 기능
+* Critical bytes : 브라우저에서 다운로드해야 하는 주요 바이트 수
+* First miningful paint : 페이지의 중요 부분이 언제 렌더링될떄
+* First interactive : 필수 스크립트들이 로드가 되어, 사용자의 입력을 받을 수 있을때
+* Consistently Interactive : 대부분의 네트워크 리소드들이 로드가 완료가 되었을때
+
 ### CRP 최적화 포인트 예측
+
+* 주요 리소스가 많이 존재하며, 대부분 렌더링 차단 요소가 JavaScript이므로 차단 요소를 제거
+* JavaScript minify와 uglify 적용해서 주요 바이트 최적화
+* 렌더링 차단 CSS를 인라인 처리
+* 그외 CRP 최적화는 아니지만, 이미지 최적화 적용
 
 ## CRP 최적화 이후의 회사 웹페이지 분석
 
 ### 예측 포인트를 통한 CRP 최적화 시도
+
+* 렌더링 차단 JavaScript를 제거
+    * 외부 JavaScript의 경우는 가능하면 `async`를 적용하고, 의존 관계가 물려있는 경우는 `defer`을 적용
+    * 인라인 JavaScript의 경우는 가능하면 외부 JavaScript로 빼고자 시도하고, 할 수 없다면 `window`의 `load` 이벤트가 발생한 뒤에 수행되도록 수정
+* ~~JavaScript minify와 uglify 적용해서 주요 바이트 최적화~~
+    * 해당 사항을 적용하기에는 기존 코드의 수정이 많이 필요해서 제외
+* ~~렌더링 차단 CSS를 인라인 처리~~
+    * 인라인 CSS를 제거하여도 큰 차이가 없고 유지보수를 편의를 위해 복원
+* 이미지 최적화 적용
+    * 이미지 적용되는 부분에 맞도록 크기의 이미지를 사용할 수 있게 처리
 
 ### 최적화 후 Lighthouse를 사용한 재측정
 
@@ -517,7 +570,53 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ### 재측정한 Lighthouse 결과 분석
 
-|  | Critical resources | Critical path length | Critical bytes(KB) | First miningful paint(ms) | First interactive(ms) | Consistently Interactive(ms) |
+|  | Critical resources | Critical path length | Critical bytes(KB) | First meaningful paint(ms) | First interactive(ms) | Consistently Interactive(ms) |
 | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
-| PC |  |  |  |  |  |  |
-| Mobile |  |  |  |  |  |
+| PC | 2 | 2 | 15.59 | 1,370 | 5,710 | 19,150 |
+| Mobile | 1 | 1 | 24.8 | 1,200 | 5,810 | 5,810 |
+
+## CRP 분석과 최적화 시도를 통해 얻은 결론
+
+### CRP 최적화 전후 비교
+
+|  | Critical resources | Critical path length | Critical bytes | First meaningful paint | First interactive | Consistently Interactive |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| PC | 91.3% 향상 | 91.3% 향상 | 88.9% 향상 | 55.7% 향상 | 26.6% 저하 | 측정불가 |
+| Mobile | 93.3% 향상 | 93.3% 향상 | 91.2% 향상 | 64.5% 향상 | 10.0% 저하 | 49.4% 향상 |
+
+First interactive에서 다소 성능이 저하되었지만, 나머지 요소들에서는 많은 성능들이 향상되었다.
+
+### 최적화 전후 Snapshot 비교
+
+#### PC(CRP 최적화 전)
+
+![ticketlink pc crp origin snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-origin-snapshot.png)
+
+#### PC(CRP 최적화 후)
+
+![ticketlink pc crp optimization snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-optimization-snapshot.png)
+
+#### Mobile(CRP 최적화 전)
+
+![ticketlink mobile crp origin snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-origin-snapshot.png)
+
+#### Mobile(CRP 최적화 후)
+
+![ticketlink mobile crp optimization snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-optimization-snapshot.png)
+
+### 마치며
+
+렌더링 차단 JavaScript를 제거하는 정도의 적은 노력으로 생각하던 것보다 노력 대비 성능 향상을 얻을 수 있는 것 같다. CRP 최적화는 다른 최적화들보다 개발할 때 조금만 더 신경을 써준다면 좋은 결과를 얻을 수 있을 것 같다.
+
+또한 Lighthouse나 Chrome DevTools 등 다양한 측정 도구가 있고, 특히 Lighthouse의 경우 NPM도 지원하니 CI에 적용한다면 도움이 될 것 같다.
+
+## 참고문헌
+
+* [Website Performance Optimization - Udacity](https://www.udacity.com/course/website-performance-optimization--ud884)
+* [Critical Rendering Path - Google Developers](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/?hl=ko)
+* [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)
+* [브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)
+* [Ryan Seddon: So how does the browser actually render a website - JSConf EU 2015](https://youtu.be/SmE4OwHztCc)
+* [Rendering in WebKit - Google Developers](https://youtu.be/RVnARGhhs9w)
+* [How the Browser Pre-loader Makes Pages Load Faster](https://andydavies.me/blog/2013/10/22/how-the-browser-pre-loader-makes-pages-load-faster/)
+* [script의 async와 defer 속성](https://blog.asamaru.net/2017/05/04/script-async-defer/)
