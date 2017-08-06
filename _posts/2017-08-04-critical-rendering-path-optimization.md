@@ -251,3 +251,199 @@ Navigation Timing API와 기타 여러 브라우저 이벤트를 조합해서 �
 ![device navtiming small]({{ site.baseurl }}/assets/media/critical-rendering-path/device-navtiming-small.png)
 
 * [Sample](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/measure_crp.html)
+
+### CRP 분석
+
+주요 렌더링 경로를 최적화하기 위해서는 서로 다른 리소스 간의 의존성 그래프를 파악해야 하며, 어떤 리소스가 **중요**한지 식별해야 하고, 이러한 리소스를 페이지에 포함할 방법에 대한 다양한 전략 중에서 선택해야 한다. 이때 문제를 해결할 수 있는 방법이 한 가지만 있는 것은 아니며, 각 페이지가 서로 다르기 때문에 자신만의 유사한 프로세스에 따라 최적의 전략을 찾아야 한다.
+
+#### 리소스 워터폴(waterfall)
+
+`domContentLoaded`(파란색)은 DOM이 준비되고 JavaScript의 실행을 차단하는 CSS가 없는 시점을 표시하며, Render Tree를 생성할 수 있다. `onload`(빨간색)은 페이지에 필요한 모든 리소스가 다운로드되고 처리되는 시점을 표시(즉, 이미지에서 차단됨)하며, 브라우저 로딩 스피너가 회전을 멈춘다.
+
+CSS와 파서 차단 JavaScript가 포함되어 있다면, Render Tree를 빌드하기 위해 DOM과 CSSOM이 모두 필요하다. 또한 파서 차단 JavaScript 파일이 포함되기 때문에, CSS 파일이 다운로드되어 파싱될 때까지 `domContentLoaded` 이벤트가 차단된다.
+
+외부 스크립트의 경우 `async` 키워드를 추가하여 파서의 차단을 해제할 수 있으며, 이 경우에는 CSSOM 생성 또한 동시에 하기 때문에, `domContentLoaded` 이벤트는 HTML이 파싱된 후 바로 실행된다.
+
+CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 HTML 페이지가 더 커지지만, 페이지 안에 필요한 모든 요소가 있기 때문에 브라우저가 외부 리소스를 가져올 때까지 기다릴 필요가 없다. 이 경우 외부 스크립트를 비동기로 부르는 것과 비슷한 `domContentLoaded` 시간을 가진다.
+
+##### HTML waterfall
+
+![waterfall dom]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+##### HTML, CSS and inline JS waterfall
+
+![waterfall dom css js inline]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js-inline.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+##### HTML, CSS and extenal and sync JS waterfall
+
+![waterfall dom css js]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+##### HTML, CSS and extenal and async JS waterfall
+
+![waterfall dom css js async]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js-async.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+##### HTML, inline CSS and inline JS waterfall
+
+![waterfall dom css inline js inline]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-inline-js-inline.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+#### 성능 패턴
+
+##### HTML performance patterns
+
+```html
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Critical Path: No Style</title>
+  </head>
+  <body>
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+  </body>
+</html>
+```
+
+![analysis dom]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+* 1개의 주요 리소스
+* 1번 이상의 왕복(최소 주요 경로 길이)
+* 5KB의 주요 바이트
+
+##### HTML and CSS performance patterns
+
+```html
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+  </body>
+</html>
+```
+
+![analysis dom css]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+* 2개의 주요 리소스
+* 2번 이상의 왕복(최소 주요 경로 길이)
+* 9KB의 주요 바이트
+
+##### HTML, CSS and extenal and sync JS performance patterns
+
+```html
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+![analysis dom css js]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-js.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+* 3개의 주요 리소스
+* 3번 이상의 왕복(최소 주요 경로 길이)
+* 11KB의 주요 바이트
+
+##### HTML, CSS and extenal and async JS performance patterns
+
+```html
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+    <script src="app.js" async></script>
+  </body>
+</html>
+```
+
+![analysis dom css js async]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-js-async.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+* 2개의 주요 리소스
+* 2번 이상의 왕복(최소 주요 경로 길이)
+* 9KB의 주요 바이트
+
+##### HTML, CSS with media query and extenal and async JS performance patterns
+
+```html
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="style.css" rel="stylesheet" media="print">
+  </head>
+  <body>
+    <p>Hello <span>web performance</span> students!</p>
+    <div><img src="awesome-photo.jpg"></div>
+    <script src="app.js" async></script>
+  </body>
+</html>
+```
+
+![analysis dom css nb js async]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-nb-js-async.png)
+**[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
+
+* 1개의 주요 리소스
+* 1번 이상의 왕복(최소 주요 경로 길이)
+* 5KB의 주요 바이트
+
+### CRP 최적화
+
+#### CRP 최적화 주요 변수
+
+최초 렌더링 시 최대한 빠르게 렌더링하려면 아래 세 가지 변수를 최소화해야 한다.
+
+* 주요 리소스의 수
+    * 페이지의 초기 렌더링을 차단할 수 있는 리소스
+    * 리소스가 적을수록 브라우저, CPU 및 기타 리소스의 작업이 감소한다.
+* 주요 경로 길이
+    * 주요 리소스와 해당 바이트 크기 간의 종속성 그래프를 나타내는 기능
+    * 일부 리소스 다운로드는 이전 리소스가 처리된 후에만 시작될 수 있으며, 리소스가 클수록 다운로드하는데 걸리는 왕복 수가 증가한다.
+* 주요 바이트의 수
+    * 브라우저에서 다운로드해야 하는 주요 바이트 수
+    * 주요 바이트 수가 적을수록 신속하게 콘텐츠를 처리하여 화면에 렌더링한다.
+    * 리소스를 제거하거나 중요하지 않은 것으로 만들어 리소스 수를 줄이면, 바이트 수를 줄일 수 있다.
+    * 리소스를 압축하고 최적화하여 전송 크기를 최소화할 수 있다.
+
+#### CRP 최적화 단계
+
+주요 렌더링 경로를 최적화하기 위한 일반적인 단계는 아래와 같다.
+
+1. 주요 경로(리소스 수, 바이트 수, 길이)를 분석하고 파악
+1. 주요 리소스를 제거하거나 이에 대한 다운로드를 연기하거나 비동기로 표시하는 등의 방법으로 주요 리소스 수를 최소화
+1. 주요 바이트 수를 최적화하여 다운로드 시간(왕복 수)을 단축
+1. 나머지 주요 리소스가 로드되는 순서를 최적화(주요 경로 길이를 단축하려면 가능한 한 빨리 모든 주요 자산을 다운로드)
+
+#### CRP 최적화 주의 사항
+
+주요 렌더링 경로를 최적화할 때 주의해야 할 사항은 다음과 같다.
+
+* 렌더링 차단 자바스크립트 및 CSS 제거
+* 자바스크립트 사용 최적화
+    * 비동기 자바스크립트 리소스 선호
+    * 동기식 서버 호출 금지
+    * 자바스크립트 파싱 지연
+    * 장기적으로 실행되는 자바스크립트 피하기
+* CSS 사용 최적화
+    * CSS를 문서 헤드에 넣기
+    * CSS 가져오기(`@import`) 피하기
+    * 렌더링 차단 CSS를 인라인 처리
