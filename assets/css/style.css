@@ -217,6 +217,15 @@ article {
     padding: 0 5% 0;
 }
 
+article p {
+    line-height: 24px;
+}
+
+article ol,
+article ul {
+    line-height: 24px;
+}
+
 article h2 {
     padding: 20px 30px;
     border-bottom: 1px #e8e8e8 solid;
