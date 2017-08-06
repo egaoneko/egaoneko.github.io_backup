@@ -447,3 +447,77 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
     * CSS를 문서 헤드에 넣기
     * CSS 가져오기(`@import`) 피하기
     * 렌더링 차단 CSS를 인라인 처리
+
+## CRP 최적화 이전의 회사 웹페이지 분석
+
+### 최적화 전 Lighthouse를 사용한 측정
+
+#### PC 측정 결과
+
+* [Lighthouse 분석 링크]({{ site.baseurl }}/assets/pages/critical-rendering-path/ticketlink-pc-crp-origin)에서 상세한 분석 데이터를 볼 수 있다.
+
+##### Performance 측정 결과
+
+![ticketlink pc crp origin performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-origin-performance.png)
+
+##### CRP 측정 결과
+
+![ticketlink pc crp origin crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-origin-crp.png)
+
+#### Mobile 측정 결과
+
+* [Lighthouse 분석 링크]({{ site.baseurl }}/assets/pages/critical-rendering-path/ticketlink-mobile-crp-origin)에서 상세한 분석 데이터를 볼 수 있다.
+
+##### Performance 측정 결과
+
+![ticketlink mobile crp origin performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-origin-performance.png)
+
+##### CRP 측정 결과
+
+![ticketlink mobile crp origin crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-origin-crp.png)
+
+### Lighthouse 결과 분석
+
+|  | Critical resources | Critical path length | Critical bytes(KB) | First miningful paint(ms) | First interactive(ms) | Consistently Interactive(ms) |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| PC | 23 | 23 | 140.5 | 3,090 | 4,510 | 측정 실패 |
+| Mobile | 15 | 15 | 281.27 | 3,380 | 5,280 | 11,490 |
+
+### CRP 최적화 포인트 예측
+
+## CRP 최적화 이후의 회사 웹페이지 분석
+
+### 예측 포인트를 통한 CRP 최적화 시도
+
+### 최적화 후 Lighthouse를 사용한 재측정
+
+#### PC 측정 결과
+
+* [Lighthouse 분석 링크]({{ site.baseurl }}/assets/pages/critical-rendering-path/ticketlink-pc-crp-optimization)에서 상세한 분석 데이터를 볼 수 있다.
+
+##### Performance 측정 결과
+
+![ticketlink pc crp optimization performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-optimization-performance.png)
+
+##### CRP 측정 결과
+
+![ticketlink pc crp optimization crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-optimization-crp.png)
+
+#### Mobile 측정 결과
+
+* [Lighthouse 분석 링크]({{ site.baseurl }}/assets/pages/critical-rendering-path/ticketlink-mobile-crp-optimization)에서 상세한 분석 데이터를 볼 수 있다.
+
+##### Performance 측정 결과
+
+![ticketlink mobile crp optimization performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-optimization-performance.png)
+
+##### CRP 측정 결과
+
+![ticketlink mobile crp optimization crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-optimization-crp.png)
+
+### 재측정한 Lighthouse 결과 분석
+
+|  | Critical resources | Critical path length | Critical bytes(KB) | First miningful paint(ms) | First interactive(ms) | Consistently Interactive(ms) |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| PC |  |  |  |  |  |  |
+| Mobile |  |  |  |  |  |
