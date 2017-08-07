@@ -279,7 +279,7 @@ Navigation Timing API와 기타 여러 브라우저 이벤트를 조합해서 �
 
 #### 리소스 워터폴(waterfall)
 
-`domContentLoaded`(파란색)은 DOM이 준비되고 JavaScript의 실행을 차단하는 CSS가 없는 시점을 표시하며, Render Tree를 생성할 수 있다. `onload`(빨간색)은 페이지에 필요한 모든 리소스가 다운로드되고 처리되는 시점을 표시(즉, 이미지에서 차단됨)하며, 브라우저 로딩 스피너가 회전을 멈춘다.
+`domContentLoaded`(파란색)은 DOM이 준비되고 JavaScript의 실행을 차단하는 CSS가 없는 시점을 표시하며, Render Tree를 생성할 수 있다. `load`(빨간색)은 페이지에 필요한 모든 리소스가 다운로드되고 처리되는 시점을 표시(즉, 이미지에서 차단됨)하며, 브라우저 로딩 스피너가 회전을 멈춘다.
 
 CSS와 파서 차단 JavaScript가 포함되어 있다면, Render Tree를 빌드하기 위해 DOM과 CSSOM이 모두 필요하다. 또한 파서 차단 JavaScript 파일이 포함되기 때문에, CSS 파일이 다운로드되어 파싱될 때까지 `domContentLoaded` 이벤트가 차단된다.
 
