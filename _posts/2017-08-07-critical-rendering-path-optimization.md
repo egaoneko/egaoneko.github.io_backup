@@ -217,6 +217,10 @@ HTML의 경우 DOM이 없으면 렌더링 할 것이 없기 때문에 렌더링 
 <script src="app.js" async></script>
 ```
 
+![script sync and async]({{ site.baseurl }}/assets/media/critical-rendering-path/script-sync-async.png)
+
+**[Speed up Google Maps(and everything else) with async & defer](https://medium.com/@nikjohn/speed-up-google-maps-and-everything-else-with-async-defer-7b9814efb2b)**
+
 ### CRP 측정
 
 최적화를 하고자 하면 최적화하고자 하는 대상에 대해서 측정이 필요하다. 본 글에서는 아래의 몇가지 방법에 대해서 살표보고자 한다.
@@ -620,3 +624,4 @@ First interactive에서 다소 성능이 저하되었지만, 나머지 요소들
 * [Rendering in WebKit - Google Developers](https://youtu.be/RVnARGhhs9w)
 * [How the Browser Pre-loader Makes Pages Load Faster](https://andydavies.me/blog/2013/10/22/how-the-browser-pre-loader-makes-pages-load-faster/)
 * [script의 async와 defer 속성](https://blog.asamaru.net/2017/05/04/script-async-defer/)
+* [Speed up Google Maps(and everything else) with async & defer](https://medium.com/@nikjohn/speed-up-google-maps-and-everything-else-with-async-defer-7b9814efb2b)
