@@ -521,7 +521,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 * Critical resources : 페이지의 초기 렌더링을 차단할 수 있는 리소스
 * Critical path length : 주요 리소스와 해당 바이트 크기 간의 종속성 그래프를 나타내는 기능
 * Critical bytes : 브라우저에서 다운로드해야 하는 주요 바이트 수
-* First miningful paint : 페이지의 중요 부분이 언제 렌더링될떄
+* First miningful paint : 페이지의 중요 부분이 렌더링 완료될떄
 * First interactive : 필수 스크립트들이 로드가 되어, 사용자의 입력을 받을 수 있을때
 * Consistently Interactive : 대부분의 네트워크 리소드들이 로드가 완료가 되었을때
 
@@ -588,7 +588,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 | PC | 91.3% 향상 | 91.3% 향상 | 88.9% 향상 | 55.7% 향상 | 26.6% 저하 | 측정불가 |
 | Mobile | 93.3% 향상 | 93.3% 향상 | 91.2% 향상 | 64.5% 향상 | 10.0% 저하 | 49.4% 향상 |
 
-First interactive에서 다소 성능이 저하되었지만, 나머지 요소들에서는 많은 성능들이 향상되었다.
+First interactive에서 다소 성능이 저하되었지만, 나머지 요소들에서는 많은 성능들이 향상되었다. First interactive 저하의 원인은 렌더링 차단 요소인 JS들을 minify와 uglify 같이 JS 자체에 대한 최적화 없이 렌더링 차단만 해결하여 First meaningful paint 자체는 해결되었지만, 필수 스크립트들이 로드되는 부분 자체가 최적화 된 것이 아니기 때문에 First interactive에서 성능 저하가 일어난 것이 아닐까 추즉하고 있다. 이 부분에 대해서는 좀 더 찾아볼 예정이다.
 
 ### 최적화 전후 Snapshot 비교
 
