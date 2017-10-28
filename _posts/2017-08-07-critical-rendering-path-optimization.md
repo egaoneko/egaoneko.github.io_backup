@@ -94,7 +94,7 @@ HTML을 파싱하면 위와 같은 DOM Tree가 생성된다. DOM Tree는 문서 
 
 #### CSSOM(CSS Object Model) Tree
 
-CSSOM은 스JavaScript와 같은 프로그래밍 언어가 CSS를 조작 할 수 있게 해주는 API 세트이며, 이를 통해 CSS양식을 동적으로 읽고 수정할 수 있다.
+CSSOM은 JavaScript와 같은 프로그래밍 언어가 CSS를 조작 할 수 있게 해주는 API 세트이며, 이를 통해 CSS양식을 동적으로 읽고 수정할 수 있다.
 
 * [CSS Object Model - MDN](https://developer.mozilla.org/ko/docs/Web/API/CSS_Object_Model)
 
