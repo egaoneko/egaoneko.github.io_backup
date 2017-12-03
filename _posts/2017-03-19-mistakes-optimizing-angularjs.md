@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## AngularJS를 최적화를 하던 중 실수
 
 [Tips to Improve AngularJS Performance](https://medium.com/@cookatrice/tips-to-improve-angularjs-performance-410cf42de57f#.9yv6y03nd)라는 글을 보며, 기존에 AngularJS 사용하여 만든 프로그램을 최적화하는 작업을 수행하였다.

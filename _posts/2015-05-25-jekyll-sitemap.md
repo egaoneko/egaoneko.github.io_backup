@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 운영하고있는 Jekyll블로그의 Sitemap.xml을 구글 웹마스터에 제출하고자 방법을 찾아보았다. 몇몇 방법들 있었지만 플러그인을 설치하지 않고 Sitemap.xml을 얻어 내고 싶었다.
 
 해결책은 해외 블로그에서 찾을 수 있었다. 원문은 이 [링크](http://davidensinger.com/2013/11/building-a-better-sitemap-xml-with-jekyll/)를 참조하기 바란다.

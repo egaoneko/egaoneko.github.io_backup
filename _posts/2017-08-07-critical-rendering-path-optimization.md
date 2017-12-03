@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 최근 브라우저가 어떻게 작동하는지 궁금하던 차에 회사 직원분의 공유를 통해 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)라는 글을 접하게 되었다. 해당 글에서 흥미로운 주제인 **주요 렌더링 경로(Critical Rendering Path, 이하 CRP)**에 대해서 알게 되어 이와 관련된 Udacity 강좌와 여러 글들에 대해 찾아보게 되었고, 이를 바탕으로 현재 재직하고 있는 회사의 웹페이지에 해당 개념을 적용해보는 도전기를 공유하기 위해 이 글을 작성하고자 한다.
 
 본 글에서는 CRP에 대해 상세한 내용을 다루지 않을 것이기 때문에 상세한 내용이 궁금하다면 글 맨 하단의 참조 링크들을 확인하길 바란다. 특히 Google에서 제작한 Udacity의 [Website Performance Optimization](https://www.udacity.com/course/website-performance-optimization--ud884)와 [Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/?hl=ko)는 쉽게 설명해주어 좋은데, 심지어 번역도 되어있으니 처음 본다면 꼭 한번 보면 좋을 것 같다.

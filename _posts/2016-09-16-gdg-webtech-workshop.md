@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 지난 8월 27일 GDG WebTech에서 진행하는 [Workshop](http://onoffmix.com/event/75765)이 있어 참여하게 되었다. 이 Workshop은 프론트엔드 성능 최적화에 대한 내용으로 초/중급 프론트엔드 개발자를 대상으로 진행되었다.
 
 진행되었던 주제와 슬라이드는 아래와 같다.

@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## TL;DR
 
 * 클로저(Closuer)는 객체를 통해서 접근하는 것이 아니라, 함수(Function)를 통해서 접근한다.

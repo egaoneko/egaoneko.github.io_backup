@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 얼마전 IntelliJ에서 Spring Boot로 Jsp를 사용할 때 문제를 겪어 ["IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제"]({% post_url 2015-05-24-intellij-springboot-jsp %})라는 글을 작성하였다. 이 문제에 대해 JetBrains에 문의에 문의를 해보았고 다음과 같은 답변을 받았다.
 
 >This is a Spring Boot problem.

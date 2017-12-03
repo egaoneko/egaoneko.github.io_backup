@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## Hammer.js Event Bubbling
 
 [Hammer.js](http://hammerjs.github.io/)의 Event Bubbling을 알아보기 위해서 아래의 코드를 작성하였다. 아래의 코드는 [HTML 이벤트 버블링(Event Bubbling) 에 대해서](http://blog.javarouka.me/2011/12/html-event-bubbling.html)라는 글에서의 예제를 참고하여 작성하였다.

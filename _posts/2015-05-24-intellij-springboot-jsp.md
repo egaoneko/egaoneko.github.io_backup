@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 필자는 IntelliJ를 사용하고 있고 최근에 Spring Boot를 사용해보고 있다. 문제는 Spring Boot에서 Jsp를 사용하고자 하면서 발생하였다. Spring Boot에서 Jsp를 사용하기 위해 Gradle을 다음과 같이 작성하고 ``build``하였다.
 
 ```java

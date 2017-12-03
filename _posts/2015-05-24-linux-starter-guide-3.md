@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## 01 디렉토리 구조
 
 리눅스의 디렉토리는 트리 형태의 구조를 보이며 최상위 디렉토리는 "/" (Root File System) 이다. tree <경로> -L <보고자 하는 단계> 이라는 명령어를 통해 디렉토리의 트리 구조를 확인 할 수 있다.

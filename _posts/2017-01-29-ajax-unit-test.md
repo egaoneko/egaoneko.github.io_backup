@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## 들어가기 앞서
 
 본 포스트에서는 [Mocha](https://mochajs.org/), [Sinon.JS](http://sinonjs.org/)를 사용하였다.

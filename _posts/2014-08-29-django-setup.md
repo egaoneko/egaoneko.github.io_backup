@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## Django 설치에 앞서
 
 이 문서에서 다루고자 하는 Django설치는 직접 Django 아카이브를 다운받아 설치하고자 하는 방법이 아닌 pip를 사용하는 방법을 다루고자 한다. 이에 대한 내용은 [Django 공식홈페이지](https://www.djangoproject.com/download/)에 잘나와있다. 이 문서를 작성하는 시점(2014년 8월 14일)의 최근 공식 버전은 1.6.5.이며 이를 설치하였다.

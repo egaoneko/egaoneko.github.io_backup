@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## 01 표준 스트림의 종류
 
 리눅스에서의 기본 입출력 스트림(I/O stream)에는 표준 입력, 표준 출력, 표준 에러 가 있다.

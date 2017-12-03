@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ## 01 명령어란?
 
 > 명령어는 쉘을 통하여 자원을 제어 할 수 있는 언어 체계를 뜻한다.[^1]

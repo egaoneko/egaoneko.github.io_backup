@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 Atom을 설치하고 사용중에 autocomlete을 사용할 때 tab이나 enter가 정상적으로 작동하지 않는 문제가 생겼다. 정확한 원인을 찾지 못해 google을 검색하던 도중에 해결 방법을 찾았다.
 
 필자가 겪은 문제는 추가로 설치한 emmet과 autocomplete-plus가 충돌이 나는 경우였다. 필자는 [이 글](https://github.com/emmetio/emmet-atom/issues/146#issuecomment-103475628)에서 해결법을 찾을 수 있었다.

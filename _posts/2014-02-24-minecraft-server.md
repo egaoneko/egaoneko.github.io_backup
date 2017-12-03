@@ -9,6 +9,8 @@ fullview: false
 comments: true
 ---
 
+{% include toc.html %}
+
 ![ screenshot]({{ site.baseurl }}/assets/media/minecraft1.jpg)
 
 마인크래프트 특유의 게임내의 생존 방식, 시스템 등과 여러 개발자들에 의해 모드와 플러그인 등이 한동안 재미를 주었던 기억에 이 글을 쓰게 되네요. 개인적으로는 Java로 만들어졌으며 Eclipse를 통해서 이런저런 시도가 가능하다는 점에서 좀 더 관심이 갔었기도 하고요.
