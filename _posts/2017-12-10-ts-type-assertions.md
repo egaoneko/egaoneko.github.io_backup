@@ -18,7 +18,7 @@ const b: Test = { test: 'Test' } as Test;
 const c: Test = <Test>{ test: 'Test' };
 ```
 
-`a`와 같이 단순히 직접 작성한 `Object`를 할당하는 것보다 `b`나 `c`와 같이 직접 작성한 값에 타입을 할당하는게 좋다. `c` 같은 경우는 JSX에서 문제가 될 수도 있으니, 상황에 따라 판단해서 써야할 것 같다.
+`a`와 같이 단순히 직접 작성한 `Object`를 할당하는 것보다 `b`나 `c`와 같이 직접 작성한 값에 타입을 할당하는게 좋다. `c` 같은 경우는 JSX에서 문제가 되니, 상황에 따라 판단해서 써야할 것 같다.
 
 ```javascript
 let someValue: any = "this is a string";

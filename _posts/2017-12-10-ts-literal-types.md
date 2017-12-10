@@ -34,7 +34,7 @@ let statu: Status;
 statu = Status.Informational_response;
 ```
 
-물론 이와 같이 `enum`을 사용허는 것이 특정한 값을 명시적으로 나타내는 것 보다 가독성이나 유지보수 측면에서 더 좋겠지만, 특정한 곳에만 쓰이는데 별도의 파일을 만들어서 정의하기 번거로울 떄는 좋은 수단이 될 것 같다.
+물론 이와 같이 `enum`을 사용하는 것이 특정한 값을 명시적으로 나타내는 것 보다 가독성이나 유지보수 측면에서 더 좋겠지만, 특정한 곳에만 쓰이는데 별도의 파일을 만들어서 정의하기 번거로울 떄는 좋은 수단이 될 것 같다.
 
 * 참고
   * [String Literal Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html#string-literal-types)
