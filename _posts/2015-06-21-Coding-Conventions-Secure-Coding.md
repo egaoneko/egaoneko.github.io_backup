@@ -3,7 +3,7 @@ layout: post
 title: 'Coding Conventions & Secure Coding 조사'
 date: 2015-06-21 00:00:02
 categories: methodology
-tags: [ci, contious integration, secure coding]
+tags: [coding convention, secure coding]
 published: true
 fullview: false
 comments: true
