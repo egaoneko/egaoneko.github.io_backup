@@ -2,8 +2,8 @@
 layout: post
 title: '클로저와 함수'
 date: 2017-08-10 23:50:00
-categories: JavaScript
-tags: [JavaScript]
+categories: javascript
+tags: [javascript]
 published: true
 fullview: false
 comments: true

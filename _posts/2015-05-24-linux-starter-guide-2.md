@@ -2,8 +2,8 @@
 layout: post
 title: '[리눅스 정리 - 초보자를 위한 가이드] 2장. 명령어'
 date: 2015-05-24 21:00:02
-categories: OS
-tags: [OS, Linux, guide]
+categories: os
+tags: [os, linux, guide]
 published: true
 fullview: false
 comments: true

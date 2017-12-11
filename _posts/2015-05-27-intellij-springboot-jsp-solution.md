@@ -2,8 +2,8 @@
 layout: post
 title: 'IntelliJ를 사용할 때 Spring Boot에서 Jsp를 사용하지 못하는 문제 해결책'
 date: 2015-05-27 21:20:00
-categories: Tool
-tags: [IntelliJ, Spring Boot, Jsp]
+categories: tool
+tags: [intellij, spring boot, jsp]
 published: true
 fullview: false
 comments: true

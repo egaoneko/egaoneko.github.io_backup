@@ -2,8 +2,8 @@
 layout: post
 title: '[Window Builder] 추가한 파일 Window Builder로 열기'
 date: 2014-02-24 11:43:24
-categories: Java
-tags: [Java, Window Builder]
+categories: java
+tags: [java, window builder]
 published: true
 fullview: false
 comments: true

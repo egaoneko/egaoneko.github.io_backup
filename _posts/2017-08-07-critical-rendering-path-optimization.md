@@ -2,8 +2,8 @@
 layout: post
 title: 'Critical Rendering Path 최적화 도전기'
 date: 2017-08-07 00:00:00
-categories: Frontend
-tags: [CRP, frontend, performance, optimization]
+categories: frontend
+tags: [crp, frontend, performance, optimization]
 published: true
 fullview: false
 comments: true

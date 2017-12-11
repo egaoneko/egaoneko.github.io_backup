@@ -2,8 +2,8 @@
 layout: post
 title: '[리눅스] 유닉스, 리눅스 과련된 깨알 지식'
 date: 2015-09-18 00:00:00
-categories: OS
-tags: [OS, Linux, guide]
+categories: os
+tags: [os, linux, guide]
 published: true
 fullview: false
 comments: true

@@ -2,8 +2,8 @@
 layout: post
 title: '플러그인 설치 없이 Jekyll에서 Sitemap.xml 생성하기'
 date: 2015-05-25 02:50:00
-categories: Blog
-tags: [Blog, Jekyll, Sitemap.xml]
+categories: blog
+tags: [blog, jekyll]
 published: true
 fullview: false
 comments: true

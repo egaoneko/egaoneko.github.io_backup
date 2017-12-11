@@ -2,7 +2,7 @@
 layout: post
 title: 'GDG WebTech Workshop: 측정하는 놈, 로딩하는 놈, 그리는 놈'
 date: 2016-09-16 20:30:00
-categories: Review
+categories: review
 tags: [frontend, gdg, gdg webtech]
 published: true
 fullview: false

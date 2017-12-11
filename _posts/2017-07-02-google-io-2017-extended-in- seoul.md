@@ -2,7 +2,7 @@
 layout: post
 title: 'Google I/O 2017 Extended in Seoul'
 date: 2017-07-02 23:30:00
-categories: Review
+categories: review
 tags: [google]
 published: true
 fullview: false

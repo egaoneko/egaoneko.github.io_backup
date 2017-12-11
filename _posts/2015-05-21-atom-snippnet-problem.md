@@ -2,8 +2,8 @@
 layout: post
 title: 'Atom에서 autocomplete-plus를 사용 중 tab과 enter가 작동하지 않는 경우'
 date: 2015-05-21 02:54:00
-categories: Tool
-tags: [Atom, autocomplete-plus]
+categories: tool
+tags: [atom, autocomplete-plus]
 published: true
 fullview: false
 comments: true

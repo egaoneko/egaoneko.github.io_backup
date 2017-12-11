@@ -2,8 +2,8 @@
 layout: post
 title: 'AngularJS 와 opener'
 date: 2017-03-19 21:30:00
-categories: JavaScript
-tags: [JavaScript, AngularJS]
+categories: javascript
+tags: [javascript, angularjs]
 published: true
 fullview: false
 comments: true

@@ -2,8 +2,8 @@
 layout: post
 title: '[Django] Django 설치'
 date: 2014-08-29 13:14:49
-categories: Python
-tags: [Python, Django, 설치, Web]
+categories: python
+tags: [python, django]
 published: true
 fullview: false
 comments: true

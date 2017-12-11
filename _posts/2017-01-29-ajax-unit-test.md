@@ -2,8 +2,8 @@
 layout: post
 title: 'Ajax 단위 테스트'
 date: 2017-01-29 21:30:00
-categories: JavaScript
-tags: [JavaScript, Ajax, Test]
+categories: javascript
+tags: [javascript, ajax, test]
 published: true
 fullview: false
 comments: true

@@ -2,8 +2,8 @@
 layout: post
 title: 'AngularJS를 최적화를 하던 중 실수'
 date: 2017-03-19 21:30:00
-categories: JavaScript
-tags: [JavaScript, AngularJS]
+categories: javascript
+tags: [javascript, angularjs]
 published: true
 fullview: false
 comments: true

@@ -2,8 +2,8 @@
 layout: post
 title: '[OSX] 맥에서 단어장 사용하기'
 date: 2015-05-26 10:30:00
-categories: Etc
-tags: [OSX, Dictionary]
+categories: etc
+tags: [osx, dictionary]
 published: true
 fullview: false
 comments: true

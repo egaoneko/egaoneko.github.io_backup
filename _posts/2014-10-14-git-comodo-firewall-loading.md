@@ -2,7 +2,7 @@
 layout: post
 title: '[Git&COMODO Firewall] Git과 COMODO Firewall을 사용할 때 마우스 우클릭 로딩 문제'
 date: 2014-10-14 19:42:46
-categories: Etc
+categories: etc
 tags: [comodo firewall, git]
 published: true
 fullview: false

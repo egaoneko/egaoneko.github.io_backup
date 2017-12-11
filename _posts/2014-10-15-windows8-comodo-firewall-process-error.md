@@ -2,8 +2,8 @@
 layout: post
 title: '[Windows8.1 & COMODO Firewall] Windows8.1에서 COMODO Firewall을 사용할 때, 프로세스 종료 문제'
 date: 2014-10-15 15:15:39
-categories: Etc
-tags: [comodo firewall, OS, Windows8.1]
+categories: etc
+tags: [comodo firewall, os, windows, windows8.1]
 published: true
 fullview: false
 comments: true

@@ -2,8 +2,8 @@
 layout: post
 title: '[리눅스 정리 - 초보자를 위한 가이드] 6장. Vi'
 date: 2015-05-24 21:00:06
-categories: OS
-tags: [OS, Linux, guide]
+categories: os
+tags: [os, linux, guide]
 published: true
 fullview: false
 comments: true

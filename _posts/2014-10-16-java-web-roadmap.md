@@ -2,8 +2,8 @@
 layout: post
 title: '자바 웹 개발자의 학습 로드맵 -박재성'
 date: 2014-10-16 16:19:02
-categories: Review
-tags: [Java, Road Map, Web]
+categories: review
+tags: [java, road map, web]
 published: true
 fullview: false
 comments: true

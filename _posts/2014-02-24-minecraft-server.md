@@ -2,8 +2,8 @@
 layout: post
 title: '[마인크래프트] 서버를 여는 세 가지의 방법'
 date: 2014-02-24 17:56:54
-categories: Etc
-tags: [가상 서버 호스팅, 마인크래프트, 서버, 포트 포워딩, 하마치]
+categories: etc
+tags: [minecraft]
 published: true
 fullview: false
 comments: true

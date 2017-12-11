@@ -2,8 +2,8 @@
 layout: post
 title: '[Window Builder] Window Builder에 Drag&Drop'
 date: 2014-02-24 16:06:29
-categories: Java
-tags: [Java, Window Builder]
+categories: java
+tags: [java, window builder]
 published: true
 fullview: false
 comments: true

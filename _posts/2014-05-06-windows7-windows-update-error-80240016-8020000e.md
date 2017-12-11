@@ -2,8 +2,8 @@
 layout: post
 title: '[Windows7] Windows 업데이트 오류 80240016 & 8020000E'
 date: 2014-05-06 13:25:33
-categories: Etc
-tags: [OS, Windows7]
+categories: etc
+tags: [os, windows, windows7]
 published: true
 fullview: false
 comments: true

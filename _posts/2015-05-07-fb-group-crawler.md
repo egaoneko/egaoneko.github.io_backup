@@ -2,8 +2,8 @@
 layout: post
 title: 'Facebook Group Crawler'
 date: 2015-05-07 21:53:00
-categories: Programming
-tags: [Python, Crawler]
+categories: programming
+tags: [python, crawler]
 published: true
 fullview: false
 comments: true

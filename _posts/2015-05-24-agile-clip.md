@@ -2,8 +2,8 @@
 layout: post
 title: '애자일 소프트웨어 개발(Agile Software Development)'
 date: 2015-05-24 19:00:00
-categories: Research
-tags: Agile
+categories: methodology
+tags: [agile]
 published: true
 fullview: false
 comments: true

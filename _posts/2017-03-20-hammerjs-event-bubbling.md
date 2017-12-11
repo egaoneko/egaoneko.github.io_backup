@@ -2,8 +2,8 @@
 layout: post
 title: 'Hammer.js Event Bubbling'
 date: 2017-03-20 23:00:00
-categories: JavaScript
-tags: [JavaScript, Hammer.js, bubbling]
+categories: javascript
+tags: [javascript, hammerjs, bubbling]
 published: true
 fullview: false
 comments: true

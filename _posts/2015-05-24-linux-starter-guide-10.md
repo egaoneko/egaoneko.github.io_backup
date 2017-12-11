@@ -2,8 +2,8 @@
 layout: post
 title: '[리눅스 정리 - 초보자를 위한 가이드] 10장. 소프트웨어 설치'
 date: 2015-05-24 21:00:10
-categories: OS
-tags: [OS, Linux, guide]
+categories: os
+tags: [os, linux, guide]
 published: true
 fullview: false
 comments: true

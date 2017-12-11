@@ -2,8 +2,8 @@
 layout: post
 title: 'PROGRESSIVE WEB APP ROADSHOW 2017 KOREA'
 date: 2017-05-01 00:00:00
-categories: Review
-tags: [gdg webtech, progressive web app]
+categories: review
+tags: [gdg webtech, progressive web app, pwa]
 published: true
 fullview: false
 comments: true

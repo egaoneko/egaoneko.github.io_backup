@@ -2,8 +2,8 @@
 layout: post
 title: 'Travis CI를 사용해서 Jekyll Build error message 보기'
 date: 2015-05-09 15:17:00
-categories: Blog
-tags: [Blog, Jekyll, Travis CI]
+categories: blog
+tags: [blog, jekyll, travis ci]
 published: true
 fullview: false
 comments: true
