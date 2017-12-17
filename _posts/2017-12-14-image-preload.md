@@ -85,6 +85,6 @@ window.onload = function() {
 
 상단의 코드처럼 AJAX를 통해 이미지 뿐만 아니라 JavaScript나 CSS도 미리 로드를 할 수 있다.
 
+## 참고
 
-* 참고
-  * [3 Ways to Preload Images with CSS, JavaScript, or Ajax](https://perishablepress.com/3-ways-preload-images-css-javascript-ajax/)
+* [3 Ways to Preload Images with CSS, JavaScript, or Ajax](https://perishablepress.com/3-ways-preload-images-css-javascript-ajax/)
