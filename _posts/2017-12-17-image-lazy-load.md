@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Image lazyload'
+title: 'Image lazy load'
 date: 2017-12-17 18:00:00
 categories: frontend
 tags: [image, javascript, til]
@@ -13,7 +13,7 @@ comments: true
 
 ## 들어가며
 
-많은 이미지가 있고 페이지에 보이지도 않는 이미지를 미리 받아둘 필요가 없는 경우가 생겼다. 이를 위해 이미지를 나즁애 로드하는 방법을 찾아보았고 그 방법을 기록하고자 한다.
+많은 이미지가 있고 페이지에 보이지도 않는 이미지를 미리 받아둘 필요가 없는 경우가 생겼다. 이를 위해 이미지를 나중에 로드하는 방법을 찾아보았고 그 방법을 기록하고자 한다.
 
 ## Vanilla
 
@@ -125,7 +125,7 @@ function loadImage(image) {
 
 이 방법은 앞서 설명한 방법에서의 `getBoundingClientRect`를 사용으로 인한 리플로우 현상으로 인한 성능 문제 및 `iframe`에서의 사용 등의 문제를 해결할 수 있고, 충돌 처리등의 추가적인 코드 작성이 없다.
 
-일부 브라우저 및 버전에 따라 `IntersectionObserver`가 제공되지 않을 수 있느나, [Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver)를 제공하고 있으니 사용하여보면 좋을 것 같다.
+일부 브라우저 및 버전에 따라 `IntersectionObserver`가 제공되지 않을 수 있으나, [Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver)를 제공하고 있으니 사용하여보면 좋을 것 같다.
 
 ## 참고
 
