@@ -61,7 +61,7 @@ A.length = 0
 A.splice(0,A.length)
 ```
 
-`.splice()`를 사용하면 완벽하게 작동한다. `.splice()`함수는 제거 된 항목이 모두있는 배열을 반환하여 실제로 원래 배열의 복사본을 반환하겠지만, 벤치마킹을 해보면 이는 성능에 아무런 영햐잉 없다고 한다.
+`.splice()`를 사용하면 완벽하게 작동한다. `.splice()`함수는 제거 된 항목이 모두있는 배열을 반환하여 실제로 원래 배열의 복사본을 반환하겠지만, 벤치마킹을 해보면 이는 성능에 아무런 영향이 없다고 한다.
 
 ## 방법 4 (as [suggested](https://stackoverflow.com/a/17306971/113570) by [tanguy_k](https://stackoverflow.com/users/990356/tanguy-k))
 
