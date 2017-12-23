@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-```javascript
+```typescript
 let state: 'start' | 'move' | 'stop';
 state = 'move';
 state = 'turn'; // Type error
@@ -21,7 +21,7 @@ status = 700; // Type error
 
 TypeScript에서 타입을 위와 같이 특정한 값을 명시적으로 나타낼 수 있다.
 
-```javascript
+```typescript
 enum Status {
     Informational_response = 100,
     Success = 200,
