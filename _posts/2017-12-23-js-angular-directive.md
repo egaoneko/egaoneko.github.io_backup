@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Angular directive 만들기'
+title: '[Angular] Angular directive 만들기'
 date: 2017-12-23 23:00:00
 categories: javascript
 tags: [angular, til]
