@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'range in JS'
+title: 'Transition with auto'
 date: 2018-01-07 18:00:00
 categories: frontend
 tags: [css, transition, til]
