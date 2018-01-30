@@ -26,4 +26,4 @@ Angular template를 사용할 때, 엘리먼트에 속성을 설정하고자 `[]
 이에 대해 찾아보니 엘리먼트에 속성, 클래스 혹은 스타일을 설정하고자 할때, 상단과 같이 `[]` 사용하여 해당 값을 전달해 줘야 정상적으로 작동하였다.
 
 * 참고
-  * [Binding targets](https://angular.io/guide/template-syntax#binding-targets)
+  * [Binding targets - Angular](https://angular.io/guide/template-syntax#binding-targets)

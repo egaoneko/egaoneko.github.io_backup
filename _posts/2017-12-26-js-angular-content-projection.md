@@ -36,10 +36,10 @@ Angular에서는 위와 같이 변경해주면 될 것이다.
 아직 Angular를 제대로 본적이 없어서 앞서 말한 이유에 의해 사용할 때, `Content projection`이 사용하는 것이 더 좋은 선택인지 `ngTemplateOutlet`을 사용하는 것이 더 좋은 선택인지 좀 더 알아봐야 할 것 같다.
 
 * 참고
-  * [Angular - Content projection](https://angular.io/guide/lifecycle-hooks#content-projection)
-  * [AngularJS - ngTransclude](https://docs.angularjs.org/api/ng/directive/ngTransclude)
+  * [Content projection - Angular](https://angular.io/guide/lifecycle-hooks#content-projection)
+  * [ngTransclude - AngularJS](https://docs.angularjs.org/api/ng/directive/ngTransclude)
   * [부모 컴포넌트에서 자식 요소로의 접근 - PoiemaWeb](http://poiemaweb.com/angular-component-accessing-child#21-콘텐트-프로젝션content-projection)
   * [ng-content: The hidden docs](https://medium.com/claritydesignsystem/ng-content-the-hidden-docs-96a29d70d11b)
   * [From transclusion to content projection](https://developer.telerik.com/topics/web-development/transclusion-content-projection/)
   * [Projection](https://angular-2-training-book.rangle.io/handout/components/projection.html)
-  * [Angular - NgTemplateOutlet](https://angular.io/api/common/NgTemplateOutlet)
+  * [NgTemplateOutlet - Angular](https://angular.io/api/common/NgTemplateOutlet)

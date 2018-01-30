@@ -70,5 +70,5 @@ export class HighlightDirective {
 기존에는 문자열을 사용해서 첫번째와 같이 사용하여도 문제가 없었는데 `function`을 전달하니 문제가 생기었다. 세번째와 같은 방버으로 사용하니 원하는 값이 제대로 전달되었다.
 
 * 참고
-  * [Attribute Directives](https://angular.io/guide/attribute-directives)
-  * [How to pass multiple parameter to @Directives in Angular with TypeScript? - stackoverflow](https://stackoverflow.com/questions/38843532/how-to-pass-multiple-parameter-to-directives-in-angular-with-typescript)
+  * [Attribute Directives - Angular](https://angular.io/guide/attribute-directives)
+  * [How to pass multiple parameter to @Directives in Angular with TypeScript? - stack overflow](https://stackoverflow.com/questions/38843532/how-to-pass-multiple-parameter-to-directives-in-angular-with-typescript)

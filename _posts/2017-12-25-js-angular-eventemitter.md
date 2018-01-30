@@ -50,4 +50,4 @@ export class ExampleDirective {
 `EventEmitter`를 사용하는 방식으로 상단과 같이 수정해보니, 걱정과 달리 잘 동작하였다. 가능하다면 `EventEmitter`를 사용하는 쪽이 옳아보인다.
 
 * 참고
-  * [EventEmitter](https://angular.io/api/core/EventEmitter#eventemitter)
+  * [EventEmitter - Angular](https://angular.io/api/core/EventEmitter#eventemitter)
