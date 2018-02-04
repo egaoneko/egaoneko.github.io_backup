@@ -127,6 +127,10 @@ function loadImage(image) {
 
 일부 브라우저 및 버전에 따라 `IntersectionObserver`가 제공되지 않을 수 있으나, [Intersection Observer polyfill](https://github.com/w3c/IntersectionObserver)를 제공하고 있으니 사용하여보면 좋을 것 같다.
 
+* P.S.
+
+`IntersectionObserver`는 엘리먼트가 교차할 때 발생하기 때문에 계속 보이고 있다고 해서 지속적으로 이벤트가 발생하지는 않아 문제가 생길 수 있다. 예를 들면 `IntersectionObserver` 무한 스크롤을 구현하였는데, 만약 감지를 걸어둔 부분이 계속 보인다면 뜻하지 않게 동작할 수 있다.
+
 ## 참고
 
 * [Lazy Loading Images - CSS-TRICS](https://css-tricks.com/snippets/javascript/lazy-loading-images/)
