@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## Hammer.js Event Bubbling
 
 [Hammer.js](http://hammerjs.github.io/)의 Event Bubbling을 알아보기 위해서 아래의 코드를 작성하였다. 아래의 코드는 [HTML 이벤트 버블링(Event Bubbling) 에 대해서](http://blog.javarouka.me/2011/12/html-event-bubbling.html)라는 글에서의 예제를 참고하여 작성하였다.
@@ -18,7 +16,7 @@ comments: true
 <iframe style="width: 100%; height: 600px" src="http://embed.plnkr.co/MDOET5fqUzIMvaF33uLb" frameborder="0" allowfullscren="allowfullscren"></iframe>
 
 
-```xml
+```html
 <!DOCTYPE html>
 <html>
 
@@ -226,7 +224,7 @@ wrapper.on = function (events, handler) {
 
 Angular.js 에서 Hammer.js를 사용하고자 하면 [angular-hammer](https://github.com/RyanMullins/angular-hammer)라는 라이브러리가 있다. `hmTouchEvents`에 대한 의존성을 추가하고, 아래와 같이 사용하면 쉽게 사용할 수 있다.
 
-```xml
+```html
 <div hm-tap="onHammer"></div>
 <div hm-tap="model.name = 'Ryan'"></div>
 ```

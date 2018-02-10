@@ -9,17 +9,15 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 들어가며
 
 슬라이드와 같은 방식으로 다음 이미지를 순차적으로 불러와 보여줄 때, 미리 이미지를 불러와 이미지 전환간에 깜박임없이 부드럽게 이미지를 전환하고자 하였다. 이를 위해 이미지를 미리 로드하는 두가지 방법을 기록하고자 한다.
 
 ## JavsScript
 
-![Image preload with JS]({{ site.baseurl }}/assets/media/frontend/image-preload-with-js.gif)
+<figure><img src="/images/frontend/image-preload-with-js.gif" alt=""></figure>
 
-![Image preload with JS Network]({{ site.baseurl }}/assets/media/frontend/image-preload-with-js-network.png)
+<figure><img src="/images/frontend/image-preload-with-js-network.png" alt=""></figure>
 
 ```javascript
 function preloadImages(images) {
@@ -42,11 +40,11 @@ preloadImages(imageSet2);
 
 ## CSS
 
-![Image preload with CSS]({{ site.baseurl }}/assets/media/frontend/image-preload-with-css.gif)
+<figure><img src="/images/frontend/image-preload-with-css.gif" alt=""></figure>
 
-![Image preload with CSS Network]({{ site.baseurl }}/assets/media/frontend/image-preload-with-css-network.png)
+<figure><img src="/images/frontend/image-preload-with-css-network.png" alt=""></figure>
 
-```xml
+```html
 <style>
   #preload-00 { background: url(https://dummyimage.com/600x400/52ACEEBE5D21) no-repeat -9999px -9999px; }
   #preload-01 { background: url(https://dummyimage.com/600x400/FD8F265C45CF) no-repeat -9999px -9999px; }

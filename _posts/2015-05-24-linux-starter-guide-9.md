@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 프로세스(process)는 컴퓨터에서 연속적으로 실행되고 있는 컴퓨터 프로그램이다. 종종 스케줄링의 대상이 되는 작업(task)이라는 용어와 거의 같은 의미로 쓰인다. 여러 개의 프로세서를 사용하는 것을 멀티프로세싱이라고 하며 같은 시간에 여러 개의 프로그램을 띄우는 시분할 방식을 멀티태스킹이라고 한다. 프로세스 관리는 운영 체제의 중요한 부분으로 자리 잡혀 있다.[^1]
 
 [^1]: 출처 : 위키백과 - 프로세스
@@ -37,8 +35,8 @@ comments: true
 
 ~~예를 들면 노래를 틀어놓고 인터넷을 한다고 하면 Foreground는 인터넷이고 Background는 음악 플레이어가 된다.~~
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/포그라운드.jpg)
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/백그라운드.jpg)
+<figure><img src="/images/linux-starter-guide/포그라운드.jpg" alt=""></figure>
+<figure><img src="/images/linux-starter-guide/백그라운드.jpg" alt=""></figure>
 
 ~~좌측이 Foreground이며 sleep명령어가 실행되는 동안은 echo명령어를 수행하지 않았다. 반면에 우측의 Background는 sleep명령 뒤에도 echo명령을 수행하였으며 sleep명령후에는 스스로 종료되었다.~~
 
@@ -119,7 +117,7 @@ comments: true
 
       /proc 디렉토리 : 현재 메모리에 존재하는 모든 작업들이 파일형태로 존재
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/proc.jpg)
+<figure><img src="/images/linux-starter-guide/proc.jpg" alt=""></figure>
 
 
 ## 03 데몬
@@ -137,7 +135,7 @@ comments: true
 
 ## 04 데몬의 종류
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/데몬.png)
+<figure><img src="/images/linux-starter-guide/데몬.png" alt=""></figure>
 
 ### Standalone
 
@@ -152,7 +150,7 @@ xinetd를 부모라고 생각하고, 그 안에 포함되어 있는 프로그램
 
 xinetd에는 블랙리스트 시스템이 들어 있으며 xinetd가 좋지 못한 요청이라고 간주하면 프로그램들을 밖으로 내보내지 않는다. xinetd.d,telnet,PoP3등이 존재한다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/xinetd.jpg)
+<figure><img src="/images/linux-starter-guide/xinetd.jpg" alt=""></figure>
 
 
 ## 05 서비스 관리
@@ -165,7 +163,7 @@ xinetd에는 블랙리스트 시스템이 들어 있으며 xinetd가 좋지 못�
 
       #ntsysv : 커서로 이동하며 스페이스바를 누르면 선택/해제가 가능
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/ntsysv.jpg)
+<figure><img src="/images/linux-starter-guide/ntsysv.jpg" alt=""></figure>
 
 * * *
 
@@ -177,7 +175,7 @@ xinetd에는 블랙리스트 시스템이 들어 있으며 xinetd가 좋지 못�
       	--del : 데몬을 삭제
       	--list : 현재 데몬들의 목록을 출력
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/chkconfig.jpg)
+<figure><img src="/images/linux-starter-guide/chkconfig.jpg" alt=""></figure>
 
 * * *
 
@@ -189,12 +187,12 @@ xinetd에는 블랙리스트 시스템이 들어 있으며 xinetd가 좋지 못�
       	restart : 데몬을 재시작
       	status : 데몬의 상태
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/service.jpg)
+<figure><img src="/images/linux-starter-guide/service.jpg" alt=""></figure>
 
 
 ## 06 좀비 프로세스와 퇴치 방법
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/좀비.png)
+<figure><img src="/images/linux-starter-guide/좀비.png" alt=""></figure>
 
 위와 같이 프로세스의 상태를 확인하다보면 좀비 상태인 프로세스들을 확인할 수 있다.
 

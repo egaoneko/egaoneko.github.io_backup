@@ -11,7 +11,7 @@ comments: true
 
 둘러쌓고 있는 부모 컴포넌트 내부에 있는 자식 컴포넌트를 원하는 부모의 템플릿 위치에 자식 컴포넌트를 넣고 싶어서 AngularJS에서 `Transclusion`이라고 부르던 것을 찾아보았다. Angular에서는 `Content projection`로 바뀌어 불리는 것을 몰라 한참 찾았다.
 
-```xml
+```html
 <div style="border: 1px solid black;">
   <div style="background-color: gray">{{title}}</div>
   <ng-transclude></ng-transclude>
@@ -20,7 +20,7 @@ comments: true
 
 예를 들어 AngularJS에서 위와 같이 작성한 코드가 있다면,
 
-```xml
+```html
 <div style="border: 1px solid black;">
   <div style="background-color: gray">{{title}}</div>
   <ng-content></ng-content>

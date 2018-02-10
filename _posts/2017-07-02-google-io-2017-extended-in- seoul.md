@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 * [Google I/O 2017 Extended in Seoul](https://io-extended-seoul-17.firebaseapp.com/)
 
 ## Keynote (권순선)

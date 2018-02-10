@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 01 명령어란?
 
 > 명령어는 쉘을 통하여 자원을 제어 할 수 있는 언어 체계를 뜻한다.[^1]
@@ -21,7 +19,7 @@ comments: true
 
 [^1]: 출처 : 위키백과 - 명령어
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/명령어.jpg)
+<figure><img src="/images/linux-starter-guide/명령어.jpg" alt=""></figure>
 
 명령어는 위의 그림에서와 같이 사용자 영역에서 해당 명령어를 입력하면 그림의 번호순으로 해당 명령어가 있는지 확인한다. 해당 명령어가 있으면 해당 명령어를 수행하고 해당 명령어가 없으면 사용자에게 명령어를 찾을 수 없음을 알린다.
 
@@ -63,15 +61,15 @@ comments: true
 
 #### IP 주소, Network 주소 Broadcast 주소 : /etc/sysconfig/network-script/ifcfg-eth[숫자]
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/명령어1.png)
+<figure><img src="/images/linux-starter-guide/명령어1.png" alt=""></figure>
 
 #### Gateway 주소 : /etc/sysconfig/network
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/명령어2.png)
+<figure><img src="/images/linux-starter-guide/명령어2.png" alt=""></figure>
 
 #### DNS 주소 : /etc/resolv.conf
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/명령어3.png)
+<figure><img src="/images/linux-starter-guide/명령어3.png" alt=""></figure>
 
 #### 네트워크 재시작 : /etc/init.d/network restart
 

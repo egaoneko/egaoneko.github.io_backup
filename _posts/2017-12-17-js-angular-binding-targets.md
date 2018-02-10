@@ -9,14 +9,14 @@ fullview: false
 comments: true
 ---
 
-```xml
+```html
 <img data-src="{{heroImageUrl}}">
 <button aria-label="{{help}}">help</button>
 ```
 
 Angular template를 사용할 때, 엘리먼트에 속성을 설정하고자 `[]` 없이 평소 HTML 작성하듯이 작성하니 작동하지 않았다.
 
-```xml
+```html
 <img [attr.data-src]="heroImageUrl">
 <button [attr.aria-label]="help">help</button>
 <div [class.special]="isSpecial">Special</div>

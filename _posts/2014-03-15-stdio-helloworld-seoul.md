@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-![screenshot]({{ site.url }}/assets/media/helloworld.jpg)
+<figure><img src="/images/helloworld.jpg" alt=""></figure>
 
 STD.IO의 컨퍼런스 중 서울 건국대에서 열렸던 Hello, World!의 각 세션별 내용 정리입니다.
 

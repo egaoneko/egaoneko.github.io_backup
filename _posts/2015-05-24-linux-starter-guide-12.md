@@ -9,19 +9,17 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 01 퍼미션
 
 파일 혹은 디렉토리에 접근할 수 있는 권한을 퍼미션이라 하는데 이 권한을 통해 사용자는 파일이나 디렉토리에 대하여 다른 사용자의 접근을 제어할 수 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/1.jpg)
+<figure><img src="/images/linux-starter-guide/1.jpg" alt=""></figure>
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/2.jpg)
+<figure><img src="/images/linux-starter-guide/2.jpg" alt=""></figure>
 
 상단의 그림과 같이 읽기, 쓰기, 실행에 권한을 사용자, 사용자와 같은 그룹 그리고 그 외의 사용자에게 부여할 수 있다. 또한 각 권한은 숫자로 표현할 수 있으며 읽기는 4, 쓰기는 2 그리고 실행은 1로 표현하고 합산한다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/3.jpg)
+<figure><img src="/images/linux-starter-guide/3.jpg" alt=""></figure>
 
 이 그림을 보면 루트(/) 디렉토리 밑의 디렉토리들이 각 각의 역할에 맞게 권한이 설정 되어있는 것을 볼 수 있다. 특히 bin과 같이 사용자가 이용은 해야 가능해야 하지만 변경하면 안 되는 디렉토리는 쓰기 권한이 제한되어 있는 것을 확인할 수 있다.
 
@@ -42,25 +40,25 @@ comments: true
 
 ### SetUID : 해당 파일의 소유자의 실행권한이 없더라도 소유자의 실행권한으로 파일을 실행
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/4.jpg)
+<figure><img src="/images/linux-starter-guide/4.jpg" alt=""></figure>
 
 소유자의 퍼미션에 s가 붙어있으면 소유권이 없더라도 실행할 수 있으며, “chmod 4744 test.sh” 같은 식으로 허가권을 주게 되면 test.sh를 소유자가 아닌 경우에도 소유자의 권한으로 실행 할 수 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/5.jpg)
+<figure><img src="/images/linux-starter-guide/5.jpg" alt=""></figure>
 
 소유자의 실행권한으로 실행하였지만 프로세스 실행 UID가 root가 아닌 실행한 유저의 것을 확인할 수 있다.
 
 ### SetGID : SetUID와 유사하며, 그룹사용자로서의 실행권한을 얻을 수 있음 
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/6.jpg)
+<figure><img src="/images/linux-starter-guide/6.jpg" alt=""></figure>
 
 ### sticky bit : 이 비트가 설정되면 파일을 만든 사용자만이 그 파일에 대한 권리를 가짐
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/6.jpg)
+<figure><img src="/images/linux-starter-guide/6.jpg" alt=""></figure>
 
 대표적인 디렉토리로는 “/tmp” 디렉토리가 sticky bit로 설정되어 있는 것을 볼 수 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/8.jpg)
+<figure><img src="/images/linux-starter-guide/8.jpg" alt=""></figure>
 
 위의 그림은 root 계정으로 루트(/) 디렉토리 아래에 “test”라는 디렉토리를 만들고 sticky bit와 모든 사용자에게 읽기, 쓰기, 실행 권한을 주었다. 그리고는 smilecat이라는 계정으로 “xx”라는 파일을 만들고 이 파일 또한 모든 사용자에게 읽기, 쓰기, 실행 권한을 주었다. 그리고 test1이라는 계정으로 “rm명령어”를 이용하여 파일을 삭제하려고 하면 위 그림과 같이 허용되지 않음을 알 수 있다. 비록 공동으로 사용하는 디렉토리지만 다른 사용자가 내가 만든 파일을 함부로 삭제할 수 없는 것이다.
 
@@ -91,9 +89,9 @@ comments: true
 * umask 값에 보수를 취한다.
 * 보수를 취한 값과 기본 퍼미션을 AND 연산을 수행한다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/9.jpg)
+<figure><img src="/images/linux-starter-guide/9.jpg" alt=""></figure>
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/10.jpg)
+<figure><img src="/images/linux-starter-guide/10.jpg" alt=""></figure>
 
 
 * * *

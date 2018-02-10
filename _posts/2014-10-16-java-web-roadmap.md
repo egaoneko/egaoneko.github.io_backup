@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 <iframe width="676" height="380" src="//www.youtube.com/embed/3mgMwObtaQ0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 ## 스피커

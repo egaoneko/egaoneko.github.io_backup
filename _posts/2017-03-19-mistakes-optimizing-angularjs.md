@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## AngularJS를 최적화를 하던 중 실수
 
 [Tips to Improve AngularJS Performance](https://medium.com/@cookatrice/tips-to-improve-angularjs-performance-410cf42de57f#.9yv6y03nd)라는 글을 보며, 기존에 AngularJS 사용하여 만든 프로그램을 최적화하는 작업을 수행하였다.
@@ -24,7 +22,7 @@ comments: true
 양방향 바인딩에서 단방향 바인딩으로 변경할 때, 많이 바뀌지 않는 부분들을 단방향 바인딩으로 변경하고 이상이 없는지 확인을 하였다. 이때 팝업 같은 경우애는 이 팝업에 해당하는 객체가 변경되어면 단방향 바인딩으로 설정한 값들도 변경될 것이라고 판단하고 함께 단방향 바인딩으로 변경하였다.
 
 {% raw %}
-```xml
+```html
 <div>
 	<h1>{{::popup.title}}</h1>
     <p>{{::popup.content}}</p>
@@ -47,7 +45,7 @@ comments: true
 
 `ng-repeat`에 `track by`를 설정할때 무의식적으로 `track by $index`를 설정하였는데, 이것이 특정 상황에서는 잘 작동하여 인식하지 못하다 그렇지 못한 상황에서 오작동하고 있는 문제를 발견하였다.
 
-```xml
+```html
 <div ng-repeat="product in products track by $index">
 	...
 </div>
@@ -55,7 +53,7 @@ comments: true
 
 `ng-repeat`에서 `track by` 부분을 제거하면 정상작동을 하는 것을 확인하였고, 아래와 같이 해당 부분을 `id` 값을 통해 추적하도록 변경할 생각이다.
 
-```xml
+```html
 
 <div ng-repeat="product in products track by product.id">
 	...

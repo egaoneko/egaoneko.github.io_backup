@@ -9,13 +9,12 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## [Std.IO] Hello, World! 컨퍼런스 정리
 
 ### 행사 일정표
 
 * Time Activity Speaker Contents
+
 | 시간 | 세션 | 발표자 | 내용 |
 |:---:|:---:|:----:|:---:|
 | 09:30 - 10:00 | Registration | | |
@@ -32,7 +31,7 @@ comments: true
 
 ### 행사 개요
 
-![screenshot]({{ site.baseurl }}/assets/media/helloworld.jpg)
+<figure><img src="/images/helloworld.jpg" alt=""></figure>
 
 안녕하세요!
 
@@ -50,12 +49,12 @@ comments: true
 
 ### 스피커
 
-![screenshot]({{ site.baseurl }}/assets/media/helloworld-deajeon1.png)
-![screenshot]({{ site.baseurl }}/assets/media/helloworld-deajeon2.png)
-![screenshot]({{ site.baseurl }}/assets/media/helloworld-deajeon3.png)
-![screenshot]({{ site.baseurl }}/assets/media/helloworld-deajeon4.png)
-![screenshot]({{ site.baseurl }}/assets/media/helloworld-deajeon5.png)
-![screenshot]({{ site.baseurl }}/assets/media/helloworld-deajeon6.png)
+<figure><img src="/images/helloworld-deajeon1.png" alt=""></figure>
+<figure><img src="/images/helloworld-deajeon2.png" alt=""></figure>
+<figure><img src="/images/helloworld-deajeon3.png" alt=""></figure>
+<figure><img src="/images/helloworld-deajeon4.png" alt=""></figure>
+<figure><img src="/images/helloworld-deajeon5.png" alt=""></figure>
+<figure><img src="/images/helloworld-deajeon6.png" alt=""></figure>
 
 
 ### 세션 1 [ 구글 기업 문화 - 정혜정 ]

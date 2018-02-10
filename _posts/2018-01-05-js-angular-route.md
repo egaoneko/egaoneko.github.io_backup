@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-![Angular navigate same component]({{ site.baseurl }}/assets/media/angular/angular-navigate-same-component.png)
+<figure><img src="/images/angular/angular-navigate-same-component.png" alt=""></figure>
 
 ```
 # From

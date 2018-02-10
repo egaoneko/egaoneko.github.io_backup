@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 쉘 스크립트 부분에 대한 전반적인 내용은 유닉스 리눅스 사용에서 프로그래밍까지(창병모 저)라는 책을 참조하며 작성하였다.
 
 >쉘 스크립트(shell script)는 쉘이나 명령 줄 인터프리터에서 돌아가도록 작성되었거나 한 운영 체제를 위해 쓰인 스크립트이다. 단순한 도메인 고유 언어로 여기기도 한다. 쉘 스크립트가 수행하는 일반 기능으로는 파일 이용, 프로그램 실행, 문자열 출력 등이 있다.[^1]
@@ -40,18 +38,18 @@ comments: true
 
 쉘에서 쉘을 재귀적으로 실행할 수 되며 이는 #echo $SHLVL이라는 명령어를 통해서 현재 쉘의 쉘 레벨을 확인할 수 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/스크립트1.png)
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/쉘레벨.jpg)
+<figure><img src="/images/linux-starter-guide/스크립트1.png" alt=""></figure>
+<figure><img src="/images/linux-starter-guide/쉘레벨.jpg" alt=""></figure>
 
 
 쉘의 변수는 환경변수와 지역변수 두 종류로 나눌 수 있는데 환경 변수는 값이 자식 프로세스에게 상속되며 지역변수는 그렇지 않다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/스크립트2.png)
+<figure><img src="/images/linux-starter-guide/스크립트2.png" alt=""></figure>
 
 
 \#export [변수명]=[값]을 통해 변수를 선언하게 되면 쉘 레벨과 관계없이 변수 공유가 가능하다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/스크립트3.png)
+<figure><img src="/images/linux-starter-guide/스크립트3.png" alt=""></figure>
 
 
 #### 쉘 스크립트의 변수는 다음과 같은 특징을 가진다.

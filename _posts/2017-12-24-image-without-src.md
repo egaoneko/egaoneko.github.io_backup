@@ -13,7 +13,7 @@ comments: true
 
 이를 해결하기 위해서 찾아보고 아래와 같이 `base64` 이미지를 사용하였다.
 
-```xml
+```html
 <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" width="0" height="0" alt="" />
 ```
 

@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/linux04.jpg)
+<figure><img src="/images/linux-starter-guide/linux04.jpg" alt=""></figure>
 
 이 문서의 작성은 개인적인 정리와 함께 처음 리눅스를 배우는 누군가에게 가르칠 수 있는 문서를 만들고자 함에 있다. 이 문서를 작성하는 필자는 리눅스에 대해 깊이 알지 못하기에 필자가 아는 선에 한에서 처음 리눅스를 배우고자 하는 사람들에게 처음 리눅스 공부의 가이드가 되어보자는 목표로 작성했다.
 

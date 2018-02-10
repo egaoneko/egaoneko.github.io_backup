@@ -41,7 +41,7 @@ export class HighlightDirective {
 
 그리고 아래와 같이 사용한다.
 
-```xml
+```html
 <p [appHighlight]="color">Highlight me!</p>
 
 <p [appHighlight]="color" defaultColor="violet">

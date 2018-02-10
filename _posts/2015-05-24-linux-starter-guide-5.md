@@ -9,13 +9,11 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 01 표준 스트림의 종류
 
 리눅스에서의 기본 입출력 스트림(I/O stream)에는 표준 입력, 표준 출력, 표준 에러 가 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/표준스트림.png)
+<figure><img src="/images/linux-starter-guide/표준스트림.png" alt=""></figure>
 
   * 표준 입력( 0 ) => 키보드
   * 표준 출력( 1 ) => 모니터
@@ -44,11 +42,11 @@ comments: true
 
 [^1]: 출처 : 위키백과 – 파이프 라인
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/표준스트림2.png)
+<figure><img src="/images/linux-starter-guide/표준스트림2.png" alt=""></figure>
 
 파이프의 예를 보면 아래와 같다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파이프.jpg)
+<figure><img src="/images/linux-starter-guide/파이프.jpg" alt=""></figure>
 
 
 ## 04 명령어의 수행
@@ -67,32 +65,32 @@ comments: true
 
 위의 조건문을 보게 되면 조건문 안의 조건 중 앞의 조건이 참이 되어야 뒤의 조건을 확인하게 된다. &&명령열도 이와 비슷하게 앞의 명령어가 실패하면 수행을 멈추고 앞의 명령어가 성공한다면 뒤의 명령어도 수행하게 된다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열1.jpg)
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열2.jpg)
+<figure><img src="/images/linux-starter-guide/조건열1.jpg" alt=""></figure>
+<figure><img src="/images/linux-starter-guide/조건열2.jpg" alt=""></figure>
 
       if ( 3>1 || 2<1 ) Vs. if ( 3>1 || 2>1 )
 
 앞에서와 반대로 위와 같은 조건문을 보게 되면 조건문 안의 조건 중 앞의 조건만 만족하게 되면 뒤의 조건을 확인하지 않아도 된다. ||명령열 또한 이와 비슷하게 앞의 명령어가 성공하면 수행을 중지하며 앞의 명령어가 실패하며 뒤의 명령어를 수행하게 된다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열3.jpg)
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열4.jpg)
+<figure><img src="/images/linux-starter-guide/조건열3.jpg" alt=""></figure>
+<figure><img src="/images/linux-starter-guide/조건열4.jpg" alt=""></figure>
 
 
 >**위의 명령열을 실제 사용하는 예는 다음과 같다.**
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열5.jpg)
+<figure><img src="/images/linux-starter-guide/조건열5.jpg" alt=""></figure>
 >
 >위와 같이 정상적으로 작성한 파일을 하나 준비했다.
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열6.jpg)
+<figure><img src="/images/linux-starter-guide/조건열6.jpg" alt=""></figure>
 >
 >정상적으로 작성한 파일은 컴파일을 성공적으로 수행하였고 따라서 명령열 뒤의 명령은 실행되지 않았다.
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열7.jpg)
+<figure><img src="/images/linux-starter-guide/조건열7.jpg" alt=""></figure>
 >
 >위와 같이 헤더파일에 의도적으로 손상을 주었다.
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/조건열8.jpg)
+<figure><img src="/images/linux-starter-guide/조건열8.jpg" alt=""></figure>
 >
 >손상을 입은 파일을 컴파일하게 되면 오류 메시지와 함께 명령어 수행에 실패하고 명령열 뒤의 명령인 echo 명령이 실행되는 것을 확인할 수 있다.
 

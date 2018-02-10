@@ -11,7 +11,7 @@ comments: true
 
 ## `if`(`templateName` 미사용)
 
-```xml
+```html
 <div *ngIf="flag">
     flag 가 true 이면 보임
 </div>
@@ -19,7 +19,7 @@ comments: true
 
 ## `if`(`templateName` 미사용), `else`(`templateName` 사용)
 
-```xml
+```html
 <div *ngIf="flag; else templateName">
     flag 가 true 이면 보임
 </div>
@@ -31,7 +31,7 @@ comments: true
 
 ## `if`(`templateName` 사용)
 
-```xml
+```html
 <div *ngIf="flag; then templateName">
     절대 보이지 않음
 </div>
@@ -43,7 +43,7 @@ comments: true
 
 ## `if`(`templateName` 사용), `else`(`templateName` 사용)
 
-```xml
+```html
 <div *ngIf="flag; then thenTemplateName; else elseTemplateName">
     절대 보이지 않음
 </div>

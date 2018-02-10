@@ -11,7 +11,7 @@ comments: true
 
 아래와 같이 코드를 작성하면 클립보드로 `input`에 있는 내용을 복사할 수 있다.
 
-```xml
+```html
 <input id="input" type="text"/>
 <button id="copy">Copy</button>
 ```
@@ -28,7 +28,7 @@ document.querySelector("#copy").addEventListener("click", copy);
 
 만약 `input`을 수정하지 못하도록 하고 싶다면 `disabled`를 사용하면 `copyText.select()`가 동작하지 않아서 복사가 작동하지 않는다. 이때 `disabled`대신 `readonly`를 사용하면 해결할 수 있다.
 
-```xml
+```html
 <!-- <input id="input" type="text" disabled="disabled"/> -->
 <input id="input" type="text" readonly="readonly"/>
 ```

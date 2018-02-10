@@ -1,10 +1,5 @@
-source 'https://rubygems.org'
-gem 'jekyll'
-gem 'github-pages'
-gem 'jekyll-sitemap'
-gem "html-proofer"
+source "https://rubygems.org"
 
-group :jekyll_plugins do
-  gem "jekyll-paginate"
-  gem "pygments.rb"
-end
+gem 'octopress'
+gem 'jekyll-paginate'
+gem 'neo-hpstr-jekyll-theme'

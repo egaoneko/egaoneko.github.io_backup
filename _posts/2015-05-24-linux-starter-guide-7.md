@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 사용자 관리를 통해 여러 유저에게 다양한 접근 권한을 부여할 수 있다. 유저는 고유 ID 1개와 기본그룹 ID 1개 그리고 보조그룹 ID 여러 개로 구성된다. UID, GID는 숫자로 구성되고 식별자 역할을 수행한다.
 
 
@@ -20,7 +18,7 @@ comments: true
 
 ### /etc/passwd	: 사용자 정보가 담겨있는 파일
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/사용자관리1.png)
+<figure><img src="/images/linux-starter-guide/사용자관리1.png" alt=""></figure>
 
 ID:password:UID:GID:Comment:home directory:shell
 
@@ -28,7 +26,7 @@ ID:password:UID:GID:Comment:home directory:shell
 
 ### /etc/shadow	: 사용자 비밀번호가 담겨있는 파일
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/사용자관리2.png)
+<figure><img src="/images/linux-starter-guide/사용자관리2.png" alt=""></figure>
 
 ID:패스워드:암호생성일자:암호변경가능최소시간:초기암호변경 없이 사용기간:만료 지정시 만료 경고 일 수
 (!! : 일반사용자들, * : 시스템 사용자들(데몬 돌리기 위한))
@@ -37,7 +35,7 @@ ID:패스워드:암호생성일자:암호변경가능최소시간:초기암호�
 
 ### /etc/group	: 사용자 그룹 정보가 담겨 있는 파일
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/사용자관리3.png)
+<figure><img src="/images/linux-starter-guide/사용자관리3.png" alt=""></figure>
 
 Group name:password(일반적으로 쓰이지 않음):GID:Group List
 
@@ -121,8 +119,8 @@ su명령을 옵션없이 사용하면 기존의 일반사용자인 user1의 환�
 
 SKELL 파일은 사용자가 생성될 때 함께 만들어지는 파일이다. 이 파일은 /etc/skel 디렉토리에 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/skel1.png)
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/skel2.png)
+<figure><img src="/images/linux-starter-guide/skel1.png" alt=""></figure>
+<figure><img src="/images/linux-starter-guide/skel2.png" alt=""></figure>
 
 /etc/skel 디렉토리에 다음과 같이 파일이 있는 것이 보이며 그 파일들이 abc라는 계정의 홈 디렉토리에 생성됨을 알 수 있다.
 

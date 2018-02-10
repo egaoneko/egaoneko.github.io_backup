@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/리눅스.jpg)
+<figure><img src="/images/linux-starter-guide/리눅스.jpg" alt=""></figure>
 
 이 문서를 마치기전에 서론으로 잠시 돌아가 추가로 작성하였듯이 당초 목표와 다르게 추가된 부분이 있어 생각보다 문서의 양이 길어졌다. 하지만 정리를 하면서 부족하고 궁금했던 부분이 채워질 수 있었기에 개인적으로 만족한다.
 

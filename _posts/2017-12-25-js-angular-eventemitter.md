@@ -22,7 +22,7 @@ export class ExampleDirective {
 }
 ```
 
-```xml
+```html
 <div [example]="testFunction"></div>
 ```
 
@@ -43,7 +43,7 @@ export class ExampleDirective {
 }
 ```
 
-```xml
+```html
 <div (example)="testFunction"></div>
 ```
 

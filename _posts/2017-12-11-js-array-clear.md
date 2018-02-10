@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 들어가며
 
 ```javascript
@@ -75,7 +73,7 @@ while(A.length > 0) {
 
 ## 성능
 
-![Benchmark]({{ site.baseurl }}/assets/media/javascript/js-array-clear-benchmark.png)
+<figure><img src="/images/javascript/js-array-clear-benchmark.png" alt=""></figure>
 
 [이 벤치마크](http://jsben.ch/hyj65)에 따르면 기존 배열을 지우는 방법 중에서 방법 2와 3은 성능면에서 매우 유사하며 방법 4보다 빠른 성능을 보여준다.
 

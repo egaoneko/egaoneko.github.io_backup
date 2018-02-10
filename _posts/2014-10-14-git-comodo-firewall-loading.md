@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-![screenshot]({{ site.url }}/assets/media/git.png)
+<figure><img src="/images/git.png" alt=""></figure>
 
 Git을 설치하면 상단과 같이 "마우스 우클릭"했을 때의 메뉴에 기능들이 추가됨을 확인할 수 있습니다.
 

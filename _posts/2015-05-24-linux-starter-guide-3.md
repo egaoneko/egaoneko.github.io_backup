@@ -9,18 +9,16 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 01 디렉토리 구조
 
 리눅스의 디렉토리는 트리 형태의 구조를 보이며 최상위 디렉토리는 "/" (Root File System) 이다. tree <경로> -L <보고자 하는 단계> 이라는 명령어를 통해 디렉토리의 트리 구조를 확인 할 수 있다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/디렉토리.jpg)
+<figure><img src="/images/linux-starter-guide/디렉토리.jpg" alt=""></figure>
 
 
 ## 02 주요 디렉토리
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/디렉토리2.png)
+<figure><img src="/images/linux-starter-guide/디렉토리2.png" alt=""></figure>
 
 |  이름  |  설명  |
 |:-----:|:-----:|
@@ -64,11 +62,11 @@ comments: true
 
 * 윈도우
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파티션_윈도우.jpg)
+<figure><img src="/images/linux-starter-guide/파티션_윈도우.jpg" alt=""></figure>
 
 * 리눅스
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파티션_리눅스1.jpg)
+<figure><img src="/images/linux-starter-guide/파티션_리눅스1.jpg" alt=""></figure>
 
 윈도우에서 파티션을 나누면 위의 그림과 같이 크기에 따라 파티션이 나뉘게 된다. 하지만 리눅스에서 파티션은 기본파티션과 확장파티션이 있으며 이에 대한 것을 앞으로 설명할 것이다.
 
@@ -105,23 +103,23 @@ logical drive는 디스크 하나 당 SCSI 하드디스크는 15개, IDE 하드�
 
 파티션은 실린더를 기준으로 나누어지게 되며 파티션을 나누면 아래 그림처럼 선택한 용량만큼 실린더 범위를 할당 받게 된다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/image007-comtoman.gif)
+<figure><img src="/images/linux-starter-guide/image007-comtoman.gif" alt=""></figure>
 
 여기서 실린더라 함은 하드 디스크의 구분하는데 쓰이는데 하드디스크의 디스크 부분은 트랙(Track), 섹터(Sector), 실린더(Cylinder)로 구분되어 있다.
 
 >**트랙** : 자기 디스크 등의 회전하는 기억 매체나 자기 테이프 상의 테이프를 물리적으로 기록하는 부분. 자기 디스크의 경우, 「트랙」은 원반상에 동심원상으로 되어 있다.
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/dthumb.phinf.naver.net.jpg)
+<figure><img src="/images/linux-starter-guide/dthumb.phinf.naver.net.jpg" alt=""></figure>
 >
 >**섹터**	: 자기 디스크, 디스크 팩 등의 동심원상에 정보가 기록되어 있는 각 트랙(track)을 똑같은 길이로 분할했을 때 그 일부분이며, 이 섹터마다 붙여진 어드레스를 섹터 어드레스(sector address)라 하고, 섹터를 고정 길이 레코드(fixed length record)로 취급한다.
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/dthumb.phinf.naver.net2.jpg)
+<figure><img src="/images/linux-starter-guide/dthumb.phinf.naver.net2.jpg" alt=""></figure>
 >
 >**실린더** : 하드 디스크 팩 내의 모든 디스크 상의 동일한 트랙이 수직으로 쌓여 있는 것으로 실린더 형태를 하고 있어서 이런 이름을 붙였다.
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/dthumb.phinf.naver.net3.jpg)
+<figure><img src="/images/linux-starter-guide/dthumb.phinf.naver.net3.jpg" alt=""></figure>
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/chs-comtoman.gif)
+<figure><img src="/images/linux-starter-guide/chs-comtoman.gif" alt=""></figure>
 >
 >출처[^5]
 
@@ -135,7 +133,7 @@ logical drive는 디스크 하나 당 SCSI 하드디스크는 15개, IDE 하드�
 
 MBR안의 작은 프로그램은 이 정보를 바탕으로 부팅 가능한 운영체제의 부트 섹터로 제어권을 넘기게 되고, 제어권을 넘겨받은 부트섹터는 자신의 운영체제를 메모리 안으로 끌어들이기 위한 부트 프로그램을 실행시킨다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/image006-comtoman.gif)
+<figure><img src="/images/linux-starter-guide/image006-comtoman.gif" alt=""></figure>
 
 
 ## 04 장치와 파티션에 대한 표현
@@ -185,9 +183,9 @@ MBR안의 작은 프로그램은 이 정보를 바탕으로 부팅 가능한 운
 >>
 >>|---logical 파티션 /dev/sda16
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파티션_리눅스2.jpg)
+<figure><img src="/images/linux-starter-guide/파티션_리눅스2.jpg" alt=""></figure>
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파티션_리눅스3.jpg)
+<figure><img src="/images/linux-starter-guide/파티션_리눅스3.jpg" alt=""></figure>
 
 
 ## 05 마운트
@@ -196,7 +194,7 @@ MBR안의 작은 프로그램은 이 정보를 바탕으로 부팅 가능한 운
 
 [^7]: 출처 :　위키백과 - 마운트
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/마운트.jpg)
+<figure><img src="/images/linux-starter-guide/마운트.jpg" alt=""></figure>
 
 
       * 네이티브 파티션(/)와 스왑 파티션(swap)은 반드시 생성 하여야 한다.

@@ -11,7 +11,7 @@ comments: true
 
 `ngOnChanges`를 통해 컴포넌트나 디렉티브의 `input`프로퍼티에 대해 감지할 수 있다. 아래는 Angular 문서에 있는 `ngOnChanges`에 대한 예제이다.
 
-```xml
+```html
 <on-changes [hero]="hero" [power]="power"></on-changes>
 ```
 

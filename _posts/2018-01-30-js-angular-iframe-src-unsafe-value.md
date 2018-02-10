@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-```xml
+```html
 <iframe width="100%" height="300" [src]="site.url"></iframe>
 ```
 
@@ -35,7 +35,7 @@ export class SafePipe implements PipeTransform {
 } 
 ```
 
-```xml
+```html
 <iframe width="100%" height="300" [src]="site.url | safe"></iframe>
 ```
 

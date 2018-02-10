@@ -9,15 +9,13 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 이 파일 시스템 부분을 처음 리눅스를 배우는 사람에게 가이드라인을 제안하고자 하는 이 문서에서 어느 정도 설명해야 맞는 것인지 판단이 서지 않았다. 그리고 사실 필자 또한 이 부분에 대하여 잘 알지 못한다. 현재 필자가 참여하고 있는 리눅스를 처음 배우는 사람을 대상으로 하는 스터디에서 이 부분을 언급하였기에 필자 또한 아는 것과 검색을 통해 알아본 것을 작성하였다.
 
 >파일 시스템(file system, 문화어: 파일체계)은 컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제를 가리키는 말이다.[^1]
 
 [^1]: 출처 : 위키백과 - 파일시스템
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파일시스템.jpg)
+<figure><img src="/images/linux-starter-guide/파일시스템.jpg" alt=""></figure>
 
 파일 시스템은 통상 하드 디스크나 CD-ROM 같은 실제 자료 보관 장치를 사용하여 파일의 물리적 소재를 관리하는 것을 가리키나 네트워크 프로토콜(NFS, SMB, 9P 등)을 수행하는 클라이언트를 통하여 파일 서버 상의 자료로의 접근을 제공하는 방식과 가상의 형태로서 접근 수단만이 존재하는 방식(procfs 등)도 파일 시스템의 범위에 포함될 수 있다. 디렉터리 서비스나 레지스트리와는 의미가 조금 다르다.
 
@@ -74,11 +72,11 @@ ext3 파일시스템을 확장한 파일시스템으로 Extent라는 기능을 �
 
 ext2 파일시스템은 비교적 속도가 빠르고 안정적인 UFS(Unix FileSystem)을 기반으로 필요한 기능을 추려서, 보다 단순하게 만들어졌다. 따라서 ext2는 분석, 이해하기가 쉽다. 다음은 ext2 파일시스템의 레이아웃이다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파일시스템1.jpg)
+<figure><img src="/images/linux-starter-guide/파일시스템1.jpg" alt=""></figure>
 
 ext2 파일시스템은 부트섹터(Boot Sector)와 여러 개의 블록 그룹(Block Group)으로 구성된다. 블록이란 파일시스템에서 데이터를 저장하는 단위이며, 메모리에서 I/O 작업을 한 번 거칠 때 읽거나 쓰는 단위가 된다. 파일시스템을 생성할 때 1KB~4KB 사이에서 블록의 크기를 지정 가능하다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파일시스템2.jpg)
+<figure><img src="/images/linux-starter-guide/파일시스템2.jpg" alt=""></figure>
 
 각 블록 그룹에는 파일시스템을 구성하는 정보들이 담겨져 있다. 가장 마지막의 블록 그룹을 제외하고는 모든 블록 그룹들이 같은 블록 개수를 가지며, 여기에 파일 이름, meta data, 파일 데이터가 기록된다.
 
@@ -86,7 +84,7 @@ ext2 파일시스템은 부트섹터(Boot Sector)와 여러 개의 블록 그룹
 
 ### 블록 그룹 (Block Group)
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파일시스템3.png)
+<figure><img src="/images/linux-starter-guide/파일시스템3.png" alt=""></figure>
 
 블록그룹은 블록들의 모임이며, OS커널이 같은 파일에 속하는 데이터 블록은 같은 블록 그룹에 저장하려고 노력하기 때문에 파일의 단편화[^6]를 줄일 수 있다.
 
@@ -218,7 +216,7 @@ Inode 1번은 Super Block, 2번은 루트 디렉토리이며, 10번까지는 예
 
 [^11]: 기존 데이터가 모두 파괴 된다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/ext2-inode.gif)
+<figure><img src="/images/linux-starter-guide/ext2-inode.gif" alt=""></figure>
 
 >**Ext2에 대한 커널 문서의 인용문에 따르면 다음과 같다.**
 >
@@ -229,7 +227,7 @@ Ext2 내부는 15개의 포인터가 있는 구조며 그 중 처음부터 12번
 
 만약 각 데이터 Block의 크기가 8KB이라면, 최대 파일 크기는 약 64TB이다. Direct Block Pointer = 8KB * 12개 = 96KB Indirect Block Pointer = 8KB * 2048개 = 16,384KB Triple Indirect Pointer = 8KB * 2048개 * 2048개 = 33,554,432KB 그리고 데이터 Block의 크기가 4KB인 경우 최대 파일 크기는 약 4TB이다.
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/20131117_215621.png)
+<figure><img src="/images/linux-starter-guide/20131117_215621.png" alt=""></figure>
 
 #### 주요 저장 내용
 
@@ -260,7 +258,7 @@ Ext2 내부는 15개의 포인터가 있는 구조며 그 중 처음부터 12번
 
 >**디렉토리 블록에서 아이노드 넘버를 통해 데이터를 찾아가는 절차**
 >
->![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/test.png)
+<figure><img src="/images/linux-starter-guide/test.png" alt=""></figure>
 >
 >* 디렉터리 블록에서 찾아갈 파일을 찾는다.[^12]
 >* 선택된 파일의 Inode 번호를 해당 디스크의 Inode Table에서 찾는다.
@@ -314,7 +312,7 @@ Journaling 기술은 기존의 fsck에 걸리는 시간을 단축하기 위해 �
 
 ## 04 파일 및 디렉토리 구조(extended file system)
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/파일구조.jpg)
+<figure><img src="/images/linux-starter-guide/파일구조.jpg" alt=""></figure>
 
 |  d  |  rwxr-xr-x  |  2  |  root  |  root  |  4096  |  12월 30일  |  00:32  |  .gotreamer  |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -341,7 +339,7 @@ Journaling 기술은 기존의 fsck에 걸리는 시간을 단축하기 위해 �
 
 ## 05 링크
 
-![screenshot]({{ site.baseurl }}/assets/media/linux-starter-guide/inode.jpg)
+<figure><img src="/images/linux-starter-guide/inode.jpg" alt=""></figure>
 
 
 ### 하드링크 (#ln [대상 경로] [링크 경로])

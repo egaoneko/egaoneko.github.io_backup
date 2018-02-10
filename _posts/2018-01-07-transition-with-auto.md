@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
+
 
 ## 들어가며
 

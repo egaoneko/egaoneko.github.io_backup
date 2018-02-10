@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 최근 브라우저가 어떻게 작동하는지 궁금하던 차에 회사 직원분의 공유를 통해 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)라는 글을 접하게 되었다. 해당 글에서 흥미로운 주제인 **주요 렌더링 경로(Critical Rendering Path, 이하 CRP)**에 대해서 알게 되어 이와 관련된 Udacity 강좌와 여러 글들에 대해 찾아보게 되었고, 이를 바탕으로 현재 재직하고 있는 회사의 웹페이지에 해당 개념을 적용해보는 도전기를 공유하기 위해 이 글을 작성하고자 한다.
 
 본 글에서는 CRP에 대해 상세한 내용을 다루지 않을 것이기 때문에 상세한 내용이 궁금하다면 글 맨 하단의 참조 링크들을 확인하길 바란다. 특히 Google에서 제작한 Udacity의 [Website Performance Optimization](https://www.udacity.com/course/website-performance-optimization--ud884)와 [Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/?hl=ko)는 쉽게 설명해주어 좋은데, 심지어 번역도 되어있으니 처음 본다면 꼭 한번 보면 좋을 것 같다.
@@ -25,7 +23,7 @@ HTML, CSS 및 JavaScript 바이트를 수신한 후 렌더링된 픽셀로 변�
 
 [브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)에서 아래와 같이 해당 과정에 대해서 잘 요약해서 설명해주셨다.
 
-![critical rendering path]({{ site.baseurl }}/assets/media/critical-rendering-path/critical-rendering-path.png)
+<figure><img src="/images/critical-rendering-path/critical-rendering-path.png" alt=""></figure>
 
 **[브라우저는 웹페이지를 어떻게 그리나요? - Critical Rendering Path](http://m.post.naver.com/viewer/postView.nhn?volumeNo=8431285&memberNo=34176766)**
 
@@ -41,7 +39,7 @@ CRP를 최적화하는 작업은 위 단계에서 1단계~6단계를 수행할 �
 
 #### HTML Parsing
 
-![construction]({{ site.baseurl }}/assets/media/critical-rendering-path/construction.png)
+<figure><img src="/images/critical-rendering-path/construction.png" alt=""></figure>
 
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
@@ -77,7 +75,7 @@ img { float: right }
 
 * [Sample](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/basic_dom.html)
 
-![full process]({{ site.baseurl }}/assets/media/critical-rendering-path/full-process.png)
+<figure><img src="/images/critical-rendering-path/full-process.png" alt=""></figure>
 
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
@@ -88,7 +86,7 @@ DOM은 HTML 문서의 객체 표현이고 외부를 향하는 JavaScript와 같�
 * [브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)
 * [문서 객체 모델 (DOM) - MDN](https://developer.mozilla.org/ko/docs/Gecko_DOM_Reference)
 
-![dom tree]({{ site.baseurl }}/assets/media/critical-rendering-path/dom-tree.png)
+<figure><img src="/images/critical-rendering-path/dom-tree.png" alt=""></figure>
 
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
@@ -100,7 +98,7 @@ CSSOM은 JavaScript와 같은 프로그래밍 언어가 CSS를 조작 할 수 �
 
 * [CSS Object Model - MDN](https://developer.mozilla.org/ko/docs/Web/API/CSS_Object_Model)
 
-![cssom tree]({{ site.baseurl }}/assets/media/critical-rendering-path/cssom-tree.png)
+<figure><img src="/images/critical-rendering-path/cssom-tree.png" alt=""></figure>
 
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model/?hl=ko)**
 
@@ -110,7 +108,7 @@ Style Sheet를 파싱하면 위와 같은 CSSOM Tree가 생성된다.
 
 HTML 및 CSS 입력을 기반으로 빌드한 서로 독립적인 객체인 DOM 및 CSSOM 트리를 병합하여 브라우저가 화면에 픽셀을 렌더링하도록 Render Tree를 형성한다. 이때 Render Tree에는 페이지를 렌더링하는데 필요한 노드만 포함된다.
 
-![render tree construction]({{ site.baseurl }}/assets/media/critical-rendering-path/render-tree-construction.png)
+<figure><img src="/images/critical-rendering-path/render-tree-construction.png" alt=""></figure>
 
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction/?hl=ko)**
 
@@ -138,7 +136,7 @@ Layout 프로세스에서는 뷰포트 내에서 각 요소의 정확한 위치�
 </html>
 ```
 
-![layout viewport]({{ site.baseurl }}/assets/media/critical-rendering-path/layout-viewport.png)
+<figure><img src="/images/critical-rendering-path/layout-viewport.png" alt=""></figure>
 
 **[Critical Rendering Path - Constructing the Object Model](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction/?hl=ko)**
 
@@ -170,13 +168,13 @@ Webkit과 Gecko 브라우저에서의 동작 과정 예이다.
 
 ##### Webkit
 
-![webkit]({{ site.baseurl }}/assets/media/critical-rendering-path/webkit.png)
+<figure><img src="/images/critical-rendering-path/webkit.png" alt=""></figure>
 
 **[브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)**
 
 ##### Gecko
 
-![gecko]({{ site.baseurl }}/assets/media/critical-rendering-path/gecko.png)
+<figure><img src="/images/critical-rendering-path/gecko.png" alt=""></figure>
 
 **[브라우저는 어떻게 동작하는가? - D2](http://d2.naver.com/helloworld/59361)**
 
@@ -202,7 +200,7 @@ HTML의 경우 DOM이 없으면 렌더링 할 것이 없기 때문에 렌더링 
 
 #### CSS : 차단 vs. 비차단 리소스
 
-```xml
+```html
 <link href="style.css" rel="stylesheet">
 <link href="style.css"    rel="stylesheet" media="all">
 <link href="portrait.css" rel="stylesheet" media="orientation:portrait">
@@ -212,14 +210,14 @@ HTML의 경우 DOM이 없으면 렌더링 할 것이 없기 때문에 렌더링 
 
 #### JavaScript : 파서차단 vs. 비동기
 
-```xml
+```html
 <script>document.write("Hello, world");</script>
 <script src="app.js"></script>
 <script src="app.js" defer></script>
 <script src="app.js" async></script>
 ```
 
-![script sync and async]({{ site.baseurl }}/assets/media/critical-rendering-path/script-sync-async.png)
+<figure><img src="/images/critical-rendering-path/script-sync-async.png" alt=""></figure>
 
 **[Speed up Google Maps(and everything else) with async & defer](https://medium.com/@nikjohn/speed-up-google-maps-and-everything-else-with-async-defer-7b9814efb2b)**
 
@@ -231,23 +229,23 @@ HTML의 경우 DOM이 없으면 렌더링 할 것이 없기 때문에 렌더링 
 
 [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/?hl=ko)는 Google Chrome에 내장되어있는 웹 저작 및 디버깅 도구이며, DevTools를 이용하여 사이트를 반복하고, 디버깅하고, 프로파일링할 수 있다. 자세한 도구의 사용법은 [타임라인 도구 사용법](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=ko)를 하기 바란다. DevTools를 사용하여 CRP뿐만 아니라 다양한 요소에 대해서 측정이 가능이 가능하지만, CRP를 측정면에서 본다면 다음 언급된 Lighthouse라는 도구가 더 유용하다.
 
-![chrome devtools]({{ site.baseurl }}/assets/media/critical-rendering-path/chrome-devtools.png)
+<figure><img src="/images/critical-rendering-path/chrome-devtools.png" alt=""></figure>
 
 #### Lighthouse
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse/?hl=ko)는 웹 앱 감사 도구이며 해당 페이지에 대해 일련의 테스트를 수행한 다음, 이 페이지의 결과를 통합된 보고서로 표시해준다. Lighthouse를 Chrome 확장 프로그램이나 NPM 모듈로서 실행할 수 있으며, 이는 Lighthouse와 지속적 통합 시스템을 통합하는데 유용하다.
 
-![lighthouse]({{ site.baseurl }}/assets/media/critical-rendering-path/lighthouse.png)
+<figure><img src="/images/critical-rendering-path/lighthouse.png" alt=""></figure>
 
 특히, 아래와 같이 별도로 해당 페이지에 대한 CRP 측정 결과를 보여주므로 CRP 측정에 유용하다.
 
-![lighthouse crp]({{ site.baseurl }}/assets/media/critical-rendering-path/lighthouse-crp.png)
+<figure><img src="/images/critical-rendering-path/lighthouse-crp.png" alt=""></figure>
 
 #### Navigation Timing API
 
 Navigation Timing API와 기타 여러 브라우저 이벤트를 조합해서 사용는 [Navigation Timing API](https://developer.mozilla.org/ko/docs/Navigation_timing) 접근방식에서는 [RUM(Real User Monitoring)](https://en.wikipedia.org/wiki/Real_user_monitoring) 지표를 캡처하며, 이 지표는 실제 사용자의 사이트 상호작용으로부터 캡처되며, 다양한 기기와 네트워크 조건에서 사용자가 경험하는 실제 CRP 성능을 정확하게 보여준다.
 
-![dom navtiming]({{ site.baseurl }}/assets/media/critical-rendering-path/dom-navtiming.png)
+<figure><img src="/images/critical-rendering-path/dom-navtiming.png" alt=""></figure>
 
 ```html
 <html>
@@ -275,7 +273,7 @@ Navigation Timing API와 기타 여러 브라우저 이벤트를 조합해서 �
 </html>
 ```
 
-![device navtiming small]({{ site.baseurl }}/assets/media/critical-rendering-path/device-navtiming-small.png)
+<figure><img src="/images/critical-rendering-path/device-navtiming-small.png" alt=""></figure>
 
 * [Sample](https://googlesamples.github.io/web-fundamentals/fundamentals/performance/critical-rendering-path/measure_crp.html)
 
@@ -295,31 +293,31 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ##### HTML waterfall
 
-![waterfall dom]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom.png)
+<figure><img src="/images/critical-rendering-path/waterfall-dom.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, CSS and inline JS waterfall
 
-![waterfall dom css js inline]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js-inline.png)
+<figure><img src="/images/critical-rendering-path/waterfall-dom-css-js-inline.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, CSS and extenal and sync JS waterfall
 
-![waterfall dom css js]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js.png)
+<figure><img src="/images/critical-rendering-path/waterfall-dom-css-js.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, CSS and extenal and async JS waterfall
 
-![waterfall dom css js async]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-js-async.png)
+<figure><img src="/images/critical-rendering-path/waterfall-dom-css-js-async.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
 ##### HTML, inline CSS and inline JS waterfall
 
-![waterfall dom css inline js inline]({{ site.baseurl }}/assets/media/critical-rendering-path/waterfall-dom-css-inline-js-inline.png)
+<figure><img src="/images/critical-rendering-path/waterfall-dom-css-inline-js-inline.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
@@ -340,7 +338,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 </html>
 ```
 
-![analysis dom]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom.png)
+<figure><img src="/images/critical-rendering-path/analysis-dom.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
@@ -363,7 +361,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 </html>
 ```
 
-![analysis dom css]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css.png)
+<figure><img src="/images/critical-rendering-path/analysis-dom-css.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
@@ -387,7 +385,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 </html>
 ```
 
-![analysis dom css js]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-js.png)
+<figure><img src="/images/critical-rendering-path/analysis-dom-css-js.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
@@ -411,7 +409,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 </html>
 ```
 
-![analysis dom css js async]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-js-async.png)
+<figure><img src="/images/critical-rendering-path/analysis-dom-css-js-async.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
@@ -435,7 +433,7 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 </html>
 ```
 
-![analysis dom css nb js async]({{ site.baseurl }}/assets/media/critical-rendering-path/analysis-dom-css-nb-js-async.png)
+<figure><img src="/images/critical-rendering-path/analysis-dom-css-nb-js-async.png" alt=""></figure>
 
 **[Critical Rendering Path - Analyzing Critical Rendering Path Peformance](ttps://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp/?hl=ko)**
 
@@ -495,11 +493,11 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ##### Performance 측정 결과
 
-![ticketlink pc crp origin performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-origin-performance.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-pc-crp-origin-performance.png" alt=""></figure>
 
 ##### CRP 측정 결과
 
-![ticketlink pc crp origin crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-origin-crp.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-pc-crp-origin-crp.png" alt=""></figure>
 
 #### Mobile 측정 결과
 
@@ -507,11 +505,11 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ##### Performance 측정 결과
 
-![ticketlink mobile crp origin performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-origin-performance.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-mobile-crp-origin-performance.png" alt=""></figure>
 
 ##### CRP 측정 결과
 
-![ticketlink mobile crp origin crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-origin-crp.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-mobile-crp-origin-crp.png" alt=""></figure>
 
 ### Lighthouse 결과 분석
 
@@ -558,11 +556,11 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ##### Performance 측정 결과
 
-![ticketlink pc crp optimization performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-optimization-performance.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-pc-crp-optimization-performance.png" alt=""></figure>
 
 ##### CRP 측정 결과
 
-![ticketlink pc crp optimization crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-optimization-crp.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-pc-crp-optimization-crp.png" alt=""></figure>
 
 #### Mobile 측정 결과
 
@@ -570,11 +568,11 @@ CSS와 JS를 모두 페이지 내에 인라인으로 추가하는 경우에는 H
 
 ##### Performance 측정 결과
 
-![ticketlink mobile crp optimization performance]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-optimization-performance.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-mobile-crp-optimization-performance.png" alt=""></figure>
 
 ##### CRP 측정 결과
 
-![ticketlink mobile crp optimization crp]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-optimization-crp.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-mobile-crp-optimization-crp.png" alt=""></figure>
 
 ### 재측정한 Lighthouse 결과 분석
 
@@ -598,19 +596,19 @@ First interactive에서 다소 성능이 저하되었지만, 나머지 요소들
 
 #### PC(CRP 최적화 전)
 
-![ticketlink pc crp origin snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-origin-snapshot.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-pc-crp-origin-snapshot.png" alt=""></figure>
 
 #### PC(CRP 최적화 후)
 
-![ticketlink pc crp optimization snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-pc-crp-optimization-snapshot.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-pc-crp-optimization-snapshot.png" alt=""></figure>
 
 #### Mobile(CRP 최적화 전)
 
-![ticketlink mobile crp origin snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-origin-snapshot.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-mobile-crp-origin-snapshot.png" alt=""></figure>
 
 #### Mobile(CRP 최적화 후)
 
-![ticketlink mobile crp optimization snapshot]({{ site.baseurl }}/assets/media/critical-rendering-path/ticketlink-mobile-crp-optimization-snapshot.png)
+<figure><img src="/images/critical-rendering-path/ticketlink-mobile-crp-optimization-snapshot.png" alt=""></figure>
 
 ### 마치며
 

@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 필자는 IntelliJ를 사용하고 있고 최근에 Spring Boot를 사용해보고 있다. 문제는 Spring Boot에서 Jsp를 사용하고자 하면서 발생하였다. Spring Boot에서 Jsp를 사용하기 위해 Gradle을 다음과 같이 작성하고 ``build``하였다.
 
 ```java
@@ -61,7 +59,7 @@ dependencies {
 
 다음과 같이 작성하고 Application을 실행하면 Jsp가 제대로 작동하지 않는 것을 볼 수 있다. 아래와 같이 Jsp의 내용을 그대로 보여주는 현상이다.
 
-![screenshot]({{ site.baseurl }}/assets/media/springboot-jsp.png)
+<figure><img src="/images/springboot-jsp.png" alt=""></figure>
 
 이를 IntelliJ에서 해결하기 위해 여러가지를 시도해본 결과, Gradle Task중에 ``bootRun``을 실행하면 Jsp가 제대로 작동한다.
 

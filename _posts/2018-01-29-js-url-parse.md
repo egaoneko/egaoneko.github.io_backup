@@ -9,8 +9,6 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
-
 ## 들어가며
 
 매번 JS에서 URL을 파싱하기 위한 방법을 감섹히건 헸는데, 이번 기회에 기록하고자 한다.

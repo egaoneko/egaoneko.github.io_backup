@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-{% include toc.html %}
+
 
 ## 들어가며
 
@@ -17,7 +17,7 @@ comments: true
 
 ## Vanilla
 
-![Image lazy load with Vanilla]({{ site.baseurl }}/assets/media/frontend/lazy-load-image-with-vanilla.gif)
+<figure><img src="/images/frontend/lazy-load-image-with-vanilla.gif" alt=""></figure>
 
 ```javascript
 var offsetWidth = 200;
@@ -85,7 +85,7 @@ Vanilla라고 이름을 붙이긴 했지만 이 글에서 이야기하고자 하
 
 ## IntersectionObserver
 
-![Image lazy load with IntersectionObserver]({{ site.baseurl }}/assets/media/frontend/image-lazy-load-with-intersection-observer.gif)
+<figure><img src="/images/frontend/image-lazy-load-with-intersection-observer.gif" alt=""></figure>
 
 ```javascript
 var scrollBox = document.getElementById('scroll-box');

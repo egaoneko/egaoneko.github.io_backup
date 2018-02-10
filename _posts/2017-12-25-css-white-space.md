@@ -13,7 +13,7 @@ comments: true
 let str = "Hello\nWorld!";
 ```
 
-```xml
+```html
 <div>{{str}}</div>
 ```
 
