@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 3.3
+- 2.3
 
 # Assume bundler is being used, install step will run `bundle install`.
 script: "bundle exec jekyll build --trace"
