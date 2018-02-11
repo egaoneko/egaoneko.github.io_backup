@@ -23,7 +23,7 @@
             <ul class="header-submenu">
               {% for item in (0..site.categories.size) %}{% unless forloop.last %}
                 {% capture this_word %}{{ cats_list[item] | strip_newlines }}{% endcapture %}
-                  <li class="sub-item"><a href="{{site.url}}/categories#{{this_word}}">{{this_word}}</a></li>
+                  <li class="sub-item"><a href="{{site.url}}/categories#{{this_word}}"><span>{{this_word}}</span></a></li>
               {% endunless %}{% endfor %}
             </ul>
           </li>
@@ -31,7 +31,7 @@
           <li class="header-item {{class}}"><a href="{{site.url}}{{menu.url}}"><h3>{{ menu.title }}</h3></a>
             <ul class="header-submenu">
               {% for sub in menu.submenu %}
-                <li class="sub-item"><a href="{{site.url}}{{sub.url}}">{{sub.title}}</a></li>
+                <li class="sub-item"><a href="{{site.url}}{{sub.url}}"><span>{{sub.title}}</span></a></li>
               {% endfor %}
             </ul>
           </li>
