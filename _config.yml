@@ -23,6 +23,8 @@ menu:
   - title: 'Categories'
     url: '/categories'
     type: 'categories'
+  - title: 'Playground'
+    url: '/playground'
   - title: 'Pinned'
     url: '#'
     submenu:
