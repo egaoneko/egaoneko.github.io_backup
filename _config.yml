@@ -23,8 +23,6 @@ menu:
   - title: 'Categories'
     url: '/categories'
     type: 'categories'
-  - title: 'Playground'
-    url: '/playground'
   - title: 'Pinned'
     url: '#'
     submenu:
@@ -32,6 +30,8 @@ menu:
         url: '/categories#javascript'
       - title: 'Frontend'
         url: '/categories#frontend'
+  - title: 'Playground'
+    url: '/playground'
 
 # Owner/author information
 owner:
