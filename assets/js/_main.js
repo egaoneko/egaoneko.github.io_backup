@@ -50,10 +50,14 @@ $(document).ready(function() {
 
 // header
 $(document).ready(function(e) {
+  var header = $('.header-menu');
+  var entryHeader = $('.entry-header');
+  
+  var threshold = entryHeader.height() - header.height();
+
   $(window).scroll(function(){
-    var header = $('.header-menu');
     var scroll = $(window).scrollTop();
-    if(scroll > 230){
+    if(scroll > threshold){
       header.attr('class', 'header-menu header-menu-overflow');
     } else {
       header.attr('class', 'header-menu header-menu-top');
