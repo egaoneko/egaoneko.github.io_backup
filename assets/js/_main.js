@@ -55,6 +55,10 @@ $(document).ready(function(e) {
   
   var threshold = entryHeader.height() - header.height();
 
+  if (threshold < 0) {
+    threshold = 0;
+  }
+
   $(window).scroll(function(){
     var scroll = $(window).scrollTop();
     if(scroll > threshold){
