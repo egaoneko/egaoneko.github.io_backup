@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '복수의 Git Branch 삭제하기'
-date: 2018-04-21 19:00:00
+date: 2018-04-21 19:40:00
 categories: git
 tags: [git, til]
 published: true

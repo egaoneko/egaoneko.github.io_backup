@@ -15,7 +15,7 @@ document.body('mousemove', (e)=>console.log(e.button, e.buttons));
 document.body('mouseup', (e)=>console.log(e.button, e.buttons));
 ```
 
-마우스 이벤트에서 이벤트를 일으킨 마우스의 버튼들을 알고자한다면, 위와 같이 마우스 이벤트의 `button`와 `buttons` 두 가지 속성을 사용할 수 있다.(`which`도 있지만 표준이 아니므로 사용하지 않는 것이 좋을 것 같다.) MDN에서는 두 속성에 대해서 아래와 같이 설명하고 있다.
+마우스 이벤트에서 이벤트를 일으킨 마우스의 버튼들을 알고자한다면, 위와 같이 마우스 이벤트의 `button`와 `buttons` 두 가지 속성을 사용할 수 있다(`which`도 있지만 표준이 아니므로 사용하지 않는 것이 좋을 것 같다.). MDN에서는 두 속성에 대해서 아래와 같이 설명하고 있다.
 
 ## [`MouseEvent.button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
 
@@ -33,7 +33,7 @@ The button number that was pressed when the mouse event was fired.
 
 `MouseEvent.button` 속성은 하나 또는 여러 개의 단추를 누르거나 놓음으로써 발생하는 마우스 이벤트의 올바른 값만을 보장한다. `mousedown`와 `mouseup`에 대해서는 정상적으로 동작하지만 `mousemove`에서는 누르고 있는 마우스 버튼과 관계없이 `0`을 반환한다.
 
-* [`MouseEvent.buttons`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
+## [`MouseEvent.buttons`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
 
 The buttons being pressed when the mouse event was fired. Each button that can be pressed is represented by a given number (see below). If more than one button is pressed, the value of the buttons is combined to produce a new number.
 
