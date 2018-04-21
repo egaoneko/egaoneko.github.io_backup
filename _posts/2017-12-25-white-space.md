@@ -2,8 +2,8 @@
 layout: post
 title: '엘리먼트에서 공백 처리'
 date: 2017-12-25 18:00:00
-categories: frontend
-tags: [frontend, til]
+categories: css
+tags: [css, til]
 published: true
 fullview: false
 comments: true

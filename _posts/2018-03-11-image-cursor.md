@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Image Cursor'
+title: 'CSS에서 이미지 마우스 커서 사용하기'
 date: 2018-03-11 16:00:00
 categories: css
 tags: [css, til]
