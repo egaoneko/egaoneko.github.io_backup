@@ -17,7 +17,7 @@ function copyImageData(ctx, src) {
 }
 ```
 
-Canvas에서 `getImageData`로 가져온 `ImageData`를 복사하고 싶다면 상단과 같이 복사할 수 있다. 새로운 Canvas에 `ImageData`를 `putImageData`로 넣어서 사용하기도 했었지만 `ImageData`민을 복사하여 조작하고자 하여 사용하였다.
+Canvas에서 `getImageData`로 가져온 `ImageData`를 복사하고 싶다면 상단과 같이 복사할 수 있다. 새로운 Canvas에 `ImageData`를 `putImageData`로 넣어서 사용하기도 했었지만 `ImageData`만을 복사하여 조작하고자 하여 사용하였다.
 
 * 참고
   * [Copy imageData by value in JavaScript - stack overflow](https://stackoverflow.com/questions/5642383/copy-imagedata-by-value-in-javascript?rq=1)

@@ -41,13 +41,13 @@ owner:
   bio:            "How do you define yourself?"
   email:          egaoneko@naver.com
   # Twitter nick for use in Twitter cards and follow button.
-  twitter:        # if no twitter in this config, the twitter follow button will be removed
+  twitter:        frank_seo
   # GitHub nick for use in follow button in author block.
   github:         egaoneko
 
 # Twitter account associated with the site if different from owner/author twitter account.
 # Used in Twitter cards.
-twitter:
+twitter:          frank_seo
 
 # Social networking links used in author block underneath posts. Update and remove as you like.
 social:
@@ -55,6 +55,8 @@ social:
     url: "https://github.com/egaoneko"
   - title: "linkedin"
     url: "https://br.linkedin.com/in/donghyunseo"
+  - title: "twitter"
+    url: "https://twitter.com/frank_seo"
 
 # Background image to be tiled on all pages
 background:
