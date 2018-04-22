@@ -1,5 +1,5 @@
-title:            SmileCat's Blog
-description:      SmileCat's Blog
+title:            3 days of programming
+description:      The endless quitter's blog.
 
 # put your disqus here
 disqus_shortname: egaoneko
@@ -35,8 +35,8 @@ menu:
 
 # Owner/author information
 owner:
-  name:           Donghyun Seo
-  site:           http://www.3daysofprogramming.com
+  name:           SmileCat
+  site:           /about
   avatar:         /images/logo.jpg
   bio:            "How do you define yourself?"
   email:          donghyun.seo91@gmail.com
