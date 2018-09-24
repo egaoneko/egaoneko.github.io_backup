@@ -13,12 +13,14 @@ comments: true
 
 이를 해결하기 위해 stackoverflow를 찾아보니, 여러 방법중에 아래의 방법이 가장 적합하다고 생각하여 사용하였다.
 
+추가적으로 `hasPopupBlocker`의 작동시점을 `setTimeout`으로 조절해주어야하는 문제점이 있다.
+
 ```javascript
 function hasPopupBlocker(poppedWindow) {
-    var result = false;
+    let result = false;
 
     try {
-        if (typeof poppedWindow == 'undefined') {
+        if (typeof poppedWindow === 'undefined') {
             // Safari with popup blocker... leaves the popup window handle undefined
             result = true;
         }
@@ -47,6 +49,21 @@ function hasPopupBlocker(poppedWindow) {
 }
 ```
 
+사실 원글에서는 아래와 같이 부모, 자식 창간에 `postMessage`를 사용하여 통신하는 방법이 모던하다고 첨언되어있었다. 이 방법은 자식이 cross-domain 인 경우에도 작동을 하겠지만, 필자의 경우에는 새창이 필자가 수정할 수 없는 경우여서 해당 방법을 사용할 수 없었다.
+
+```javascript
+// child
+window.addEventListener('load', function() {
+  this.opener.postMessage({'loaded': true}, "*");
+  this.close();
+});
+
+// parent
+window.addEventListener('message', function(event) {
+  alert(event.originalEvent.data.loaded)
+});
+```
+
 * 참고
-  * [Copy imageData by value in JavaScript - stack overflow](https://stackoverflow.com/questions/5642383/copy-imagedata-by-value-in-javascript?rq=1)
-  * [Detect blocked popup in Chrome - stackoverflow](https://stackoverflow.com/questions/668286/detect-blocked-popup-in-chrome/1089792#1089792)
+  * [How can I detect if a browser is blocking a popup? - stack overflow](https://stackoverflow.com/questions/2914/how-can-i-detect-if-a-browser-is-blocking-a-popup)
+  * [Detect blocked popup in Chrome - stack overflow](https://stackoverflow.com/questions/668286/detect-blocked-popup-in-chrome/1089792#1089792)
