@@ -6,7 +6,7 @@ share: true
 
 ## 소개
 
-* Donghyun Seo / SmileCat
+* SmileCat
 * email : egaoneko@naver.com
 
 안녕하세요? 반갑습니다.
@@ -17,3 +17,4 @@ share: true
 
 * [GitHub](https://github.com/egaoneko)
 * [LinkedIn](https://www.linkedin.com/in/donghyunseo)
+* [Twitter](https://twitter.com/frank_seo)

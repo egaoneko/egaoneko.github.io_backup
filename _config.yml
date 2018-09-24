@@ -1,5 +1,5 @@
-title:            SmileCat's Blog
-description:      SmileCat's Blog
+title:            3 days of programming
+description:      The endless quitter's blog.
 
 # put your disqus here
 disqus_shortname: egaoneko
@@ -10,7 +10,7 @@ excerpt_separator: <!--more-->
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
 
-url: https://egaoneko.github.io
+url: http://www.3daysofprogramming.com
 
 # draw your top menu here
 # each item must have a title and a url.
@@ -35,19 +35,19 @@ menu:
 
 # Owner/author information
 owner:
-  name:           Donghyun Seo
-  site:           https://egaoneko.github.io
+  name:           SmileCat
+  site:           /about
   avatar:         /images/logo.jpg
   bio:            "How do you define yourself?"
-  email:          egaoneko@naver.com
+  email:          donghyun.seo91@gmail.com
   # Twitter nick for use in Twitter cards and follow button.
-  twitter:        # if no twitter in this config, the twitter follow button will be removed
+  twitter:        frank_seo
   # GitHub nick for use in follow button in author block.
   github:         egaoneko
 
 # Twitter account associated with the site if different from owner/author twitter account.
 # Used in Twitter cards.
-twitter:
+twitter:          frank_seo
 
 # Social networking links used in author block underneath posts. Update and remove as you like.
 social:
@@ -55,6 +55,8 @@ social:
     url: "https://github.com/egaoneko"
   - title: "linkedin"
     url: "https://br.linkedin.com/in/donghyunseo"
+  - title: "twitter"
+    url: "https://twitter.com/frank_seo"
 
 # Background image to be tiled on all pages
 background:
