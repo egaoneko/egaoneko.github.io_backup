@@ -49,7 +49,7 @@ function hasPopupBlocker(poppedWindow) {
 }
 ```
 
-사실 원글에서는 아래와 같이 부모, 자식 창 간에 `postMessage`를 사용하여 통신하는 방법이 모던하다고 첨언되어있었다. 이 방법은 자식이 cross-domain 인 경우에도 작동을 하겠지만, 필자의 경우에는 새창이 필자가 수정할 수 없는 경우여서 해당 방법을 사용할 수 없었다.
+사실 [원글](https://stackoverflow.com/questions/668286/detect-blocked-popup-in-chrome/1089792#1089792)에서는 아래와 같이 부모, 자식 창 간에 `postMessage`를 사용하여 통신하는 방법이 모던하다고 첨언되어있었다. 이 방법은 자식이 cross-domain 인 경우에도 작동을 하겠지만, 필자의 경우에는 새창이 필자가 수정할 수 없는 경우여서 해당 방법을 사용할 수 없었다.
 
 ```javascript
 // child
