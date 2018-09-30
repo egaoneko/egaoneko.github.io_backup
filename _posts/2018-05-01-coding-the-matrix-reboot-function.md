@@ -3,7 +3,7 @@ layout: post
 title: '[Coding The Matrix Reboot] 함수'
 date: 2018-05-01 17:00:00
 categories: math
-tags: [math, linear algebra, til]
+tags: [math, linear algebra]
 published: true
 fullview: false
 comments: true
