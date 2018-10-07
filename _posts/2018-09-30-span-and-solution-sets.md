@@ -3,7 +3,7 @@ layout: post
 title: '[Coding The Matrix] 벡터의 생성과 동차 선형시스템의 해집합의 관계에 대한 예제'
 date: 2018-09-30 22:20:00
 categories: math
-tags: [math, linear algebra, til]
+tags: [math, linear algebra]
 published: true
 fullview: false
 comments: true
