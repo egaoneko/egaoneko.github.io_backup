@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-<figure><img src="/images/comodo.png" alt=""></figure>
+<figure><img src="/images/etc/comodo.png" alt=""></figure>
 
 현재 제가 사용하고 있는 보안 프로그램의 조합은 Avast!(백신) + COMODO Firewall(방화벽) 입니다.
 

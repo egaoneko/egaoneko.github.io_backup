@@ -21,6 +21,6 @@ comments: true
 >
 >2. As workaround, enable special Gradle task "Build xxx.war artifact" in run configuration to simulate "bootRun" Gradle task (see screenshot)
 
-<figure><img src="/images/Run_Debug_Configurations.jpg" alt=""></figure>
+<figure><img src="/images/etc/Run_Debug_Configurations.jpg" alt=""></figure>
 
 답변의 링크와 같이 Spring Boot application을 실행할 때 JSP지원에 제한이 있다고 한다. 이에 대한 해결책으로는 Jsp를 사용하지 않는 것과 상단에 첨부된 사진같이 Application에 환경 설정을 하면된다. 필자가 직접 설정하고 실행해보니 Gradle로 ``bootRun``한 것과 동일하게 실행된다.

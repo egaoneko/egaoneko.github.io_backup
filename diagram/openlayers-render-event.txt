@@ -1,0 +1,14 @@
+Diagram(
+  Stack(
+    '[map] precompose',
+    MultipleChoice(
+      0,
+      'any',
+      Sequence('[layer] precompose', '[layer] postcompose'),
+      Sequence(OneOrMore('[vector layer] style function'), '[vector layer] precompose', '[vector layer] render', '[vector layer] postcompose'),
+    ),
+    '[map] postcompose',
+    '[map] postrender',
+    Optional('[map] rendercomplete'),
+  )
+)

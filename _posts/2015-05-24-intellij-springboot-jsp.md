@@ -59,7 +59,7 @@ dependencies {
 
 다음과 같이 작성하고 Application을 실행하면 Jsp가 제대로 작동하지 않는 것을 볼 수 있다. 아래와 같이 Jsp의 내용을 그대로 보여주는 현상이다.
 
-<figure><img src="/images/springboot-jsp.png" alt=""></figure>
+<figure><img src="/images/etc/springboot-jsp.png" alt=""></figure>
 
 이를 IntelliJ에서 해결하기 위해 여러가지를 시도해본 결과, Gradle Task중에 ``bootRun``을 실행하면 Jsp가 제대로 작동한다.
 

@@ -31,7 +31,7 @@ comments: true
 
 ### 행사 개요
 
-<figure><img src="/images/helloworld.jpg" alt=""></figure>
+<figure><img src="/images/etc/helloworld.jpg" alt=""></figure>
 
 안녕하세요!
 
@@ -49,12 +49,12 @@ comments: true
 
 ### 스피커
 
-<figure><img src="/images/helloworld-deajeon1.png" alt=""></figure>
-<figure><img src="/images/helloworld-deajeon2.png" alt=""></figure>
-<figure><img src="/images/helloworld-deajeon3.png" alt=""></figure>
-<figure><img src="/images/helloworld-deajeon4.png" alt=""></figure>
-<figure><img src="/images/helloworld-deajeon5.png" alt=""></figure>
-<figure><img src="/images/helloworld-deajeon6.png" alt=""></figure>
+<figure><img src="/images/etc/helloworld-deajeon1.png" alt=""></figure>
+<figure><img src="/images/etc/helloworld-deajeon2.png" alt=""></figure>
+<figure><img src="/images/etc/helloworld-deajeon3.png" alt=""></figure>
+<figure><img src="/images/etc/helloworld-deajeon4.png" alt=""></figure>
+<figure><img src="/images/etc/helloworld-deajeon5.png" alt=""></figure>
+<figure><img src="/images/etc/helloworld-deajeon6.png" alt=""></figure>
 
 
 ### 세션 1 [ 구글 기업 문화 - 정혜정 ]

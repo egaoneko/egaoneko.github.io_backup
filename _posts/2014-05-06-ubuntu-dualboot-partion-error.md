@@ -9,7 +9,7 @@ fullview: false
 comments: true
 ---
 
-<figure><img src="/images/ubuntu1.PNG" alt=""></figure>
+<figure><img src="/images/etc/ubuntu1.png" alt=""></figure>
 
 Ubuntu의 매력에 요즘 푹빠졌네요. 혹시 간단하게 우분투 체험해보시고 싶으신분이 있다면 아래 링크에 접속해 보시면 저와 같이 그 매력에 빠지실거에요.
 
