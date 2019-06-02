@@ -35,7 +35,7 @@ export class XHRConnection implements Connection {
 }
 ```
 
-[`angular/packages/http/src/backends/xhr_backend.ts`](https://github.com/angular/angular/blob/master/packages/http/src/backends/xhr_backend.ts#L91)를 살펴보면, `response.ok`인 경우에 `next`를 호출 후 `compelete`를 호출하여 종료함을 확인할 수 있다.
+[`xhr_backend.ts`](https://github.com/angular/angular/blob/master/packages/http/src/backends/xhr_backend.ts#L91)를 살펴보면, `response.ok`인 경우에 `next`를 호출 후 `compelete`를 호출하여 종료함을 확인할 수 있다.
 
 * 참고
-  * [`angular/packages/http/src/backends/xhr_backend.ts`](https://github.com/angular/angular/blob/master/packages/http/src/backends/xhr_backend.ts#L91)
+  * [`xhr_backend.ts`](https://github.com/angular/angular/blob/master/packages/http/src/backends/xhr_backend.ts#L91)
