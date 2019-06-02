@@ -46,9 +46,13 @@ $$
 
 은 다음과 같이
 
+<div class="overflow-wrapper" markdown="block">
+
 $$
 \{(x, y, z) \in R^3 : [4, -1, 1] \cdot [x, y, z] = 0, [0, 1, 1] \cdot [x, y, z] = 0\}
 $$
+
+</div>
 
 두 동차 선형방정식 쌍들의 해집합으로 나타낼 수 있다.
 
@@ -68,7 +72,7 @@ Example 4.3.10의 경우에도 각각 생성과 해집합이 아래와 같은 �
 
 * [Example 4.3.10](https://www.geogebra.org/3d/hvzctaes)
 
-계속 의문을 가졌던 것은 위 생성에서 어떻게 두 동차 선형방정식을 도출할 수 있을까였다. 계속 이런 저런 이야기를 하다보니, 평면이 교차해서 생기는 직선은 무수히 많을 수 있다는 것을 간과하고 있다는 것을 Ro달았다. 예제에서 든 두 동차 선형방정식 외에도 얼마든지 다른 방정식의 쌍을 예로 들어도 되었을 것이다.
+계속 의문을 가졌던 것은 위 생성에서 어떻게 두 동차 선형방정식을 도출할 수 있을까였다. 계속 이런 저런 이야기를 하다보니, 평면이 교차해서 생기는 직선은 무수히 많을 수 있다는 것을 간과하고 있다는 것을 깨달았다. 예제에서 든 두 동차 선형방정식 외에도 얼마든지 다른 방정식의 쌍을 예로 들어도 되었을 것이다.
 
 덧붙여서 이와 관련된 검색을 하던 도중에 흥미로운 StackExchange에 올라온 [How to turn span into linear equality constraint?](https://math.stackexchange.com/questions/1505789/how-to-turn-span-into-linear-equality-constraint)글의 질문과 답변을 보았다.
 
@@ -78,6 +82,8 @@ Example 4.3.10의 경우에도 각각 생성과 해집합이 아래와 같은 �
 
  이때 아래와 같이 가우스 정리를 통해 정리하면,
 
+<div class="overflow-wrapper" markdown="block">
+
  $$
  \begin{bmatrix}1&0&x\\0&1&y\\1.65&1&z\end{bmatrix}
  \rightsquigarrow
@@ -85,6 +91,8 @@ Example 4.3.10의 경우에도 각각 생성과 해집합이 아래와 같은 �
  \rightsquigarrow
  \begin{bmatrix}1&0&x\\0&1&y\\0&0&z-1.65x-y\end{bmatrix}
  $$
+
+</div>
 
 마지막 행의 마지막 요소인 $z-1.65x-y$은 우변인 $0$을 만족하여야한다.
 
