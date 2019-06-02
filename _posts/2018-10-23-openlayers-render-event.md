@@ -94,9 +94,9 @@ comments: true
 <figure><img src="/images/map/openlayers/openlayers-render-event.png" alt=""></figure>
 
 * `Map`은 `precompose`가 발생 이후, `Layer`들의 사이클이 돈 이후, `postcompose`, `postrender` 발생
-* 하나의 `Layer`가 사이클이 돌땐, `precompose` ~ `postcompose`의 일련의 과정이 발생하고 다음 `Layer`로 이동
+* 하나의 `Layer`가 사이클이 돌 땐, `precompose` ~ `postcompose`의 일련의 과정이 발생하고 다음 `Layer`로 이동
 * 타일 `Layer`는 불리는 대로 일련의 과정이 발생하고, `precompose`, `postcompose`만 발생
 * `VectorLayer`는 `precompose`, `render`, `postcompose`가 발생
 * `VectorLayer`의 `style function`은 `precompose` 전에 실행
 * `VectorLayer`의 `style function`은 갱신의 필요가 없을 경우 발생하지 않음(미세하게 지도가 움직이거나 새로운 레이어가 추가되었을 경우)
-* `Layer`의 `rendercomplete`가 발생하는 경우는 확인하지 못했으며, `Map`의 `rendercomplete`는 최초 로드시를 제외하고 가장 마지막 `postrender` 이후 발생
+* `Layer`의 `rendercomplete`가 발생하는 경우는 확인하지 못했으며, `Map`의 `rendercomplete`는 최초 로드 시를 제외하고 가장 마지막 `postrender` 이후 발생
