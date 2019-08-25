@@ -89,7 +89,7 @@ comments: true
 
 ## 정리
 
-위 이벤트들의 작동을 확인하기 위해 [Openlayers render event](http://www.3daysofprogramming.com/playground/examples/openlayers-render-event.html)라는 예제 페이지를 작성하여 확인하였다.
+위 이벤트들의 작동을 확인하기 위해 [Openlayers render event](/playground/examples/openlayers-render-event.html)라는 예제 페이지를 작성하여 확인하였다.
 
 <figure><img src="/images/map/openlayers/openlayers-render-event.png" alt=""></figure>
 
