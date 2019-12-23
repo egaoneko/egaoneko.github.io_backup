@@ -1,6 +1,9 @@
+const TITLE = `SmileCat's Blog`;
+const SHORT_TITLE = `SmileCat`;
+
 module.exports = {
   siteMetadata: {
-    title: `SmileCat's Blog`,
+    title: TITLE,
     author: `Donghyun Seo`,
     description: `The endless quitter's blog.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
@@ -50,20 +53,21 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-62717870-1`,
+        variationId: `google1bca872409dc6831`,
       },
     },
     `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: TITLE,
+        short_name: SHORT_TITLE,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/profile-pic.jpg`,
       },
     },
     `gatsby-plugin-offline`,
